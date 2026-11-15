@@ -114,14 +114,14 @@ DEMO_AM = OWNERS[0]
 # --------------------------------------------------------------------------
 FEATURED = ["Krakatoa", "Aster", "Mosaic", "Wayfarer", "Monogram"]
 OTHER_NAMES = [
-    "Bramblewood Home", "Cobalt Rail", "Tidewater Grocers", "Fernhill Apparel",
-    "Quayside Hotels", "Pinecrest Pharmacy", "Saltmarsh Games",
-    "Orchard Lane Living", "Copperleaf Beauty", "Driftwood Mobility",
-    "Halcyon Ticketing", "Kestrel Electronics", "Larkspur Foods",
-    "Marlowe Books", "Lanternfly Rides", "Oakmoor Furniture", "Petrel Airways",
-    "Quillon Software", "Redfern Fitness", "Silverbirch Pets",
-    "Thistle & Thread", "Umberleaf Coffee", "Vellum Stationery",
-    "Willowbank Box", "Zephyrine Car Rental",
+    "Bramblewood", "Cobalt", "Tidewater", "Fernhill",
+    "Quayside", "Pinecrest", "Saltmarsh",
+    "Orchard Lane", "Copperleaf", "Driftwood",
+    "Halcyon", "Kestrel", "Larkspur",
+    "Marlowe", "Lanternfly", "Oakmoor", "Petrel",
+    "Quillon", "Redfern", "Silverbirch",
+    "Thistle", "Umberleaf", "Vellum",
+    "Willowbank", "Zephyrine",
 ]
 
 accounts: list[dict] = [{"Id": sf_id("Account"), "Name": n}
@@ -390,7 +390,7 @@ for account in OTHER_NAMES:
                 created, close, last_activity, next_step, forecast)
 
 # A couple of large merchants carry high-value (> EUR 1M) open renewals.
-for name, amount in (("Petrel Airways", 1_850_000), ("Tidewater Grocers", 1_200_000)):
+for name, amount in (("Petrel", 1_850_000), ("Tidewater", 1_200_000)):
     for o in opportunities:
         if (o["AccountId"] == acct[name] and o["Type"] == "Renewal"
                 and o["IsClosed"] == "false"):
@@ -791,7 +791,7 @@ KEEP_CAPITAL = ("Pay", "Tap")
 
 
 def deal_phrase(opp: dict) -> str:
-    """'Cobalt Rail - Upsell - Pay by Bank' -> 'the Pay by Bank upsell'."""
+    """'Cobalt - Upsell - Pay by Bank' -> 'the Pay by Bank upsell'."""
     parts = opp["Name"].split(" - ")
     if opp["Type"] == "Renewal":
         return f"the {parts[-1]} renewal"

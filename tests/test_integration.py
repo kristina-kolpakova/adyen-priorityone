@@ -10,8 +10,8 @@ import pytest
 from integration import DATA_DIR, IntegrationError, load_and_integrate
 
 NO_GONG_ACCOUNTS = {
-    "Tidewater Grocers", "Halcyon Ticketing", "Oakmoor Furniture",
-    "Petrel Airways", "Quillon Software", "Redfern Fitness", "Zephyrine Car Rental",
+    "Tidewater", "Halcyon", "Oakmoor",
+    "Petrel", "Quillon", "Redfern", "Zephyrine",
 }
 
 LATEST_ACCOUNT_CALL_FIELDS = (
@@ -413,8 +413,8 @@ def test_latest_opportunity_gong_call_matches_source_csv(records):
 def test_saltmarsh_missing_salesforce_activity_preserved_alongside_gong(records_by_name):
     # Saltmarsh's Marketplace payouts deal has Gong calls but no Salesforce
     # LastActivityDate. Both facts are kept as they are; nothing is inferred.
-    opportunity = find_opportunity(records_by_name["Saltmarsh Games"],
-                                   "Saltmarsh Games - New - Marketplace payouts")
+    opportunity = find_opportunity(records_by_name["Saltmarsh"],
+                                   "Saltmarsh - New - Marketplace payouts")
     call_ids = [call["id"] for call in opportunity["gong_calls"]]
 
     assert opportunity["source"]["LastActivityDate"] is None
@@ -429,7 +429,7 @@ def test_saltmarsh_missing_salesforce_activity_preserved_alongside_gong(records_
 def test_account_salesforce_date_ignores_missing_opportunity_dates(records_by_name):
     # One Saltmarsh opportunity has no LastActivityDate; the account-level date
     # is the latest of the dates that exist, not None.
-    saltmarsh = records_by_name["Saltmarsh Games"]
+    saltmarsh = records_by_name["Saltmarsh"]
     dates = [opportunity["source"]["LastActivityDate"]
              for opportunity in saltmarsh["opportunities"]]
     known_dates = [activity_date for activity_date in dates if activity_date is not None]
