@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PriorityOne — Account Intelligence</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #78818b;
+      --border: #e8ebed;
+      --background: #f8f9fa;
+      --mint: #a8d9c4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--background);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      height: 76px;
+      background: #111a23;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 23px;
+      font-weight: 650;
+      letter-spacing: -0.8px;
+    }
+
+    .brand-mark {
+      color: var(--mint);
+      font-size: 27px;
+    }
+
+    .header-meta {
+      color: #aeb9c3;
+      font-size: 13px;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      min-height: calc(100vh - 76px);
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    aside {
+      padding: 48px 24px;
+      border-right: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .nav-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: #a1a9b1;
+      padding: 0 14px;
+      margin-bottom: 20px;
+    }
+
+    .nav-item {
+      padding: 12px 14px;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #747d86;
+    }
+
+    .nav-item.active {
+      background: #edf5f0;
+      color: #225c46;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 56px 64px 100px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      color: #688c7c;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 3vw, 42px);
+      font-weight: 650;
+      letter-spacing: -1.8px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 14px 0 36px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .metric {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .metric-value {
+      font-size: 34px;
+      font-weight: 650;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 650;
+      letter-spacing: -0.5px;
+    }
+
+    .section-meta {
+      color: #a0a8b0;
+      font-size: 12px;
+    }
+
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 20px 24px;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .account:hover {
+      border-color: #b5d8c8;
+      box-shadow: 0 8px 24px rgba(20, 40, 30, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .rank {
+      color: #a6aeb6;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .account-info { flex: 1; }
+
+    .account-name {
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .account-signal {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score {
+      background: #edf6ef;
+      color: #31704f;
+      padding: 7px 12px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .arrow {
+      color: #aab2b9;
+      font-size: 19px;
+    }
+
+    .footer-note {
+      margin-top: 32px;
+      color: #a0a8b0;
+      font-size: 11px;
+    }
+
+    @media (max-width: 800px) {
+      header { padding: 0 24px; }
+      .workspace { grid-template-columns: 1fr; }
+      aside { display: none; }
+      main { padding: 36px 24px; }
+      .metrics { gap: 8px; }
+      .metric { padding: 16px; }
+      .metric-value { font-size: 26px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <span class="brand-mark">◇</span>
+      PriorityOne
+    </div>
+    <div class="header-meta">Portfolio overview &nbsp;·&nbsp; This week</div>
+  </header>
+
+  <div class="workspace">
+    <aside>
+      <div class="nav-label">Workspace</div>
+      <div class="nav-item active">Overview</div>
+      <div class="nav-item">Accounts</div>
+      <div class="nav-item">Signals</div>
+      <div class="nav-item">Activity</div>
+    </aside>
+
+    <main>
+      <div class="eyebrow">Monday morning briefing</div>
+      <h1>Your week, prioritized.</h1>
+      <p class="subtitle">Five accounts deserve your attention.</p>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value">05</div>
+          <div class="metric-label">Priority accounts</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">02</div>
+          <div class="metric-label">Revenue risks</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">03</div>
+          <div class="metric-label">Opportunities</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <h2>Your top priorities</h2>
+        <span class="section-meta">Ranked by priority score</span>
+      </div>
+
+      <div class="account">
+        <span class="rank">01</span>
+        <div class="account-info">
+          <div class="account-name">Northstar Commerce</div>
+          <div class="account-signal">Payment volume declining · −12% WoW</div>
+        </div>
+        <span class="score">94</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="account">
+        <span class="rank">02</span>
+        <div class="account-info">
+          <div class="account-name">Meridian Retail</div>
+          <div class="account-signal">Expansion opportunity · Recent buying signal</div>
+        </div>
+        <span class="score">88</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="account">
+        <span class="rank">03</span>
+        <div class="account-info">
+          <div class="account-name">Atlas Marketplace</div>
+          <div class="account-signal">Renewal approaching · 30 days remaining</div>
+        </div>
+        <span class="score">83</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="account">
+        <span class="rank">04</span>
+        <div class="account-info">
+          <div class="account-name">Solstice Travel</div>
+          <div class="account-signal">Support escalations increasing</div>
+        </div>
+        <span class="score">79</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <div class="account">
+        <span class="rank">05</span>
+        <div class="account-info">
+          <div class="account-name">Harbor Digital</div>
+          <div class="account-signal">Payment volume growing · Expansion potential</div>
+        </div>
+        <span class="score">76</span>
+        <span class="arrow">›</span>
+      </div>
+
+      <p class="footer-note">
+        Prototype · Fictional account data · Scores shown for design purposes
+      </p>
+    </main>
+  </div>
+</body>
+</html>
