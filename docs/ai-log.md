@@ -34,6 +34,9 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 20 | 2026-11-20 | Claude Code | Account scoring | Separated renewals from upsell/new; caught duplicated scoring logic |
 | 21 | 2026-11-20 | Claude Code | Naming | Renamed scores and "segments" to match Salesforce terms |
 | 22 | 2026-11-20 | Claude Code | Testing | Simplified the test suite; 8 tests passing |
+| 23 | 2026-11-20 | Claude Code | UI | Hooked the dashboard up to exported scores; hid fake metrics |
+| 24 | 2026-11-20 | Claude Code | Account scoring | Caught totals that didn't add up; total is now the higher type score |
+| 25 | 2026-11-20 | Claude Code | UI | Built the detail panel; recovered discarded data; fixed alignment at the layout level |
 
 ---
 
@@ -253,6 +256,28 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **Where Claude helped:** It pointed out that one of my console checks was recalculating type scores using the same function it was supposed to validate, which wasn't a particularly useful independent test. It also identified which coverage I lost during the rewrite. I reviewed those gaps and decided to add back the two type-scoring tests.
 - **How it was checked:** All 8 pytest tests passed. I also checked the scoring output manually in Spyder.
 - **Lesson:** I wanted a test suite I could actually read, understand and maintain. That meant keeping the most useful checks and accepting some gaps in coverage for now.
+
+## 23. Hooking up the UI to real scores
+
+- **Tool:** Claude Code, Python/pandas, JavaScript
+- **How it was steered:** Export first, then render, one reviewed step at a time. I chose to show only the top 5 and to hide the "Revenue risks" and "Opportunities" cards, because hardcoded numbers next to real scores would look like real results.
+- **What I corrected:** A review of Claude's JavaScript caught that dates could shift a day in time zones behind UTC, and that a failed load would show a silently empty list. Both were fixed before it went in.
+- **Lesson:** Once part of the page is real, anything still hardcoded has to go or be labelled.
+
+## 24. The totals didn't add up
+
+- **Tool:** Claude Code
+- **What I noticed:** Marlowe showed Renewal 50 and Upsell/New 125, but a total of 150. The green number came from a separate blended score, not from the two numbers beside it.
+- **How it was steered:** Claude recommended turning the type scores into a breakdown of the blended total. I chose to make the total the higher of the two type scores, so the UI shows exactly what the logic does, even though that creates a six-way tie at 90. I documented the tie in the README as a temporary gap to fix.
+- **Lesson:** If the numbers on screen don't reconcile, users stop trusting all of them. A faithful UI with a known gap beats a polished one that hides it.
+
+## 25. Building the detail panel
+
+- **Tool:** Claude Code, Python/pandas, JavaScript/CSS
+- **How it was steered:** I designed the panel mockup. Claude flagged that "70 pts" on a deal that doesn't count would read as counted, and that "Next steps" checkboxes had no data behind them, so they were dropped. We built it in three reviewed steps.
+- **What Claude found:** The per-opportunity contributions the panel needed were being discarded as `_` in `score_types()`, the same spot where I'd originally kept named variables because "we'll need details later". They're now exported, and for all 29 accounts they add up exactly to the total.
+- **What I corrected:** Claude's expand chevron broke the alignment of the points pills, because it became a third flexbox item in a `space-between` row. I asked for an architectural fix rather than a nudge, and each row now uses fixed grid columns.
+- **Lesson:** Ask why a layout breaks, not just where.
 
 ---
 

@@ -207,6 +207,7 @@
     .upsell-new-score { color: #3a7f8a; margin-right: 8px; }
     .experimental { color: #b5bcc3; font-size: 12px; }
     .type-scores { margin-top: 3px; }
+    .overdue { color: #B87579; }
 
     .score {
       background: #edf6ef;
@@ -506,7 +507,7 @@
             new Date(account.top_close_date + "T12:00:00")
           );
           const timing = account.top_is_overdue
-            ? `<strong>overdue</strong> since ${closeDate}`
+            ? `<span class="overdue">overdue</span> since ${closeDate}`
             : `closes ${closeDate}`;
 
           rows += `
@@ -583,7 +584,7 @@
         const counts = group === winner;
         const closeDate = shortDate.format(new Date(opportunity.close_date + "T12:00:00"));
         const timing = opportunity.is_overdue
-          ? `<strong>overdue</strong> since ${closeDate}`
+          ? `<span class="overdue">overdue</span> since ${closeDate}`
           : `closes ${closeDate}`;
         // Only opportunities in the winning type add to the total.
         const points = counts
