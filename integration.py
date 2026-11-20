@@ -123,3 +123,33 @@ quarter_counts = pd.crosstab(
     df["AccountName"],
     df["OpportunityQuarter"]
 )
+
+
+
+# --- Export for the UI ---
+
+# Get each account's highest-scoring opportunity.
+top_opportunities = df[df["OpportunityRank"] == 1].set_index("AccountName")
+
+# Combine account scores and opportunity details.
+ui_accounts = pd.DataFrame({
+    "account_score": account_scores,
+    "renewal_score": type_scores["RenewalScore"],
+    "upsell_new_score": type_scores["UpsellNewScore"],
+    "top_opportunity": top_opportunities["Name"],
+    "top_type": top_opportunities["Type"],
+    "top_amount": top_opportunities["Amount"],
+    "top_stage": top_opportunities["StageName"].astype(str),
+    "top_close_date": top_opportunities["CloseDate"].dt.strftime("%Y-%m-%d"),
+    "top_is_overdue": top_opportunities["IsOverdue"],
+})
+
+# Sort accounts by priority, highest first.
+ui_accounts = ui_accounts.reset_index(names="account_name")
+ui_accounts = ui_accounts.sort_values(
+    ["account_score", "account_name"],
+    ascending=[False, True]
+)
+
+# Export to JSON for the UI.
+ui_accounts.to_json("data/scores.json", orient="records", indent=2)
