@@ -60,8 +60,8 @@ def score_types(opportunities):
     upsell_new = opportunities[opportunities["Type"].isin(["Upsell", "New"])]
 
     # Calculate account scores for each group.
-    _, renewal_scores = score_accounts(renewals)
-    _, upsell_new_scores = score_accounts(upsell_new)
+    renewal_details, renewal_scores = score_accounts(renewals)
+    upsell_details, upsell_new_scores = score_accounts(upsell_new)
 
     # Combine both scores into one table.
     type_scores = pd.DataFrame({
@@ -69,4 +69,7 @@ def score_types(opportunities):
         "UpsellNewScore": upsell_new_scores
     }).fillna(0)
 
-    return type_scores
+    # Each opportunity's rank and contribution within its own type.
+    type_details = pd.concat([renewal_details, upsell_details])
+
+    return type_scores, type_details

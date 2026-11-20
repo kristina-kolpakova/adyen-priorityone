@@ -111,7 +111,10 @@ df["QuartersAway"] = (
 df, account_scores = score_accounts(df)
 
 # Score renewals and upsell/new opportunities separately.
-type_scores = score_types(df)
+type_scores, type_details = score_types(df)
+
+# Account priority is the stronger of the two type scores.
+priority_scores = type_scores[["RenewalScore", "UpsellNewScore"]].max(axis=1)
 
 
 # --- Account Analysis ---
@@ -128,12 +131,28 @@ quarter_counts = pd.crosstab(
 
 # --- Export for the UI ---
 
-# Get each account's highest-scoring opportunity.
-top_opportunities = df[df["OpportunityRank"] == 1].set_index("AccountName")
+# Which type sets each account's priority (ties go to renewals).
+scoring_types = (
+    type_scores[["RenewalScore", "UpsellNewScore"]]
+    .idxmax(axis=1)
+    .map({"RenewalScore": "Renewal", "UpsellNewScore": "Upsell/New"})
+)
+
+# Group each opportunity the same way, to match it to the winning type.
+type_groups = type_details["Type"].map(
+    {"Renewal": "Renewal", "Upsell": "Upsell/New", "New": "Upsell/New"}
+)
+
+# Get each account's highest-scoring opportunity within its winning type.
+top_opportunities = type_details[
+    (type_details["OpportunityRank"] == 1)
+    & (type_groups == type_details["AccountName"].map(scoring_types))
+].set_index("AccountName")
 
 # Combine account scores and opportunity details.
 ui_accounts = pd.DataFrame({
-    "account_score": account_scores,
+    "account_score": priority_scores,
+    "scoring_type": scoring_types,
     "renewal_score": type_scores["RenewalScore"],
     "upsell_new_score": type_scores["UpsellNewScore"],
     "top_opportunity": top_opportunities["Name"],
@@ -144,12 +163,47 @@ ui_accounts = pd.DataFrame({
     "top_is_overdue": top_opportunities["IsOverdue"],
 })
 
-# Sort accounts by priority, highest first.
+# Sort accounts by priority, highest first, and number them.
 ui_accounts = ui_accounts.reset_index(names="account_name")
 ui_accounts = ui_accounts.sort_values(
     ["account_score", "account_name"],
     ascending=[False, True]
 )
+ui_accounts.insert(1, "rank", range(1, len(ui_accounts) + 1))
 
 # Export to JSON for the UI.
 ui_accounts.to_json("data/scores.json", orient="records", indent=2)
+
+# Export each open opportunity's score breakdown for the detail panel.
+(
+    type_details
+    .assign(
+        CloseDate=type_details["CloseDate"].dt.strftime("%Y-%m-%d"),
+        StageName=type_details["StageName"].astype(str),
+        OpportunityRank=type_details["OpportunityRank"].astype(int),
+        Weight=type_details["AccountContribution"] / type_details["PriorityScore"],
+    )
+    .rename(columns={
+        "AccountName": "account_name",
+        "Name": "opportunity",
+        "Type": "type",
+        "Amount": "amount",
+        "StageName": "stage",
+        "CloseDate": "close_date",
+        "IsOverdue": "is_overdue",
+        "ValueScore": "value_score",
+        "QuarterScore": "quarter_score",
+        "StageScore": "stage_score",
+        "PriorityScore": "priority_score",
+        "OpportunityRank": "type_rank",
+        "Weight": "weight",
+        "AccountContribution": "contribution",
+    })
+    [[
+        "account_name", "opportunity", "type", "amount", "stage",
+        "close_date", "is_overdue", "value_score", "quarter_score",
+        "stage_score", "priority_score", "type_rank", "weight", "contribution",
+    ]]
+    .sort_values(["account_name", "priority_score"], ascending=[True, False])
+    .to_json("data/opportunity_scores.json", orient="records", indent=2)
+)
