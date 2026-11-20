@@ -1,0 +1,4 @@
+## Known limitations
+
+- **Tie-break for equal opportunity scores is undecided.** When two opportunities in the same account have the same `PriorityScore`, it's not yet decided whether the larger deal or the sooner-closing deal should rank first. For now, ties are broken by CSV row order (`rank(method="first")`), which is deterministic but has no business reason behind it. This only changes an account's score when its top two opportunities tie and close in different quarters.
+- **Every additional opportunity counts, and deal size has limited weight.** Each extra opportunity adds a share of its `PriorityScore` (50% current quarter or overdue, 25% next quarter, 10% later). Because stage and timing make up most of `PriorityScore`, a small deal can add as much as a large one: Marlowe's €45K deal adds 30 points, while Kestrel's €1.23M future deal adds 6. No cap on additional opportunities is applied yet; this will be revisited after Gong signals are added.

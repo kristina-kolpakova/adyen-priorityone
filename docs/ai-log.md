@@ -25,6 +25,12 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 11 | 2026-11-19 | Claude Code | Data integration | Wrote a 500-line pipeline despite "build incrementally"; stopped |
 | 12 | 2026-11-19 | Claude Code | Data integration | Rebuilt from my snippet, one step at a time (42 lines) |
 | 13 | 2026-11-19 | Claude Code | Testing | Old tests deleted instead of replaced; 6 new tests written |
+| 14 | 2026-11-20 | Claude Code, ChatGPT | Scoring dates | Rejected a fixed reference date; scoring uses today |
+| 15 | 2026-11-20 | ChatGPT, Claude Code | Account scoring | Switched from ranking deals to ranking accounts |
+| 16 | 2026-11-20 | ChatGPT, Claude Code | Account scoring | Kept overdue deals in the score instead of excluding them |
+| 17 | 2026-11-20 | ChatGPT | Account scoring | Quarter-based weights for additional deals, verified on five accounts |
+| 18 | 2026-11-20 | ChatGPT | Code quality | Kept the pandas scoring explicit and commented |
+| 19 | 2026-11-20 | ChatGPT | Ranking review | Challenged Kestrel ranking above Krakatoa instead of accepting it |
 
 ---
 
@@ -165,6 +171,61 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **Fix:** Claude wrote 5 tests, then rewrote them in the original suite's style on request: fixtures, section headings, comments explaining where each expected value comes from.
 - **How it was checked:** When I switched to the left join, 2 tests failed straight away (29 accounts, Thistle missing). They were updated deliberately and are now 6 passing tests: accounts kept, account names attached, open opportunities only, no duplication, value tiers 18/17/17/18, Thistle excluded.
 - **Lesson:** Replacing code doesn't mean dropping its safety net. Small tests against the raw CSVs paid off immediately.
+
+## 14. Dynamic reference date
+
+- **Tool:** Claude Code, ChatGPT, Python/pandas
+- **Used for:** Calculating whether opportunities close in the current quarter.
+- **How it was steered:** Claude proposed keeping a fixed 15 Nov 2026 reference date (the mock data's snapshot date) for reproducible results and tests. I rejected it and required scoring to use the actual date when the script runs.
+- **How the output was checked:** Reviewed the pandas implementation and confirmed it uses `pd.Timestamp.today().normalize()`.
+- **What went wrong / what I corrected:** Anchoring calculations to the mock dataset's date would make the tool stale. Trade-off accepted: results change over time and the quarter rolls over on 1 Jan, so tests can't hard-code date-dependent scores.
+- **Lesson:** Mock data can be static; business logic shouldn't be.
+
+## 15. Switching from opportunity to account prioritization
+
+- **Tool:** ChatGPT, Claude Code, Python/pandas
+- **Used for:** Designing account-level scoring from individual Salesforce opportunities.
+- **How it was steered:** Clarified that the goal was to rank accounts, not individual deals. Chose 100% contribution for the highest-scoring opportunity, 50% for additional current-quarter deals, 25% for next-quarter deals, and 10% for later-quarter deals.
+- **How the output was checked:** Inspected opportunity-level contributions and calculated account totals in Spyder.
+- **What went wrong / what I corrected:** Taking the maximum opportunity score ignored additional deals. Simply summing every score would overreward accounts with many distant opportunities.
+- **Lesson:** Aggregation should reflect the business decision, not just the easiest pandas operation.
+
+## 16. Preserving overdue opportunities
+
+- **Tool:** ChatGPT, Claude Code
+- **Used for:** Deciding how open opportunities with past close dates should affect priority.
+- **How it was steered:** Rejected Claude's suggestion to exclude overdue deals, and its alternative of giving every overdue deal the 20 quarter points. Kept overdue current-quarter opportunities eligible for the 50% additional-deal contribution and added an `IsOverdue` flag.
+- **How the output was checked:** Verified Krakatoa's overdue €320K opportunity contributed 35 points, bringing its account total to 125.
+- **What went wrong / what I corrected:** Excluding overdue deals would hide opportunities that may urgently need follow-up. Adding arbitrary urgency points wasn't justified either.
+- **Fixed later:** At first only overdue deals in the *current* quarter contributed. Deals that slipped from an earlier quarter (Marlowe's Sep renewal, Wayfarer's tokenization upsell) contributed 0, because `QuartersAway` was negative and no weight rule matched. The 50% rule now uses `QuartersAway <= 0`, so all overdue deals count (Marlowe 125 → 150, Wayfarer 60 → 65).
+- **Lesson:** Preserve useful business signals without inventing scoring weights.
+
+## 17. Implementing quarter-based discounts
+
+- **Tool:** ChatGPT, Python/pandas, Spyder
+- **Used for:** Discounting additional opportunities based on how far away their close dates are.
+- **How it was steered:** Requested a simple, explainable calculation using `QuartersAway`. Kept the strongest opportunity at 100%, with additional deals weighted by quarter.
+- **How the output was checked:** Manually verified Krakatoa (125), Marlowe (125), Aster (79), Oakmoor (73), and Willowbank (105). All five matched the script's results, and Claude confirmed them again against the repo's `integration.py` on 20 Nov.
+- **What went wrong / what I corrected:** The initial implementation ignored future-quarter opportunities entirely. The revised logic preserves their contribution at reduced weights.
+- **Lesson:** Implement one rule at a time and verify it against known examples before trusting the full ranking.
+
+## 18. Keeping the pandas implementation explainable
+
+- **Tool:** ChatGPT, Python/pandas, Spyder
+- **Used for:** Implementing, commenting, and testing account-scoring logic.
+- **How it was steered:** Requested explicit pandas operations, consistent section headers, and comments explaining the business rules. Avoided unnecessary functions and abstractions.
+- **How the output was checked:** Reran the script after reorganizing the code and verified four existing account scores with assertions in Spyder (not yet in the repo's test suite).
+- **What went wrong / what I corrected:** AI suggestions sometimes introduced complexity before the underlying business rules were settled.
+- **Lesson:** Code I can explain and debug is more valuable than clever code I can't defend.
+
+## 19. Challenging the first account ranking
+
+- **Tool:** ChatGPT, Python/pandas, Spyder
+- **Used for:** Evaluating whether the first 29-account ranking answered the original business question.
+- **How it was steered:** Challenged Kestrel ranking first (131) over Krakatoa (125). Requested an opportunity-level breakdown instead of accepting the scores.
+- **How the output was checked:** Compared total pipeline (€2.255M vs. €1.77M), largest deals (€1.23M vs. €1.45M), opportunity contributions, and overdue status.
+- **What went wrong / what I corrected:** The model favored Kestrel's combined pipeline but didn't account for Krakatoa's overdue follow-up urgency. Quartile scoring also obscured differences between large deals.
+- **Lesson:** A correct calculation isn't necessarily a useful recommendation. Don't manipulate weights to force a preferred outcome; introduce evidence-based urgency and Gong context to distinguish pipeline strength from immediate actionability.
 
 ---
 
