@@ -31,10 +31,9 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 17 | 2026-11-20 | ChatGPT | Account scoring | Quarter-based weights for additional deals, verified on five accounts |
 | 18 | 2026-11-20 | ChatGPT | Code quality | Kept the pandas scoring explicit and commented |
 | 19 | 2026-11-20 | ChatGPT | Ranking review | Challenged Kestrel ranking above Krakatoa instead of accepting it |
-| 20 | 2026-11-20 | Claude Code | Account scoring | Split scores into renewals and upsell/new |
-| 21 | 2026-11-20 | Claude Code | Code quality | Duplicated scoring logic caught and moved into scoring.py |
-| 22 | 2026-11-20 | Claude Code | Naming | Renamed "segments" to opportunity types |
-| 23 | 2026-11-20 | Claude Code | Testing | Kept tests honest and simple; 8 passing |
+| 20 | 2026-11-20 | Claude Code | Account scoring | Separated renewals from upsell/new; caught duplicated scoring logic |
+| 21 | 2026-11-20 | Claude Code | Naming | Renamed scores and "segments" to match Salesforce terms |
+| 22 | 2026-11-20 | Claude Code | Testing | Simplified the test suite; 8 tests passing |
 
 ---
 
@@ -231,40 +230,29 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **What went wrong / what I corrected:** The model favored Kestrel's combined pipeline but didn't account for Krakatoa's overdue follow-up urgency. Quartile scoring also obscured differences between large deals.
 - **Lesson:** A correct calculation isn't necessarily a useful recommendation. Don't manipulate weights to force a preferred outcome; introduce evidence-based urgency and Gong context to distinguish pipeline strength from immediate actionability.
 
-## 20. Scoring renewals and upsell/new separately
+## 20. Separating renewals from upsell/new
 
 - **Tool:** Claude Code, Python/pandas
-- **Used for:** Comparing Marlowe, Krakatoa and Kestrel, then splitting account scores by opportunity type.
-- **How it was steered:** The comparison showed Marlowe ranking first with about a third of Krakatoa's open amount, and none of Krakatoa's competitor risk visible in the score. I pointed out that renewals (captive customers) and upsell/new (revenue still to be won) are different problems and asked for two scores. I agreed to a first step that only splits the scores, without changing any rules.
-- **How the output was checked:** Ran both rankings side by side. Blended scores were unchanged.
-- **What it showed:** Marlowe's lead is almost all upsell/new (125). The renewal list can't rank yet: six accounts tie at 90. And a renewal 73 days overdue (Marlowe) scores only 50, because it gets no quarter points.
-- **Lesson:** Splitting by type didn't fix the ranking, but it showed exactly where Salesforce fields alone run out.
+- **Used for:** Splitting the original account score into separate renewal and upsell/new scores.
+- **How it was steered:** After comparing Marlowe, Krakatoa and Kestrel, I realised renewals and upsell/new are fundamentally different problems. Renewals are existing customers we're trying to keep, while upsell/new revenue still has to be won. I asked Claude to split the scores by opportunity type without changing the existing weights.
+- **What I corrected:** Claude initially duplicated the account-scoring logic in `scoring.py` to avoid changing `integration.py`. I caught that and had it moved into one reusable `score_accounts()` function. We compared all 29 account scores before and after the refactor and confirmed nothing changed.
+- **What it showed:** Marlowe's lead comes mostly from upsell/new opportunities. Six renewals still tie at 90, and a renewal 73 days overdue scores only 50. The split made the rankings easier to understand, but also exposed limitations in the current scoring rules.
+- **Lesson:** The decision to split the scores came from understanding the business, not adjusting weights to get a particular result.
 
-## 21. Duplicated scoring logic caught and moved
-
-- **Tool:** Claude Code
-- **What went wrong:** To avoid touching `integration.py`, Claude copied the account aggregation into a new `scoring.py`. The same weights then lived in two files, so changing one would have silently left the other out of date. I caught it: "doesn't this introduce code duplication?"
-- **Fix:** The aggregation moved into `scoring.py` as `score_accounts()`, and `integration.py` now calls it.
-- **How it was checked:** Claude saved all scores before the move and compared after: all 29 account scores, all 70 opportunity ranks and contributions, and the type scores were identical. Tests passed.
-- **Lesson:** "Don't change the existing file" isn't a reason to duplicate logic. Moving code is safe when the before-and-after output is compared.
-
-## 22. Renaming "segments" to opportunity types
+## 21. Cleaning up naming
 
 - **Tool:** Claude Code
-- **What went wrong:** Claude named the split `score_segments()` / `segment_scores`, with columns `RetentionScore` and `GrowthScore`. I asked for `RenewalScore` and `UpsellNewScore`, then asked what "segments" meant. In GTM, "segment" usually means customer segments (enterprise, mid-market), so the name claimed something the code didn't do.
-- **Fix:** Renamed to `score_types()` and `type_scores`, based on the Salesforce `Type` field. Values were unchanged.
-- **Lesson:** Names should use the source system's terms. A familiar business word that means something else is worse than a plain one.
+- **How it was steered:** Claude originally called the scores `RetentionScore` and `GrowthScore`, which I changed to `RenewalScore` and `UpsellNewScore`. I also questioned why it was calling them "segments." In GTM, that usually refers to customer segments like enterprise or mid-market, not opportunity types. We renamed `score_segments()` and `segment_scores` to `score_types()` and `type_scores` to match the Salesforce `Type` field.
+- **How it was checked:** Verified the new column names and scores in Spyder. The values were unchanged, and the tests passed.
+- **Lesson:** Naming should reflect what the code actually does, ideally using the same terminology as the source data.
 
-## 23. Keeping the tests honest and simple
+## 22. Simplifying the test suite
 
 - **Tool:** Claude Code, Spyder, pytest
-- **What happened:**
-  - One of my console checks recalculated type scores with the same `score_accounts()` function it was meant to check. Claude pointed out that this compared the function with itself, and proposed two checks against the blended score instead (single-type accounts keep their score; splitting never lowers the total). Both are now tests and don't depend on today's date.
-  - A test for overdue deals was written against the CSV and today's date. A review flagged that it could fail as the data aged. Claude replaced it with a made-up two-deal account, which I found more confusing, so the test was deleted.
-  - I rewrote the test file in a simpler style. Claude listed the coverage that was lost, and only the two type-score tests were added back.
-  - Spyder runs its own Python environment, not the project's `.venv`, so console results and pytest results can drift apart.
-- **How it was checked:** 8 pytest tests pass.
-- **Lesson:** A test should check something the code could get wrong, and be easy to read. When a fix makes a test harder to understand, deleting it can be the better choice.
+- **What I did:** I wasn't happy with how complicated `tests/test_integration.py` had become, so I rewrote it with plain functions, no fixtures, and simpler assertions. I also removed the overdue regression test after Claude's proposed replacement felt unnecessarily complicated for what I was trying to check.
+- **Where Claude helped:** It pointed out that one of my console checks was recalculating type scores using the same function it was supposed to validate, which wasn't a particularly useful independent test. It also identified which coverage I lost during the rewrite. I reviewed those gaps and decided to add back the two type-scoring tests.
+- **How it was checked:** All 8 pytest tests passed. I also checked the scoring output manually in Spyder.
+- **Lesson:** I wanted a test suite I could actually read, understand and maintain. That meant keeping the most useful checks and accepting some gaps in coverage for now.
 
 ---
 
