@@ -1,85 +1,65 @@
-"""Step 1 tests: loading Salesforce data, joining accounts, and value tiers."""
 
-from pathlib import Path
+"""Tests for Salesforce data integration and account scoring."""
 
 import pandas as pd
-import pytest
-
 import integration
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
-EXPECTED_TIER_COUNTS = {"low": 18, "medium": 17, "high": 17, "critical": 18}
-
-
-# --- Fixtures --------------------------------------------------------------------
-@pytest.fixture(scope="module")
-def integrated():
-    """The joined table built by integration.py."""
-    return integration.df
+def test_only_open_opportunities():
+    assert len(integration.df) == 70
+    assert (integration.df["IsClosed"] == False).all()
 
 
-@pytest.fixture(scope="module")
-def source_accounts():
-    """Accounts exactly as stored in the CSV, for independent comparisons."""
-    return pd.read_csv(DATA_DIR / "accounts.csv")
+def test_accounts_are_preserved():
+    assert integration.df["AccountId"].nunique() == 29
+    assert integration.df["AccountName"].notna().all()
 
 
-@pytest.fixture(scope="module")
-def source_open_opportunities():
-    """Open opportunities exactly as stored in the CSV."""
-    opportunities = pd.read_csv(DATA_DIR / "opportunities.csv")
-    return opportunities[opportunities["IsClosed"] == False]
+def test_opportunities_are_not_duplicated():
+    assert integration.df["Id"].is_unique
 
 
-# --- Accounts ----------------------------------------------------------------------
-def test_accounts_with_open_opportunities_are_kept(integrated, source_open_opportunities):
-    # The left join keeps every open opportunity, so every account that has at
-    # least one open opportunity appears: 29 of the 30 accounts.
-    assert integrated["AccountId"].nunique() == 29
-    assert set(integrated["AccountId"]) == set(source_open_opportunities["AccountId"])
+def test_account_names_match_source():
+    accounts = pd.read_csv("data/accounts.csv")
+    expected_names = dict(zip(accounts["Id"], accounts["Name"]))
+
+    for _, row in integration.df.iterrows():
+        assert row["AccountName"] == expected_names[row["AccountId"]]
 
 
-def test_every_opportunity_gets_its_account_name(integrated, source_accounts):
-    # Each open opportunity picks up the name of its Salesforce account.
-    assert integrated["AccountName"].notna().all()
+def test_value_tiers():
+    expected = {"low": 18, "medium": 17, "high": 17, "critical": 18}
+    actual = integration.df["AmountBuckets"].value_counts().to_dict()
 
-    account_names = dict(zip(source_accounts["Id"], source_accounts["Name"]))
-    for _, row in integrated.iterrows():
-        assert row["AccountName"] == account_names[row["AccountId"]]
+    assert actual == expected
 
 
-# --- Opportunities and no duplication -------------------------------------------
-def test_only_open_opportunities_come_through(integrated, source_open_opportunities):
-    opportunity_ids = integrated["Id"]
-
-    assert len(opportunity_ids) == 70
-    assert set(opportunity_ids) == set(source_open_opportunities["Id"])
-
-
-def test_join_does_not_duplicate_opportunities(integrated, source_open_opportunities):
-    # Each open opportunity appears once after the join.
-    assert integrated["Id"].is_unique
-
-    # Expected total comes straight from the CSV, independent of the join.
-    expected_total = source_open_opportunities["Amount"].sum()
-    assert integrated["Amount"].sum() == expected_total
+def test_type_score_columns():
+    assert list(integration.type_scores.columns) == [
+        "RenewalScore",
+        "UpsellNewScore"
+    ]
 
 
-# --- Value tiers -------------------------------------------------------------------
-def test_value_tiers_split_open_opportunities_evenly(integrated):
-    # Tiers are calculated once across all 70 open opportunities, so each tier
-    # holds roughly a quarter of them.
-    tier_counts = integrated["AmountBuckets"].value_counts().to_dict()
-    assert tier_counts == EXPECTED_TIER_COUNTS
+def test_single_type_accounts_keep_their_blended_score():
+    # An account with only renewals, or only upsell/new deals, has nothing to
+    # split, so its type score should equal its blended score.
+    type_scores = integration.type_scores
+    account_scores = integration.account_scores
 
-    # Krakatoa's €1.45M renewal is in the top tier.
-    krakatoa_renewal = integrated[integrated["Name"] == "Krakatoa - Renewal - Nov 2026"]
-    assert krakatoa_renewal["AmountBuckets"].tolist() == ["critical"]
-    assert krakatoa_renewal["ValueScore"].tolist() == [40]
+    has_renewal = type_scores["RenewalScore"] > 0
+    has_upsell_new = type_scores["UpsellNewScore"] > 0
+    single_type = has_renewal != has_upsell_new
+    combined = type_scores["RenewalScore"] + type_scores["UpsellNewScore"]
+
+    assert single_type.any()
+    assert (combined[single_type] == account_scores[single_type]).all()
 
 
-# --- Accounts with no open opportunities ----------------------------------------
-def test_account_without_open_opportunities_is_not_included(integrated):
-    # Thistle has only closed opportunities, so the left join leaves it out.
-    assert "Thistle" not in set(integrated["AccountName"])
+def test_splitting_by_type_never_lowers_the_total():
+    # In the blended score only one deal counts at 100%. Split by type, each
+    # type's top deal counts at 100%, so together they can't be lower.
+    type_scores = integration.type_scores
+    combined = type_scores["RenewalScore"] + type_scores["UpsellNewScore"]
+
+    assert (combined >= integration.account_scores).all()

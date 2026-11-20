@@ -1,5 +1,7 @@
 import pandas as pd
 
+from scoring import score_accounts, score_types
+
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
 df_acc = pd.read_csv("data/accounts.csv")
@@ -98,18 +100,6 @@ df["PriorityScore"] = (
 # Flag open opportunities with close dates in the past.
 df["IsOverdue"] = df["CloseDate"] < reference_date
 
-# Rank opportunities within each account, highest score first.
-df["OpportunityRank"] = (
-    df.groupby("AccountName")["PriorityScore"]
-    .rank(method="first", ascending=False)
-)
-
-# Initialize each opportunity's contribution to its account score.
-df["AccountContribution"] = 0.0
-
-# Count the highest-scoring opportunity at 100%.
-df.loc[df["OpportunityRank"] == 1, "AccountContribution"] = df["PriorityScore"]
-
 # Calculate how many quarters away each opportunity's close date is.
 df["QuartersAway"] = (
     (df["CloseDate"].dt.year - reference_date.year) * 4
@@ -117,23 +107,11 @@ df["QuartersAway"] = (
     - reference_date.quarter
 )
 
-# Count additional current-quarter and overdue opportunities at 50%.
-df.loc[
-    (df["OpportunityRank"] > 1) & (df["QuartersAway"] <= 0),
-    "AccountContribution"
-] = df["PriorityScore"] * 0.5
+# Combine opportunity scores into account scores (see scoring.py).
+df, account_scores = score_accounts(df)
 
-# Count additional next-quarter opportunities at 25%.
-df.loc[
-    (df["OpportunityRank"] > 1) & (df["QuartersAway"] == 1),
-    "AccountContribution"
-] = df["PriorityScore"] * 0.25
-
-# Count additional later-quarter opportunities at 10%.
-df.loc[
-    (df["OpportunityRank"] > 1) & (df["QuartersAway"] >= 2),
-    "AccountContribution"
-] = df["PriorityScore"] * 0.10
+# Score renewals and upsell/new opportunities separately.
+type_scores = score_types(df)
 
 
 # --- Account Analysis ---
@@ -145,6 +123,3 @@ quarter_counts = pd.crosstab(
     df["AccountName"],
     df["OpportunityQuarter"]
 )
-
-# Sum opportunity contributions to calculate each account's priority.
-account_scores = df.groupby("AccountName")["AccountContribution"].sum()
