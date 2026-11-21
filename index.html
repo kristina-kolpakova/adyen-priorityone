@@ -381,6 +381,11 @@
     .points {
       box-sizing: border-box;
       width: 100%;
+      /* Same height whether or not the pill has a second line. */
+      min-height: 43px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       text-align: center;
       white-space: nowrap;
       background: #e2f1e8;
@@ -429,11 +434,11 @@
     <main>
       <div class="eyebrow">Monday morning briefing</div>
       <h1>Your week, prioritized.</h1>
-      <p class="subtitle">Five accounts deserve your attention.</p>
+      <p class="subtitle">Ten accounts deserve your attention.</p>
 
       <div class="metrics">
         <div class="metric">
-          <div class="metric-value">05</div>
+          <div class="metric-value">10</div>
           <div class="metric-label">Priority accounts</div>
         </div>
         <!-- Hidden until revenue risks are calculated. -->
@@ -475,13 +480,13 @@
     });
     const shortDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
 
-    // The five accounts currently shown, so a click can find the right one.
+    // The ten accounts currently shown, so a click can find the right one.
     let topAccounts = [];
 
     // Every open opportunity's score breakdown, for the detail panel.
     let opportunityScores = [];
 
-    // Load the ranked accounts exported by integration.py and show the top five.
+    // Load the ranked accounts exported by integration.py and show the top ten.
     async function showAccounts() {
       const list = document.getElementById("account-list");
 
@@ -498,7 +503,7 @@
         }
         opportunityScores = await opportunityResponse.json();
 
-        topAccounts = accounts.slice(0, 5);
+        topAccounts = accounts.slice(0, 10);
 
         let rows = "";
         for (const [index, account] of topAccounts.entries()) {
@@ -537,14 +542,6 @@
       }
     }
 
-    // Why an opportunity counts at its weight within its type.
-    const weightReasons = {
-      1: "top deal in its type",
-      0.5: "additional deal closing this quarter or overdue",
-      0.25: "additional deal closing next quarter",
-      0.1: "additional deal closing in a later quarter",
-    };
-
     // Renewals form one group; Upsell and New deals form the other.
     function typeGroup(type) {
       return type === "Renewal" ? "Renewal" : "Upsell/New";
@@ -555,54 +552,37 @@
       const renewal = Math.round(account.renewal_score);
       const upsellNew = Math.round(account.upsell_new_score);
       const total = Math.round(account.account_score);
-      const winner = account.scoring_type;
-      const other = winner === "Renewal" ? "Upsell/New" : "Renewal";
-      const otherScore = winner === "Renewal" ? upsellNew : renewal;
+      const topName = account.top_opportunity.replace(account.account_name + " - ", "");
+      const explanation =
+        `This account's priority comes from its highest-scoring open opportunity, ${topName}.`;
 
-      let explanation = `${winner} drives this account's priority. `;
-      if (otherScore === 0) {
-        explanation += `It has no open ${other} opportunities.`;
-      } else if (otherScore === total) {
-        explanation += `${other} scores the same, so either sets the total.`;
-      } else {
-        explanation += `${other} opportunities are open but don't count toward the total.`;
-      }
-
-      // This account's opportunities: the winning type first, then by rank.
+      // This account's opportunities, highest score first (ties: larger deal first).
       const opportunities = opportunityScores.filter(function (opportunity) {
         return opportunity.account_name === account.account_name;
       });
       opportunities.sort(function (a, b) {
-        const aCounts = typeGroup(a.type) === winner ? 0 : 1;
-        const bCounts = typeGroup(b.type) === winner ? 0 : 1;
-        return aCounts - bCounts || a.type_rank - b.type_rank;
+        return b.priority_score - a.priority_score || b.amount - a.amount;
       });
 
       let opportunityCards = "";
       for (const opportunity of opportunities) {
         const group = typeGroup(opportunity.type);
-        const counts = group === winner;
+        const counts = opportunity.opportunity === account.top_opportunity;
         const closeDate = shortDate.format(new Date(opportunity.close_date + "T12:00:00"));
         const timing = opportunity.is_overdue
           ? `<span class="overdue">overdue</span> since ${closeDate}`
           : `closes ${closeDate}`;
-        // Only opportunities in the winning type add to the total.
+        // Only the top opportunity sets the account's score.
         const points = counts
-          ? `${Math.round(opportunity.contribution)} pts
-             <div class="points-note">counts ${Math.round(opportunity.weight * 100)}%</div>`
+          ? `${opportunity.priority_score} pts`
           : `${opportunity.priority_score} pts
              <div class="points-note">not counted</div>`;
 
-        // Score components, then how much of the score counts toward the total.
+        // Score components.
         const breakdown = `
           <div><strong>Score:</strong>
             ${opportunity.value_score} value + ${opportunity.quarter_score} quarter
-            + ${opportunity.stage_score} stage = ${opportunity.priority_score} pts</div>
-          <div><strong>Counts:</strong>
-            ${counts
-              ? `${Math.round(opportunity.weight * 100)}% (${weightReasons[opportunity.weight]})
-                 = ${Math.round(opportunity.contribution)} pts`
-              : `not counted (${winner} sets this account's total)`}</div>`;
+            + ${opportunity.stage_score} stage = ${opportunity.priority_score} pts</div>`;
 
         opportunityCards += `
           <details class="opportunity-card">
@@ -624,11 +604,10 @@
           </details>`;
       }
 
-      // How the winning type's score adds up, e.g. "70 + 30 + 25".
-      const laneSum = opportunities
-        .filter(function (opportunity) { return typeGroup(opportunity.type) === winner; })
-        .map(function (opportunity) { return Math.round(opportunity.contribution); })
-        .join(" + ");
+      // Every opportunity's score, e.g. "70, 60, 50, 50".
+      const dealScores = opportunities
+        .map(function (opportunity) { return opportunity.priority_score; })
+        .join(", ");
 
       document.getElementById("detail-content").innerHTML = `
         <div class="eyebrow">Account details · Rank #${account.rank}</div>
@@ -650,10 +629,8 @@
         <div class="detail-formula">
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
-            <div class="detail-formula-text">Max(${renewal} Renewal, ${upsellNew} Upsell/New)</div>
-            ${laneSum.includes("+")
-              ? `<div class="detail-formula-text">${winner}: ${laneSum} = ${total}</div>`
-              : ""}
+            <div class="detail-formula-text">Highest opportunity score: Max(${dealScores})</div>
+            <div class="detail-formula-text">Accounts with equal scores are ranked by deal amount.</div>
           </div>
           <div class="detail-formula-value">${total}</div>
         </div>`;

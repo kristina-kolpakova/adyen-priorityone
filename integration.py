@@ -113,8 +113,8 @@ df, account_scores = score_accounts(df)
 # Score renewals and upsell/new opportunities separately.
 type_scores, type_details = score_types(df)
 
-# Account priority is the stronger of the two type scores.
-priority_scores = type_scores[["RenewalScore", "UpsellNewScore"]].max(axis=1)
+# Account priority is its highest-scoring open opportunity.
+priority_scores = df.groupby("AccountName")["PriorityScore"].max()
 
 
 # --- Account Analysis ---
@@ -131,28 +131,16 @@ quarter_counts = pd.crosstab(
 
 # --- Export for the UI ---
 
-# Which type sets each account's priority (ties go to renewals).
-scoring_types = (
-    type_scores[["RenewalScore", "UpsellNewScore"]]
-    .idxmax(axis=1)
-    .map({"RenewalScore": "Renewal", "UpsellNewScore": "Upsell/New"})
+# Get each account's highest-scoring opportunity; ties go to the larger deal.
+top_opportunities = (
+    df.sort_values(["PriorityScore", "Amount"], ascending=[False, False])
+    .drop_duplicates("AccountName")
+    .set_index("AccountName")
 )
-
-# Group each opportunity the same way, to match it to the winning type.
-type_groups = type_details["Type"].map(
-    {"Renewal": "Renewal", "Upsell": "Upsell/New", "New": "Upsell/New"}
-)
-
-# Get each account's highest-scoring opportunity within its winning type.
-top_opportunities = type_details[
-    (type_details["OpportunityRank"] == 1)
-    & (type_groups == type_details["AccountName"].map(scoring_types))
-].set_index("AccountName")
 
 # Combine account scores and opportunity details.
 ui_accounts = pd.DataFrame({
     "account_score": priority_scores,
-    "scoring_type": scoring_types,
     "renewal_score": type_scores["RenewalScore"],
     "upsell_new_score": type_scores["UpsellNewScore"],
     "top_opportunity": top_opportunities["Name"],
@@ -163,11 +151,11 @@ ui_accounts = pd.DataFrame({
     "top_is_overdue": top_opportunities["IsOverdue"],
 })
 
-# Sort accounts by priority, highest first, and number them.
+# Sort accounts by priority, then by the top deal's amount, and number them.
 ui_accounts = ui_accounts.reset_index(names="account_name")
 ui_accounts = ui_accounts.sort_values(
-    ["account_score", "account_name"],
-    ascending=[False, True]
+    ["account_score", "top_amount", "account_name"],
+    ascending=[False, False, True]
 )
 ui_accounts.insert(1, "rank", range(1, len(ui_accounts) + 1))
 

@@ -37,6 +37,7 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 23 | 2026-11-20 | Claude Code | UI | Hooked the dashboard up to exported scores; hid fake metrics |
 | 24 | 2026-11-20 | Claude Code | Account scoring | Caught totals that didn't add up; total is now the higher type score |
 | 25 | 2026-11-20 | Claude Code | UI | Built the detail panel; recovered discarded data; fixed alignment at the layout level |
+| 26 | 2026-11-21 | Claude Code | Account scoring | Ranked accounts by their best deal, ties by amount; reversed entry 15 |
 
 ---
 
@@ -278,6 +279,14 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **What Claude found:** The per-opportunity contributions the panel needed were being discarded as `_` in `score_types()`, the same spot where I'd originally kept named variables because "we'll need details later". They're now exported, and for all 29 accounts they add up exactly to the total.
 - **What I corrected:** Claude's expand chevron broke the alignment of the points pills, because it became a third flexbox item in a `space-between` row. I asked for an architectural fix rather than a nudge, and each row now uses fixed grid columns.
 - **Lesson:** Ask why a layout breaks, not just where.
+
+## 26. Ranking accounts by their best deal
+
+- **Tool:** Claude Code, Python/pandas
+- **What I noticed:** Marlowe scored 125, higher than any single deal can score (90), because three mid-sized Upsell/New deals were added together. That didn't match how I'd prioritise an account.
+- **How it was steered:** I asked whether the score should simply be the highest-scoring open opportunity. Claude showed that this alone would keep a six-way tie at 90 and suggested breaking ties by the top deal's amount, which I adopted. The Renewal and Upsell/New scores stay as context only.
+- **What changed:** This reverses my earlier decision (entry 15) to reward additional deals. No full ties remain: the six 90s are now ordered by deal size (Willowbank €2.06M down to Kestrel €595K), and Marlowe drops out of the top 5. The README's limitations were updated to match.
+- **Lesson:** When a number surprises me, the rule behind it is probably wrong. A simple rule I can explain beats a clever aggregation I can't defend.
 
 ---
 
