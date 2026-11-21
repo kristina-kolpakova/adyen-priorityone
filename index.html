@@ -85,6 +85,8 @@
       color: #747d86;
     }
 
+    .nav-item[data-view] { cursor: pointer; }
+
     .nav-item.active {
       background: #edf5f0;
       color: #225c46;
@@ -184,6 +186,9 @@
       transform: translateY(-1px);
     }
 
+    /* On the Overview, accounts scoring 90 or more get a mint border. */
+    .account.priority { border-color: #a9d3bd; }
+    .account.priority:hover { border-color: #7fbf9e; }
     .rank {
       color: #a6aeb6;
       font-size: 13px;
@@ -438,37 +443,47 @@
   <div class="workspace">
     <aside>
       <div class="nav-label">Workspace</div>
-      <div class="nav-item active">Overview</div>
-      <div class="nav-item">Accounts</div>
+      <div class="nav-item active" data-view="overview">Overview</div>
+      <div class="nav-item" data-view="accounts">Accounts</div>
       <div class="nav-item">Signals</div>
       <div class="nav-item">Activity</div>
     </aside>
 
     <main>
-      <div class="eyebrow">Monday morning briefing</div>
-      <h1>Your week, prioritized.</h1>
-      <p class="subtitle">Ten accounts deserve your attention.</p>
+      <!-- Overview: this week's briefing. -->
+      <div id="overview-intro">
+        <div class="eyebrow" id="briefing-day">Morning briefing</div>
+        <h1>Your week, prioritized.</h1>
+        <p class="subtitle" id="attention-text">&nbsp;</p>
 
-      <div class="metrics">
-        <div class="metric">
-          <div class="metric-value">10</div>
-          <div class="metric-label">Priority accounts</div>
-        </div>
-        <!-- Hidden until revenue risks are calculated. -->
-        <div class="metric" hidden>
-          <div class="metric-value">02</div>
-          <div class="metric-label">Revenue risks</div>
-        </div>
-        <!-- Hidden until opportunities are calculated. -->
-        <div class="metric" hidden>
-          <div class="metric-value">03</div>
-          <div class="metric-label">Opportunities</div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-value" id="attention-count">–</div>
+            <div class="metric-label">Priority accounts</div>
+          </div>
+          <!-- Hidden until revenue risks are calculated. -->
+          <div class="metric" hidden>
+            <div class="metric-value">02</div>
+            <div class="metric-label">Revenue risks</div>
+          </div>
+          <!-- Hidden until opportunities are calculated. -->
+          <div class="metric" hidden>
+            <div class="metric-value">03</div>
+            <div class="metric-label">Opportunities</div>
+          </div>
         </div>
       </div>
 
+      <!-- Accounts: every account, in the same order. -->
+      <div id="accounts-intro" hidden>
+        <div class="eyebrow">Accounts</div>
+        <h1>All accounts.</h1>
+        <p class="subtitle">Every account, ranked the same way as your briefing.</p>
+      </div>
+
       <div class="section-heading">
-        <h2>Your top priorities</h2>
-        <span class="section-meta">Ranked by priority score</span>
+        <h2 id="list-title">Your top priorities</h2>
+        <span class="section-meta" id="list-meta">Ranked by priority score</span>
       </div>
 
       <div id="account-list"></div>
@@ -493,13 +508,20 @@
     });
     const shortDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
 
-    // The ten accounts currently shown, so a click can find the right one.
-    let topAccounts = [];
+    // Name today's weekday in the briefing heading.
+    const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(new Date());
+    document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
+
+    // Every account in ranked order, so a click can find the right one.
+    let rankedAccounts = [];
+
+    // Which tab is showing: "overview" (top 10) or "accounts" (all).
+    let currentView = "overview";
 
     // Every open opportunity's score breakdown, for the detail panel.
     let opportunityScores = [];
 
-    // Load the ranked accounts exported by integration.py and show the top ten.
+    // Load the ranked accounts exported by integration.py and show the current tab.
     async function showAccounts() {
       const list = document.getElementById("account-list");
 
@@ -517,50 +539,73 @@
         }
         opportunityScores = await opportunityResponse.json();
 
-        topAccounts = accounts.slice(0, 10);
+        rankedAccounts = accounts;
 
-        let rows = "";
-        for (const [index, account] of topAccounts.entries()) {
-          // In the list, show how far away the close is; the panel shows the date.
-          const days = account.top_days_to_close;
-          let timing;
-          if (days < 0) {
-            timing = `<span class="overdue">overdue</span> by ${-days} ${-days === 1 ? "day" : "days"}`;
-          } else if (days === 0) {
-            timing = "closes today";
-          } else {
-            timing = `closes in ${days} ${days === 1 ? "day" : "days"}`;
-          }
+        // Accounts scoring 90 or more need attention this week; the list still shows the top 10.
+        const urgentCount = accounts.filter(function (account) {
+          return account.account_score >= 90;
+        }).length;
+        document.getElementById("attention-count").textContent = urgentCount;
+        document.getElementById("attention-text").textContent =
+          `${urgentCount} accounts scoring 90 or more deserve your attention.`;
 
-          rows += `
-            <div class="account" data-index="${index}">
-              <span class="rank">${String(index + 1).padStart(2, "0")}</span>
-              <div class="account-info">
-                <div class="account-name">
-                  ${account.account_name}${flagTags(
-                    account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
-                    account.top_stale_near_close, account.top_stale_commit
-                  )}
-                </div>
-                <div class="account-signal">
-                  ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
-                </div>
-                <div class="account-signal type-scores">
-                  <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
-                  <span class="upsell-new-score">Upsell/New ${Math.round(account.upsell_new_score)}</span>
-                </div>
-              </div>
-              <span class="score">${Math.round(account.account_score)}</span>
-              <span class="arrow">›</span>
-            </div>`;
-        }
-        list.innerHTML = rows;
+        renderList();
       } catch (error) {
         list.innerHTML = `
           <p class="account-signal">
             Couldn't load account scores from data/scores.json (${error.message}).
           </p>`;
       }
+    }
+
+    // Show the top 10 on the Overview tab, or every account on the Accounts tab.
+    function renderList() {
+      const showAll = currentView === "accounts";
+      const accountsToShow = showAll ? rankedAccounts : rankedAccounts.slice(0, 10);
+
+      document.getElementById("overview-intro").hidden = showAll;
+      document.getElementById("accounts-intro").hidden = !showAll;
+      document.getElementById("list-title").textContent = showAll ? "All accounts" : "Your top priorities";
+      document.getElementById("list-meta").textContent = showAll
+        ? `${rankedAccounts.length} accounts · ranked by priority score`
+        : "Ranked by priority score";
+
+      let rows = "";
+      for (const [index, account] of accountsToShow.entries()) {
+        // In the list, show how far away the close is; the panel shows the date.
+        const days = account.top_days_to_close;
+        let timing;
+        if (days < 0) {
+          timing = `<span class="overdue">overdue</span> by ${-days} ${-days === 1 ? "day" : "days"}`;
+        } else if (days === 0) {
+          timing = "closes today";
+        } else {
+          timing = `closes in ${days} ${days === 1 ? "day" : "days"}`;
+        }
+
+        rows += `
+          <div class="account${!showAll && account.account_score >= 90 ? " priority" : ""}" data-index="${index}">
+            <span class="rank">${String(index + 1).padStart(2, "0")}</span>
+            <div class="account-info">
+              <div class="account-name">
+                ${account.account_name}${flagTags(
+                  account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
+                  account.top_stale_near_close, account.top_stale_commit
+                )}
+              </div>
+              <div class="account-signal">
+                ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
+              </div>
+              <div class="account-signal type-scores">
+                <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
+                <span class="upsell-new-score">Upsell/New ${Math.round(account.upsell_new_score)}</span>
+              </div>
+            </div>
+            <span class="score">${Math.round(account.account_score)}</span>
+            <span class="arrow">›</span>
+          </div>`;
+      }
+      document.getElementById("account-list").innerHTML = rows;
     }
 
     // Short note for a deal with no recent Salesforce activity, or "" if none.
@@ -725,8 +770,19 @@
     document.getElementById("account-list").addEventListener("click", function (event) {
       const row = event.target.closest(".account");
       if (row) {
-        showDetails(topAccounts[row.dataset.index]);
+        showDetails(rankedAccounts[row.dataset.index]);
       }
+    });
+
+    // Switch between the Overview and Accounts tabs.
+    document.querySelectorAll(".nav-item[data-view]").forEach(function (item) {
+      item.addEventListener("click", function () {
+        document.querySelector(".nav-item.active").classList.remove("active");
+        item.classList.add("active");
+        currentView = item.dataset.view;
+        renderList();
+        window.scrollTo(0, 0);
+      });
     });
 
     // Close it with the × button, a click outside, or the Escape key.
