@@ -38,6 +38,7 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 24 | 2026-11-20 | Claude Code | Account scoring | Caught totals that didn't add up; total is now the higher type score |
 | 25 | 2026-11-20 | Claude Code | UI | Built the detail panel; recovered discarded data; fixed alignment at the layout level |
 | 26 | 2026-11-21 | Claude Code | Account scoring | Ranked accounts by their best deal, ties by amount; reversed entry 15 |
+| 27 | 2026-11-21 | Claude Code | Account scoring | Dropped renewal weighting; problem flags break ties instead |
 
 ---
 
@@ -287,6 +288,15 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **How it was steered:** I asked whether the score should simply be the highest-scoring open opportunity. Claude showed that this alone would keep a six-way tie at 90 and suggested breaking ties by the top deal's amount, which I adopted. The Renewal and Upsell/New scores stay as context only.
 - **What changed:** This reverses my earlier decision (entry 15) to reward additional deals. No full ties remain: the six 90s are now ordered by deal size (Willowbank €2.06M down to Kestrel €595K), and Marlowe drops out of the top 5. The README's limitations were updated to match.
 - **Lesson:** When a number surprises me, the rule behind it is probably wrong. A simple rule I can explain beats a clever aggregation I can't defend.
+
+## 27. Prioritising trouble instead of weighting renewals
+
+- **Tool:** Claude Code, Python/pandas
+- **What I proposed:** Weighting renewals 1.2–1.5× and ranking accounts by their most problematic opportunity.
+- **What the data showed:** Claude ran both multipliers. Renewals already led 9 of the top 10 because they're the largest deals, and a 1.2× weight pushed out the only growth deal (Aster). The multiplier would also have been an opinion-based weight with no outcome to test it against. The "most problematic" idea held up: six accounts tied at 90, and nothing showed which of them was in trouble.
+- **How it was steered:** I had Claude add three Salesforce problem flags as data only first (overdue, no recent activity before close, stale Commit, with 30-day thresholds), then show them on the page. Of the six 90s, only Krakatoa's €1.45M renewal was flagged: a Commit closing in 6 days with no activity for 44 days. Of three ranking options, I chose to use flags as a tie-break rather than adding points, and made the Renewal and Upsell/New scores each type's best deal. The weighted aggregation that no longer fed anything was removed.
+- **How it was checked:** The JSON was verified for every account (scores, top deal, order). Tests were updated for the new rules, and the flags are explained in the detail panel and the README.
+- **Lesson:** Test a weighting idea against the data before adopting it. A flag that explains why an account matters beats a multiplier I can't justify.
 
 ---
 

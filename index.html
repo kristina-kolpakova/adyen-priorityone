@@ -208,6 +208,7 @@
     .experimental { color: #b5bcc3; font-size: 12px; }
     .type-scores { margin-top: 3px; }
     .overdue { color: #B87579; }
+    .problem { color: #B87579; }
 
     .score {
       background: #edf6ef;
@@ -521,7 +522,7 @@
               <div class="account-info">
                 <div class="account-name">${account.account_name}</div>
                 <div class="account-signal">
-                  ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
+                  ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>${activityNote(account.top_stale_near_close, account.top_stale_commit, account.top_days_since_activity)}
                 </div>
                 <div class="account-signal type-scores">
                   <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
@@ -542,6 +543,18 @@
       }
     }
 
+    // Short note for a deal with no recent Salesforce activity, or "" if none.
+    function activityNote(staleNearClose, staleCommit, daysSinceActivity) {
+      if (!staleNearClose && !staleCommit) {
+        return "";
+      }
+      const activity = daysSinceActivity === null
+        ? "no activity logged"
+        : `no activity in ${daysSinceActivity} days`;
+      const commit = staleCommit ? " on a Commit" : "";
+      return ` · <span class="problem">${activity}${commit}</span>`;
+    }
+
     // Renewals form one group; Upsell and New deals form the other.
     function typeGroup(type) {
       return type === "Renewal" ? "Renewal" : "Upsell/New";
@@ -556,12 +569,15 @@
       const explanation =
         `This account's priority comes from its highest-scoring open opportunity, ${topName}.`;
 
-      // This account's opportunities, highest score first (ties: larger deal first).
+      // This account's opportunities, highest score first; among equal scores,
+      // problems first, then the larger deal.
       const opportunities = opportunityScores.filter(function (opportunity) {
         return opportunity.account_name === account.account_name;
       });
       opportunities.sort(function (a, b) {
-        return b.priority_score - a.priority_score || b.amount - a.amount;
+        return b.priority_score - a.priority_score
+          || b.is_problem - a.is_problem
+          || b.amount - a.amount;
       });
 
       let opportunityCards = "";
@@ -578,11 +594,26 @@
           : `${opportunity.priority_score} pts
              <div class="points-note">not counted</div>`;
 
-        // Score components.
-        const breakdown = `
+        // Score components, then why the deal is flagged (if it is).
+        const activity = opportunity.days_since_activity === null
+          ? "no activity has been logged"
+          : `the last activity was ${opportunity.days_since_activity} days ago`;
+        let breakdown = `
           <div><strong>Score:</strong>
             ${opportunity.value_score} value + ${opportunity.quarter_score} quarter
             + ${opportunity.stage_score} stage = ${opportunity.priority_score} pts</div>`;
+        if (opportunity.is_overdue) {
+          breakdown += `<div><strong class="problem">Overdue:</strong>
+            the close date passed ${-opportunity.days_to_close} days ago, but the deal is still open.</div>`;
+        }
+        if (opportunity.stale_near_close) {
+          breakdown += `<div><strong class="problem">No recent activity before close:</strong>
+            it closes in ${opportunity.days_to_close} days, and ${activity}.</div>`;
+        }
+        if (opportunity.stale_commit) {
+          breakdown += `<div><strong class="problem">Stale Commit:</strong>
+            it's forecast as Commit, but ${activity}.</div>`;
+        }
 
         opportunityCards += `
           <details class="opportunity-card">
@@ -595,7 +626,7 @@
                 ${opportunity.opportunity.replace(account.account_name + " - ", "")}
               </div>
               <div class="opportunity-meta">
-                ${euros.format(opportunity.amount)} · ${opportunity.stage} · <em>${timing}</em>
+                ${euros.format(opportunity.amount)} · ${opportunity.stage} · <em>${timing}</em>${activityNote(opportunity.stale_near_close, opportunity.stale_commit, opportunity.days_since_activity)}
               </div>
             </div>
             <div class="points ${counts ? "" : "not-counted"}">${points}</div>
@@ -630,7 +661,7 @@
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
             <div class="detail-formula-text">Highest opportunity score: Max(${dealScores})</div>
-            <div class="detail-formula-text">Accounts with equal scores are ranked by deal amount.</div>
+            <div class="detail-formula-text">Accounts with equal scores: deals with problems first, then by amount.</div>
           </div>
           <div class="detail-formula-value">${total}</div>
         </div>`;

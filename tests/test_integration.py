@@ -41,25 +41,25 @@ def test_type_score_columns():
     ]
 
 
-def test_single_type_accounts_keep_their_blended_score():
-    # An account with only renewals, or only upsell/new deals, has nothing to
-    # split, so its type score should equal its blended score.
+def test_type_scores_are_the_best_deal_of_each_type():
+    # Each type score is the highest PriorityScore among that account's
+    # opportunities of that type (0 if it has none).
+    df = integration.df
+    renewals = df[df["Type"] == "Renewal"]
+    upsell_new = df[df["Type"].isin(["Upsell", "New"])]
     type_scores = integration.type_scores
-    account_scores = integration.account_scores
 
-    has_renewal = type_scores["RenewalScore"] > 0
-    has_upsell_new = type_scores["UpsellNewScore"] > 0
-    single_type = has_renewal != has_upsell_new
-    combined = type_scores["RenewalScore"] + type_scores["UpsellNewScore"]
+    expected_renewal = renewals.groupby("AccountName")["PriorityScore"].max()
+    expected_upsell_new = upsell_new.groupby("AccountName")["PriorityScore"].max()
 
-    assert single_type.any()
-    assert (combined[single_type] == account_scores[single_type]).all()
+    assert (type_scores["RenewalScore"] == expected_renewal.reindex(type_scores.index, fill_value=0)).all()
+    assert (type_scores["UpsellNewScore"] == expected_upsell_new.reindex(type_scores.index, fill_value=0)).all()
 
 
-def test_splitting_by_type_never_lowers_the_total():
-    # In the blended score only one deal counts at 100%. Split by type, each
-    # type's top deal counts at 100%, so together they can't be lower.
+def test_account_priority_is_the_higher_type_score():
+    # An account's priority is its best opportunity, so it equals the
+    # higher of its two type scores.
     type_scores = integration.type_scores
-    combined = type_scores["RenewalScore"] + type_scores["UpsellNewScore"]
+    higher = type_scores[["RenewalScore", "UpsellNewScore"]].max(axis=1)
 
-    assert (combined >= integration.account_scores).all()
+    assert (integration.priority_scores == higher).all()

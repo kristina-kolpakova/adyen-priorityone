@@ -1,75 +1,23 @@
 import pandas as pd
 
 
-# --- Account Priority Score ---
-
-def score_accounts(opportunities):
-    """Combine opportunity scores into one priority score per account.
-
-    Returns the opportunities with each one's rank and contribution, and the
-    total priority score for each account.
-    """
-    opportunities = opportunities.copy()
-
-    # Rank opportunities within each account, highest score first.
-    opportunities["OpportunityRank"] = (
-        opportunities.groupby("AccountName")["PriorityScore"]
-        .rank(method="first", ascending=False)
-    )
-
-    # Initialize each opportunity's contribution to its account score.
-    opportunities["AccountContribution"] = 0.0
-
-    # Count the highest-scoring opportunity at 100%.
-    opportunities.loc[
-        opportunities["OpportunityRank"] == 1, "AccountContribution"
-    ] = opportunities["PriorityScore"]
-
-    # Count additional current-quarter and overdue opportunities at 50%.
-    opportunities.loc[
-        (opportunities["OpportunityRank"] > 1) & (opportunities["QuartersAway"] <= 0),
-        "AccountContribution"
-    ] = opportunities["PriorityScore"] * 0.5
-
-    # Count additional next-quarter opportunities at 25%.
-    opportunities.loc[
-        (opportunities["OpportunityRank"] > 1) & (opportunities["QuartersAway"] == 1),
-        "AccountContribution"
-    ] = opportunities["PriorityScore"] * 0.25
-
-    # Count additional later-quarter opportunities at 10%.
-    opportunities.loc[
-        (opportunities["OpportunityRank"] > 1) & (opportunities["QuartersAway"] >= 2),
-        "AccountContribution"
-    ] = opportunities["PriorityScore"] * 0.10
-
-    # Sum opportunity contributions to calculate each account's priority.
-    account_scores = (
-        opportunities.groupby("AccountName")["AccountContribution"].sum()
-    )
-
-    return opportunities, account_scores
-
-
 # --- Account Scores by Opportunity Type ---
 
 def score_types(opportunities):
+    """Each account's highest opportunity score, separately for each type."""
 
     # Separate opportunities by type.
     renewals = opportunities[opportunities["Type"] == "Renewal"]
     upsell_new = opportunities[opportunities["Type"].isin(["Upsell", "New"])]
 
-    # Calculate account scores for each group.
-    renewal_details, renewal_scores = score_accounts(renewals)
-    upsell_details, upsell_new_scores = score_accounts(upsell_new)
+    # The highest-scoring opportunity of each type, per account.
+    renewal_scores = renewals.groupby("AccountName")["PriorityScore"].max()
+    upsell_new_scores = upsell_new.groupby("AccountName")["PriorityScore"].max()
 
-    # Combine both scores into one table.
+    # Combine both scores into one table; accounts with no deals of a type get 0.
     type_scores = pd.DataFrame({
         "RenewalScore": renewal_scores,
         "UpsellNewScore": upsell_new_scores
     }).fillna(0)
 
-    # Each opportunity's rank and contribution within its own type.
-    type_details = pd.concat([renewal_details, upsell_details])
-
-    return type_scores, type_details
+    return type_scores

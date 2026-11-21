@@ -1,6 +1,6 @@
 import pandas as pd
 
-from scoring import score_accounts, score_types
+from scoring import score_types
 
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
@@ -107,13 +107,37 @@ df["QuartersAway"] = (
     - reference_date.quarter
 )
 
-# Combine opportunity scores into account scores (see scoring.py).
-df, account_scores = score_accounts(df)
+# --- Problem Flags ---
 
-# Score renewals and upsell/new opportunities separately.
-type_scores, type_details = score_types(df)
+# Days since Salesforce last recorded activity (missing activity stays empty).
+df["DaysSinceActivity"] = (reference_date - pd.to_datetime(df["LastActivityDate"])).dt.days
 
-# Account priority is its highest-scoring open opportunity.
+# Days until each opportunity is expected to close (negative if overdue).
+df["DaysToClose"] = (df["CloseDate"] - reference_date).dt.days
+
+# No activity recorded in Salesforce in the last 30 days (or ever).
+no_recent_activity = df["DaysSinceActivity"].isna() | (df["DaysSinceActivity"] > 30)
+
+# Flag 1: the close date has passed, but the deal is still open.
+df["FlagOverdue"] = df["IsOverdue"]
+
+# Flag 2: closing within 30 days, with no recent activity.
+df["FlagStaleNearClose"] = df["DaysToClose"].between(0, 30) & no_recent_activity
+
+# Flag 3: forecast as Commit, with no recent activity.
+df["FlagStaleCommit"] = (df["ForecastCategory"] == "Commit") & no_recent_activity
+
+# An opportunity is problematic if any flag is raised.
+df["IsProblem"] = df[["FlagOverdue", "FlagStaleNearClose", "FlagStaleCommit"]].any(axis=1)
+
+
+# --- Account Scores ---
+
+# Each account's best renewal score and best upsell/new score (see scoring.py).
+type_scores = score_types(df)
+
+# Account priority is its highest-scoring open opportunity, i.e. the higher
+# of the two type scores.
 priority_scores = df.groupby("AccountName")["PriorityScore"].max()
 
 
@@ -131,9 +155,10 @@ quarter_counts = pd.crosstab(
 
 # --- Export for the UI ---
 
-# Get each account's highest-scoring opportunity; ties go to the larger deal.
+# Get each account's highest-scoring opportunity; among equal scores,
+# a deal with a problem comes first, then the larger deal.
 top_opportunities = (
-    df.sort_values(["PriorityScore", "Amount"], ascending=[False, False])
+    df.sort_values(["PriorityScore", "IsProblem", "Amount"], ascending=False)
     .drop_duplicates("AccountName")
     .set_index("AccountName")
 )
@@ -148,28 +173,30 @@ ui_accounts = pd.DataFrame({
     "top_amount": top_opportunities["Amount"],
     "top_stage": top_opportunities["StageName"].astype(str),
     "top_close_date": top_opportunities["CloseDate"].dt.strftime("%Y-%m-%d"),
+    "top_is_problem": top_opportunities["IsProblem"],
     "top_is_overdue": top_opportunities["IsOverdue"],
+    "top_stale_near_close": top_opportunities["FlagStaleNearClose"],
+    "top_stale_commit": top_opportunities["FlagStaleCommit"],
+    "top_days_since_activity": top_opportunities["DaysSinceActivity"],
 })
 
-# Sort accounts by priority, then by the top deal's amount, and number them.
+# Sort accounts by priority; among equal scores, problems first, then amount.
 ui_accounts = ui_accounts.reset_index(names="account_name")
 ui_accounts = ui_accounts.sort_values(
-    ["account_score", "top_amount", "account_name"],
-    ascending=[False, False, True]
+    ["account_score", "top_is_problem", "top_amount", "account_name"],
+    ascending=[False, False, False, True]
 )
 ui_accounts.insert(1, "rank", range(1, len(ui_accounts) + 1))
 
 # Export to JSON for the UI.
 ui_accounts.to_json("data/scores.json", orient="records", indent=2)
 
-# Export each open opportunity's score breakdown for the detail panel.
+# Export each open opportunity's score breakdown and problem flags for the detail panel.
 (
-    type_details
+    df
     .assign(
-        CloseDate=type_details["CloseDate"].dt.strftime("%Y-%m-%d"),
-        StageName=type_details["StageName"].astype(str),
-        OpportunityRank=type_details["OpportunityRank"].astype(int),
-        Weight=type_details["AccountContribution"] / type_details["PriorityScore"],
+        CloseDate=df["CloseDate"].dt.strftime("%Y-%m-%d"),
+        StageName=df["StageName"].astype(str),
     )
     .rename(columns={
         "AccountName": "account_name",
@@ -178,20 +205,26 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "Amount": "amount",
         "StageName": "stage",
         "CloseDate": "close_date",
-        "IsOverdue": "is_overdue",
+        "DaysToClose": "days_to_close",
         "ValueScore": "value_score",
         "QuarterScore": "quarter_score",
         "StageScore": "stage_score",
         "PriorityScore": "priority_score",
-        "OpportunityRank": "type_rank",
-        "Weight": "weight",
-        "AccountContribution": "contribution",
+        "IsProblem": "is_problem",
+        "IsOverdue": "is_overdue",
+        "FlagStaleNearClose": "stale_near_close",
+        "FlagStaleCommit": "stale_commit",
+        "DaysSinceActivity": "days_since_activity",
     })
     [[
         "account_name", "opportunity", "type", "amount", "stage",
-        "close_date", "is_overdue", "value_score", "quarter_score",
-        "stage_score", "priority_score", "type_rank", "weight", "contribution",
+        "close_date", "days_to_close", "value_score", "quarter_score",
+        "stage_score", "priority_score", "is_problem", "is_overdue",
+        "stale_near_close", "stale_commit", "days_since_activity",
     ]]
-    .sort_values(["account_name", "priority_score"], ascending=[True, False])
+    .sort_values(
+        ["account_name", "priority_score", "is_problem", "amount"],
+        ascending=[True, False, False, False]
+    )
     .to_json("data/opportunity_scores.json", orient="records", indent=2)
 )
