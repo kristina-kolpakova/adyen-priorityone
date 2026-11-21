@@ -492,13 +492,14 @@
       const list = document.getElementById("account-list");
 
       try {
-        const response = await fetch("data/scores.json");
+        // "no-cache": always check for newer scores instead of reusing a cached copy.
+        const response = await fetch("data/scores.json", { cache: "no-cache" });
         if (!response.ok) {
           throw new Error(response.statusText);
         }
         const accounts = await response.json();
 
-        const opportunityResponse = await fetch("data/opportunity_scores.json");
+        const opportunityResponse = await fetch("data/opportunity_scores.json", { cache: "no-cache" });
         if (!opportunityResponse.ok) {
           throw new Error(opportunityResponse.statusText);
         }
