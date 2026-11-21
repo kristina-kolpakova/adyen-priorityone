@@ -28,7 +28,7 @@ def test_account_names_match_source():
 
 
 def test_value_tiers():
-    expected = {"low": 18, "medium": 17, "high": 17, "critical": 18}
+    expected = {1: 9, 2: 9, 3: 8, 4: 9, 5: 9, 6: 8, 7: 9, 8: 9}
     actual = integration.df["AmountBuckets"].value_counts().to_dict()
 
     assert actual == expected
@@ -63,3 +63,32 @@ def test_account_priority_is_the_higher_type_score():
     higher = type_scores[["RenewalScore", "UpsellNewScore"]].max(axis=1)
 
     assert (integration.priority_scores == higher).all()
+
+
+def test_timing_score_follows_days_to_close():
+    # Sooner closes get more points; deals overdue by more than 30 days get less.
+    for _, row in integration.df.iterrows():
+        days = row["DaysToClose"]
+        if days < -30:
+            expected = 10
+        elif days <= 7:
+            expected = 30
+        elif days <= 14:
+            expected = 25
+        elif days <= 30:
+            expected = 20
+        elif days <= 60:
+            expected = 10
+        elif days <= 90:
+            expected = 5
+        else:
+            expected = 0
+        assert row["TimingScore"] == expected
+
+
+def test_priority_score_is_out_of_100():
+    df = integration.df
+    total = df["ValueScore"] + df["TimingScore"] + df["StageScore"]
+
+    assert (df["PriorityScore"] == total).all()
+    assert df["PriorityScore"].between(0, 100).all()

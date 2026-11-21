@@ -39,6 +39,7 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 25 | 2026-11-20 | Claude Code | UI | Built the detail panel; recovered discarded data; fixed alignment at the layout level |
 | 26 | 2026-11-21 | Claude Code | Account scoring | Ranked accounts by their best deal, ties by amount; reversed entry 15 |
 | 27 | 2026-11-21 | Claude Code | Account scoring | Dropped renewal weighting; problem flags break ties instead |
+| 28 | 2026-11-21 | Claude Code | Data | Shifted mock dates forward; fixed the reference date at 25 Nov; reversed entry 14 |
 
 ---
 
@@ -297,6 +298,16 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **How it was steered:** I had Claude add three Salesforce problem flags as data only first (overdue, no recent activity before close, stale Commit, with 30-day thresholds), then show them on the page. Of the six 90s, only Krakatoa's €1.45M renewal was flagged: a Commit closing in 6 days with no activity for 44 days. Of three ranking options, I chose to use flags as a tie-break rather than adding points, and made the Renewal and Upsell/New scores each type's best deal. The weighted aggregation that no longer fed anything was removed.
 - **How it was checked:** The JSON was verified for every account (scores, top deal, order). Tests were updated for the new rules, and the flags are explained in the detail panel and the README.
 - **Lesson:** Test a weighting idea against the data before adopting it. A flag that explains why an account matters beats a multiplier I can't justify.
+
+## 28. Fixing the reference date, reversing entry 14
+
+- **Tool:** Claude Code, Python/pandas
+- **What I noticed:** Six days after the mock data was generated, too many close dates had passed, with few deals coming up. I had Claude move every date in the mock data forward 10 days (close, created, activity and Gong calls together, so activity gaps stayed consistent), with renewal names following their new close month.
+- **What went wrong:** Krakatoa dropped to #2. Claude explained why: the shift put Krakatoa and Lanternfly in different timing bands, so Krakatoa's earlier lead had only come from winning a tie. I moved Lanternfly's renewal one day later (3 Dec) so the two tie again. Localhost still looked the same, because the scores were calculated from today's date and the change only took effect on 25 Nov, the day of my interview.
+- **How it was steered:** I decided scores shouldn't change on the day of the demo. Claude laid out the options, and I chose a fixed reference date of 25 Nov 2026, the date the shifted data now represents. This reverses entry 14 for the mock data. With live Salesforce data the reference date would be today again, as noted in the README.
+- **Then nothing scored 100:** no large Negotiation deal closed within 7 days of 25 Nov. I chose new close dates for four renewals: Krakatoa 1 Dec (6 days out, as in the original data), Willowbank 28 Nov, Mosaic 7 Dec and Lanternfly 3 Dec. These are the only rows changed by hand for the demo.
+- **How it was checked:** Reran the scoring, the 10 tests pass, and the ranking is the same whichever day the script runs: Krakatoa 100 (flagged) and Willowbank 100, then Lanternfly and Mosaic on 95.
+- **Lesson:** "Use today's date" is right for live data and wrong for a static snapshot. A demo should give the same answer every time it runs.
 
 ---
 

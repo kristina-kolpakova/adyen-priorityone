@@ -205,7 +205,6 @@
 
     .renewal-score { color: #3f7d5c; margin-right: 8px; }
     .upsell-new-score { color: #3a7f8a; margin-right: 8px; }
-    .experimental { color: #b5bcc3; font-size: 12px; }
     .type-scores { margin-top: 3px; }
     .overdue { color: #B87579; }
     .problem { color: #B87579; }
@@ -273,10 +272,11 @@
     }
 
     .detail-name {
-      font-size: 30px;
-      font-weight: 650;
-      letter-spacing: -0.8px;
-      margin: 4px 0 0;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1.6px;
+      line-height: 1.1;
+      margin: 6px 0 0;
     }
 
     .detail-score {
@@ -375,6 +375,18 @@
     .opportunity-type::before { content: "● "; }
     .opportunity-type.renewal { color: #3f7d5c; }
     .opportunity-type.upsell-new { color: #3a7f8a; }
+
+    .flag-tag {
+      display: inline-block;
+      margin-left: 6px;
+      padding: 1px 7px;
+      border-radius: 6px;
+      background: #f6ecec;
+      color: #B87579;
+      font-size: 11px;
+      font-weight: 400;
+      vertical-align: middle;
+    }
 
     .opportunity-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .opportunity-meta { color: var(--muted); font-size: 13px; }
@@ -509,26 +521,33 @@
 
         let rows = "";
         for (const [index, account] of topAccounts.entries()) {
-          // Noon avoids the date shifting a day in time zones behind UTC.
-          const closeDate = shortDate.format(
-            new Date(account.top_close_date + "T12:00:00")
-          );
-          const timing = account.top_is_overdue
-            ? `<span class="overdue">overdue</span> since ${closeDate}`
-            : `closes ${closeDate}`;
+          // In the list, show how far away the close is; the panel shows the date.
+          const days = account.top_days_to_close;
+          let timing;
+          if (days < 0) {
+            timing = `<span class="overdue">overdue</span> by ${-days} ${-days === 1 ? "day" : "days"}`;
+          } else if (days === 0) {
+            timing = "closes today";
+          } else {
+            timing = `closes in ${days} ${days === 1 ? "day" : "days"}`;
+          }
 
           rows += `
             <div class="account" data-index="${index}">
               <span class="rank">${String(index + 1).padStart(2, "0")}</span>
               <div class="account-info">
-                <div class="account-name">${account.account_name}</div>
+                <div class="account-name">
+                  ${account.account_name}${flagTags(
+                    account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
+                    account.top_stale_near_close, account.top_stale_commit
+                  )}
+                </div>
                 <div class="account-signal">
-                  ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>${activityNote(account.top_stale_near_close, account.top_stale_commit, account.top_days_since_activity)}
+                  ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
                 </div>
                 <div class="account-signal type-scores">
                   <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
                   <span class="upsell-new-score">Upsell/New ${Math.round(account.upsell_new_score)}</span>
-                  <span class="experimental">Experimental</span>
                 </div>
               </div>
               <span class="score">${Math.round(account.account_score)}</span>
@@ -556,6 +575,23 @@
       return ` · <span class="problem">${activity}${commit}</span>`;
     }
 
+    // Short tags for an opportunity's problems, used in the list and the panel.
+    function flagTags(longOverdue, isOverdue, daysToClose, staleNearClose, staleCommit) {
+      let tags = "";
+      if (longOverdue) {
+        tags += `<span class="flag-tag">Long overdue · ${-daysToClose} days</span>`;
+      } else if (isOverdue) {
+        tags += `<span class="flag-tag">Overdue · ${-daysToClose} days</span>`;
+      }
+      if (staleNearClose) {
+        tags += `<span class="flag-tag">No recent activity</span>`;
+      }
+      if (staleCommit) {
+        tags += `<span class="flag-tag">Stale Commit</span>`;
+      }
+      return tags;
+    }
+
     // Renewals form one group; Upsell and New deals form the other.
     function typeGroup(type) {
       return type === "Renewal" ? "Renewal" : "Upsell/New";
@@ -566,7 +602,7 @@
       const renewal = Math.round(account.renewal_score);
       const upsellNew = Math.round(account.upsell_new_score);
       const total = Math.round(account.account_score);
-      const topName = account.top_opportunity.replace(account.account_name + " - ", "");
+      const topName = account.top_opportunity.replace(account.account_name + " - ", "").replace(" - ", ": ");
       const explanation =
         `This account's priority comes from its highest-scoring open opportunity, ${topName}.`;
 
@@ -595,15 +631,24 @@
           : `${opportunity.priority_score} pts
              <div class="points-note">not counted</div>`;
 
+        // Problem tags, shown on the card without expanding it.
+        const tags = flagTags(
+          opportunity.long_overdue, opportunity.is_overdue, opportunity.days_to_close,
+          opportunity.stale_near_close, opportunity.stale_commit
+        );
+
         // Score components, then why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null
           ? "no activity has been logged"
           : `the last activity was ${opportunity.days_since_activity} days ago`;
         let breakdown = `
           <div><strong>Score:</strong>
-            ${opportunity.value_score} value + ${opportunity.quarter_score} quarter
+            ${opportunity.value_score} value + ${opportunity.timing_score} timing
             + ${opportunity.stage_score} stage = ${opportunity.priority_score} pts</div>`;
-        if (opportunity.is_overdue) {
+        if (opportunity.long_overdue) {
+          breakdown += `<div><strong class="problem">Long overdue:</strong>
+            the close date passed ${-opportunity.days_to_close} days ago; check whether this deal is still real.</div>`;
+        } else if (opportunity.is_overdue) {
           breakdown += `<div><strong class="problem">Overdue:</strong>
             the close date passed ${-opportunity.days_to_close} days ago, but the deal is still open.</div>`;
         }
@@ -621,10 +666,10 @@
             <summary class="opportunity-summary">
             <div>
               <div class="opportunity-type ${group === "Renewal" ? "renewal" : "upsell-new"}">
-                ${opportunity.type}
+                ${opportunity.type}${tags}
               </div>
               <div class="opportunity-name">
-                ${opportunity.opportunity.replace(account.account_name + " - ", "")}
+                ${opportunity.opportunity.replace(account.account_name + " - ", "").replace(" - ", ": ")}
               </div>
               <div class="opportunity-meta">
                 ${euros.format(opportunity.amount)} · ${opportunity.stage} · <em>${timing}</em>${activityNote(opportunity.stale_near_close, opportunity.stale_commit, opportunity.days_since_activity)}
