@@ -16,7 +16,13 @@
     "top_days_to_close":6,
     "top_stale_near_close":true,
     "top_stale_commit":true,
-    "top_days_since_activity":38.0
+    "top_days_since_activity":38.0,
+    "top_gong_issues":[
+      "Stakeholder change",
+      "Pricing pressure",
+      "Competitor risk"
+    ],
+    "account_call_issues":null
   },
   {
     "account_name":"Willowbank",
@@ -35,7 +41,9 @@
     "top_days_to_close":3,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":15.0
+    "top_days_since_activity":15.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Lanternfly",
@@ -54,7 +62,11 @@
     "top_days_to_close":8,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":3.0
+    "top_days_since_activity":3.0,
+    "top_gong_issues":null,
+    "account_call_issues":[
+      "Implementation delay"
+    ]
   },
   {
     "account_name":"Mosaic",
@@ -73,7 +85,12 @@
     "top_days_to_close":12,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":5.0
+    "top_days_since_activity":5.0,
+    "top_gong_issues":[
+      "Closing risk",
+      "Procurement \/ legal"
+    ],
+    "account_call_issues":null
   },
   {
     "account_name":"Saltmarsh",
@@ -92,7 +109,9 @@
     "top_days_to_close":26,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":21.0
+    "top_days_since_activity":21.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Kestrel",
@@ -111,7 +130,9 @@
     "top_days_to_close":9,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":12.0
+    "top_days_since_activity":12.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Fernhill",
@@ -130,7 +151,9 @@
     "top_days_to_close":-15,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":63.0
+    "top_days_since_activity":63.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Copperleaf",
@@ -149,7 +172,9 @@
     "top_days_to_close":4,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":25.0
+    "top_days_since_activity":25.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Marlowe",
@@ -168,7 +193,13 @@
     "top_days_to_close":7,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":7.0
+    "top_days_since_activity":7.0,
+    "top_gong_issues":[
+      "Pricing pressure"
+    ],
+    "account_call_issues":[
+      "Stakeholder change"
+    ]
   },
   {
     "account_name":"Quayside",
@@ -187,7 +218,9 @@
     "top_days_to_close":25,
     "top_stale_near_close":true,
     "top_stale_commit":true,
-    "top_days_since_activity":113.0
+    "top_days_since_activity":113.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Monogram",
@@ -206,7 +239,9 @@
     "top_days_to_close":19,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":3.0
+    "top_days_since_activity":3.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Orchard Lane",
@@ -225,7 +260,13 @@
     "top_days_to_close":4,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":7.0
+    "top_days_since_activity":7.0,
+    "top_gong_issues":[
+      "Closing risk",
+      "Procurement \/ legal",
+      "Pricing pressure"
+    ],
+    "account_call_issues":null
   },
   {
     "account_name":"Petrel",
@@ -244,7 +285,9 @@
     "top_days_to_close":10,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":13.0
+    "top_days_since_activity":13.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Zephyrine",
@@ -263,7 +306,9 @@
     "top_days_to_close":78,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":19.0
+    "top_days_since_activity":19.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Tidewater",
@@ -282,7 +327,9 @@
     "top_days_to_close":53,
     "top_stale_near_close":false,
     "top_stale_commit":true,
-    "top_days_since_activity":106.0
+    "top_days_since_activity":106.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Umberleaf",
@@ -301,7 +348,9 @@
     "top_days_to_close":53,
     "top_stale_near_close":false,
     "top_stale_commit":true,
-    "top_days_since_activity":37.0
+    "top_days_since_activity":37.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Redfern",
@@ -320,7 +369,9 @@
     "top_days_to_close":-18,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":13.0
+    "top_days_since_activity":13.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Oakmoor",
@@ -339,7 +390,9 @@
     "top_days_to_close":176,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":14.0
+    "top_days_since_activity":14.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Wayfarer",
@@ -358,7 +411,17 @@
     "top_days_to_close":104,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":4.0
+    "top_days_since_activity":4.0,
+    "top_gong_issues":[
+      "Closing risk",
+      "Technical issue",
+      "Implementation delay"
+    ],
+    "account_call_issues":[
+      "Closing risk",
+      "Executive escalation",
+      "Technical issue"
+    ]
   },
   {
     "account_name":"Aster",
@@ -377,7 +440,9 @@
     "top_days_to_close":34,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":2.0
+    "top_days_since_activity":2.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Halcyon",
@@ -396,7 +461,9 @@
     "top_days_to_close":65,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":28.0
+    "top_days_since_activity":28.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Quillon",
@@ -415,7 +482,9 @@
     "top_days_to_close":-5,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":22.0
+    "top_days_since_activity":22.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Bramblewood",
@@ -434,7 +503,11 @@
     "top_days_to_close":26,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":2.0
+    "top_days_since_activity":2.0,
+    "top_gong_issues":null,
+    "account_call_issues":[
+      "Implementation delay"
+    ]
   },
   {
     "account_name":"Pinecrest",
@@ -453,7 +526,11 @@
     "top_days_to_close":202,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":13.0
+    "top_days_since_activity":13.0,
+    "top_gong_issues":null,
+    "account_call_issues":[
+      "Stakeholder change"
+    ]
   },
   {
     "account_name":"Silverbirch",
@@ -472,7 +549,9 @@
     "top_days_to_close":40,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":28.0
+    "top_days_since_activity":28.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Larkspur",
@@ -491,7 +570,9 @@
     "top_days_to_close":211,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":42.0
+    "top_days_since_activity":42.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Cobalt",
@@ -510,7 +591,11 @@
     "top_days_to_close":224,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":44.0
+    "top_days_since_activity":44.0,
+    "top_gong_issues":[
+      "Pricing pressure"
+    ],
+    "account_call_issues":null
   },
   {
     "account_name":"Driftwood",
@@ -529,7 +614,9 @@
     "top_days_to_close":58,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":108.0
+    "top_days_since_activity":108.0,
+    "top_gong_issues":null,
+    "account_call_issues":null
   },
   {
     "account_name":"Vellum",
@@ -548,6 +635,11 @@
     "top_days_to_close":200,
     "top_stale_near_close":false,
     "top_stale_commit":false,
-    "top_days_since_activity":29.0
+    "top_days_since_activity":29.0,
+    "top_gong_issues":null,
+    "account_call_issues":[
+      "Implementation delay",
+      "Stakeholder change"
+    ]
   }
 ]

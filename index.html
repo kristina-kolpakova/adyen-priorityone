@@ -393,6 +393,18 @@
       vertical-align: middle;
     }
 
+    /* Gong call issues: same shape as the Salesforce flags, in blue. */
+    .flag-tag.gong-tag {
+      background: #EDF1FF;
+      color: #6476A8;
+    }
+
+    /* Gong issues from calls not linked to any deal, in a slightly different blue. */
+    .flag-tag.gong-account-tag {
+      background: #DCE8FF;
+      color: #4268AD;
+    }
+
     .opportunity-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .opportunity-meta { color: var(--muted); font-size: 13px; }
 
@@ -591,7 +603,7 @@
                 ${account.account_name}${flagTags(
                   account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
                   account.top_stale_near_close, account.top_stale_commit
-                )}
+                )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}
               </div>
               <div class="account-signal">
                 ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
@@ -633,6 +645,27 @@
       }
       if (staleCommit) {
         tags += `<span class="flag-tag">Stale Commit</span>`;
+      }
+      return tags;
+    }
+
+    // Blue tags for issues raised on recent Gong calls about a deal, or "" if none.
+    function gongTags(issues) {
+      let tags = "";
+      for (const issue of issues || []) {
+        tags += `<span class="flag-tag gong-tag">${issue}</span>`;
+      }
+      return tags;
+    }
+
+    // Tags for issues from recent Gong calls not linked to any deal, skipping
+    // any the top deal already shows.
+    function accountCallTags(issues, topDealIssues) {
+      let tags = "";
+      for (const issue of issues || []) {
+        if (!(topDealIssues || []).includes(issue)) {
+          tags += `<span class="flag-tag gong-account-tag" title="From a Gong call not linked to a deal">${issue}</span>`;
+        }
       }
       return tags;
     }
@@ -680,7 +713,7 @@
         const tags = flagTags(
           opportunity.long_overdue, opportunity.is_overdue, opportunity.days_to_close,
           opportunity.stale_near_close, opportunity.stale_commit
-        );
+        ) + gongTags(opportunity.gong_issues);
 
         // Score components, then why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null

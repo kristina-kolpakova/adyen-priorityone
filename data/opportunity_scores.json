@@ -16,7 +16,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":2.0
+    "days_since_activity":2.0,
+    "gong_issues":null
   },
   {
     "account_name":"Aster",
@@ -35,7 +36,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":18.0
+    "days_since_activity":18.0,
+    "gong_issues":null
   },
   {
     "account_name":"Aster",
@@ -54,7 +56,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":11.0
+    "days_since_activity":11.0,
+    "gong_issues":[
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Bramblewood",
@@ -73,7 +78,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":2.0
+    "days_since_activity":2.0,
+    "gong_issues":null
   },
   {
     "account_name":"Bramblewood",
@@ -92,7 +98,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":11.0
+    "days_since_activity":11.0,
+    "gong_issues":[
+      "Competitor risk"
+    ]
   },
   {
     "account_name":"Cobalt",
@@ -111,7 +120,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":44.0
+    "days_since_activity":44.0,
+    "gong_issues":[
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Copperleaf",
@@ -130,7 +142,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":25.0
+    "days_since_activity":25.0,
+    "gong_issues":null
   },
   {
     "account_name":"Copperleaf",
@@ -149,7 +162,8 @@
     "stale_near_close":true,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":113.0
+    "days_since_activity":113.0,
+    "gong_issues":null
   },
   {
     "account_name":"Copperleaf",
@@ -168,7 +182,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":70.0
+    "days_since_activity":70.0,
+    "gong_issues":null
   },
   {
     "account_name":"Driftwood",
@@ -187,7 +202,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":108.0
+    "days_since_activity":108.0,
+    "gong_issues":null
   },
   {
     "account_name":"Driftwood",
@@ -206,7 +222,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":27.0
+    "days_since_activity":27.0,
+    "gong_issues":[
+      "Competitor risk"
+    ]
   },
   {
     "account_name":"Fernhill",
@@ -225,7 +244,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":63.0
+    "days_since_activity":63.0,
+    "gong_issues":null
   },
   {
     "account_name":"Halcyon",
@@ -244,7 +264,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":28.0
+    "days_since_activity":28.0,
+    "gong_issues":null
   },
   {
     "account_name":"Halcyon",
@@ -263,7 +284,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":6.0
+    "days_since_activity":6.0,
+    "gong_issues":null
   },
   {
     "account_name":"Kestrel",
@@ -282,7 +304,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":12.0
+    "days_since_activity":12.0,
+    "gong_issues":null
   },
   {
     "account_name":"Kestrel",
@@ -301,7 +324,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":3.0
+    "days_since_activity":3.0,
+    "gong_issues":null
   },
   {
     "account_name":"Kestrel",
@@ -320,7 +344,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":2.0
+    "days_since_activity":2.0,
+    "gong_issues":null
   },
   {
     "account_name":"Krakatoa",
@@ -339,7 +364,12 @@
     "stale_near_close":true,
     "stale_commit":true,
     "long_overdue":false,
-    "days_since_activity":38.0
+    "days_since_activity":38.0,
+    "gong_issues":[
+      "Stakeholder change",
+      "Pricing pressure",
+      "Competitor risk"
+    ]
   },
   {
     "account_name":"Krakatoa",
@@ -358,7 +388,11 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":64.0
+    "days_since_activity":64.0,
+    "gong_issues":[
+      "Stakeholder change",
+      "Implementation delay"
+    ]
   },
   {
     "account_name":"Lanternfly",
@@ -377,7 +411,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":3.0
+    "days_since_activity":3.0,
+    "gong_issues":null
   },
   {
     "account_name":"Lanternfly",
@@ -396,7 +431,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":117.0
+    "days_since_activity":117.0,
+    "gong_issues":null
   },
   {
     "account_name":"Larkspur",
@@ -415,7 +451,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":42.0
+    "days_since_activity":42.0,
+    "gong_issues":null
   },
   {
     "account_name":"Larkspur",
@@ -434,7 +471,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":5.0
+    "days_since_activity":5.0,
+    "gong_issues":null
   },
   {
     "account_name":"Marlowe",
@@ -453,7 +491,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":7.0
+    "days_since_activity":7.0,
+    "gong_issues":[
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Marlowe",
@@ -472,7 +513,8 @@
     "stale_near_close":true,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":null
+    "days_since_activity":null,
+    "gong_issues":null
   },
   {
     "account_name":"Marlowe",
@@ -491,7 +533,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":true,
-    "days_since_activity":15.0
+    "days_since_activity":15.0,
+    "gong_issues":null
   },
   {
     "account_name":"Marlowe",
@@ -510,7 +553,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":10.0
+    "days_since_activity":10.0,
+    "gong_issues":null
   },
   {
     "account_name":"Monogram",
@@ -529,7 +573,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":3.0
+    "days_since_activity":3.0,
+    "gong_issues":null
   },
   {
     "account_name":"Monogram",
@@ -548,7 +593,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":10.0
+    "days_since_activity":10.0,
+    "gong_issues":null
   },
   {
     "account_name":"Monogram",
@@ -567,7 +613,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":null
+    "days_since_activity":null,
+    "gong_issues":null
   },
   {
     "account_name":"Mosaic",
@@ -586,7 +633,11 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":5.0
+    "days_since_activity":5.0,
+    "gong_issues":[
+      "Closing risk",
+      "Procurement \/ legal"
+    ]
   },
   {
     "account_name":"Mosaic",
@@ -605,7 +656,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":31.0
+    "days_since_activity":31.0,
+    "gong_issues":null
   },
   {
     "account_name":"Oakmoor",
@@ -624,7 +676,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":14.0
+    "days_since_activity":14.0,
+    "gong_issues":null
   },
   {
     "account_name":"Oakmoor",
@@ -643,7 +696,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":5.0
+    "days_since_activity":5.0,
+    "gong_issues":null
   },
   {
     "account_name":"Oakmoor",
@@ -662,7 +716,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":28.0
+    "days_since_activity":28.0,
+    "gong_issues":null
   },
   {
     "account_name":"Oakmoor",
@@ -681,7 +736,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":36.0
+    "days_since_activity":36.0,
+    "gong_issues":null
   },
   {
     "account_name":"Orchard Lane",
@@ -700,7 +756,12 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":7.0
+    "days_since_activity":7.0,
+    "gong_issues":[
+      "Closing risk",
+      "Procurement \/ legal",
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Petrel",
@@ -719,7 +780,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":13.0
+    "days_since_activity":13.0,
+    "gong_issues":null
   },
   {
     "account_name":"Petrel",
@@ -738,7 +800,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":40.0
+    "days_since_activity":40.0,
+    "gong_issues":null
   },
   {
     "account_name":"Petrel",
@@ -757,7 +820,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":96.0
+    "days_since_activity":96.0,
+    "gong_issues":null
   },
   {
     "account_name":"Pinecrest",
@@ -776,7 +840,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":13.0
+    "days_since_activity":13.0,
+    "gong_issues":null
   },
   {
     "account_name":"Pinecrest",
@@ -795,7 +860,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":12.0
+    "days_since_activity":12.0,
+    "gong_issues":null
   },
   {
     "account_name":"Quayside",
@@ -814,7 +880,8 @@
     "stale_near_close":true,
     "stale_commit":true,
     "long_overdue":false,
-    "days_since_activity":113.0
+    "days_since_activity":113.0,
+    "gong_issues":null
   },
   {
     "account_name":"Quayside",
@@ -833,7 +900,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":41.0
+    "days_since_activity":41.0,
+    "gong_issues":null
   },
   {
     "account_name":"Quayside",
@@ -852,7 +920,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":65.0
+    "days_since_activity":65.0,
+    "gong_issues":[
+      "Competitor risk"
+    ]
   },
   {
     "account_name":"Quillon",
@@ -871,7 +942,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":22.0
+    "days_since_activity":22.0,
+    "gong_issues":null
   },
   {
     "account_name":"Quillon",
@@ -890,7 +962,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":20.0
+    "days_since_activity":20.0,
+    "gong_issues":null
   },
   {
     "account_name":"Redfern",
@@ -909,7 +982,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":13.0
+    "days_since_activity":13.0,
+    "gong_issues":null
   },
   {
     "account_name":"Redfern",
@@ -928,7 +1002,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":1.0
+    "days_since_activity":1.0,
+    "gong_issues":null
   },
   {
     "account_name":"Redfern",
@@ -947,7 +1022,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":55.0
+    "days_since_activity":55.0,
+    "gong_issues":null
   },
   {
     "account_name":"Saltmarsh",
@@ -966,7 +1042,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":21.0
+    "days_since_activity":21.0,
+    "gong_issues":null
   },
   {
     "account_name":"Saltmarsh",
@@ -985,7 +1062,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":null
+    "days_since_activity":null,
+    "gong_issues":[
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Saltmarsh",
@@ -1004,7 +1084,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":13.0
+    "days_since_activity":13.0,
+    "gong_issues":null
   },
   {
     "account_name":"Silverbirch",
@@ -1023,7 +1104,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":28.0
+    "days_since_activity":28.0,
+    "gong_issues":null
   },
   {
     "account_name":"Silverbirch",
@@ -1042,7 +1124,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":5.0
+    "days_since_activity":5.0,
+    "gong_issues":null
   },
   {
     "account_name":"Tidewater",
@@ -1061,7 +1144,8 @@
     "stale_near_close":false,
     "stale_commit":true,
     "long_overdue":false,
-    "days_since_activity":106.0
+    "days_since_activity":106.0,
+    "gong_issues":null
   },
   {
     "account_name":"Tidewater",
@@ -1080,7 +1164,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":36.0
+    "days_since_activity":36.0,
+    "gong_issues":null
   },
   {
     "account_name":"Tidewater",
@@ -1099,7 +1184,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":67.0
+    "days_since_activity":67.0,
+    "gong_issues":null
   },
   {
     "account_name":"Umberleaf",
@@ -1118,7 +1204,8 @@
     "stale_near_close":false,
     "stale_commit":true,
     "long_overdue":false,
-    "days_since_activity":37.0
+    "days_since_activity":37.0,
+    "gong_issues":null
   },
   {
     "account_name":"Umberleaf",
@@ -1137,7 +1224,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":10.0
+    "days_since_activity":10.0,
+    "gong_issues":null
   },
   {
     "account_name":"Umberleaf",
@@ -1156,7 +1244,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":8.0
+    "days_since_activity":8.0,
+    "gong_issues":null
   },
   {
     "account_name":"Vellum",
@@ -1175,7 +1264,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":29.0
+    "days_since_activity":29.0,
+    "gong_issues":null
   },
   {
     "account_name":"Vellum",
@@ -1194,7 +1284,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":4.0
+    "days_since_activity":4.0,
+    "gong_issues":null
   },
   {
     "account_name":"Wayfarer",
@@ -1213,7 +1304,12 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":4.0
+    "days_since_activity":4.0,
+    "gong_issues":[
+      "Closing risk",
+      "Technical issue",
+      "Implementation delay"
+    ]
   },
   {
     "account_name":"Wayfarer",
@@ -1232,7 +1328,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":true,
-    "days_since_activity":116.0
+    "days_since_activity":116.0,
+    "gong_issues":null
   },
   {
     "account_name":"Willowbank",
@@ -1251,7 +1348,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":15.0
+    "days_since_activity":15.0,
+    "gong_issues":null
   },
   {
     "account_name":"Willowbank",
@@ -1270,7 +1368,10 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":17.0
+    "days_since_activity":17.0,
+    "gong_issues":[
+      "Pricing pressure"
+    ]
   },
   {
     "account_name":"Zephyrine",
@@ -1289,7 +1390,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":19.0
+    "days_since_activity":19.0,
+    "gong_issues":null
   },
   {
     "account_name":"Zephyrine",
@@ -1308,7 +1410,8 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":0.0
+    "days_since_activity":0.0,
+    "gong_issues":null
   },
   {
     "account_name":"Zephyrine",
@@ -1327,6 +1430,7 @@
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
-    "days_since_activity":21.0
+    "days_since_activity":21.0,
+    "gong_issues":null
   }
 ]

@@ -1,6 +1,7 @@
 import pandas as pd
 
 from scoring import score_types
+from gong import call_issues
 
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
@@ -135,6 +136,50 @@ df["IsProblem"] = df[
 ].any(axis=1)
 
 
+# --- Gong Issues ---
+
+# Gong issues are a separate signal: they are shown next to the Salesforce
+# flags but don't change any score.
+gong_calls = call_issues.copy()
+
+# Call dates in UTC, without the time, so they compare with the reference date.
+gong_calls["CallDate"] = (
+    pd.to_datetime(gong_calls["started"], utc=True)
+    .dt.tz_localize(None)
+    .dt.normalize()
+)
+
+# Keep calls from the last 90 days; older issues may already be resolved.
+recent_calls = gong_calls[gong_calls["CallDate"] >= reference_date - pd.Timedelta(days=90)]
+
+# One row per issue, most recent call first.
+recent_issues = (
+    recent_calls.explode("red_flag")
+    .sort_values("CallDate", ascending=False)
+)
+
+# Each deal's distinct issues from recent calls linked to it.
+opportunity_gong_issues = (
+    recent_issues
+    .drop_duplicates(subset=["associated_opp", "red_flag"])
+    .groupby("associated_opp")["red_flag"]
+    .agg(list)
+)
+
+df["GongIssues"] = df["Id"].map(opportunity_gong_issues)
+
+# Each account's distinct issues from recent calls not linked to any deal.
+unlinked_issues = recent_issues[recent_issues["associated_opp"].isna()]
+
+account_call_issues = (
+    unlinked_issues
+    .drop_duplicates(subset=["associated_account", "red_flag"])
+    .merge(df_acc, left_on="associated_account", right_on="AccountId")
+    .groupby("AccountName")["red_flag"]
+    .agg(list)
+)
+
+
 # --- Account Scores ---
 
 # Each account's best renewal score and best upsell/new score (see scoring.py).
@@ -184,6 +229,9 @@ ui_accounts = pd.DataFrame({
     "top_stale_near_close": top_opportunities["FlagStaleNearClose"],
     "top_stale_commit": top_opportunities["FlagStaleCommit"],
     "top_days_since_activity": top_opportunities["DaysSinceActivity"],
+    "top_gong_issues": top_opportunities["GongIssues"],
+    # Only accounts with open deals are ranked, so ignore calls from other accounts.
+    "account_call_issues": account_call_issues.reindex(priority_scores.index),
 })
 
 # Sort accounts by priority; among equal scores, problems first, then amount.
@@ -222,12 +270,14 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "FlagStaleCommit": "stale_commit",
         "FlagLongOverdue": "long_overdue",
         "DaysSinceActivity": "days_since_activity",
+        "GongIssues": "gong_issues",
     })
     [[
         "account_name", "opportunity", "type", "amount", "stage",
         "close_date", "days_to_close", "value_score", "timing_score",
         "stage_score", "priority_score", "is_problem", "is_overdue",
         "stale_near_close", "stale_commit", "long_overdue", "days_since_activity",
+        "gong_issues",
     ]]
     .sort_values(
         ["account_name", "priority_score", "is_problem", "amount"],
