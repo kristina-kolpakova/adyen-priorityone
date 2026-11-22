@@ -99,9 +99,7 @@
     "stale_commit":false,
     "long_overdue":false,
     "days_since_activity":11.0,
-    "gong_issues":[
-      "Competitor risk"
-    ]
+    "gong_issues":null
   },
   {
     "account_name":"Cobalt",
@@ -223,9 +221,7 @@
     "stale_commit":false,
     "long_overdue":false,
     "days_since_activity":27.0,
-    "gong_issues":[
-      "Competitor risk"
-    ]
+    "gong_issues":null
   },
   {
     "account_name":"Fernhill",

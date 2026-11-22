@@ -234,11 +234,31 @@ ui_accounts = pd.DataFrame({
     "account_call_issues": account_call_issues.reindex(priority_scores.index),
 })
 
-# Sort accounts by priority; among equal scores, problems first, then amount.
+# Rank on the same Gong issues the dashboard shows: any issue from the last 90 days.
+
+# An issue linked to a deal applies only to that deal.
+deal_risk_ids = recent_issues["associated_opp"].dropna()
+
+# Use issues from calls without a linked deal as account-level risks.
+account_risk_ids = unlinked_issues["associated_account"]
+
+# Give one point for account-level risk. Use two if the top deal has risk.
+gong_bonus = top_opportunities["AccountId"].isin(account_risk_ids).astype(int)
+gong_bonus.loc[top_opportunities["Id"].isin(deal_risk_ids)] = 2
+
+# Add the Gong points to the Salesforce score, and export both parts.
+ui_accounts["salesforce_score"] = ui_accounts["account_score"]
+ui_accounts["gong_bonus"] = gong_bonus
+ui_accounts["account_score"] = ui_accounts["salesforce_score"] + ui_accounts["gong_bonus"]
+
+# Move the account name into a column for sorting and JSON export.
 ui_accounts = ui_accounts.reset_index(names="account_name")
+
+# Sort by final score. Break ties by Salesforce problem flag, then deal amount.
+# Use account name for any remaining ties.
 ui_accounts = ui_accounts.sort_values(
     ["account_score", "top_is_problem", "top_amount", "account_name"],
-    ascending=[False, False, False, True]
+    ascending=[False, False, False, True],
 )
 ui_accounts.insert(1, "rank", range(1, len(ui_accounts) + 1))
 

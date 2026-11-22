@@ -40,6 +40,7 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 26 | 2026-11-21 | Claude Code | Account scoring | Ranked accounts by their best deal, ties by amount; reversed entry 15 |
 | 27 | 2026-11-21 | Claude Code | Account scoring | Dropped renewal weighting; problem flags break ties instead |
 | 28 | 2026-11-21 | Claude Code | Data | Shifted mock dates forward; fixed the reference date at 25 Nov; reversed entry 14 |
+| 29 | 2026-11-22 | Claude Code | Account scoring | Added Gong issues: display, then tie-break, then +2/+1 points kept below a Salesforce step |
 
 ---
 
@@ -308,6 +309,15 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **Then nothing scored 100:** no large Negotiation deal closed within 7 days of 25 Nov. I chose new close dates for four renewals: Krakatoa 1 Dec (6 days out, as in the original data), Willowbank 28 Nov, Mosaic 7 Dec and Lanternfly 3 Dec. These are the only rows changed by hand for the demo.
 - **How it was checked:** Reran the scoring, the 10 tests pass, and the ranking is the same whichever day the script runs: Krakatoa 100 (flagged) and Willowbank 100, then Lanternfly and Mosaic on 95.
 - **Lesson:** "Use today's date" is right for live data and wrong for a static snapshot. A demo should give the same answer every time it runs.
+
+## 29. Adding Gong: from display-only to a capped tie-break in points
+
+- **Tool:** Claude Code, Python/pandas, JavaScript/CSS
+- **What I built:** I wrote `gong.py`, a keyword classifier that sorts Gong call key points into issue categories. Claude ran it against the calls and found it missed the strongest signals ("renewal discussions on hold", "wants migration fixed before discussing renewal terms", ledgers not reconciling). I added phrases for them and merged 13 categories into 9.
+- **How it was steered:** Each step was reviewed on localhost. Gong first went in as display-only pills in my own colours. I then chose to show only the top deal's issues on each row, like the Salesforce tags, with a second shade for calls not linked to any deal. Next I made Gong break ties, then decided the ranking should use the same 90-day issues the dashboard shows, and finally turned the tie-break into points: +2 for an issue on the top deal, +1 for one from a call not linked to a deal, with no cap.
+- **What Claude found:** Every Salesforce score is a multiple of 5, so a Gong bonus under 5 can only reorder accounts with the same Salesforce score. +2/+1 keeps Gong from overriding Salesforce while showing its effect in the score. Claude also flagged that the list row then showed "Renewal 95" next to a score of 97, so rows now show "+2 Gong".
+- **How it was checked:** Three new tests: the final score equals the Salesforce score plus 0–2 Gong points, a top-deal issue gives +2, and Salesforce scores still run from highest to lowest after sorting. All 13 tests pass. The README explains the rule and its limits: keyword matching isn't tested against outcomes, and Salesforce flags still add no points while Gong does.
+- **Lesson:** A new signal should earn influence step by step: shown first, then a tie-break, then points kept small enough that it can't override the main score.
 
 ---
 

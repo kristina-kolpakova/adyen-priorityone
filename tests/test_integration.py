@@ -92,3 +92,26 @@ def test_priority_score_is_out_of_100():
 
     assert (df["PriorityScore"] == total).all()
     assert df["PriorityScore"].between(0, 100).all()
+
+
+def test_final_score_adds_gong_points():
+    # Final score = Salesforce score + Gong points, and Gong adds 0, 1 or 2.
+    accounts = integration.ui_accounts
+
+    assert (accounts["account_score"] == accounts["salesforce_score"] + accounts["gong_bonus"]).all()
+    assert accounts["gong_bonus"].isin([0, 1, 2]).all()
+
+
+def test_top_deal_gong_issue_gives_two_points():
+    # An issue on the account's top deal is worth the full 2 points.
+    accounts = integration.ui_accounts
+    has_top_deal_issue = accounts["top_gong_issues"].notna()
+
+    assert (accounts.loc[has_top_deal_issue, "gong_bonus"] == 2).all()
+
+
+def test_gong_never_outranks_a_higher_salesforce_score():
+    # Gong points only reorder accounts with the same Salesforce score.
+    accounts = integration.ui_accounts
+
+    assert accounts["salesforce_score"].is_monotonic_decreasing

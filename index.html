@@ -210,6 +210,7 @@
 
     .renewal-score { color: #3f7d5c; margin-right: 8px; }
     .upsell-new-score { color: #3a7f8a; margin-right: 8px; }
+    .gong-bonus { color: #5264B0; }
     .type-scores { margin-top: 3px; }
     .overdue { color: #B87579; }
     .problem { color: #B87579; }
@@ -611,6 +612,7 @@
               <div class="account-signal type-scores">
                 <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
                 <span class="upsell-new-score">Upsell/New ${Math.round(account.upsell_new_score)}</span>
+                ${account.gong_bonus > 0 ? `<span class="gong-bonus">+${account.gong_bonus} Gong</span>` : ""}
               </div>
             </div>
             <span class="score">${Math.round(account.account_score)}</span>
@@ -682,7 +684,7 @@
       const total = Math.round(account.account_score);
       const topName = account.top_opportunity.replace(account.account_name + " - ", "").replace(" - ", ": ");
       const explanation =
-        `This account's priority comes from its highest-scoring open opportunity, ${topName}.`;
+        `This account's Salesforce score comes from its highest-scoring open opportunity, ${topName}.`;
 
       // This account's opportunities, highest score first; among equal scores,
       // problems first, then the larger deal.
@@ -784,8 +786,11 @@
         <div class="detail-formula">
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
-            <div class="detail-formula-text">Highest opportunity score: Max(${dealScores})</div>
-            <div class="detail-formula-text">Accounts with equal scores: deals with problems first, then by amount.</div>
+            <div class="detail-formula-text">Salesforce score · Max(${dealScores}) = ${account.salesforce_score ?? total}</div>
+            ${account.gong_bonus > 0 ? `
+              <div class="detail-formula-text">${account.salesforce_score} Salesforce + ${account.gong_bonus} Gong = ${total}</div>
+            ` : ""}
+            <div class="detail-formula-text">When final scores tie, Salesforce problem flags come first, then deal size.</div>
           </div>
           <div class="detail-formula-value">${total}</div>
         </div>`;

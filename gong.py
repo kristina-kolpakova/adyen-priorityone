@@ -24,7 +24,6 @@ red_flag_map = {
 
     # Competition
     "evaluating another payment provider": "Competitor risk",
-    "request for proposal": "Competitor risk",
 
     # Pricing
     "benchmarking fees": "Pricing pressure",
