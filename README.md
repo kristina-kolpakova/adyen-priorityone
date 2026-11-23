@@ -26,21 +26,21 @@ python -m pytest
 
 Start with the top 10 on **Overview**, or open **Accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
 
-Drag an account to change your order and optionally select a reason. Picking a reason saves the ranking feedback.
+Drag an account to change your order and optionally add a note on why. Saving the note saves the ranking feedback.
 
 ## Ranking feedback
 
-When an AM disagrees with the ranking, they drag the account and pick a reason. They see **Ranking feedback saved**, and they never need to understand the scoring. Each reasoned move becomes a review item for the model's owner, with the account, the original and new rank, the reason, and the score breakdown behind the original rank:
+When an AM disagrees with the ranking, they drag the account and can add a short note on why. They see **Ranking feedback saved**, and they never need to understand the scoring. The note then shows on the row, where they can edit it. Each move with a note becomes a review item for the model's owner, with the account, the original and new rank, the note, and the score breakdown behind the original rank:
 
 ```
 Ranking feedback · Krakatoa
 AM moved this account from #1 to #5.
-Reason: Concern resolved
+Note: Procurement confirmed the renewal is on track.
 Why it ranked #1: score 117 = value 40 + timing 30 + stage 30 + Gong 17 (Competitor risk, call 7 days before sync).
 Salesforce flags: No recent activity, Stale Commit
 ```
 
-In the demo, review items are saved in the browser with the move. **Download ranking feedback** in the footer exports every move and its review item as JSON. In production, each item would go to a review queue the model's owner works through, tagged with the AM and the model version. Patterns across items, such as many "Concern resolved" moves on accounts driven by Gong points, would be checked against won and lost deals before any weight changes.
+In the demo, review items are saved in the browser with the move. **Download ranking feedback** in the footer exports every move and its review item as JSON. In production, each item would go to a review queue the model's owner works through, tagged with the AM and the model version. Patterns across notes, such as many "concern resolved" moves on accounts driven by Gong points, would be checked against won and lost deals before any weight changes.
 
 ## How scores work
 

@@ -348,6 +348,66 @@
     .account.sortable-ghost { opacity: 0.4; }
     .account.sortable-chosen { box-shadow: 0 12px 28px rgba(20, 40, 30, 0.10); }
 
+    /* Optional note on a moved account: a quiet line that turns into a text field in place. */
+    .row-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #8a939b;
+      font: inherit;
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .row-note svg { flex: none; width: 13px; height: 13px; }
+    .row-note:hover { color: #3a7f8a; }
+
+    .row-note.editing {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .row-note-input {
+      flex: 1;
+      min-width: 0;
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .row-note-input:focus {
+      outline: none;
+      border-color: #3a7f8a;
+      box-shadow: 0 0 0 3px rgba(58, 127, 138, 0.15);
+    }
+
+    .row-note-save {
+      padding: 7px 14px;
+      border: 1px solid #a9d3bd;
+      border-radius: 8px;
+      background: #fff;
+      color: #2f6f4c;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .row-note-save:hover { background: #eef7f2; }
+
     .moved-note {
       margin-top: 3px;
       color: #a6aeb6;
@@ -387,20 +447,25 @@
 
     .feedback-prompt[hidden] { display: none; }
     .feedback-text em { color: var(--muted); }
-    .reason-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .reason-chip {
-      background: #edf6ef;
-      color: #31704f;
-      border: 1px solid #cfe6d8;
-      border-radius: 999px;
-      padding: 5px 11px;
-      font: inherit;
-      font-size: 12px;
-      cursor: pointer;
+    /* Two lines: what moved and Undo, then the optional note. */
+    .feedback-prompt:has(.feedback-head) {
+      flex-direction: column;
+      align-items: stretch;
+      width: min(460px, calc(100vw - 32px));
     }
 
-    .reason-chip:hover { border-color: #7fbf9e; }
+    .feedback-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .feedback-head .link-button { color: #3a7f8a; text-decoration: none; font-size: 13px; }
+    .feedback-head .link-button:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .feedback-note { display: flex; gap: 8px; }
 
     /* Gong call panel, above the detail panel. */
     .call-backdrop {
@@ -1318,6 +1383,7 @@
               <div class="account-signal">
                 ${topDealLine(account)}
               </div>
+              ${amMoved.includes(account.account_name) ? rowNote(account.account_name) : ""}
             </div>
             <span class="score">${Math.round(account.account_score)}</span>
             <span class="arrow">›</span>
@@ -1333,13 +1399,55 @@
         animation: 150,
         delayOnTouchOnly: true,
         delay: 150,
+        // Clicking or typing in a note shouldn't start a drag.
+        filter: ".row-note",
+        preventOnFilter: false,
         onEnd: recordMove
       });
     }
 
     // ---- AM feedback: drag an account to the rank it deserves ----
 
-    const reasonChips = ["Deal stalled", "Close date off", "Concern resolved", "Missing context"];
+    // A moved account can carry an optional note, saved on its latest move. The AM adds it
+    // in the popup after a drag; once saved it shows on the row, and clicking it edits it.
+    let editingNote = null;
+
+    function latestMove(accountName) {
+      for (let index = feedbackLog.length - 1; index >= 0; index--) {
+        if (feedbackLog[index].account_name === accountName) {
+          return feedbackLog[index];
+        }
+      }
+      return null;
+    }
+
+    function rowNote(accountName) {
+      const move = latestMove(accountName);
+      const note = move && move.note ? move.note : "";
+      if (editingNote === accountName) {
+        return `
+          <div class="row-note editing">
+            <input class="row-note-input" type="text" placeholder="Why did you move this account?" value="${note.replace(/"/g, "&quot;")}">
+            <button class="row-note-save">Save</button>
+          </div>`;
+      }
+      if (!note) {
+        return "";
+      }
+      return `<button class="row-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>${note}</button>`;
+    }
+
+    // Save the note on the account's latest move, and refresh its review item.
+    function saveRowNote(accountName, text) {
+      const move = latestMove(accountName);
+      if (move) {
+        move.note = text.trim() || null;
+        move.review_item = reviewItem(move);
+        saveFeedback();
+      }
+      editingNote = null;
+      renderList();
+    }
     let sortableList = null;
     let feedbackTimer = null;
 
@@ -1427,7 +1535,7 @@
         to_rank: event.newIndex + 1,
         direction: movedDown ? "down" : "up",
         moved_past: movedPast,
-        reason: null,
+        note: null,
         final_score: account.account_score,
         salesforce_score: account.salesforce_score,
         value_score: topDeal ? topDeal.value_score : null,
@@ -1457,28 +1565,36 @@
       showReasonPrompt(movedName, event.newIndex + 1, previousOrder, previousMoved);
     }
 
-    // After a move, offer one-tap reasons (optional) and an Undo for a few seconds.
+    // After a move, offer an optional note and an Undo for a few seconds.
+    // The popup stays open while the AM types.
     function showReasonPrompt(accountName, newRank, previousOrder, previousMoved) {
       const prompt = document.getElementById("feedback-prompt");
-      const chips = reasonChips.map(function (reason) {
-        return `<button class="reason-chip" data-reason="${reason}">${reason}</button>`;
-      }).join("");
       prompt.innerHTML = `
-        <span class="feedback-text">Moved <strong>${accountName}</strong> to #${newRank}. Help us improve future rankings <em>(optional)</em></span>
-        <span class="reason-chips">${chips}</span>
-        <button class="link-button" id="undo-move">Undo</button>`;
+        <span class="feedback-head">
+          <span class="feedback-text">Moved <strong>${accountName}</strong> to #${newRank}</span>
+          <button class="link-button" id="undo-move">Undo</button>
+        </span>
+        <span class="feedback-note">
+          <input class="row-note-input" id="feedback-note-input" type="text" placeholder="Why? Help us improve future rankings (optional)">
+          <button class="row-note-save" id="feedback-note-save">Save</button>
+        </span>`;
       prompt.hidden = false;
 
-      prompt.querySelectorAll(".reason-chip").forEach(function (chip) {
-        chip.addEventListener("click", function () {
-          // With a reason, the move becomes a review item for the model's owner.
-          const entry = feedbackLog[feedbackLog.length - 1];
-          entry.reason = chip.dataset.reason;
-          entry.review_item = reviewItem(entry);
-          saveFeedback();
-          prompt.innerHTML = `<span class="feedback-text">Ranking feedback saved.</span>`;
-          hideReasonPromptLater(1500);
-        });
+      // With a note, the move becomes a review item for the model's owner.
+      const input = document.getElementById("feedback-note-input");
+      function saveNote() {
+        if (input.value.trim() === "") {
+          return;
+        }
+        saveRowNote(accountName, input.value);
+        prompt.innerHTML = `<span class="feedback-text">Ranking feedback saved.</span>`;
+        hideReasonPromptLater(1500);
+      }
+      document.getElementById("feedback-note-save").addEventListener("click", saveNote);
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          saveNote();
+        }
       });
 
       document.getElementById("undo-move").addEventListener("click", function () {
@@ -1493,6 +1609,26 @@
       });
 
       hideReasonPromptLater(8000);
+    }
+
+    // The popup stays while the AM hovers over it or types in it; once they leave it
+    // with nothing typed, it hides a few seconds later.
+    document.getElementById("feedback-prompt").addEventListener("mouseenter", function () {
+      clearTimeout(feedbackTimer);
+    });
+    document.getElementById("feedback-prompt").addEventListener("focusin", function () {
+      clearTimeout(feedbackTimer);
+    });
+    document.getElementById("feedback-prompt").addEventListener("mouseleave", hideIfUntouched);
+    document.getElementById("feedback-prompt").addEventListener("focusout", hideIfUntouched);
+
+    function hideIfUntouched() {
+      const prompt = document.getElementById("feedback-prompt");
+      const input = document.getElementById("feedback-note-input");
+      const typing = input && (input.value.trim() !== "" || document.activeElement === input);
+      if (!prompt.hidden && !typing && !prompt.matches(":hover")) {
+        hideReasonPromptLater(4000);
+      }
     }
 
     function hideReasonPromptLater(milliseconds) {
@@ -1526,10 +1662,10 @@
       return [
         `Ranking feedback · ${entry.account_name}`,
         `AM moved this account from #${entry.from_rank} to #${entry.to_rank}.`,
-        `Reason: ${entry.reason}`,
+        entry.note ? `Note: ${entry.note}` : "",
         `Why it ranked #${entry.score_rank}: score ${breakdown}.`,
         `Salesforce flags: ${flags.length > 0 ? flags.join(", ") : "none"}`
-      ].join("\n");
+      ].filter(Boolean).join("\n");
     }
 
     // Download every logged move and its review item as JSON.
@@ -2014,10 +2150,38 @@
     // Open the panel when an account row is clicked.
     document.getElementById("account-list").addEventListener("click", function (event) {
       const row = event.target.closest(".account");
+      if (row && event.target.closest(".row-note")) {
+        if (event.target.closest(".row-note-save")) {
+          saveRowNote(row.dataset.account, row.querySelector(".row-note-input").value);
+        } else if (!event.target.closest(".row-note-input")) {
+          editingNote = row.dataset.account;
+          renderList();
+          const input = document.querySelector(".row-note-input");
+          input.focus();
+          input.setSelectionRange(input.value.length, input.value.length);
+        }
+        return;
+      }
       if (row) {
         showDetails(rankedAccounts.find(function (account) {
           return account.account_name === row.dataset.account;
         }));
+      }
+    });
+
+    // In the note field, Enter saves and Escape cancels.
+    document.getElementById("account-list").addEventListener("keydown", function (event) {
+      const input = event.target.closest(".row-note-input");
+      if (!input) {
+        return;
+      }
+      if (event.key === "Enter") {
+        saveRowNote(input.closest(".account").dataset.account, input.value);
+      }
+      if (event.key === "Escape") {
+        event.stopPropagation();
+        editingNote = null;
+        renderList();
       }
     });
 
