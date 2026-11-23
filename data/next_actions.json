@@ -128,7 +128,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "21 Dec 2026 (in 26 days)"
+        "value": "21 Dec 2026 (in 28 days)"
       },
       {
         "id": "sf-next-step",
@@ -217,7 +217,7 @@
     "opportunity": "Copperleaf - Upsell - Additional entity (US)",
     "kind": "reviewed",
     "action": "Finalize contract terms and confirm the signature date before the Nov 29 close.",
-    "reason": "The Commit upsell closes in 4 days.",
+    "reason": "The Commit upsell closes in 6 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -229,7 +229,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "29 Nov 2026 (in 4 days)"
+        "value": "29 Nov 2026 (in 6 days)"
       },
       {
         "id": "sf-forecast",
@@ -252,7 +252,7 @@
     "opportunity": "Copperleaf - Renewal - Dec 2026",
     "kind": "reviewed",
     "action": "Confirm the renewal is still on track for Dec 13 and where the deal desk pricing review stands.",
-    "reason": "It closes in 18 days, but nothing has been logged in Salesforce for 113 days.",
+    "reason": "It closes in 20 days, but nothing has been logged in Salesforce for 111 days.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -265,14 +265,14 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "13 Dec 2026 (in 18 days)"
+        "value": "13 Dec 2026 (in 20 days)"
       },
       {
         "id": "sf-activity",
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "113 days ago"
+        "value": "111 days ago"
       },
       {
         "id": "sf-flags",
@@ -314,7 +314,7 @@
     "opportunity": "Driftwood - Upsell - Revenue optimization",
     "kind": "reviewed",
     "action": "Confirm the deal is still active, and schedule the technical discovery session if it is.",
-    "reason": "Nothing has been logged in Salesforce for 108 days, yet the close date is Jan 22.",
+    "reason": "Nothing has been logged in Salesforce for 106 days, yet the close date is Jan 22.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -326,14 +326,14 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "22 Jan 2027 (in 58 days)"
+        "value": "22 Jan 2027 (in 60 days)"
       },
       {
         "id": "sf-activity",
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "108 days ago"
+        "value": "106 days ago"
       },
       {
         "id": "sf-next-step",
@@ -368,7 +368,7 @@
     "opportunity": "Fernhill - Renewal - Nov 2026",
     "kind": "reviewed",
     "action": "Confirm whether the commercial proposal went out and agree a revised close date.",
-    "reason": "The Nov 10 close date has passed, and nothing has been logged in Salesforce for 63 days.",
+    "reason": "The Nov 10 close date has passed, and nothing has been logged in Salesforce for 61 days.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -381,14 +381,14 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "10 Nov 2026 (overdue by 15 days)"
+        "value": "10 Nov 2026 (overdue by 13 days)"
       },
       {
         "id": "sf-activity",
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "63 days ago"
+        "value": "61 days ago"
       },
       {
         "id": "sf-flags",
@@ -411,10 +411,9 @@
     "opportunity": "Halcyon - Upsell - Revenue optimization",
     "kind": "reviewed",
     "action": "Confirm contract terms are on track for the Jan 29 close.",
-    "reason": "Nothing has been logged in Salesforce for 28 days.",
+    "reason": "Finalizing contract terms is the recorded next step, so confirming what's still open will help validate the close date.",
     "evidence_ids": [
       "sf-close",
-      "sf-activity",
       "sf-next-step"
     ],
     "sources": [
@@ -423,14 +422,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "29 Jan 2027 (in 65 days)"
-      },
-      {
-        "id": "sf-activity",
-        "source": "Salesforce",
-        "scope": "deal",
-        "label": "Last activity logged in Salesforce",
-        "value": "28 days ago"
+        "value": "29 Jan 2027 (in 67 days)"
       },
       {
         "id": "sf-next-step",
@@ -465,7 +457,7 @@
     "opportunity": "Kestrel - Renewal - Dec 2026",
     "kind": "reviewed",
     "action": "Agree pricing and a signature date ahead of the Dec 4 close.",
-    "reason": "The Commit renewal closes in 9 days.",
+    "reason": "The Commit renewal closes in 11 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -477,7 +469,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "04 Dec 2026 (in 9 days)"
+        "value": "04 Dec 2026 (in 11 days)"
       },
       {
         "id": "sf-forecast",
@@ -537,7 +529,7 @@
     "account_name": "Krakatoa",
     "opportunity": "Krakatoa - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Ask procurement what's driving the 15% fee reduction request and whether the renewal is still on track for Dec 1.",
+    "action": "Ask procurement what's driving the 15% fee reduction request and whether the renewal is still on track for Nov 29.",
     "reason": "Procurement now leads the renewal, and the customer is evaluating another provider.",
     "evidence_ids": [
       "sf-close",
@@ -554,7 +546,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "01 Dec 2026 (in 6 days)"
+        "value": "29 Nov 2026 (in 6 days)"
       },
       {
         "id": "gong_call_0034-bbd657",
@@ -593,7 +585,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "38 days ago"
+        "value": "36 days ago"
       },
       {
         "id": "sf-flags",
@@ -623,7 +615,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "10 Nov 2026 (overdue by 15 days)"
+        "value": "10 Nov 2026 (overdue by 13 days)"
       },
       {
         "id": "sf-flags",
@@ -677,7 +669,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "03 Dec 2026 (in 8 days)"
+        "value": "03 Dec 2026 (in 10 days)"
       },
       {
         "id": "sf-next-step",
@@ -736,7 +728,7 @@
     "opportunity": "Larkspur - New - Cross-border acquiring",
     "kind": "reviewed",
     "action": "Schedule the technical discovery session and log it in Salesforce.",
-    "reason": "Nothing has been logged in Salesforce for 42 days.",
+    "reason": "Nothing has been logged in Salesforce for 40 days.",
     "evidence_ids": [
       "sf-activity",
       "sf-next-step"
@@ -747,7 +739,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "42 days ago"
+        "value": "40 days ago"
       },
       {
         "id": "sf-next-step",
@@ -795,7 +787,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "02 Dec 2026 (in 7 days)"
+        "value": "02 Dec 2026 (in 9 days)"
       },
       {
         "id": "sf-next-step",
@@ -827,7 +819,7 @@
     "opportunity": "Marlowe - New - Cross-border acquiring",
     "kind": "reviewed",
     "action": "Confirm whether this deal can still close by Nov 27, and agree pricing and a signature date if it can.",
-    "reason": "It closes in 2 days. No activity is recorded in Salesforce.",
+    "reason": "It closes in 4 days. No activity is recorded in Salesforce.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -840,7 +832,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "27 Nov 2026 (in 2 days)"
+        "value": "27 Nov 2026 (in 4 days)"
       },
       {
         "id": "sf-activity",
@@ -870,7 +862,7 @@
     "opportunity": "Marlowe - Renewal - Sep 2026",
     "kind": "reviewed",
     "action": "Confirm whether this renewal is still open and where the MSA legal review stands, then update the close date if it is.",
-    "reason": "The close date passed 68 days ago, yet it's still forecast as Commit.",
+    "reason": "The close date passed 66 days ago, yet it's still forecast as Commit.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -883,7 +875,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "18 Sep 2026 (overdue by 68 days)"
+        "value": "18 Sep 2026 (overdue by 66 days)"
       },
       {
         "id": "sf-forecast",
@@ -946,7 +938,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "14 Dec 2026 (in 19 days)"
+        "value": "14 Dec 2026 (in 21 days)"
       },
       {
         "id": "sf-next-step",
@@ -1038,7 +1030,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "07 Dec 2026 (in 12 days)"
+        "value": "07 Dec 2026 (in 14 days)"
       },
       {
         "id": "sf-next-step",
@@ -1124,7 +1116,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "20 May 2027 (in 176 days)"
+        "value": "20 May 2027 (in 178 days)"
       },
       {
         "id": "sf-next-step",
@@ -1210,7 +1202,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "29 Nov 2026 (in 4 days)"
+        "value": "29 Nov 2026 (in 6 days)"
       },
       {
         "id": "gong_call_0035-1a92b5",
@@ -1243,7 +1235,7 @@
     "opportunity": "Petrel - New - Mobile app payments",
     "kind": "reviewed",
     "action": "Confirm whether the MSA legal review can finish before the Dec 5 close.",
-    "reason": "The Commit deal closes in 10 days.",
+    "reason": "The Commit deal closes in 12 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1255,7 +1247,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "05 Dec 2026 (in 10 days)"
+        "value": "05 Dec 2026 (in 12 days)"
       },
       {
         "id": "sf-forecast",
@@ -1363,7 +1355,7 @@
     "opportunity": "Quayside - Renewal - Dec 2026",
     "kind": "reviewed",
     "action": "Contact the customer this week to confirm the renewal is on track and where the MSA legal review stands.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 113 days.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 111 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1377,7 +1369,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "20 Dec 2026 (in 25 days)"
+        "value": "20 Dec 2026 (in 27 days)"
       },
       {
         "id": "sf-forecast",
@@ -1391,7 +1383,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "113 days ago"
+        "value": "111 days ago"
       },
       {
         "id": "sf-flags",
@@ -1432,11 +1424,12 @@
     "account_name": "Quayside",
     "opportunity": "Quayside - Upsell - Tap to Pay on mobile",
     "kind": "reviewed",
-    "action": "Confirm whether the proposal requested on Oct 3 was sent and agree on the next step with the buyer.",
-    "reason": "The economic buyer showed positive buying intent on that call.",
+    "action": "Confirm whether the requested Tap to Pay proposal went out, and ask whether the provider evaluation raised at renewal affects this upsell.",
+    "reason": "On Oct 3 the economic buyer requested a formal proposal and showed buying intent. On Sep 9 the customer said they were evaluating another payment provider at renewal.",
     "evidence_ids": [
       "gong_call_0015-3781f7",
-      "gong_call_0015-5ba694"
+      "gong_call_0015-5ba694",
+      "gong_call_0012-bebe9e"
     ],
     "sources": [
       {
@@ -1454,6 +1447,14 @@
         "label": "Context · call on 03 Oct",
         "value": "Positive buying intent from the economic buyer",
         "url": "https://gong.example.invalid/call?id=gong_call_0015"
+      },
+      {
+        "id": "gong_call_0012-bebe9e",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Competitor risk · call on 09 Sep",
+        "value": "Customer evaluating another payment provider at renewal",
+        "url": "https://gong.example.invalid/call?id=gong_call_0012"
       }
     ]
   },
@@ -1481,7 +1482,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "20 Nov 2026 (overdue by 5 days)"
+        "value": "20 Nov 2026 (overdue by 3 days)"
       },
       {
         "id": "sf-flags",
@@ -1536,7 +1537,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "07 Nov 2026 (overdue by 18 days)"
+        "value": "07 Nov 2026 (overdue by 16 days)"
       },
       {
         "id": "sf-flags",
@@ -1608,7 +1609,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "21 Dec 2026 (in 26 days)"
+        "value": "21 Dec 2026 (in 28 days)"
       },
       {
         "id": "sf-forecast",
@@ -1719,7 +1720,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "04 Jan 2027 (in 40 days)"
+        "value": "04 Jan 2027 (in 42 days)"
       },
       {
         "id": "sf-forecast",
@@ -1768,7 +1769,7 @@
     "opportunity": "Tidewater - New - Mobile app payments",
     "kind": "reviewed",
     "action": "Confirm the deal is still active, then agree pricing and a signature date for the Jan 17 close.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 106 days.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 104 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1782,7 +1783,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "17 Jan 2027 (in 53 days)"
+        "value": "17 Jan 2027 (in 55 days)"
       },
       {
         "id": "sf-forecast",
@@ -1796,7 +1797,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "106 days ago"
+        "value": "104 days ago"
       },
       {
         "id": "sf-flags",
@@ -1857,7 +1858,7 @@
     "opportunity": "Umberleaf - Upsell - Card issuing",
     "kind": "reviewed",
     "action": "Confirm with the customer that contract terms are on track for the Jan 17 close.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 37 days.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 35 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1871,7 +1872,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "17 Jan 2027 (in 53 days)"
+        "value": "17 Jan 2027 (in 55 days)"
       },
       {
         "id": "sf-forecast",
@@ -1885,7 +1886,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Last activity logged in Salesforce",
-        "value": "37 days ago"
+        "value": "35 days ago"
       },
       {
         "id": "sf-flags",
@@ -1945,11 +1946,13 @@
     "account_name": "Vellum",
     "opportunity": "Vellum - New - Pay by Link",
     "kind": "reviewed",
-    "action": "Map the customer's current payment stack and confirm who the current contacts are.",
-    "reason": "An August account call said the team was reorganising, with new contacts to follow.",
+    "action": "Map the customer's current payment stack, confirm who the current contacts are, and ask whether the engineering backlog that delayed go-live in September affects the Pay by Link timeline.",
+    "reason": "On Aug 28 the customer said the team was reorganising, with new contacts to follow. On Sep 2 they said go-live was pushed by roughly six weeks because of an engineering backlog.",
     "evidence_ids": [
       "sf-next-step",
-      "gong_call_0009-ab3a4e"
+      "gong_call_0009-ab3a4e",
+      "gong_call_0011-23698e",
+      "gong_call_0011-0af318"
     ],
     "sources": [
       {
@@ -1966,6 +1969,22 @@
         "label": "Stakeholder change · call on 28 Aug",
         "value": "Customer team reorganising, new contacts to follow",
         "url": "https://gong.example.invalid/call?id=gong_call_0009"
+      },
+      {
+        "id": "gong_call_0011-23698e",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 02 Sep",
+        "value": "Go-live pushed by roughly six weeks",
+        "url": "https://gong.example.invalid/call?id=gong_call_0011"
+      },
+      {
+        "id": "gong_call_0011-0af318",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 02 Sep",
+        "value": "Implementation delayed by customer's engineering backlog",
+        "url": "https://gong.example.invalid/call?id=gong_call_0011"
       }
     ]
   },
@@ -2066,7 +2085,7 @@
     "opportunity": "Wayfarer - Upsell - Network tokenization",
     "kind": "reviewed",
     "action": "Confirm whether the tokenization upsell is still active and whether the account's remediation work affects its timing.",
-    "reason": "The close date passed 46 days ago, and a Nov 21 account call put renewal discussions on hold until issues are resolved.",
+    "reason": "The close date passed 44 days ago, and a Nov 21 account call put renewal discussions on hold until issues are resolved.",
     "evidence_ids": [
       "sf-close",
       "sf-flags",
@@ -2079,7 +2098,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "10 Oct 2026 (overdue by 46 days)"
+        "value": "10 Oct 2026 (overdue by 44 days)"
       },
       {
         "id": "sf-flags",
@@ -2111,7 +2130,7 @@
     "opportunity": "Willowbank - Renewal - Nov 2026",
     "kind": "reviewed",
     "action": "Finalize contract terms and confirm the signature date before the Nov 28 close.",
-    "reason": "The renewal closes in 3 days and is still forecast as Best Case, not Commit.",
+    "reason": "The renewal closes in 5 days and is still forecast as Best Case, not Commit.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -2123,7 +2142,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "28 Nov 2026 (in 3 days)"
+        "value": "28 Nov 2026 (in 5 days)"
       },
       {
         "id": "sf-forecast",
@@ -2174,11 +2193,10 @@
     "opportunity": "Zephyrine - Renewal - Feb 2027",
     "kind": "reviewed",
     "action": "Confirm the timeline for the MSA legal review ahead of the Feb 11 renewal.",
-    "reason": "Salesforce lists MSA legal review as the next step, with no activity logged for 19 days.",
+    "reason": "The renewal is forecast as Commit, and MSA legal review is the recorded next step.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
-      "sf-activity",
       "sf-next-step"
     ],
     "sources": [
@@ -2187,7 +2205,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Close date",
-        "value": "11 Feb 2027 (in 78 days)"
+        "value": "11 Feb 2027 (in 80 days)"
       },
       {
         "id": "sf-forecast",
@@ -2195,13 +2213,6 @@
         "scope": "deal",
         "label": "Forecast category",
         "value": "Commit"
-      },
-      {
-        "id": "sf-activity",
-        "source": "Salesforce",
-        "scope": "deal",
-        "label": "Last activity logged in Salesforce",
-        "value": "19 days ago"
       },
       {
         "id": "sf-next-step",
