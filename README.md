@@ -46,6 +46,7 @@ The account ranks by the highest **final opportunity score**, including Gong. Th
 
 - `integration.py` reads the Salesforce and Gong CSVs and exports JSON for the static app. It scores as of the latest activity date among open Salesforce opportunities or the latest Gong call, whichever is later. The published snapshot is **23 November 2026**.
 - Gong flags come from phrase matching in `gong.py`. The bands and weights are prototype assumptions to test against deal outcomes. A Salesforce activity gap means activity is missing from the CRM log.
+- **Data health** is simulated. The sync history, the Gong outage, and the sync times on its cards are written in `index.html`. Only the sync date comes from `data/sync.json`. The app is a fixed snapshot, so every sync date stays **Mon 23 Nov** until `integration.py` runs on new data. In production, each connector would record its own sync times.
 - Each open deal has a next action in `data/next_actions.json`. The demo uses 38 reviewed AI drafts, 23 Salesforce next steps, and 9 stage-based suggestions. Drafting and review happened offline.
 
 See the decisions, corrections, and checks made while building the prototype. [AI tool log](docs/ai-log.md)

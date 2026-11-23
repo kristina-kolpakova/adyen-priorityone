@@ -1044,6 +1044,9 @@
     // The date of the last Salesforce and Gong sync; every "x days ago" counts from it.
     let referenceDate = "";
 
+    // The sync date as "Mon 23 Nov", shared by the header, the bell and the Data health cards.
+    let syncDayLabel = "";
+
     // Every account in ranked order, so a click can find the right one.
     let rankedAccounts = [];
 
@@ -1078,7 +1081,7 @@
         opportunityScores = await opportunityResponse.json();
 
         // Next actions are optional: without them the page falls back to Salesforce's next step.
-        // Label the page with the sync date, and name its weekday in the briefing heading.
+        // Name the sync day's weekday in the briefing heading; the header label is set in renderNotifications.
         const syncResponse = await fetch("data/sync.json", { cache: "no-cache" });
         if (!syncResponse.ok) {
           throw new Error(syncResponse.statusText);
@@ -1086,9 +1089,8 @@
         referenceDate = (await syncResponse.json()).synced;
         const syncDay = new Date(referenceDate + "T12:00:00");
         const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(syncDay);
-        const fullDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(syncDay);
+        syncDayLabel = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" }).format(syncDay);
         document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
-        document.getElementById("synced-label").textContent = `Data synced ${fullDate}`;
 
         const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
         if (actionsResponse.ok) {
@@ -1798,20 +1800,29 @@
       }
     });
 
-    // Connector status is simulated: the prototype has no live sync, so Gong starts with a failed
-    // sync to show how a stale source looks. Syncs are oldest first; true = succeeded.
+    // Connector status is simulated: the prototype has no live sync, so Gong starts with failed
+    // syncs to show how a stale source looks. Syncs are oldest first; true = succeeded.
+    // Sync dates come from sync.json. The data has no sync times, so the times on the
+    // Data health cards are simulated too; the header and bell show the date only.
     const connectors = {
       salesforce: {
         name: "Salesforce",
         syncs: [true, true, true, true, true, true, true],
-        lastSynced: "6:00 p.m."
+        lastSyncTime: "6:00pm",
+        syncedJustNow: false
       },
       gong: {
         name: "Gong",
         syncs: [true, true, true, true, true, false, false],
-        lastSynced: "2:00 p.m."
+        lastSyncTime: "2:00pm",
+        syncedJustNow: false
       }
     };
+
+    // A source's last sync as "Mon 23 Nov at 2:00pm", used by its card and the bell.
+    function lastSyncText(connector) {
+      return `${syncDayLabel} at ${connector.lastSyncTime}`;
+    }
 
     // Whether the Gong card's account list is open; kept across redraws.
     let showAffected = false;
@@ -1824,7 +1835,6 @@
     // Draw one card per source. A source is stale when its latest sync failed; the Gong card
     // lists the accounts whose scores include Gong points, since those depend on it.
     function renderHealth() {
-      const syncDay = shortDate.format(new Date(referenceDate + "T12:00:00"));
       const gongStale = !connectors.gong.syncs[connectors.gong.syncs.length - 1];
       document.getElementById("health-status").textContent = gongStale ? "Simulated outage" : "Simulated recovery";
       document.getElementById("health-dot").hidden = !gongStale;
@@ -1849,9 +1859,7 @@
         const status = stale
           ? `<span class="status stale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Stale</span>`
           : `<span class="status">✓ Fresh</span>`;
-        const syncedText = connector.lastSynced === "just now"
-          ? "Last synced just now"
-          : `Last synced ${syncDay}, ${connector.lastSynced}`;
+        const syncedText = connector.syncedJustNow ? "Last synced just now" : `Last synced ${lastSyncText(connector)}`;
 
         // Only Gong's sync can fail in the simulation, so only its card has the button.
         let retry = "";
@@ -1907,13 +1915,18 @@
 
       document.getElementById("bell-dot").hidden = !gongStale;
 
+      // The header shows the sync date, and "just now" once a retry has brought every source up to date.
+      document.getElementById("synced-label").textContent = connectors.gong.syncedJustNow
+        ? "All sources synced · just now"
+        : `Last sync · ${syncDayLabel}`;
+
       document.getElementById("notif-menu").innerHTML = gongStale
         ? `<div class="notif-item">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>
              <div>
                <div class="notif-title">Gong stopped syncing</div>
                <div class="notif-detail">
-                 <div>Gong last synced ${connectors.gong.lastSynced}</div>
+                 <div>Gong last synced ${lastSyncText(connectors.gong)}</div>
                  <div>${gongAccountCount} accounts use Gong points</div>
                </div>
                <button class="notif-link" id="notif-health">View data health</button>
@@ -1976,7 +1989,7 @@
       }
       if (event.target.closest(".retry")) {
         connectors.gong.syncs = connectors.gong.syncs.slice(1).concat([true]);
-        connectors.gong.lastSynced = "just now";
+        connectors.gong.syncedJustNow = true;
         renderHealth();
         renderNotifications();
       }
