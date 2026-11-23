@@ -360,9 +360,8 @@ for _, deal in df.iterrows():
 
 df["Evidence"] = df["Id"].map(evidence_by_opportunity)
 
-# Each account row carries its top deal's ID and evidence.
+# Each account row carries its top deal's ID; the deal's evidence is in opportunity_scores.json.
 ui_accounts["top_opportunity_id"] = top_opportunities["Id"]
-ui_accounts["evidence"] = top_opportunities["Id"].map(evidence_by_opportunity)
 
 # Rank on the same Gong issues the dashboard shows: any issue from the last 90 days.
 
