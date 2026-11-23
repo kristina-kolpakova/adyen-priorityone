@@ -914,6 +914,18 @@
     .retry svg { width: 18px; height: 18px; }
     .retry:disabled { cursor: default; border-color: var(--border); color: #9fb3ad; }
 
+    /* While a retry runs, the button keeps its color and the icon spins. */
+    .retry.syncing:disabled { border-color: #a9cfc6; color: #2f6b5e; }
+    .retry.syncing svg { animation: spin 0.9s linear infinite; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .retry.syncing svg { animation: none; }
+    }
+
     @media (max-width: 800px) {
       .connectors { grid-template-columns: 1fr; }
     }
@@ -1824,6 +1836,9 @@
       return `${syncDayLabel} at ${connector.lastSyncTime}`;
     }
 
+    // True for the couple of seconds a simulated retry takes.
+    let gongSyncing = false;
+
     // Whether the Gong card's account list is open; kept across redraws.
     let showAffected = false;
 
@@ -1864,7 +1879,8 @@
         // Only Gong's sync can fail in the simulation, so only its card has the button.
         let retry = "";
         if (key === "gong") {
-          retry = `<button class="retry" ${stale ? "" : "disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>${stale ? "Retry sync" : "Synced"}</button>`;
+          const retryLabel = gongSyncing ? "Syncing…" : (stale ? "Retry sync" : "Synced");
+          retry = `<button class="retry ${gongSyncing ? "syncing" : ""}" ${stale && !gongSyncing ? "" : "disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>${retryLabel}</button>`;
         }
 
         // Every score is built on Salesforce, so its card names all accounts instead of listing them.
@@ -1987,11 +2003,17 @@
         showAffected = !showAffected;
         renderHealth();
       }
+      // Show "Syncing…" for two seconds, then record the successful sync.
       if (event.target.closest(".retry")) {
-        connectors.gong.syncs = connectors.gong.syncs.slice(1).concat([true]);
-        connectors.gong.syncedJustNow = true;
+        gongSyncing = true;
         renderHealth();
-        renderNotifications();
+        setTimeout(function () {
+          gongSyncing = false;
+          connectors.gong.syncs = connectors.gong.syncs.slice(1).concat([true]);
+          connectors.gong.syncedJustNow = true;
+          renderHealth();
+          renderNotifications();
+        }, 2000);
       }
     });
 
