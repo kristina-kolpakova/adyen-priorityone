@@ -1,0 +1,17 @@
+channel_id,channel_name,is_ext_shared,account_id
+C07KRK001,ext-krakatoa-adyen,true,001Hp00000yl6u2IAA
+C07MOS001,ext-mosaic-adyen,true,001Hp000005YwVAIA0
+C07WLB001,ext-willowbank-adyen,true,001Hp00000DCZsoIAH
+C07LTF001,ext-lanternfly-adyen,true,001Hp00000x9bfiIAA
+C07KST001,ext-kestrel-adyen,true,001Hp00000GpdMfIAJ
+C07SLT001,ext-saltmarsh-adyen,true,001Hp00000Dqn62IAB
+C07FRN001,ext-fernhill-adyen,true,001Hp00000ZJnmKIAT
+C07QYS001,ext-quayside-adyen,true,001Hp00000vcMOyIAM
+C07CPL001,ext-copperleaf-adyen,true,001Hp00000zSzMlIAK
+C07WYF001,ext-wayfarer-adyen,true,001Hp00000tWqnjIAC
+C07ZPH001,ext-zephyrine-adyen,true,001Hp00000oGmQuIAK
+C07MRL001,ext-marlowe-adyen,true,001Hp00000vhIreIAE
+C07HLC001,ext-halcyon-adyen,true,001Hp0000077JwdIAE
+C07TDW001,ext-tidewater-adyen,true,001Hp00000dR0NxIAK
+C07SVB001,ext-silverbirch-adyen,true,001Hp00000Ya7guIAB
+C07PTR001,ext-petrel-adyen,true,001Hp00000YYALXIA5

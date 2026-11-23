@@ -1,10 +1,12 @@
 import hashlib
 import json
 
+import numpy as np
 import pandas as pd
 
 from scoring import score_types
 from gong import call_issues, gong as gong_key_points, red_flag_map
+from slack import slack as slack_messages, last_in_thread, slack_red_flag_map
 
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
@@ -55,11 +57,12 @@ df["ValueScore"] = (
 
 # --- Timing Score ---
 
-# Score as of the last sync: the latest activity logged in Salesforce or Gong.
+# Score as of the last sync: the latest activity logged in Salesforce, Gong or Slack.
 # The data sets the date, so results don't change day to day.
 latest_activity = pd.to_datetime(df["LastActivityDate"]).max()
 latest_call = pd.to_datetime(gong_key_points["started"], utc=True).dt.tz_localize(None).max()
-reference_date = max(latest_activity, latest_call).normalize()
+latest_message = slack_messages["sent_at"].max()
+reference_date = max(latest_activity, latest_call, latest_message).normalize()
 
 # Convert the CloseDate column from text into datetime values.
 df["CloseDate"] = pd.to_datetime(df["CloseDate"])
@@ -263,8 +266,77 @@ for deal_id, signal in best_signals.iterrows():
     signal_evidence_ids[deal_id] = f"{signal['id']}-{key_point_hash}"
 df["GongSignalEvidenceId"] = df["Id"].map(signal_evidence_ids)
 
-# Each deal's final score: its Salesforce score plus its Gong bonus.
-df["FinalScore"] = df["PriorityScore"] + df["GongPoints"]
+# --- Slack Recency Bonus ---
+
+# Slack red flags from shared customer channels. Slack is account-wide (you talk to
+# people, not deals), and a shared channel only exists once someone is a customer,
+# so Slack scores renewal deals only. It adds its own bonus, on the same curve as Gong.
+
+# Customer messages that raised a red flag.
+slack_signals = slack_messages.dropna(subset=["red_flag"]).copy()
+
+# Unanswered request: the customer's question is the last message in its thread,
+# and we haven't replied for 2 or more business days.
+waiting = last_in_thread[
+    last_in_thread["from_customer"]
+    & last_in_thread["text"].str.contains("?", regex=False)
+].copy()
+waiting["BusinessDaysWaiting"] = np.busday_count(
+    waiting["MessageDate"].values.astype("datetime64[D]"),
+    np.datetime64(reference_date.date()),
+)
+unanswered = waiting[waiting["BusinessDaysWaiting"] >= 2].assign(red_flag="Unanswered request")
+slack_signals = pd.concat([slack_signals, unanswered], ignore_index=True)
+
+slack_signals["AgeDays"] = (reference_date - slack_signals["MessageDate"]).dt.days
+
+# Ignore messages after the snapshot date, and messages older than 90 days (worth 0).
+slack_signals = slack_signals[slack_signals["AgeDays"].between(0, 90)].copy()
+
+# Same recency curve as Gong: 20 points up to day 2, 5 at day 30, 0 at day 90.
+age = slack_signals["AgeDays"]
+slack_signals["SignalPoints"] = 20.0
+slack_signals.loc[age > 2, "SignalPoints"] = 20 - (age - 2) * 15 / 28
+slack_signals.loc[age > 30, "SignalPoints"] = 5 - (age - 30) * 5 / 60
+
+# Equal points go to the newer message, then to the flag listed first.
+slack_flag_order = list(dict.fromkeys(list(slack_red_flag_map.values()) + ["Unanswered request"]))
+slack_signals["FlagOrder"] = slack_signals["red_flag"].map(slack_flag_order.index)
+
+# Each signal applies to its account's open renewal deals.
+renewal_deals = df[df["Type"] == "Renewal"][["Id", "AccountId"]]
+slack_deal_signals = slack_signals.merge(renewal_deals, left_on="account_id", right_on="AccountId")
+
+# Each renewal keeps its strongest Slack signal.
+best_slack = (
+    slack_deal_signals
+    .sort_values(["SignalPoints", "MessageDate", "FlagOrder"], ascending=[False, False, True])
+    .drop_duplicates("Id")
+    .set_index("Id")
+)
+best_slack["Bonus"] = (best_slack["SignalPoints"] + 0.5) // 1
+
+# Each deal's Slack bonus and the message that earned it.
+df["SlackPoints"] = df["Id"].map(best_slack["Bonus"]).fillna(0).astype(int)
+df["SlackSignal"] = df["Id"].map(best_slack["red_flag"])
+df["SlackSignalText"] = df["Id"].map(best_slack["text"])
+df["SlackSignalFrom"] = df["Id"].map(best_slack["user_name"])
+df["SlackSignalDate"] = df["Id"].map(best_slack["MessageDate"].dt.strftime("%Y-%m-%d"))
+df["SlackSignalAge"] = df["Id"].map(best_slack["AgeDays"])
+df["SlackSignalEvidenceId"] = df["Id"].map(best_slack["message_id"])
+
+# Each renewal's distinct Slack issues from the last 90 days, newest first, for its tags.
+slack_issues = (
+    slack_deal_signals
+    .sort_values("MessageDate", ascending=False)
+    .drop_duplicates(subset=["Id", "red_flag"])
+    .groupby("Id")["red_flag"]
+    .agg(list)
+)
+df["SlackIssues"] = df["Id"].map(slack_issues)
+
+# Each deal's final score: its Salesforce score plus its Gong and Slack bonuses.
+df["FinalScore"] = df["PriorityScore"] + df["GongPoints"] + df["SlackPoints"]
 
 
 # --- Account Scores ---
@@ -276,7 +348,7 @@ type_scores = score_types(df)
 # of the two type scores.
 priority_scores = df.groupby("AccountName")["PriorityScore"].max()
 
-# Accounts are ranked by their best deal once the Gong bonus is added.
+# Accounts are ranked by their best deal once the Gong and Slack bonuses are added.
 final_scores = df.groupby("AccountName")["FinalScore"].max()
 
 
@@ -294,7 +366,7 @@ quarter_counts = pd.crosstab(
 
 # --- Export for the UI ---
 
-# Get each account's highest-scoring opportunity (Salesforce + Gong); among equal
+# Get each account's highest-scoring opportunity (Salesforce + Gong + Slack); among equal
 # scores, a deal with a problem comes first, then the larger deal.
 top_opportunities = (
     df.sort_values(["FinalScore", "IsProblem", "Amount"], ascending=False)
@@ -307,6 +379,7 @@ ui_accounts = pd.DataFrame({
     "account_score": final_scores,
     "salesforce_score": top_opportunities["PriorityScore"],
     "gong_bonus": top_opportunities["GongPoints"],
+    "slack_bonus": top_opportunities["SlackPoints"],
     "renewal_score": type_scores["RenewalScore"],
     "upsell_new_score": type_scores["UpsellNewScore"],
     "top_opportunity": top_opportunities["Name"],
@@ -323,6 +396,7 @@ ui_accounts = pd.DataFrame({
     "top_early_commit": top_opportunities["FlagEarlyCommit"],
     "top_days_since_activity": top_opportunities["DaysSinceActivity"],
     "top_gong_issues": top_opportunities["GongIssues"],
+    "top_slack_issues": top_opportunities["SlackIssues"],
     # Only accounts with open deals are ranked, so ignore calls from other accounts.
     "account_call_issues": account_call_issues.reindex(final_scores.index),
 })
@@ -345,6 +419,17 @@ recent_key_points["CallDate"] = (
 recent_key_points = (
     recent_key_points[recent_key_points["CallDate"] >= reference_date - pd.Timedelta(days=90)]
     .sort_values("CallDate", ascending=False)
+)
+
+# Customer Slack messages from the last 90 days, newest first, and the red flag each raised
+# (including Unanswered request, which comes from the thread rather than the words).
+recent_messages = slack_messages[
+    slack_messages["from_customer"]
+    & (slack_messages["MessageDate"] >= reference_date - pd.Timedelta(days=90))
+    & (slack_messages["MessageDate"] <= reference_date)
+].sort_values("sent_at", ascending=False)
+slack_flag_by_message = (
+    slack_signals.drop_duplicates("message_id").set_index("message_id")["red_flag"].to_dict()
 )
 
 evidence_by_opportunity = {}
@@ -428,6 +513,20 @@ for _, deal in df.iterrows():
                 "label": f"{point_type} · call on {point['CallDate'].strftime('%d %b')}",
                 "value": point["key_points"],
                 "url": point["url"],
+            })
+
+    # Slack messages from the customer, for renewals only: the red flags and the context.
+    if deal["Type"] == "Renewal":
+        account_messages = recent_messages[recent_messages["account_id"] == deal["AccountId"]]
+        for _, message in account_messages.iterrows():
+            point_type = slack_flag_by_message.get(message["message_id"], "Context")
+            evidence.append({
+                "id": message["message_id"],
+                "source": "Slack",
+                "scope": "account",
+                "label": f"{point_type} · {message['user_name']} on {message['MessageDate'].strftime('%d %b')}",
+                "value": message["text"],
+                "url": message["url"],
             })
 
     evidence_by_opportunity[deal["Id"]] = evidence
@@ -523,14 +622,24 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "GongSignalAge": "gong_signal_age",
         "GongSignalScope": "gong_signal_scope",
         "GongSignalEvidenceId": "gong_signal_evidence_id",
+        "SlackIssues": "slack_issues",
+        "SlackPoints": "slack_points",
+        "SlackSignal": "slack_signal",
+        "SlackSignalText": "slack_signal_text",
+        "SlackSignalFrom": "slack_signal_from",
+        "SlackSignalDate": "slack_signal_date",
+        "SlackSignalAge": "slack_signal_age",
+        "SlackSignalEvidenceId": "slack_signal_evidence_id",
         "Evidence": "evidence",
     })
     [[
         "account_name", "opportunity_id", "opportunity", "type", "amount", "stage",
         "close_date", "days_to_close", "value_score", "timing_score",
-        "stage_score", "priority_score", "gong_points", "final_score",
+        "stage_score", "priority_score", "gong_points", "slack_points", "final_score",
         "gong_signal", "gong_signal_text", "gong_signal_date", "gong_signal_age", "gong_signal_scope",
         "gong_signal_evidence_id",
+        "slack_signal", "slack_signal_text", "slack_signal_from", "slack_signal_date",
+        "slack_signal_age", "slack_signal_evidence_id", "slack_issues",
         "is_problem", "is_overdue", "stale_near_close", "stale_commit", "long_overdue", "early_commit",
         "days_since_activity", "gong_issues", "evidence",
     ]]

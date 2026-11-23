@@ -1,0 +1,43 @@
+channel_id,ts,thread_ts,user,user_name,team,text
+C07KRK001,1794301920.000000,,U0ADY01,Hannah (Adyen),T0ADYEN01,Sharing the Q4 volume report ahead of renewal talks.
+C07KRK001,1794305100.000000,1794301920.000000,U0KRK02,Theo (Krakatoa Finance),T0KRAKAT1,"Thanks, looks in line with our forecast."
+C07KRK001,1795362000.000000,,U0KRK03,Maya (Krakatoa Procurement),T0KRAKAT1,We need the 15% reduction in processing fees confirmed before we sign.
+C07KRK001,1795363320.000000,1795362000.000000,U0ADY01,Hannah (Adyen),T0ADYEN01,"Understood, I'll come back with options on Monday."
+C07KRK001,1795422600.000000,1795362000.000000,U0KRK03,Maya (Krakatoa Procurement),T0KRAKAT1,Also flagging that leadership wants the renewal closed by the 29th.
+C07MOS001,1794924000.000000,,U0MOS01,Claire (Mosaic Legal),T0MOSAIC1,Can you resend the security questionnaire? Procurement flagged it as missing.
+C07MOS001,1794928200.000000,1794924000.000000,U0ADY02,Julian (Adyen),T0ADYEN01,"Resent just now, it's in your inbox."
+C07MOS001,1795172400.000000,1794924000.000000,U0MOS01,Claire (Mosaic Legal),T0MOSAIC1,"Received, our team is reviewing it this week."
+C07WLB001,1794562200.000000,,U0WLB01,Daniel (Willowbank Finance),T0WILLOW1,"Payout delays again this week, finance is asking questions."
+C07WLB001,1794564900.000000,1794562200.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Looking into it with ops now, will update you today."
+C07WLB001,1794588000.000000,1794562200.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Root cause found on our side, payouts are back on schedule."
+C07WLB001,1794643500.000000,1794562200.000000,U0WLB01,Daniel (Willowbank Finance),T0WILLOW1,"Confirmed, thanks for the quick turnaround."
+C07LTF001,1794158400.000000,,U0LTF01,Sophie (Lanternfly Payments),T0LANTER1,"Heads up, Friday is my last day. Rafael will take over the renewal from here."
+C07LTF001,1794214800.000000,1794158400.000000,U0ADY01,Hannah (Adyen),T0ADYEN01,"Thanks for everything, Sophie. Rafael, happy to set up an intro call."
+C07KST001,1794477600.000000,,U0KST01,Jonas (Kestrel Operations),T0KESTRE1,Could you share the revised SLA terms for the renewal?
+C07KST001,1794483000.000000,1794477600.000000,U0ADY02,Julian (Adyen),T0ADYEN01,"Working on it with legal, will send by Friday."
+C07KST001,1794908700.000000,1794477600.000000,U0KST01,Jonas (Kestrel Operations),T0KESTRE1,Any update on the revised SLA terms?
+C07SLT001,1794748200.000000,,U0SLT01,Emma (Saltmarsh Finance),T0SALTMA1,This invoice doesn't match the rates we agreed in the renewal proposal.
+C07SLT001,1794820800.000000,1794748200.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"You're right, a credit note is on its way."
+C07FRN001,1795192200.000000,,U0FRN01,Florian (Fernhill Operations),T0FERNHI1,"Renewal paperwork is still with our legal team, signature unlikely this month."
+C07FRN001,1795194000.000000,1795192200.000000,U0ADY02,Julian (Adyen),T0ADYEN01,"Thanks for the heads up, can we get 15 minutes with your legal lead?"
+C07QYS001,1794398400.000000,,U0QYS01,Sebastian (Quayside Partnerships),T0QUAYSI1,Our CFO asked us to keep evaluating another payment provider before the renewal.
+C07QYS001,1794401100.000000,1794398400.000000,U0ADY01,Hannah (Adyen),T0ADYEN01,"Understood, let's walk through the renewal value together this week."
+C07CPL001,1793693700.000000,,U0CPL01,Leah (Copperleaf Payments),T0COPPER1,"Checkout is failing for card payments in DE, is something down?"
+C07CPL001,1793695200.000000,1793693700.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Incident confirmed and fixed at 08:35, sorry for the disruption."
+C07CPL001,1795096800.000000,,U0CPL01,Leah (Copperleaf Payments),T0COPPER1,"Monthly volumes are up 12%, nice to see the new markets live."
+C07CPL001,1795098000.000000,1795096800.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Great news, thanks for sharing!"
+C07WYF001,1791972000.000000,,U0WYF01,Owen (Wayfarer Operations),T0WAYFAR1,FYI procurement now leading our vendor renewals.
+C07WYF001,1791975600.000000,1791972000.000000,U0ADY02,Julian (Adyen),T0ADYEN01,"Thanks Owen, could you introduce us to the procurement lead?"
+C07ZPH001,1794996000.000000,,U0ZPH01,Lina (Zephyrine Finance),T0ZEPHYR1,Pix volumes look great this month.
+C07ZPH001,1794997800.000000,1794996000.000000,U0ADY01,Hannah (Adyen),T0ADYEN01,"Love to see it, thanks Lina."
+C07MRL001,1793876400.000000,,U0MRL01,Oliver (Marlowe Finance),T0MARLOW1,"We were charged twice for the October platform fee, can you check?"
+C07MRL001,1793884500.000000,1793876400.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Refund issued today, apologies for the mix-up."
+C07HLC001,1794219600.000000,,U0HLC01,Noah (Halcyon Payments),T0HALCYO1,"Card payments are failing at checkout for some shoppers, is something down?"
+C07HLC001,1794221100.000000,1794219600.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Looking now, a fix is rolling out within the hour."
+C07TDW001,1795014000.000000,,U0TDW01,Grace (Tidewater Operations),T0TIDEWA1,"Quick heads up, I'm leaving the company at the end of the month."
+C07TDW001,1795015800.000000,1795014000.000000,U0ADY01,Hannah (Adyen),T0ADYEN01,"Thanks for telling us, Grace. Who should we work with on the renewal?"
+C07SVB001,1794301200.000000,,U0SVB01,Ella (Silverbirch Finance),T0SILVER1,Can you confirm the new pricing tiers for next year?
+C07ZPH001,1795090200.000000,,U0ZPH01,Lina (Zephyrine Finance),T0ZEPHYR1,We were charged twice for the November terminal fees.
+C07ZPH001,1795093200.000000,1795090200.000000,U0ADY03,Nina (Adyen),T0ADYEN01,"Sorry about that, the duplicate is refunded."
+C07PTR001,1794828600.000000,,U0PTR01,Max (Petrel Finance),T0PETREL1,Our CFO wants a cost comparison before we renew.
+C07PTR001,1794830400.000000,1794828600.000000,U0ADY02,Julian (Adyen),T0ADYEN01,"Happy to help, I'll put one together this week."

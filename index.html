@@ -784,7 +784,13 @@
     }
     .evidence-bubble.salesforce { background: #f6ecec; color: #B87579; }
     .evidence-bubble.gong { background: #EDF1FF; color: #6476A8; }
-    .evidence-bubble.scope { background: #edf5f0; color: #3f7d5c; }
+    .evidence-bubble.slack { background: #F7F0D9; color: #7A6420; }
+
+    /* A Slack message in the evidence: the sender in Slack's colour, their message as a quote. */
+    .slack-person { color: #7A6420; font-weight: 600; }
+    .slack-team { color: var(--muted); }
+    .slack-quote { color: var(--ink); }
+    .evidence-bubble.scope { background: #eef0f2; color: #5c6670; }
     .evidence-bubble.score { background: #EAF0F4; color: #41576B; }
     .evidence-item strong { color: var(--ink); font-weight: 600; }
 
@@ -833,6 +839,12 @@
       color: #4268AD;
     }
 
+    /* Slack issues, in a tint of Slack's yellow (#DDC475) with deep mustard text. */
+    .flag-tag.slack-tag {
+      background: #F7F0D9;
+      color: #7A6420;
+    }
+
     .opportunity-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
     .opportunity-meta { color: var(--muted); font-size: 13px; }
 
@@ -869,12 +881,17 @@
     .nav-sync svg { width: 18px; height: 18px; }
     .nav-sync[hidden] { display: none; }
 
+    /* Salesforce and Slack stack on the left; Gong spans the right, so its list can open freely. */
     .connectors {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
       align-items: start;
     }
+
+    .connector.salesforce { grid-column: 1; grid-row: 1; }
+    .connector.slack { grid-column: 1; grid-row: 2; }
+    .connector.gong { grid-column: 2; grid-row: 1 / span 2; }
 
     /* Same colors as the deal cards: green-tinted borders, and mint for the card that needs attention. */
     .connector {
@@ -915,6 +932,7 @@
 
     .salesforce .source-tile { background: #f6e6e8; color: #a8646b; }
     .gong .source-tile { background: #e6eaf8; color: #5b6aa0; }
+    .slack .source-tile { background: #F7F0D9; color: #7A6420; }
 
     /* Fresh matches the green score pill; Stale matches the grey "not counted" pill. */
     .status {
@@ -955,6 +973,8 @@
 
     .salesforce .sync { background: #eedcdf; }
     .salesforce .sync.latest { background: #b07a7d; }
+    .slack .sync { background: #F3E9C8; }
+    .slack .sync.latest { background: #DDC475; }
     .gong .sync { background: #dde3f5; }
     .gong .sync.latest { background: #6a76a8; }
     .gong .sync.failed { background: #fff; border: 1.5px solid #5b6aa0; color: #5b6aa0; }
@@ -1020,6 +1040,8 @@
       font-size: 12px;
     }
 
+    .slack .affected-points { background: #F7F0D9; color: #7A6420; }
+
     .retry {
       display: inline-flex;
       align-items: center;
@@ -1075,6 +1097,7 @@
 
     @media (max-width: 800px) {
       .connectors { grid-template-columns: 1fr; }
+      .connector.salesforce, .connector.slack, .connector.gong { grid-column: auto; grid-row: auto; }
     }
 
     /* Monday email preview, in the drawer: numbered entries divided by rules. */
@@ -1378,7 +1401,7 @@
                 ${account.account_name}${flagTags(
                   account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
                   account.top_stale_near_close, account.top_stale_commit, account.top_early_commit
-                )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}
+                )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}${slackTags(account.top_slack_issues)}
               </div>
               <div class="account-signal">
                 ${topDealLine(account)}
@@ -1544,6 +1567,9 @@
         gong_bonus: account.gong_bonus,
         gong_signal: topDeal ? topDeal.gong_signal : null,
         gong_signal_age: topDeal ? topDeal.gong_signal_age : null,
+        slack_bonus: account.slack_bonus,
+        slack_signal: topDeal ? topDeal.slack_signal : null,
+        slack_signal_age: topDeal ? topDeal.slack_signal_age : null,
         salesforce_flags: {
           overdue: account.top_is_overdue,
           long_overdue: account.top_long_overdue,
@@ -1658,6 +1684,9 @@
       if (entry.gong_bonus > 0) {
         breakdown += ` + Gong ${entry.gong_bonus} (${entry.gong_signal}, call ${entry.gong_signal_age} days before sync)`;
       }
+      if (entry.slack_bonus > 0) {
+        breakdown += ` + Slack ${entry.slack_bonus} (${entry.slack_signal}, message ${entry.slack_signal_age} days before sync)`;
+      }
 
       return [
         `Ranking feedback · ${entry.account_name}`,
@@ -1719,6 +1748,15 @@
       return tags;
     }
 
+    // Tags for a renewal's red flags from recent Slack messages.
+    function slackTags(issues) {
+      let tags = "";
+      for (const issue of issues || []) {
+        tags += `<span class="flag-tag slack-tag" title="From Slack">${issue}</span>`;
+      }
+      return tags;
+    }
+
     // Tags for issues from recent Gong calls not linked to any deal, skipping
     // any the top deal already shows.
     function accountCallTags(issues, topDealIssues) {
@@ -1760,7 +1798,7 @@
     }
 
     // The next-action block for a deal card, with its evidence below.
-    function nextActionBlock(opportunityId, evidence, scoreText, signal) {
+    function nextActionBlock(opportunityId, evidence, scoreText, signal, slackLine) {
       const next = nextActionFor(opportunityId, evidence);
 
       // The cited evidence, then the deal's score at the bottom, behind one toggle.
@@ -1789,6 +1827,8 @@
       if (signal && !bonusShown) {
         items += signal.line;
       }
+      // A renewal's Slack bonus always gets its own line; next actions don't cite Slack.
+      items += slackLine || "";
       items += `
         <div class="evidence-item">
           <div class="evidence-bubbles"><span class="evidence-bubble score">Score</span></div>
@@ -1895,12 +1935,13 @@
         const tags = flagTags(
           opportunity.long_overdue, opportunity.is_overdue, opportunity.days_to_close,
           opportunity.stale_near_close, opportunity.stale_commit, opportunity.early_commit
-        ) + gongTags(opportunity.gong_issues);
+        ) + gongTags(opportunity.gong_issues) + slackTags(opportunity.slack_issues);
 
         // The deal's score components, shown at the bottom of its evidence.
         const gongPart = opportunity.gong_points > 0 ? ` + ${opportunity.gong_points} Gong` : "";
+        const slackPart = opportunity.slack_points > 0 ? ` + ${opportunity.slack_points} Slack` : "";
         const scoreText = `${opportunity.value_score} value + ${opportunity.timing_score} timing
-          + ${opportunity.stage_score} stage${gongPart} = <strong>${opportunity.final_score} pts</strong>`;
+          + ${opportunity.stage_score} stage${gongPart}${slackPart} = <strong>${opportunity.final_score} pts</strong>`;
 
         // Why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null
@@ -1947,7 +1988,31 @@
 
         // The top deal's action and evidence sit outside its expandable part, so if it has
         // no tags or flag explanations there is nothing to expand.
-        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText, signal);
+        // The Slack message that earned this renewal's Slack bonus, on its own evidence line.
+        let slackLine = "";
+        if (opportunity.slack_points > 0) {
+          const messageDate = shortDate.format(new Date(opportunity.slack_signal_date + "T12:00:00"));
+          const slackAge = Math.round(opportunity.slack_signal_age);
+          // "Maya (Krakatoa Procurement)": the person stands out, and their role stays quiet.
+          // The drawer already names the account, so "Krakatoa" is left out.
+          const sender = opportunity.slack_signal_from.match(/^(.*?)(?: \((.*)\))?$/);
+          const senderRole = (sender[2] || "").replace(opportunity.account_name, "").trim();
+          const senderTeam = senderRole ? `<span class="slack-team">, ${senderRole}</span>` : "";
+          slackLine = `
+              <div class="evidence-item">
+                <div class="evidence-bubbles"><span class="evidence-bubble slack">Slack</span><span class="evidence-bubble scope">Account</span></div>
+                <div>
+                  ${opportunity.slack_signal} · <span class="slack-person">${sender[1]}</span>${senderTeam} on ${messageDate}:
+                  <em class="slack-quote">“${opportunity.slack_signal_text}”</em>
+                  <div class="evidence-bonus">
+                    <span class="evidence-bubble slack">Slack bonus</span><strong>+${opportunity.slack_points} pts</strong>
+                    <span class="evidence-bonus-age">(${slackAge} ${slackAge === 1 ? "day" : "days"} ago)</span>
+                  </div>
+                </div>
+              </div>`;
+        }
+
+        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText, signal, slackLine);
         const expandable = !counts || tags !== "" || breakdown !== "";
 
         opportunityCards += `
@@ -2042,7 +2107,7 @@
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
             <div class="detail-formula-text">Highest opportunity score: Max(${dealScores}) = ${total}</div>
-            <div class="detail-formula-text">Each score adds a Gong bonus for its most recent red flag: 20 points up to 2 days after the call, 5 at 30 days, 0 at 90.</div>
+            <div class="detail-formula-text">Each score adds a Gong bonus for its most recent red flag, and renewals add a Slack bonus the same way: 20 points up to 2 days after the call or message, 5 at 30 days, 0 at 90.</div>
             <div class="detail-formula-text">When final scores tie, Salesforce problem flags come first, then deal size.</div>
           </div>
           <div class="detail-formula-value">${total}</div>
@@ -2123,7 +2188,7 @@
               <div class="email-name">${account.account_name}${flagTags(
                 account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
                 account.top_stale_near_close, account.top_stale_commit, account.top_early_commit
-              )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}</div>
+              )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}${slackTags(account.top_slack_issues)}</div>
               <div class="email-deal">${topDealLine(account)}</div>
               <div class="email-action">${actionText}</div>
             </div>
@@ -2240,6 +2305,12 @@
         syncs: [true, true, true, true, true, false, false],
         lastSyncTime: "2:00pm",
         syncedJustNow: false
+      },
+      slack: {
+        name: "Slack",
+        syncs: [true, true, true, true, true, true, true],
+        lastSyncTime: "5:30pm",
+        syncedJustNow: false
       }
     };
 
@@ -2252,11 +2323,12 @@
     let gongSyncing = false;
 
     // Whether the Gong card's account list is open; kept across redraws.
-    let showAffected = false;
+    let showAffected = { gong: false, slack: false };
 
     const sourceIcons = {
       salesforce: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9z"/></svg>`,
-      gong: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg>`
+      gong: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg>`,
+      slack: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M8.5 9h7M8.5 12h4"/></svg>`
     };
 
     // Draw one card per source. A source is stale when its latest sync failed; the Gong card
@@ -2268,10 +2340,8 @@
       // The nav's refresh icon spins along with the Retry sync button.
       document.getElementById("health-dot").classList.toggle("syncing", gongSyncing);
 
-      // Listed in the AM's order, the same as the Overview and Accounts tabs.
-      const gongAccounts = accountsInAmOrder().filter(function (account) {
-        return account.gong_bonus > 0;
-      });
+      // The accounts each conversation source adds points to, in the AM's order.
+      const bonusField = { gong: "gong_bonus", slack: "slack_bonus" };
 
       document.getElementById("connectors").innerHTML = Object.keys(connectors).map(function (key) {
         const connector = connectors[key];
@@ -2310,23 +2380,26 @@
         if (key === "salesforce") {
           affected = `<div class="affected">All ${rankedAccounts.length} accounts' scores are built on Salesforce data.</div>`;
         }
-        if (key === "gong") {
-          const rows = gongAccounts.map(function (account) {
-            const points = account.gong_bonus === 1 ? "+1 pt" : `+${account.gong_bonus} pts`;
+        // Gong and Slack list the accounts they add points to; Slack only scores renewals.
+        if (key === "gong" || key === "slack") {
+          const sourceAccounts = accountsInAmOrder().filter(function (account) {
+            return account[bonusField[key]] > 0;
+          });
+          const rows = sourceAccounts.map(function (account) {
+            const bonus = account[bonusField[key]];
+            const points = bonus === 1 ? "+1 pt" : `+${bonus} pts`;
             return `
               <button class="affected-row" data-account="${account.account_name}">
                 <span>${account.account_name}</span>
                 <span class="affected-points">${points}</span>
               </button>`;
           }).join("");
-          const summary = stale
-            ? `View ${gongAccounts.length} affected accounts`
-            : `View ${gongAccounts.length} accounts using Gong points`;
+          const summary = `View ${sourceAccounts.length} accounts with ${connector.name} points`;
           // The list opens below its toggle, so Retry sync above it never moves.
           affected = `
             <div class="affected">
-              <button class="affected-toggle">${showAffected ? "▾" : "▸"} ${summary}</button>
-              <div class="affected-list" ${showAffected ? "" : "hidden"}>${rows}</div>
+              <button class="affected-toggle" data-source="${key}">${showAffected[key] ? "▾" : "▸"} ${summary}</button>
+              <div class="affected-list" ${showAffected[key] ? "" : "hidden"}>${rows}</div>
             </div>`;
         }
 
@@ -2426,8 +2499,9 @@
         document.querySelector('.nav-item[data-view="overview"]').click();
         return;
       }
-      if (event.target.closest(".affected-toggle")) {
-        showAffected = !showAffected;
+      const toggle = event.target.closest(".affected-toggle");
+      if (toggle) {
+        showAffected[toggle.dataset.source] = !showAffected[toggle.dataset.source];
         renderHealth();
       }
       // Show "Syncing…" for two seconds, then record the successful sync.

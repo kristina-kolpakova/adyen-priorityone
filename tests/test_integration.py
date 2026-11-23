@@ -103,12 +103,15 @@ def test_early_stage_commit_flag():
     assert df.loc[df["FlagEarlyCommit"], "IsProblem"].all()
 
 
-def test_final_score_adds_gong_bonus():
-    # An account's score is its top deal's Salesforce score plus that deal's Gong bonus (0-20).
+def test_final_score_adds_gong_and_slack_bonuses():
+    # An account's score is its top deal's Salesforce score plus that deal's Gong bonus (0-20)
+    # and Slack bonus (0-20).
     accounts = integration.ui_accounts
 
-    assert (accounts["account_score"] == accounts["salesforce_score"] + accounts["gong_bonus"]).all()
+    total = accounts["salesforce_score"] + accounts["gong_bonus"] + accounts["slack_bonus"]
+    assert (accounts["account_score"] == total).all()
     assert accounts["gong_bonus"].between(0, 20).all()
+    assert accounts["slack_bonus"].between(0, 20).all()
 
 
 def test_gong_bonus_follows_recency():
@@ -133,12 +136,12 @@ def test_gong_bonus_follows_recency():
         assert deal["GongPoints"] == int(recency + 0.5)
 
 
-def test_every_deal_final_score_includes_gong():
-    # Each deal's final score is its Salesforce score plus its Gong bonus, and
+def test_every_deal_final_score_includes_gong_and_slack():
+    # Each deal's final score is its Salesforce score plus its Gong and Slack bonuses, and
     # an account's score is its best deal's final score.
     df = integration.df
 
-    assert (df["FinalScore"] == df["PriorityScore"] + df["GongPoints"]).all()
+    assert (df["FinalScore"] == df["PriorityScore"] + df["GongPoints"] + df["SlackPoints"]).all()
     assert df["GongPoints"].between(0, 20).all()
 
     best_final = df.groupby("AccountName")["FinalScore"].max()
@@ -158,12 +161,46 @@ def test_accounts_ranked_by_final_score_then_tie_breaks():
     assert list(accounts["rank"]) == list(range(1, len(accounts) + 1))
 
 
+def test_slack_scores_renewals_only():
+    # Slack is account-wide and starts once someone is a customer, so only renewals get it.
+    df = integration.df
+
+    assert (df.loc[df["Type"] != "Renewal", "SlackPoints"] == 0).all()
+    assert df["SlackPoints"].between(0, 20).all()
+
+
+def test_slack_bonus_follows_recency():
+    # Same curve as Gong: 20 points up to day 2, then down to 5 at day 30 and 0 at day 90.
+    df = integration.df
+
+    for _, deal in df[df["SlackSignal"].notna()].iterrows():
+        age = deal["SlackSignalAge"]
+        assert 0 <= age <= 90
+        if age <= 2:
+            recency = 20
+        elif age <= 30:
+            recency = 20 - (age - 2) * 15 / 28
+        else:
+            recency = 5 - (age - 30) * 5 / 60
+
+        assert deal["SlackPoints"] == int(recency + 0.5)
+
+
+def test_unanswered_request_comes_from_the_thread():
+    # Kestrel asked a question on 17 Nov and is still waiting on a reply, so its renewal
+    # carries an Unanswered request even though no red-flag phrase was used.
+    df = integration.df.set_index("Name")
+
+    assert df.loc["Kestrel - Renewal - Dec 2026", "SlackSignal"] == "Unanswered request"
+
+
 def test_demo_ranking_on_the_snapshot_date():
     # The mock data is scored as of its last sync, 23 Nov 2026, so these stay fixed.
+    # Krakatoa stays on top: 100 Salesforce + 17 Gong + 20 Slack.
     accounts = integration.ui_accounts.set_index("account_name")
 
     assert integration.reference_date == integration.pd.Timestamp("2026-11-23")
-    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 117)
-    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 114)
-    assert (accounts.loc["Marlowe", "rank"], accounts.loc["Marlowe", "account_score"]) == (7, 90)
-    assert (accounts.loc["Orchard Lane", "rank"], accounts.loc["Orchard Lane", "account_score"]) == (8, 89)
+    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 137)
+    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 132)
+    assert (accounts.loc["Willowbank", "rank"], accounts.loc["Willowbank", "account_score"]) == (3, 116)
+    assert (accounts.loc["Quayside", "rank"], accounts.loc["Quayside", "account_score"]) == (8, 90)
