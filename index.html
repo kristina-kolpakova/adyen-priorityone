@@ -113,8 +113,8 @@
       color: #5b6aa0;
     }
 
-    .notif-title { font-weight: 600; }
-    .notif-detail { color: var(--muted); margin: 2px 0 10px; }
+    .notif-title { font-weight: 600; margin-bottom: 4px; }
+    .notif-detail { color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
 
     .notif-link {
       padding: 5px 10px;
@@ -1078,7 +1078,7 @@
         opportunityScores = await opportunityResponse.json();
 
         // Next actions are optional: without them the page falls back to Salesforce's next step.
-        // Name the sync day's weekday in the briefing heading; the header's last sync is set in renderNotifications.
+        // Label the page with the sync date, and name its weekday in the briefing heading.
         const syncResponse = await fetch("data/sync.json", { cache: "no-cache" });
         if (!syncResponse.ok) {
           throw new Error(syncResponse.statusText);
@@ -1086,7 +1086,9 @@
         referenceDate = (await syncResponse.json()).synced;
         const syncDay = new Date(referenceDate + "T12:00:00");
         const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(syncDay);
+        const fullDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(syncDay);
         document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
+        document.getElementById("synced-label").textContent = `Data synced ${fullDate}`;
 
         const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
         if (actionsResponse.ok) {
@@ -1905,18 +1907,15 @@
 
       document.getElementById("bell-dot").hidden = !gongStale;
 
-      // The header shows the latest successful sync: "just now" after a retry, otherwise Salesforce's.
-      const syncDay = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" })
-        .format(new Date(referenceDate + "T12:00:00"));
-      document.getElementById("synced-label").textContent = connectors.gong.lastSynced === "just now"
-        ? "Last sync just now"
-        : `Last sync ${connectors.salesforce.lastSynced} · ${syncDay}`;
       document.getElementById("notif-menu").innerHTML = gongStale
         ? `<div class="notif-item">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>
              <div>
                <div class="notif-title">Gong stopped syncing</div>
-               <div class="notif-detail">Last sync ${connectors.gong.lastSynced} · ${gongAccountCount} accounts use Gong points</div>
+               <div class="notif-detail">
+                 <div>Gong last synced ${connectors.gong.lastSynced}</div>
+                 <div>${gongAccountCount} accounts use Gong points</div>
+               </div>
                <button class="notif-link" id="notif-health">View data health</button>
              </div>
            </div>`
