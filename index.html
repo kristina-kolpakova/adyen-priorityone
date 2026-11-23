@@ -357,6 +357,9 @@
       margin-bottom: 10px;
     }
 
+    /* The deal that sets the account's score gets the same mint border as priority rows. */
+    .opportunity-card.top-deal { border-color: #a9d3bd; }
+
     .opportunity-summary {
       display: grid;
       grid-template-columns: 1fr 104px 16px;
@@ -953,7 +956,7 @@
         const expandable = !counts || tags !== "" || breakdown !== "";
 
         opportunityCards += `
-          <div class="opportunity-card">
+          <div class="opportunity-card${counts ? " top-deal" : ""}">
           <details>
             <summary class="opportunity-summary${expandable ? "" : " no-details"}"
               ${expandable ? "" : `onclick="event.preventDefault()"`}>
