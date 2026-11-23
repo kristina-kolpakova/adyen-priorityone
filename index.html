@@ -1252,7 +1252,9 @@
       for (const opportunity of opportunities) {
         const group = typeGroup(opportunity.type);
         const counts = opportunity.opportunity === account.top_opportunity;
-        const closeDate = shortDate.format(new Date(opportunity.close_date + "T12:00:00"));
+        const closeYear = opportunity.close_date.slice(0, 4);
+        const yearLabel = closeYear === referenceDate.slice(0, 4) ? "" : " " + closeYear;
+        const closeDate = shortDate.format(new Date(opportunity.close_date + "T12:00:00")) + yearLabel;
         const timing = opportunity.is_overdue
           ? `<span class="overdue">overdue</span> since ${closeDate}`
           : `closes ${closeDate}`;
