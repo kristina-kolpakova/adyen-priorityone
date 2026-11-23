@@ -1944,17 +1944,19 @@
       document.getElementById("call-backdrop").hidden = true;
     }
 
-    // The Monday email, previewed in the drawer: the date and every priority account (score 90
-    // or more, the same accounts the Overview counts), in Overview order and numbered by their
-    // place in the list, each with its flags, top deal and next action. It ends after the last one.
+    // The Monday email, previewed in the drawer: the date and the top of the AM's list, as many
+    // accounts as score 90 or more (the Overview's count). If the AM reorders, the email follows:
+    // whatever they put first leads it, whatever its score. Each entry has its flags, top deal and
+    // next action, and the email ends after the last one.
     function showMondayEmail() {
       const syncDay = new Date(referenceDate + "T12:00:00");
       const emailDate = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(syncDay);
 
-      const entries = accountsInAmOrder().map(function (account, index) {
-        if (account.account_score < 90) {
-          return "";
-        }
+      const priorityCount = rankedAccounts.filter(function (account) {
+        return account.account_score >= 90;
+      }).length;
+
+      const entries = accountsInAmOrder().slice(0, priorityCount).map(function (account, index) {
         const next = nextActions[account.top_opportunity_id] || {};
         const action = next.action || "No next step recorded";
         const actionText = action.endsWith(".") ? action : `${action}.`;
