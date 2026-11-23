@@ -159,10 +159,11 @@ def test_accounts_ranked_by_final_score_then_tie_breaks():
 
 
 def test_demo_ranking_on_the_snapshot_date():
-    # The mock data is scored as of 25 Nov 2026, so these stay fixed.
+    # The mock data is scored as of its last sync, 23 Nov 2026, so these stay fixed.
     accounts = integration.ui_accounts.set_index("account_name")
 
-    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 116)
-    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 113)
-    assert (accounts.loc["Marlowe", "rank"], accounts.loc["Marlowe", "account_score"]) == (5, 94)
-    assert (accounts.loc["Orchard Lane", "rank"], accounts.loc["Orchard Lane", "account_score"]) == (8, 88)
+    assert integration.reference_date == integration.pd.Timestamp("2026-11-23")
+    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 117)
+    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 114)
+    assert (accounts.loc["Marlowe", "rank"], accounts.loc["Marlowe", "account_score"]) == (7, 90)
+    assert (accounts.loc["Orchard Lane", "rank"], accounts.loc["Orchard Lane", "account_score"]) == (8, 89)

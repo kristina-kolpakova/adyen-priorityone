@@ -1,5 +1,5 @@
 Id,AccountId,OwnerId,Name,Amount,CreatedDate,StageName,CloseDate,Type,IsClosed,ForecastCategory,LastActivityDate,NextStep
-006Hp00000PdV1LIAV,001Hp00000yl6u2IAA,005Hp00000J1UinIAF,Krakatoa - Renewal - Dec 2026,1450000.00,2026-08-28T10:05:00.000+0000,Negotiation,2026-12-01,Renewal,false,Commit,2026-10-18,Confirm renewal pricing with procurement
+006Hp00000PdV1LIAV,001Hp00000yl6u2IAA,005Hp00000J1UinIAF,Krakatoa - Renewal - Dec 2026,1450000.00,2026-08-28T10:05:00.000+0000,Negotiation,2026-11-29,Renewal,false,Commit,2026-10-18,Confirm renewal pricing with procurement
 006Hp00000ks1X7IAI,001Hp00000yl6u2IAA,005Hp00000J1UinIAF,Krakatoa - Upsell - Unified commerce POS rollout,320000.00,2025-09-12T14:40:00.000+0000,Proposal,2026-11-10,Upsell,false,Best Case,2026-09-22,
 006Hp00000fEYfdIAG,001Hp00000yl6u2IAA,005Hp00000J1UinIAF,Krakatoa - New - Marketplace payouts,180000.00,2026-02-19T12:50:00.000+0000,Closed Lost,2026-08-31,New,true,Omitted,2026-08-29,
 006Hp000000lyocIAA,001Hp00000yl6u2IAA,005Hp00000J1UinIAF,Krakatoa - Renewal - Dec 2025,1300000.00,2025-09-03T10:45:00.000+0000,Closed Won,2025-12-07,Renewal,true,Closed,2025-12-06,
@@ -77,7 +77,7 @@ Id,AccountId,OwnerId,Name,Amount,CreatedDate,StageName,CloseDate,Type,IsClosed,F
 006Hp000008or03IAA,001Hp00000N7WqyIAF,005Hp00000pSeCwIAK,Quillon - New - Pay by Link,135000.00,2026-03-19T15:15:00.000+0000,Discovery,2026-11-20,New,false,Pipeline,2026-11-03,
 006Hp00000T7gLNIAZ,001Hp00000N7WqyIAF,005Hp00000pSeCwIAK,Quillon - New - Cross-border acquiring,170000.00,2026-10-01T08:50:00.000+0000,Discovery,2027-01-30,New,false,Pipeline,2026-11-05,Technical discovery session
 006Hp00000a5GUQIA2,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - Upsell - Buy now pay later,25000.00,2026-07-19T11:40:00.000+0000,Proposal,2026-11-07,Upsell,false,Best Case,2026-11-12,Follow up on proposal feedback
-006Hp00000LbgXMIAZ,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - New - Cross-border acquiring,510000.00,2026-10-30T14:40:00.000+0000,Discovery,2027-03-24,New,false,Pipeline,2026-11-24,Technical discovery session
+006Hp00000LbgXMIAZ,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - New - Cross-border acquiring,510000.00,2026-10-30T14:40:00.000+0000,Discovery,2027-03-24,New,false,Pipeline,2026-11-20,Technical discovery session
 006Hp00000ihQPFIA2,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - New - Platform onboarding,555000.00,2026-04-15T10:40:00.000+0000,Qualification,2027-03-17,New,false,Pipeline,2026-10-01,Intro call with finance
 006Hp00000vUADsIAO,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - New - Cross-border acquiring,130000.00,2026-03-20T10:50:00.000+0000,Closed Won,2026-07-14,New,true,Closed,2026-07-08,
 006Hp00000yrCM3IAM,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - Renewal - Jan 2027,305000.00,2026-05-27T16:00:00.000+0000,Discovery,2027-01-04,Renewal,false,Commit,2026-10-28,Technical discovery session
@@ -96,6 +96,6 @@ Id,AccountId,OwnerId,Name,Amount,CreatedDate,StageName,CloseDate,Type,IsClosed,F
 006Hp0000065eHNIAY,001Hp00000DCZsoIAH,005Hp00000MBiinIAD,Willowbank - Renewal - Dec 2025,1390000.00,2025-06-30T10:15:00.000+0000,Closed Won,2025-12-15,Renewal,true,Closed,2025-12-10,
 006Hp00000rZW2EIAW,001Hp00000DCZsoIAH,005Hp00000MBiinIAD,Willowbank - Renewal - Nov 2026,2055000.00,2026-05-11T15:50:00.000+0000,Negotiation,2026-11-28,Renewal,false,Best Case,2026-11-10,Finalize contract terms
 006Hp00000VMMEcIAP,001Hp00000DCZsoIAH,005Hp00000MBiinIAD,Willowbank - New - Cross-border acquiring,500000.00,2026-03-19T07:50:00.000+0000,Negotiation,2027-01-28,New,false,Commit,2026-11-08,Finalize contract terms
-006Hp00000cO77qIAC,001Hp00000oGmQuIAK,005Hp00000jgrcAIAQ,Zephyrine - Upsell - Local payment methods (BR),40000.00,2026-03-05T10:50:00.000+0000,Negotiation,2027-02-03,Upsell,false,Commit,2026-11-25,
+006Hp00000cO77qIAC,001Hp00000oGmQuIAK,005Hp00000jgrcAIAQ,Zephyrine - Upsell - Local payment methods (BR),40000.00,2026-03-05T10:50:00.000+0000,Negotiation,2027-02-03,Upsell,false,Commit,2026-11-20,
 006Hp00000dY4joIAC,001Hp00000oGmQuIAK,005Hp00000jgrcAIAQ,Zephyrine - Renewal - Feb 2027,340000.00,2025-07-01T08:00:00.000+0000,Negotiation,2027-02-11,Renewal,false,Commit,2026-11-06,Legal review of MSA
 006Hp00000yax9TIAQ,001Hp00000oGmQuIAK,005Hp00000jgrcAIAQ,Zephyrine - Upsell - Tap to Pay on mobile,260000.00,2026-10-01T11:40:00.000+0000,Discovery,2027-07-08,Upsell,false,Pipeline,2026-11-04,
