@@ -525,7 +525,7 @@ for _, deal in df.iterrows():
                 "id": message["message_id"],
                 "source": "Slack",
                 "scope": "account",
-                "label": f"{point_type} · {message['user_name']} on {message['MessageDate'].strftime('%d %b')}",
+                "label": f"{point_type} · {message['user_name']} on {message['MessageDate'].day} {message['MessageDate'].strftime('%b')}",
                 "value": message["text"],
                 "url": message["url"],
             })

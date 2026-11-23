@@ -50,7 +50,7 @@
     "opportunity": "Aster - Renewal - Jun 2027",
     "kind": "stage",
     "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -115,7 +115,7 @@
     "opportunity": "Bramblewood - New - Platform onboarding",
     "kind": "reviewed",
     "action": "Follow up on the proposal feedback and confirm whether the go-live delay raised in October affects the Dec 21 close.",
-    "reason": "An October account call reported go-live pushed by roughly six weeks.",
+    "reason": "An October account call reported that go-live slipped by roughly six weeks.",
     "evidence_ids": [
       "sf-close",
       "sf-next-step",
@@ -160,7 +160,7 @@
     "opportunity": "Bramblewood - Upsell - Buy now pay later",
     "kind": "stage",
     "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -252,7 +252,7 @@
     "opportunity": "Copperleaf - Renewal - Dec 2026",
     "kind": "reviewed",
     "action": "Confirm the renewal is still on track for Dec 13 and where the deal desk pricing review stands.",
-    "reason": "It closes in 20 days, but nothing has been logged in Salesforce for 111 days.",
+    "reason": "It closes in 20 days, but Salesforce shows no logged activity in the past 111 days.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -294,8 +294,8 @@
     "account_name": "Copperleaf",
     "opportunity": "Copperleaf - New - Online checkout",
     "kind": "stage",
-    "action": "Check whether the proposal has been sent and agree on the next step.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "action": "Check whether we sent the proposal and agree on the next step.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -314,7 +314,7 @@
     "opportunity": "Driftwood - Upsell - Revenue optimization",
     "kind": "reviewed",
     "action": "Confirm the deal is still active, and schedule the technical discovery session if it is.",
-    "reason": "Nothing has been logged in Salesforce for 106 days, yet the close date is Jan 22.",
+    "reason": "Salesforce shows no logged activity in the past 106 days, yet the close date is Jan 22.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -349,7 +349,7 @@
     "opportunity": "Driftwood - Upsell - Card issuing",
     "kind": "salesforce",
     "action": "Confirm decision makers",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -367,13 +367,14 @@
     "account_name": "Fernhill",
     "opportunity": "Fernhill - Renewal - Nov 2026",
     "kind": "reviewed",
-    "action": "Confirm whether the commercial proposal went out and agree a revised close date.",
-    "reason": "The Nov 10 close date has passed, and nothing has been logged in Salesforce for 61 days.",
+    "action": "Confirm when legal expects to finish reviewing the paperwork, then agree a revised close date.",
+    "reason": "On Nov 20 the customer said the renewal paperwork is still with their legal team and signature is unlikely this month. The Nov 10 close date has passed.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
       "sf-flags",
-      "sf-next-step"
+      "sf-next-step",
+      "slack-C07FRN001-1795192200000000"
     ],
     "sources": [
       {
@@ -403,6 +404,14 @@
         "scope": "deal",
         "label": "Next step",
         "value": "Send commercial proposal"
+      },
+      {
+        "id": "slack-C07FRN001-1795192200000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Closing risk · Florian (Fernhill Operations) on 20 Nov",
+        "value": "Renewal paperwork is still with our legal team, signature unlikely this month.",
+        "url": "https://slack.example.invalid/archives/C07FRN001/p1795192200000000"
       }
     ]
   },
@@ -411,7 +420,7 @@
     "opportunity": "Halcyon - Upsell - Revenue optimization",
     "kind": "reviewed",
     "action": "Confirm contract terms are on track for the Jan 29 close.",
-    "reason": "Finalizing contract terms is the recorded next step, so confirming what's still open will help validate the close date.",
+    "reason": "Salesforce lists finalizing contract terms as the next step, so confirming what's still open will help validate the close date.",
     "evidence_ids": [
       "sf-close",
       "sf-next-step"
@@ -438,7 +447,7 @@
     "opportunity": "Halcyon - Renewal - Feb 2027",
     "kind": "salesforce",
     "action": "Map current payment stack",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -456,12 +465,14 @@
     "account_name": "Kestrel",
     "opportunity": "Kestrel - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Agree pricing and a signature date ahead of the Dec 4 close.",
-    "reason": "The Commit renewal closes in 11 days.",
+    "action": "Follow up with Jonas on the revised SLA terms, then confirm pricing and signature timing for the Dec 4 close.",
+    "reason": "Jonas asked for the revised SLA terms on Nov 12 and followed up on Nov 17 without a reply. The Commit renewal closes in 11 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
-      "sf-next-step"
+      "sf-next-step",
+      "slack-C07KST001-1794477600000000",
+      "slack-C07KST001-1794908700000000"
     ],
     "sources": [
       {
@@ -484,6 +495,22 @@
         "scope": "deal",
         "label": "Next step",
         "value": "Agree pricing and signature date"
+      },
+      {
+        "id": "slack-C07KST001-1794477600000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Context · Jonas (Kestrel Operations) on 12 Nov",
+        "value": "Could you share the revised SLA terms for the renewal?",
+        "url": "https://slack.example.invalid/archives/C07KST001/p1794477600000000"
+      },
+      {
+        "id": "slack-C07KST001-1794908700000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Unanswered request · Jonas (Kestrel Operations) on 17 Nov",
+        "value": "Any update on the revised SLA terms?",
+        "url": "https://slack.example.invalid/archives/C07KST001/p1794908700000000"
       }
     ]
   },
@@ -492,7 +519,7 @@
     "opportunity": "Kestrel - New - Cross-border acquiring",
     "kind": "salesforce",
     "action": "Send commercial proposal",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -511,7 +538,7 @@
     "opportunity": "Kestrel - New - Marketplace payouts",
     "kind": "salesforce",
     "action": "Follow up on proposal feedback",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -594,7 +621,8 @@
         "label": "Problem flags",
         "value": "No recent activity before close, Stale Commit"
       }
-    ]
+    ],
+    "short_action": "Ask procurement about the fee reduction"
   },
   "006Hp00000ks1X7IAI": {
     "account_name": "Krakatoa",
@@ -654,14 +682,15 @@
     "account_name": "Lanternfly",
     "opportunity": "Lanternfly - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Confirm whether the rollout delay affects the Dec 3 renewal before agreeing pricing and a signature date.",
-    "reason": "An October account call reported go-live pushed by roughly six weeks; a Nov 22 account call raised no major issues.",
+    "action": "Ask Rafael whether the rollout delay affects the Dec 3 renewal as he takes over from Sophie.",
+    "reason": "On Nov 8 Sophie said Rafael takes over the renewal from her. An October account call reported that go-live slipped by roughly six weeks.",
     "evidence_ids": [
       "sf-close",
       "sf-next-step",
       "gong_call_0018-23698e",
       "gong_call_0018-0af318",
-      "gong_call_0042-d86119"
+      "gong_call_0042-d86119",
+      "slack-C07LTF001-1794158400000000"
     ],
     "sources": [
       {
@@ -701,6 +730,14 @@
         "label": "Context · call on 22 Nov",
         "value": "No major issues raised",
         "url": "https://gong.example.invalid/call?id=gong_call_0042"
+      },
+      {
+        "id": "slack-C07LTF001-1794158400000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Champion departure · Sophie (Lanternfly Payments) on 8 Nov",
+        "value": "Heads up, Friday is my last day. Rafael will take over the renewal from here.",
+        "url": "https://slack.example.invalid/archives/C07LTF001/p1794158400000000"
       }
     ]
   },
@@ -709,7 +746,7 @@
     "opportunity": "Lanternfly - Upsell - Tap to Pay on mobile",
     "kind": "salesforce",
     "action": "Intro call with finance",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -728,7 +765,7 @@
     "opportunity": "Larkspur - New - Cross-border acquiring",
     "kind": "reviewed",
     "action": "Schedule the technical discovery session and log it in Salesforce.",
-    "reason": "Nothing has been logged in Salesforce for 40 days.",
+    "reason": "Salesforce shows no logged activity in the past 40 days.",
     "evidence_ids": [
       "sf-activity",
       "sf-next-step"
@@ -755,7 +792,7 @@
     "opportunity": "Larkspur - Renewal - Jul 2027",
     "kind": "salesforce",
     "action": "Share solution overview",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -819,7 +856,7 @@
     "opportunity": "Marlowe - New - Cross-border acquiring",
     "kind": "reviewed",
     "action": "Confirm whether this deal can still close by Nov 27, and agree pricing and a signature date if it can.",
-    "reason": "It closes in 4 days. No activity is recorded in Salesforce.",
+    "reason": "It closes in 4 days, and Salesforce shows no logged activity.",
     "evidence_ids": [
       "sf-close",
       "sf-activity",
@@ -904,8 +941,8 @@
     "account_name": "Marlowe",
     "opportunity": "Marlowe - Upsell - Network tokenization",
     "kind": "stage",
-    "action": "Check whether the proposal has been sent and agree on the next step.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "action": "Check whether we sent the proposal and agree on the next step.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -978,7 +1015,7 @@
     "opportunity": "Monogram - New - Nordics entity",
     "kind": "salesforce",
     "action": "Scope Nordic payment methods",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -997,7 +1034,7 @@
     "opportunity": "Monogram - Renewal - Jul 2027",
     "kind": "stage",
     "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -1016,7 +1053,7 @@
     "opportunity": "Mosaic - Renewal - Dec 2026",
     "kind": "reviewed",
     "action": "Ask legal whether the MSA review or the security questionnaire could delay the Dec 7 signature.",
-    "reason": "Pricing was accepted on Nov 20, but on the same call the customer said legal review may push the signature past the planned close.",
+    "reason": "The customer accepted pricing on Nov 20, but on the same call said legal review may push the signature past the planned close.",
     "evidence_ids": [
       "sf-close",
       "sf-next-step",
@@ -1063,14 +1100,15 @@
         "value": "Pricing accepted for the upcoming renewal",
         "url": "https://gong.example.invalid/call?id=gong_call_0037"
       }
-    ]
+    ],
+    "short_action": "Check legal won't delay the Dec 7 signature"
   },
   "006Hp00000QxUlbIAF": {
     "account_name": "Mosaic",
     "opportunity": "Mosaic - Upsell - Risk & fraud add-on",
     "kind": "salesforce",
     "action": "Book fraud review workshop",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1132,7 +1170,7 @@
     "opportunity": "Oakmoor - Upsell - Buy now pay later",
     "kind": "salesforce",
     "action": "Review pricing with deal desk",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1151,7 +1189,7 @@
     "opportunity": "Oakmoor - Renewal - Jun 2027",
     "kind": "salesforce",
     "action": "Qualify volumes and markets",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1170,7 +1208,7 @@
     "opportunity": "Oakmoor - New - Online checkout",
     "kind": "salesforce",
     "action": "Confirm decision makers",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1270,7 +1308,7 @@
     "opportunity": "Petrel - Renewal - Jul 2027",
     "kind": "salesforce",
     "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1289,7 +1327,7 @@
     "opportunity": "Petrel - Upsell - Local payment methods (DE)",
     "kind": "salesforce",
     "action": "Map current payment stack",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1336,7 +1374,7 @@
     "opportunity": "Pinecrest - Upsell - Additional entity (UK)",
     "kind": "salesforce",
     "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1354,14 +1392,15 @@
     "account_name": "Quayside",
     "opportunity": "Quayside - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Contact the customer this week to confirm the renewal is on track and where the MSA legal review stands.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 111 days.",
+    "action": "Ask where the CFO stands on the provider evaluation and whether it affects the renewal timeline.",
+    "reason": "On Nov 11 the customer said their CFO wants to keep evaluating another payment provider before the renewal. Salesforce forecasts it as Commit but shows no logged activity in the past 111 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
       "sf-activity",
       "sf-flags",
-      "sf-next-step"
+      "sf-next-step",
+      "slack-C07QYS001-1794398400000000"
     ],
     "sources": [
       {
@@ -1398,6 +1437,14 @@
         "scope": "deal",
         "label": "Next step",
         "value": "Legal review of MSA"
+      },
+      {
+        "id": "slack-C07QYS001-1794398400000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Competitor risk · Sebastian (Quayside Partnerships) on 11 Nov",
+        "value": "Our CFO asked us to keep evaluating another payment provider before the renewal.",
+        "url": "https://slack.example.invalid/archives/C07QYS001/p1794398400000000"
       }
     ]
   },
@@ -1406,7 +1453,7 @@
     "opportunity": "Quayside - New - Subscription billing",
     "kind": "salesforce",
     "action": "Qualify volumes and markets",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1498,7 +1545,7 @@
     "opportunity": "Quillon - New - Cross-border acquiring",
     "kind": "salesforce",
     "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1560,7 +1607,7 @@
     "opportunity": "Redfern - New - Cross-border acquiring",
     "kind": "salesforce",
     "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1579,7 +1626,7 @@
     "opportunity": "Redfern - New - Platform onboarding",
     "kind": "salesforce",
     "action": "Intro call with finance",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1680,7 +1727,7 @@
     "opportunity": "Saltmarsh - Upsell - Additional entity (US)",
     "kind": "salesforce",
     "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1698,14 +1745,15 @@
     "account_name": "Silverbirch",
     "opportunity": "Silverbirch - Renewal - Jan 2027",
     "kind": "reviewed",
-    "action": "Schedule technical discovery to check whether the Jan 4 renewal is still on track.",
-    "reason": "Salesforce forecasts the renewal as Commit while the deal is still in Discovery.",
+    "action": "Reply to Ella's pricing question, then schedule technical discovery for the Jan 4 renewal.",
+    "reason": "Nobody has replied to Ella's Nov 10 question about next year's pricing tiers for 9 business days. Salesforce forecasts the renewal as Commit while the deal is still in Discovery.",
     "evidence_ids": [
       "sf-next-step",
       "sf-close",
       "sf-forecast",
       "sf-stage",
-      "sf-flags"
+      "sf-flags",
+      "slack-C07SVB001-1794301200000000"
     ],
     "sources": [
       {
@@ -1742,6 +1790,14 @@
         "scope": "deal",
         "label": "Problem flags",
         "value": "Early-stage Commit"
+      },
+      {
+        "id": "slack-C07SVB001-1794301200000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Unanswered request · Ella (Silverbirch Finance) on 10 Nov",
+        "value": "Can you confirm the new pricing tiers for next year?",
+        "url": "https://slack.example.invalid/archives/C07SVB001/p1794301200000000"
       }
     ]
   },
@@ -1750,7 +1806,7 @@
     "opportunity": "Silverbirch - New - Online checkout",
     "kind": "salesforce",
     "action": "Confirm decision makers",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1769,7 +1825,7 @@
     "opportunity": "Tidewater - New - Mobile app payments",
     "kind": "reviewed",
     "action": "Confirm the deal is still active, then agree pricing and a signature date for the Jan 17 close.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 104 days.",
+    "reason": "Salesforce forecasts it as Commit but shows no logged activity in the past 104 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1818,11 +1874,12 @@
   "006Hp000007vOesIAE": {
     "account_name": "Tidewater",
     "opportunity": "Tidewater - Renewal - Mar 2027",
-    "kind": "salesforce",
-    "action": "Technical discovery session",
-    "reason": "Next step recorded in Salesforce.",
+    "kind": "reviewed",
+    "action": "Ask Grace who will own the renewal after she leaves, then schedule technical discovery with the new owner.",
+    "reason": "Grace is leaving at month-end, and Salesforce lists technical discovery as the next step.",
     "evidence_ids": [
-      "sf-next-step"
+      "sf-next-step",
+      "slack-C07TDW001-1795014000000000"
     ],
     "sources": [
       {
@@ -1831,6 +1888,14 @@
         "scope": "deal",
         "label": "Next step",
         "value": "Technical discovery session"
+      },
+      {
+        "id": "slack-C07TDW001-1795014000000000",
+        "source": "Slack",
+        "scope": "account",
+        "label": "Champion departure · Grace (Tidewater Operations) on 18 Nov",
+        "value": "Quick heads up, I'm leaving the company at the end of the month.",
+        "url": "https://slack.example.invalid/archives/C07TDW001/p1795014000000000"
       }
     ]
   },
@@ -1838,8 +1903,8 @@
     "account_name": "Tidewater",
     "opportunity": "Tidewater - Upsell - Data & insights",
     "kind": "stage",
-    "action": "Check whether the proposal has been sent and agree on the next step.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "action": "Check whether we sent the proposal and agree on the next step.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -1858,7 +1923,7 @@
     "opportunity": "Umberleaf - Upsell - Card issuing",
     "kind": "reviewed",
     "action": "Confirm with the customer that contract terms are on track for the Jan 17 close.",
-    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 35 days.",
+    "reason": "Salesforce forecasts it as Commit but shows no logged activity in the past 35 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -1909,7 +1974,7 @@
     "opportunity": "Umberleaf - New - Pay by Link",
     "kind": "stage",
     "action": "Book a discovery session to map requirements, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -1928,7 +1993,7 @@
     "opportunity": "Umberleaf - Upsell - Terminal fleet expansion",
     "kind": "salesforce",
     "action": "Share solution overview",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -1947,7 +2012,7 @@
     "opportunity": "Vellum - New - Pay by Link",
     "kind": "reviewed",
     "action": "Map the customer's current payment stack, confirm who the current contacts are, and ask whether the engineering backlog that delayed go-live in September affects the Pay by Link timeline.",
-    "reason": "On Aug 28 the customer said the team was reorganising, with new contacts to follow. On Sep 2 they said go-live was pushed by roughly six weeks because of an engineering backlog.",
+    "reason": "On Aug 28 the customer said the team was reorganising, with new contacts to follow. On Sep 2 they said go-live slipped by roughly six weeks because of an engineering backlog.",
     "evidence_ids": [
       "sf-next-step",
       "gong_call_0009-ab3a4e",
@@ -1993,7 +2058,7 @@
     "opportunity": "Vellum - New - Subscription billing",
     "kind": "salesforce",
     "action": "Confirm decision makers",
-    "reason": "Next step recorded in Salesforce.",
+    "reason": "Salesforce lists this as the next step.",
     "evidence_ids": [
       "sf-next-step"
     ],
@@ -2085,7 +2150,7 @@
     "opportunity": "Wayfarer - Upsell - Network tokenization",
     "kind": "reviewed",
     "action": "Confirm whether the tokenization upsell is still active and whether the account's remediation work affects its timing.",
-    "reason": "The close date passed 44 days ago, and a Nov 21 account call put renewal discussions on hold until issues are resolved.",
+    "reason": "The close date passed 44 days ago, and a Nov 21 account call put renewal discussions on hold until we resolve the issues.",
     "evidence_ids": [
       "sf-close",
       "sf-flags",
@@ -2158,13 +2223,14 @@
         "label": "Next step",
         "value": "Finalize contract terms"
       }
-    ]
+    ],
+    "short_action": "Confirm the signature date before Nov 28"
   },
   "006Hp00000VMMEcIAP": {
     "account_name": "Willowbank",
     "opportunity": "Willowbank - New - Cross-border acquiring",
     "kind": "reviewed",
-    "action": "Confirm the fee benchmarking raised in September is resolved before finalizing contract terms.",
+    "action": "Confirm whether the customer still has concerns from the September fee benchmarking before finalizing contract terms.",
     "reason": "On Sep 28 the customer was benchmarking fees against another provider.",
     "evidence_ids": [
       "sf-next-step",
@@ -2193,7 +2259,7 @@
     "opportunity": "Zephyrine - Renewal - Feb 2027",
     "kind": "reviewed",
     "action": "Confirm the timeline for the MSA legal review ahead of the Feb 11 renewal.",
-    "reason": "The renewal is forecast as Commit, and MSA legal review is the recorded next step.",
+    "reason": "Salesforce forecasts the renewal as Commit and lists MSA legal review as the next step.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -2228,7 +2294,7 @@
     "opportunity": "Zephyrine - Upsell - Local payment methods (BR)",
     "kind": "stage",
     "action": "Agree the remaining terms and a signature date, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],
@@ -2247,7 +2313,7 @@
     "opportunity": "Zephyrine - Upsell - Tap to Pay on mobile",
     "kind": "stage",
     "action": "Book a discovery session to map requirements, then record the next step in Salesforce.",
-    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "reason": "PriorityOne suggests this from the deal's stage because Salesforce lists no next step.",
     "evidence_ids": [
       "sf-stage"
     ],

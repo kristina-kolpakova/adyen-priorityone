@@ -879,7 +879,7 @@
         "id":"slack-C07CPL001-1793693700000000",
         "source":"Slack",
         "scope":"account",
-        "label":"Service incident \u00b7 Leah (Copperleaf Payments) on 03 Nov",
+        "label":"Service incident \u00b7 Leah (Copperleaf Payments) on 3 Nov",
         "value":"Checkout is failing for card payments in DE, is something down?",
         "url":"https:\/\/slack.example.invalid\/archives\/C07CPL001\/p1793693700000000"
       }
@@ -1511,7 +1511,7 @@
         "id":"slack-C07HLC001-1794219600000000",
         "source":"Slack",
         "scope":"account",
-        "label":"Service incident \u00b7 Noah (Halcyon Payments) on 09 Nov",
+        "label":"Service incident \u00b7 Noah (Halcyon Payments) on 9 Nov",
         "value":"Card payments are failing at checkout for some shoppers, is something down?",
         "url":"https:\/\/slack.example.invalid\/archives\/C07HLC001\/p1794219600000000"
       }
@@ -2361,7 +2361,7 @@
         "id":"slack-C07LTF001-1794158400000000",
         "source":"Slack",
         "scope":"account",
-        "label":"Champion departure \u00b7 Sophie (Lanternfly Payments) on 08 Nov",
+        "label":"Champion departure \u00b7 Sophie (Lanternfly Payments) on 8 Nov",
         "value":"Heads up, Friday is my last day. Rafael will take over the renewal from here.",
         "url":"https:\/\/slack.example.invalid\/archives\/C07LTF001\/p1794158400000000"
       }
@@ -2974,7 +2974,7 @@
         "id":"slack-C07MRL001-1793876400000000",
         "source":"Slack",
         "scope":"account",
-        "label":"Billing dispute \u00b7 Oliver (Marlowe Finance) on 05 Nov",
+        "label":"Billing dispute \u00b7 Oliver (Marlowe Finance) on 5 Nov",
         "value":"We were charged twice for the October platform fee, can you check?",
         "url":"https:\/\/slack.example.invalid\/archives\/C07MRL001\/p1793876400000000"
       }

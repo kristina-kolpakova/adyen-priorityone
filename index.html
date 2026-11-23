@@ -1836,7 +1836,7 @@
         return item.id === "sf-next-step";
       });
       if (salesforceNextStep) {
-        return { text: salesforceNextStep.value, reason: "Next step recorded in Salesforce.", sources: [], kind: "salesforce" };
+        return { text: salesforceNextStep.value, reason: "Salesforce lists this as the next step.", sources: [], kind: "salesforce" };
       }
       return { text: "", reason: "", sources: [], kind: "" };
     }
@@ -1854,15 +1854,66 @@
       return `<span class="link-tail"> · <a href="#" class="open-call" data-call="${callId}" data-opened="${evidenceId}"${bonusData}>Open call</a></span>`;
     }
 
+    // A Slack message as an evidence line: its red flag, who sent it (their role in grey; the
+    // drawer already names the account), the quoted message, and Open thread. The message that
+    // earned the Slack bonus also shows its points.
+    function slackEvidenceLine(category, userName, dateLabel, text, accountName, messageId, slackSignal) {
+      const sender = userName.match(/^(.*?)(?: \((.*)\))?$/);
+      const role = (sender[2] || "").replace(accountName, "").trim();
+      const roleText = role ? `<span class="slack-team">, ${role}</span>` : "";
+      const isBonus = slackSignal && messageId === slackSignal.evidenceId;
+      const bonus = isBonus
+        ? `<div class="evidence-bonus">
+             <span class="evidence-bubble slack">Slack bonus</span><strong>+${slackSignal.points} pts</strong>
+             <span class="evidence-bonus-age">(${slackSignal.ageText})</span>
+           </div>`
+        : "";
+      return `
+        <div class="evidence-item">
+          <div class="evidence-bubbles"><span class="evidence-bubble slack">Slack</span><span class="evidence-bubble scope">Account</span></div>
+          <div>
+            ${category} · <span class="slack-person">${sender[1]}</span>${roleText} on ${dateLabel}:
+            <em class="slack-quote">“${text}”</em><span class="link-tail"> · <a href="#" class="open-thread" data-thread="${threadOf(messageId)}"
+              data-opened="${messageId}" data-points="${isBonus ? slackSignal.points : ""}">Open thread</a></span>
+            ${bonus}
+          </div>
+        </div>`;
+    }
+
+    // The ID of the Slack thread a message belongs to.
+    function threadOf(messageId) {
+      for (const threadId of Object.keys(slackThreads)) {
+        for (const message of slackThreads[threadId].messages) {
+          if (message.message_id === messageId) {
+            return threadId;
+          }
+        }
+      }
+      return "";
+    }
+
     // The next-action block for a deal card, with its evidence below.
-    function nextActionBlock(opportunityId, evidence, scoreText, signal, slackLine) {
+    function nextActionBlock(opportunityId, evidence, scoreText, signal, slackSignal) {
       const next = nextActionFor(opportunityId, evidence);
+      const accountName = opportunityScores.find(function (opportunity) {
+        return opportunity.opportunity_id === opportunityId;
+      }).account_name;
 
       // The cited evidence, then the deal's score at the bottom, behind one toggle.
       // If the call that earned the Gong bonus is already cited, the bonus goes on that line.
       let items = "";
       let bonusShown = false;
+      let slackBonusShown = false;
       for (const source of next.sources) {
+        // Slack labels read "Unanswered request · Jonas (Kestrel Operations) on 17 Nov".
+        if (source.source === "Slack") {
+          const label = source.label.match(/^(.*) · (.*) on (.*)$/);
+          items += slackEvidenceLine(label[1], label[2], label[3], source.value, accountName, source.id, slackSignal);
+          if (slackSignal && source.id === slackSignal.evidenceId) {
+            slackBonusShown = true;
+          }
+          continue;
+        }
         const link = source.source === "Gong" ? openCallLink(source.id, signal) : "";
         let bonus = "";
         if (signal && source.id === signal.evidenceId) {
@@ -1884,8 +1935,9 @@
       if (signal && !bonusShown) {
         items += signal.line;
       }
-      // A renewal's Slack bonus always gets its own line; next actions don't cite Slack.
-      items += slackLine || "";
+      if (slackSignal && !slackBonusShown) {
+        items += slackSignal.line;
+      }
       items += `
         <div class="evidence-item">
           <div class="evidence-bubbles"><span class="evidence-bubble score">Score</span></div>
@@ -2046,31 +2098,25 @@
         // The top deal's action and evidence sit outside its expandable part, so if it has
         // no tags or flag explanations there is nothing to expand.
         // The Slack message that earned this renewal's Slack bonus, on its own evidence line.
-        let slackLine = "";
+        // The Slack message that earned this renewal's Slack bonus. If the next action cites it,
+        // the bonus shows on that line; otherwise it gets a line of its own.
+        let slackSignal = null;
         if (opportunity.slack_points > 0) {
-          const messageDate = shortDate.format(new Date(opportunity.slack_signal_date + "T12:00:00"));
           const slackAge = Math.round(opportunity.slack_signal_age);
-          // "Maya (Krakatoa Procurement)": the person stands out, and their role stays quiet.
-          // The drawer already names the account, so "Krakatoa" is left out.
-          const sender = opportunity.slack_signal_from.match(/^(.*?)(?: \((.*)\))?$/);
-          const senderRole = (sender[2] || "").replace(opportunity.account_name, "").trim();
-          const senderTeam = senderRole ? `<span class="slack-team">, ${senderRole}</span>` : "";
-          slackLine = `
-              <div class="evidence-item">
-                <div class="evidence-bubbles"><span class="evidence-bubble slack">Slack</span><span class="evidence-bubble scope">Account</span></div>
-                <div>
-                  ${opportunity.slack_signal} · <span class="slack-person">${sender[1]}</span>${senderTeam} on ${messageDate}:
-                  <em class="slack-quote">“${opportunity.slack_signal_text}”</em><span class="link-tail"> · <a href="#" class="open-thread" data-thread="${opportunity.slack_signal_thread}"
-                    data-opened="${opportunity.slack_signal_evidence_id}" data-points="${opportunity.slack_points}">Open thread</a></span>
-                  <div class="evidence-bonus">
-                    <span class="evidence-bubble slack">Slack bonus</span><strong>+${opportunity.slack_points} pts</strong>
-                    <span class="evidence-bonus-age">(${slackAge} ${slackAge === 1 ? "day" : "days"} ago)</span>
-                  </div>
-                </div>
-              </div>`;
+          slackSignal = {
+            evidenceId: opportunity.slack_signal_evidence_id,
+            points: opportunity.slack_points,
+            ageText: `${slackAge} ${slackAge === 1 ? "day" : "days"} ago`,
+          };
+          slackSignal.line = slackEvidenceLine(
+            opportunity.slack_signal, opportunity.slack_signal_from,
+            shortDate.format(new Date(opportunity.slack_signal_date + "T12:00:00")),
+            opportunity.slack_signal_text, opportunity.account_name,
+            opportunity.slack_signal_evidence_id, slackSignal
+          );
         }
 
-        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText, signal, slackLine);
+        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText, signal, slackSignal);
         const expandable = !counts || tags !== "" || breakdown !== "";
 
         opportunityCards += `
@@ -2256,7 +2302,7 @@
           : `${shortDate.format(new Date(day + "T12:00:00"))}, ${clockTime(message.sent_at)}`;
         const opened = message.message_id === link.dataset.opened;
         const flag = message.red_flag
-          ? `<div class="thread-flag"><span class="flag-tag slack-tag">${message.red_flag}</span>${opened ? `<span class="thread-points">+${link.dataset.points} pts</span>` : ""}</div>`
+          ? `<div class="thread-flag"><span class="flag-tag slack-tag">${message.red_flag}</span>${opened && link.dataset.points ? `<span class="thread-points">+${link.dataset.points} pts</span>` : ""}</div>`
           : "";
         messages += `
           <div class="thread-message${opened ? " opened" : ""}">
