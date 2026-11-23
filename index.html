@@ -622,6 +622,28 @@
     .next-action-reason { font-size: 13px; color: var(--muted); line-height: 1.5; }
     .next-action-empty { font-size: 13px; color: var(--muted); }
 
+    /* A Salesforce-rose chip with a cloud icon, beside View evidence, so it's clear where the task goes. */
+    .log-task {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: 12px;
+      padding: 2px 9px;
+      border: 0;
+      border-radius: 999px;
+      background: #f6ecec;
+      color: #a8646b;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 400;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+
+    .log-task svg { width: 13px; height: 13px; }
+    .log-task:hover { background: #f0dfe0; }
+    .log-task.logged { cursor: default; }
+
     .evidence summary {
       margin-top: 8px;
       color: #3a7f8a;
@@ -1520,9 +1542,11 @@
           <div>${scoreText}</div>
         </div>`;
       const toggleLabel = next.sources.length > 0 ? `View evidence (${next.sources.length})` : "View score";
+      // A next action can be logged as a Salesforce task; the chip sits beside View evidence.
+      const logTask = next.text ? logTaskLink(opportunityId) : "";
       const evidenceList = `
         <details class="evidence">
-          <summary>${toggleLabel}</summary>
+          <summary>${toggleLabel}${logTask}</summary>
           ${items}
         </details>`;
 
@@ -1549,6 +1573,18 @@
           <div class="next-action-reason">${next.reason}</div>
           ${evidenceList}
         </div>`;
+    }
+
+    // Deals whose next action has been logged as a Salesforce task in this session.
+    // In production one click would create the task, with the action as its subject and the
+    // reason as its note; in the demo it only shows the confirmation.
+    let loggedTasks = [];
+
+    function logTaskLink(opportunityId) {
+      if (loggedTasks.includes(opportunityId)) {
+        return `<span class="log-task logged">✓ Logged to Salesforce (demo)</span>`;
+      }
+      return `<button class="log-task" data-opportunity="${opportunityId}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9z"/></svg>Log to Salesforce</button>`;
     }
 
     // Renewals form one group; Upsell and New deals form the other.
@@ -1839,8 +1875,19 @@
 
     document.getElementById("download-feedback").addEventListener("click", downloadFeedback);
 
-    // "Open call" in the detail panel opens the call panel; × or a click outside closes it.
+    // In the detail panel, Log task confirms the task, and "Open call" opens the call panel;
+    // × or a click outside closes the call panel.
     document.getElementById("detail-content").addEventListener("click", function (event) {
+      // The chip sits inside the View evidence toggle, so its clicks don't open or close the list.
+      const logTask = event.target.closest(".log-task");
+      if (logTask) {
+        event.preventDefault();
+        if (logTask.dataset.opportunity) {
+          loggedTasks.push(logTask.dataset.opportunity);
+          logTask.outerHTML = logTaskLink(logTask.dataset.opportunity);
+        }
+        return;
+      }
       const link = event.target.closest(".open-call");
       if (link) {
         event.preventDefault();
