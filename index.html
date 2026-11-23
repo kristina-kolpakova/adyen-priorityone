@@ -37,15 +37,15 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 23px;
-      font-weight: 650;
-      letter-spacing: -0.8px;
+      gap: 10px;
+      font-size: 27px;
+      font-weight: 600;
+      letter-spacing: -0.9px;
     }
 
     .brand-mark {
       color: var(--mint);
-      font-size: 27px;
+      font-size: 32px;
     }
 
     .header-meta {
@@ -112,7 +112,7 @@
       margin: 0;
       font-size: clamp(30px, 3vw, 42px);
       font-weight: 650;
-      letter-spacing: -1.8px;
+      letter-spacing: -0.6px;
       line-height: 1.15;
     }
 
@@ -244,7 +244,8 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: min(100%, max(680px, 62.5vw));
+      /* A fixed left edge 490px from the window's left, never narrower than 680px. */
+      width: min(100%, max(680px, calc(100vw - 490px)));
       height: 100vh;
       overflow-y: auto;
       background: linear-gradient(180deg, #eef7f2 0%, #f6fbf8 100%);
@@ -276,7 +277,7 @@
     .detail-name {
       font-size: 40px;
       font-weight: 700;
-      letter-spacing: -1.6px;
+      letter-spacing: -0.6px;
       line-height: 1.1;
       margin: 6px 0 0;
     }
@@ -557,7 +558,7 @@
       <!-- Overview: this week's briefing. -->
       <div id="overview-intro">
         <div class="eyebrow" id="briefing-day">Morning briefing</div>
-        <h1>Your week, prioritized.</h1>
+        <h1>Your week, <em>prioritized.</em></h1>
         <p class="subtitle" id="attention-text">&nbsp;</p>
 
         <div class="metrics">

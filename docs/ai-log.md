@@ -43,6 +43,8 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 29 | 2026-11-22 | Claude Code | Account scoring | Added Gong issues: display, then tie-break, then +2/+1 points kept below a Salesforce step |
 | 30 | 2026-11-22 | Claude Code | Next actions | One next action per open deal from cited evidence; drafts reviewed and edited before saving |
 | 31 | 2026-11-22 | Claude Code | Account scoring | Gong points moved onto every deal so the deal and account scores match |
+| 32 | 2026-11-22 | Claude Code | Account scoring | Gong bonus by recency only (20 → 5 at 30 days → 0 at 90); every red flag counts equally |
+| 33 | 2026-11-22 | Claude Code | UI | Traceable red pills, top-deal border, source colours, header and drawer tweaks; undid what didn't work |
 
 ---
 
@@ -339,6 +341,30 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **How it was steered:** Gong points now apply to every deal (+2 for its own issue, +1 for an account call), and badges, type chips, the evidence score row and the score box all show the final score. Claude simulated the change first: no account score or top deal changed.
 - **How it was checked:** A new test checks that each deal's final score is its Salesforce score plus its Gong points, and that each account's score is its best deal's final score. A browser audit of all 29 drawers confirmed that every badge, chip and score row adds up. 15 tests pass.
 - **Lesson:** Numbers that are correct but don't visibly add up still read as wrong. A score should be the same number everywhere it appears.
+
+## 32. Making Gong count by recency, not multipliers
+
+- **Tool:** Claude Code, Python/pandas
+- **What I decided:** +2/+1 was far too low to matter. A Gong issue raised 2 days ago should count a lot (about 20 points), one from a month ago much less (about 5), sliding in between.
+- **What went wrong:** The first version, built from a spec I pasted in, stacked multipliers on top of recency: full weight for some flags, half for others, and half again for calls not linked to a deal. I couldn't follow it myself, so I asked why we needed multipliers at all. I wanted a simple calculation.
+- **How it was steered:** Before changing the app again, I asked for a side-by-side ranking on the 25 Nov snapshot: the old +2/+1, a recency bonus for "serious" issues only, and a recency bonus for every red flag. Seeing it, I decided pricing pressure is serious, and then that every red flag should count equally: if something is classified as a red flag, its category is the account manager's call, not the score's. When Orchard Lane's procurement flags didn't add up, I asked whether one signal per deal made sense, and kept it: the bonus measures how fresh the trouble is, not how many problems a call mentioned.
+- **The rule now:** each open deal gets 20 points for a red flag up to 2 days old, falling in a straight line to 5 at 30 days and 0 at 90; only its most recent red flag counts. Accounts rank by their best deal's Salesforce + Gong score, so a fresh issue can now lift a deal above a higher Salesforce score (Orchard Lane, 70 + 18, now ranks above Fernhill at 85).
+- **Making it explainable:** I spotted the bonus shown twice in the evidence and designed the fix: it sits under the call that earned it. After Marlowe's account-wide call showed +9 while its score used +14, I set the rule that an account-wide call is shown only when it counts toward the account's score.
+- **How it was checked:** Tests recompute every deal's bonus from its call age and pin the demo ranking (Krakatoa 116, Mosaic 113, Marlowe 94, Orchard Lane 88). 16 tests pass.
+- **Lesson:** Compare scoring options on the real data before choosing one, and prefer the rule I can say in one sentence. If I can't explain a formula, an account manager won't trust it.
+
+## 33. Design calls in the drawer and header
+
+- **Tool:** Claude Code, JavaScript/CSS
+- **What I decided:**
+  - **Every red pill has to be traceable.** Krakatoa showed "No recent activity" and "Stale Commit" with nothing behind them in View evidence. I rejected a separate "Why it's flagged" group; the fix was to cite the flags on the two deals that lacked them.
+  - **The top deal should look like the top deal:** a mint border like the priority rows on the home page, and its pills in the header as well as the expanded view.
+  - **Colours mean the source:** Salesforce evidence bubbles now match the red Salesforce pills, Gong stays blue, and I kept both the Deal and Account bubbles because scope matters.
+  - **The header:** I asked for a 15–20% larger wordmark; Claude pointed out that my suggested pixel sizes would barely change it, so we used 27px. I also loosened the heading spacing and italicised "*prioritized.*".
+  - **The drawer stays put:** I tried lining its edge up with the "p" in the heading, then decided it shouldn't move with the text and fixed it at 490px.
+  - **Room for Clay:** I tried moving the type-score chips up beside the score tile, then undid it to keep the space under the account name for enrichment data.
+  - **Small clean-ups:** I asked why a commit added 9,894 lines, which led to dropping duplicate evidence from `scores.json` (about 2,000 lines); I fixed Mosaic's grammar but chose not to rewrite every action.
+- **Lesson:** Check each visual change on the real page and be willing to undo it. Several of these ideas looked right until I saw them, and the undos were as useful as the changes.
 
 ---
 
