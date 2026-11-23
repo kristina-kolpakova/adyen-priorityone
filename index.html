@@ -974,6 +974,26 @@
     .retry svg { width: 18px; height: 18px; }
     .retry:disabled { cursor: default; border-color: var(--border); color: #9fb3ad; }
 
+    /* After a successful sync: the confirmation and a link back, where Retry sync was. */
+    .sync-confirmed {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 10px;
+      min-height: 38px;
+      font-size: 14px;
+      color: #2f6f4c;
+    }
+
+    .sync-confirmed .link-button {
+      color: #3a7f8a;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .sync-confirmed .link-button:hover { text-decoration: underline; text-underline-offset: 3px; }
+
     /* While a retry runs, the button keeps its color and the icon spins. */
     .retry.syncing:disabled { border-color: #a9cfc6; color: #2f6b5e; }
     .retry.syncing svg,
@@ -2109,8 +2129,16 @@
         // Only Gong's sync can fail in the simulation, so only its card has the button.
         let retry = "";
         if (key === "gong") {
-          const retryLabel = gongSyncing ? "Syncing…" : (stale ? "Retry sync" : "Synced");
-          retry = `<button class="retry ${gongSyncing ? "syncing" : ""}" ${stale && !gongSyncing ? "" : "disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>${retryLabel}</button>`;
+          const retryLabel = gongSyncing ? "Syncing…" : "Retry sync";
+          retry = `<button class="retry ${gongSyncing ? "syncing" : ""}" ${gongSyncing ? "disabled" : ""}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>${retryLabel}</button>`;
+          // Once the sync succeeds, a short confirmation takes the button's place, with a way back.
+          if (!stale && !gongSyncing) {
+            retry = `
+              <div class="sync-confirmed">
+                <span>✓ Gong is up to date</span>
+                <button class="link-button back-to-overview">← Back to Overview</button>
+              </div>`;
+          }
         }
 
         // Every score is built on Salesforce, so its card names all accounts instead of listing them.
@@ -2229,6 +2257,10 @@
           return candidate.account_name === row.dataset.account;
         });
         showDetails(account);
+      }
+      if (event.target.closest(".back-to-overview")) {
+        document.querySelector('.nav-item[data-view="overview"]').click();
+        return;
       }
       if (event.target.closest(".affected-toggle")) {
         showAffected = !showAffected;
