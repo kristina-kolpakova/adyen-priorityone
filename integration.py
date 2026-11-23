@@ -55,8 +55,11 @@ df["ValueScore"] = (
 
 # --- Timing Score ---
 
-# Score as of the date the mock data was pulled, so results don't change day to day.
-reference_date = pd.Timestamp("2026-11-25")
+# Score as of the last sync: the latest activity logged in Salesforce or Gong.
+# The data sets the date, so results don't change day to day.
+latest_activity = pd.to_datetime(df["LastActivityDate"]).max()
+latest_call = pd.to_datetime(gong_key_points["started"], utc=True).dt.tz_localize(None).max()
+reference_date = max(latest_activity, latest_call).normalize()
 
 # Convert the CloseDate column from text into datetime values.
 df["CloseDate"] = pd.to_datetime(df["CloseDate"])
@@ -562,3 +565,9 @@ for call_id, call in gong_key_points.groupby("id", sort=False):
 
 with open("data/gong_calls.json", "w") as file:
     json.dump(calls_for_ui, file, indent=2)
+
+# --- Sync Date for the UI ---
+
+# The page labels its data with this date and measures "x days ago" from it.
+with open("data/sync.json", "w") as file:
+    json.dump({"synced": reference_date.strftime("%Y-%m-%d")}, file, indent=2)

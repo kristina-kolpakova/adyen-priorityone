@@ -674,7 +674,7 @@
       <span class="brand-mark">◇</span>
       PriorityOne
     </div>
-    <div class="header-meta">Portfolio overview &nbsp;·&nbsp; This week</div>
+    <div class="header-meta">Portfolio overview &nbsp;·&nbsp; <span id="synced-label">This week</span></div>
   </header>
 
   <div class="workspace">
@@ -760,9 +760,8 @@
     });
     const shortDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
 
-    // Name today's weekday in the briefing heading.
-    const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(new Date());
-    document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
+    // The date of the last Salesforce and Gong sync; every "x days ago" counts from it.
+    let referenceDate = "";
 
     // Every account in ranked order, so a click can find the right one.
     let rankedAccounts = [];
@@ -798,6 +797,18 @@
         opportunityScores = await opportunityResponse.json();
 
         // Next actions are optional: without them the page falls back to Salesforce's next step.
+        // Label the page with the sync date, and name its weekday in the briefing heading.
+        const syncResponse = await fetch("data/sync.json", { cache: "no-cache" });
+        if (!syncResponse.ok) {
+          throw new Error(syncResponse.statusText);
+        }
+        referenceDate = (await syncResponse.json()).synced;
+        const syncDay = new Date(referenceDate + "T12:00:00");
+        const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(syncDay);
+        const fullDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(syncDay);
+        document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
+        document.getElementById("synced-label").textContent = `Data synced ${fullDate}`;
+
         const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
         if (actionsResponse.ok) {
           nextActions = await actionsResponse.json();
@@ -831,21 +842,20 @@
     // Show the top 10 on the Overview tab, or every account on the Accounts tab.
     function renderList() {
       const showAll = currentView === "accounts";
-      // Both tabs use the AM's order for the top 10; the Accounts tab adds #11 onwards by score.
-      const topTen = topTenInAmOrder();
-      const accountsToShow = showAll ? topTen.concat(rankedAccounts.slice(10)) : topTen;
-      const amChangedOrder = topTen.some(function (account, index) {
+      // Both tabs use the AM's order: the Overview shows its first 10, the Accounts tab all of it.
+      const allInOrder = accountsInAmOrder();
+      const accountsToShow = showAll ? allInOrder : allInOrder.slice(0, 10);
+      const amChangedOrder = allInOrder.some(function (account, index) {
         return account.rank !== index + 1;
       });
 
       document.getElementById("overview-intro").hidden = showAll;
       document.getElementById("accounts-intro").hidden = !showAll;
       document.getElementById("list-title").textContent = showAll ? "All accounts" : "Your top priorities";
-      document.getElementById("list-meta").innerHTML = showAll
-        ? `${rankedAccounts.length} accounts · ${amChangedOrder ? "top 10 in your order" : "ranked by priority score"}`
-        : amChangedOrder
-          ? `Your order · <button class="link-button" id="reset-order">Reset to priority score</button>`
-          : "Ranked by priority score · drag to reorder";
+      const countText = showAll ? `${rankedAccounts.length} accounts · ` : "";
+      document.getElementById("list-meta").innerHTML = amChangedOrder
+        ? `${countText}Your order · <button class="link-button" id="reset-order">Reset to priority score</button>`
+        : `${countText}Ranked by priority score · drag to reorder`;
 
       let rows = "";
       for (const [index, account] of accountsToShow.entries()) {
@@ -884,25 +894,21 @@
       }
       document.getElementById("account-list").innerHTML = rows;
 
-      // Only the Overview's top 10 can be reordered; the Accounts tab keeps the score order.
+      // Either tab can be reordered by dragging.
       if (sortableList) {
         sortableList.destroy();
-        sortableList = null;
       }
-      if (!showAll) {
-        sortableList = Sortable.create(document.getElementById("account-list"), {
-          animation: 150,
-          delayOnTouchOnly: true,
-          delay: 150,
-          onEnd: recordMove
-        });
-      }
+      sortableList = Sortable.create(document.getElementById("account-list"), {
+        animation: 150,
+        delayOnTouchOnly: true,
+        delay: 150,
+        onEnd: recordMove
+      });
     }
 
     // ---- AM feedback: drag an account to the rank it deserves ----
 
     const reasonChips = ["Deal stalled", "Close date off", "Concern resolved", "Missing context"];
-    const referenceDate = "2026-11-25";  // Snapshot date used by integration.py.
     let sortableList = null;
     let feedbackTimer = null;
 
@@ -928,18 +934,17 @@
     let amMoved = loadSaved("priorityone-moved", []);  // Accounts the AM dragged themselves.
     let feedbackLog = loadSaved("priorityone-feedback", []);
 
-    // The top 10 in the AM's order, or the score order if they haven't moved anything
-    // (or if the top 10 has changed since they did).
-    function topTenInAmOrder() {
-      const topTen = rankedAccounts.slice(0, 10);
-      const sameAccounts = amOrder.length === topTen.length && topTen.every(function (account) {
+    // Every account in the AM's order, or the score order if they haven't moved anything
+    // (or if the accounts have changed since they did).
+    function accountsInAmOrder() {
+      const sameAccounts = amOrder.length === rankedAccounts.length && rankedAccounts.every(function (account) {
         return amOrder.includes(account.account_name);
       });
       if (!sameAccounts) {
-        return topTen;
+        return rankedAccounts;
       }
       return amOrder.map(function (name) {
-        return topTen.find(function (account) { return account.account_name === name; });
+        return rankedAccounts.find(function (account) { return account.account_name === name; });
       });
     }
 
@@ -948,10 +953,14 @@
       if (event.oldIndex === event.newIndex) {
         return;
       }
-      const previousOrder = topTenInAmOrder().map(function (account) { return account.account_name; });
-      const newOrder = Array.from(document.querySelectorAll("#account-list .account")).map(function (row) {
+      const previousOrder = accountsInAmOrder().map(function (account) { return account.account_name; });
+
+      // The dragged list is the start of the full order (the top 10, or all of it);
+      // anything below it keeps its place.
+      const draggedList = Array.from(document.querySelectorAll("#account-list .account")).map(function (row) {
         return row.dataset.account;
       });
+      const newOrder = draggedList.concat(previousOrder.slice(draggedList.length));
       const movedName = newOrder[event.newIndex];
       const account = rankedAccounts.find(function (item) { return item.account_name === movedName; });
       const topDeal = opportunityScores.find(function (opportunity) {
@@ -1364,9 +1373,9 @@
         .map(function (opportunity) { return opportunity.final_score; })
         .join(", ");
 
-      // Show the AM's rank if they've dragged the top 10, and the score's rank if it differs.
-      const amRank = topTenInAmOrder().indexOf(account) + 1;
-      const rankText = amRank > 0 && amRank !== account.rank
+      // Show the AM's rank if they've reordered, and the score's rank if it differs.
+      const amRank = accountsInAmOrder().indexOf(account) + 1;
+      const rankText = amRank !== account.rank
         ? `Your rank #${amRank} · #${account.rank} by score`
         : `Rank #${account.rank}`;
 
@@ -1438,7 +1447,7 @@
         content.innerHTML = `
           <span class="evidence-bubble gong">Gong</span>
           <h3 class="call-title">${accountName} call</h3>
-          <div class="call-meta">${when}, ${time} · ${daysBefore} ${daysBefore === 1 ? "day" : "days"} before ${shortDate.format(new Date(referenceDate + "T12:00:00"))}</div>
+          <div class="call-meta">${when}, ${time} · ${daysBefore} ${daysBefore === 1 ? "day" : "days"} ago</div>
           <div class="call-label">Summary</div>
           <p class="call-brief">${call.brief}</p>
           <div class="call-label">Key points</div>
