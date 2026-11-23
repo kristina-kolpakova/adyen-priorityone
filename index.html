@@ -51,7 +51,83 @@
     .header-meta {
       color: #aeb9c3;
       font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
+
+    /* Notifications: a bell with a dot while a source is stale, and a small menu below it. */
+    .notifications { position: relative; }
+
+    .bell {
+      position: relative;
+      display: flex;
+      padding: 6px;
+      border: 0;
+      border-radius: 8px;
+      background: none;
+      color: #e4e9ee;
+      cursor: pointer;
+    }
+
+    .bell:hover { background: rgba(255, 255, 255, 0.08); }
+    .bell svg { width: 20px; height: 20px; }
+
+    .bell-dot {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      border: 2px solid #111a23;
+    }
+
+    .notif-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      z-index: 20;
+      width: 300px;
+      padding: 14px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(17, 26, 35, 0.12);
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .notif-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .notif-item svg {
+      flex: none;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      color: #5b6aa0;
+    }
+
+    .notif-title { font-weight: 600; }
+    .notif-detail { color: var(--muted); margin: 2px 0 10px; }
+
+    .notif-link {
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: #fff;
+      color: #225c46;
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .notif-empty { color: var(--muted); }
 
     .workspace {
       display: grid;
@@ -657,6 +733,191 @@
     .points.not-counted { background: #eef0f2; color: #5c6670; font-weight: 600; }
     .detail-opportunities { margin-bottom: 24px; }
 
+    /* Data health: one card per source, with its recent syncs and the accounts that depend on it. */
+    .nav-item[data-view="health"] {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-sync { display: flex; color: #4a7d6a; }
+    .nav-sync svg { width: 18px; height: 18px; }
+    .nav-sync[hidden] { display: none; }
+
+    .connectors {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Same colors as the deal cards: green-tinted borders, and mint for the card that needs attention. */
+    .connector {
+      background: #fff;
+      border: 1px solid #e2ece6;
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .connector.needs-sync { border-color: #a9d3bd; }
+
+    .connector-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .source {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -0.3px;
+    }
+
+    .source-tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+    }
+
+    .source-tile svg { width: 22px; height: 22px; }
+
+    .salesforce .source-tile { background: #f6e6e8; color: #a8646b; }
+    .gong .source-tile { background: #e6eaf8; color: #5b6aa0; }
+
+    /* Fresh matches the green score pill; Stale matches the grey "not counted" pill. */
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #e2f1e8;
+      color: #2f6f4c;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status.stale {
+      background: #eef0f2;
+      color: #5c6670;
+      font-weight: 600;
+    }
+
+    .status svg { width: 16px; height: 16px; }
+
+    .sync-strip {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .sync {
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    .salesforce .sync { background: #eedcdf; }
+    .salesforce .sync.latest { background: #b07a7d; }
+    .gong .sync { background: #dde3f5; }
+    .gong .sync.latest { background: #6a76a8; }
+    .gong .sync.failed { background: #fff; border: 1.5px solid #5b6aa0; color: #5b6aa0; }
+
+    .synced-at {
+      border-top: 1px solid #e2ece6;
+      padding-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .affected {
+      border-top: 1px solid #e2ece6;
+      margin-top: 18px;
+      padding-top: 14px;
+      font-size: 13px;
+    }
+
+    .affected-toggle {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: none;
+      font: inherit;
+      color: #3a7f8a;
+      cursor: pointer;
+    }
+
+    .affected-toggle:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .affected-list {
+      margin-top: 14px;
+      padding: 6px;
+      border: 1px solid #e2ece6;
+      border-radius: 10px;
+      background: #f6fbf8;
+    }
+
+    .affected-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 8px 10px;
+      border: 0;
+      border-radius: 6px;
+      background: none;
+      font: inherit;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .affected-row:hover { background: #eef7f2; }
+    .affected-points {
+      padding: 1px 7px;
+      border-radius: 6px;
+      background: #EDF1FF;
+      color: #6476A8;
+      font-size: 12px;
+    }
+
+    .retry {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 9px 16px;
+      border: 1px solid #a9d3bd;
+      border-radius: 8px;
+      background: #fff;
+      color: #2f6f4c;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .retry svg { width: 18px; height: 18px; }
+    .retry:disabled { cursor: default; border-color: var(--border); color: #9fb3ad; }
+
+    @media (max-width: 800px) {
+      .connectors { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 800px) {
       header { padding: 0 24px; }
       .workspace { grid-template-columns: 1fr; }
@@ -675,7 +936,16 @@
       <span class="brand-mark">◇</span>
       PriorityOne
     </div>
-    <div class="header-meta">Portfolio overview &nbsp;·&nbsp; <span id="synced-label">This week</span></div>
+    <div class="header-meta">
+      <span id="synced-label">This week</span>
+      <div class="notifications">
+        <button class="bell" id="bell" aria-label="Notifications" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span class="bell-dot" id="bell-dot" hidden></span>
+        </button>
+        <div class="notif-menu" id="notif-menu" hidden></div>
+      </div>
+    </div>
   </header>
 
   <div class="workspace">
@@ -685,9 +955,18 @@
       <div class="nav-item" data-view="accounts">Accounts</div>
       <div class="nav-item">Signals</div>
       <div class="nav-item">Activity</div>
+      <div class="nav-item" data-view="health">Data health <span class="nav-sync" id="health-dot" title="A source needs a sync"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg></span></div>
     </aside>
 
     <main>
+      <!-- Data health: is each source syncing, and which accounts depend on it. -->
+      <div id="health-view" hidden>
+        <h1>Data health</h1>
+        <p class="subtitle" id="health-status">Simulated outage</p>
+        <div class="connectors" id="connectors"></div>
+      </div>
+
+      <div id="list-view">
       <!-- Overview: this week's briefing. -->
       <div id="overview-intro">
         <div class="eyebrow" id="briefing-day">Morning briefing</div>
@@ -725,6 +1004,7 @@
       </div>
 
       <div id="account-list"></div>
+      </div>
 
       <p class="footer-note">
         Prototype · Fictional account data · Scores generated by integration.py
@@ -798,7 +1078,7 @@
         opportunityScores = await opportunityResponse.json();
 
         // Next actions are optional: without them the page falls back to Salesforce's next step.
-        // Label the page with the sync date, and name its weekday in the briefing heading.
+        // Name the sync day's weekday in the briefing heading; the header's last sync is set in renderNotifications.
         const syncResponse = await fetch("data/sync.json", { cache: "no-cache" });
         if (!syncResponse.ok) {
           throw new Error(syncResponse.statusText);
@@ -806,9 +1086,7 @@
         referenceDate = (await syncResponse.json()).synced;
         const syncDay = new Date(referenceDate + "T12:00:00");
         const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(syncDay);
-        const fullDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(syncDay);
         document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
-        document.getElementById("synced-label").textContent = `Data synced ${fullDate}`;
 
         const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
         if (actionsResponse.ok) {
@@ -832,6 +1110,7 @@
           `${urgentCount} accounts scoring 90 or more deserve your attention.`;
 
         renderList();
+        renderNotifications();
       } catch (error) {
         list.innerHTML = `
           <p class="account-signal">
@@ -1517,15 +1796,191 @@
       }
     });
 
-    // Switch between the Overview and Accounts tabs.
+    // Connector status is simulated: the prototype has no live sync, so Gong starts with a failed
+    // sync to show how a stale source looks. Syncs are oldest first; true = succeeded.
+    const connectors = {
+      salesforce: {
+        name: "Salesforce",
+        syncs: [true, true, true, true, true, true, true],
+        lastSynced: "6:00 p.m."
+      },
+      gong: {
+        name: "Gong",
+        syncs: [true, true, true, true, true, true, false],
+        lastSynced: "2:00 p.m."
+      }
+    };
+
+    // Whether the Gong card's account list is open; kept across redraws.
+    let showAffected = false;
+
+    const sourceIcons = {
+      salesforce: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9z"/></svg>`,
+      gong: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg>`
+    };
+
+    // Draw one card per source. A source is stale when its latest sync failed; the Gong card
+    // lists the accounts whose scores include Gong points, since those depend on it.
+    function renderHealth() {
+      const syncDay = shortDate.format(new Date(referenceDate + "T12:00:00"));
+      const gongStale = !connectors.gong.syncs[connectors.gong.syncs.length - 1];
+      document.getElementById("health-status").textContent = gongStale ? "Simulated outage" : "Simulated recovery";
+      document.getElementById("health-dot").hidden = !gongStale;
+
+      // Listed in the AM's order, the same as the Overview and Accounts tabs.
+      const gongAccounts = accountsInAmOrder().filter(function (account) {
+        return account.gong_bonus > 0;
+      });
+
+      document.getElementById("connectors").innerHTML = Object.keys(connectors).map(function (key) {
+        const connector = connectors[key];
+        const stale = !connector.syncs[connector.syncs.length - 1];
+        const lastIndex = connector.syncs.length - 1;
+
+        const squares = connector.syncs.map(function (succeeded, index) {
+          if (!succeeded) {
+            return `<div class="sync failed" title="Sync failed">✕</div>`;
+          }
+          return `<div class="sync ${index === lastIndex ? "latest" : ""}" title="Synced"></div>`;
+        }).join("");
+
+        const status = stale
+          ? `<span class="status stale"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Stale</span>`
+          : `<span class="status">✓ Fresh</span>`;
+        const syncedText = connector.lastSynced === "just now"
+          ? "Last synced just now"
+          : `Last synced ${syncDay}, ${connector.lastSynced}`;
+
+        // Only Gong's sync can fail in the simulation, so only its card has the button.
+        let retry = "";
+        if (key === "gong") {
+          retry = `<button class="retry" ${stale ? "" : "disabled"}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>${stale ? "Retry sync" : "Synced"}</button>`;
+        }
+
+        // Every score is built on Salesforce, so its card names all accounts instead of listing them.
+        let affected = "";
+        if (key === "salesforce") {
+          affected = `<div class="affected">All ${rankedAccounts.length} accounts' scores are built on Salesforce data.</div>`;
+        }
+        if (key === "gong") {
+          const rows = gongAccounts.map(function (account) {
+            const points = account.gong_bonus === 1 ? "+1 pt" : `+${account.gong_bonus} pts`;
+            return `
+              <button class="affected-row" data-account="${account.account_name}">
+                <span>${account.account_name}</span>
+                <span class="affected-points">${points}</span>
+              </button>`;
+          }).join("");
+          const summary = stale
+            ? `View ${gongAccounts.length} affected accounts`
+            : `View ${gongAccounts.length} accounts using Gong points`;
+          // The list opens below its toggle, so Retry sync above it never moves.
+          affected = `
+            <div class="affected">
+              <button class="affected-toggle">${showAffected ? "▾" : "▸"} ${summary}</button>
+              <div class="affected-list" ${showAffected ? "" : "hidden"}>${rows}</div>
+            </div>`;
+        }
+
+        return `
+          <section class="connector ${key} ${stale ? "needs-sync" : ""}">
+            <div class="connector-head">
+              <span class="source"><span class="source-tile">${sourceIcons[key]}</span>${connector.name}</span>
+              ${status}
+            </div>
+            <div class="sync-strip" title="Last 7 syncs">${squares}</div>
+            <div class="synced-at">${syncedText}</div>
+            ${retry}
+            ${affected}
+          </section>`;
+      }).join("");
+    }
+
+    // The bell shows a dot while Gong is stale; its menu says what's affected and links to Data health.
+    function renderNotifications() {
+      const gongStale = !connectors.gong.syncs[connectors.gong.syncs.length - 1];
+      const gongAccountCount = rankedAccounts.filter(function (account) {
+        return account.gong_bonus > 0;
+      }).length;
+
+      document.getElementById("bell-dot").hidden = !gongStale;
+
+      // The header shows the latest successful sync: "just now" after a retry, otherwise Salesforce's.
+      const syncDay = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" })
+        .format(new Date(referenceDate + "T12:00:00"));
+      document.getElementById("synced-label").textContent = connectors.gong.lastSynced === "just now"
+        ? "Last sync just now"
+        : `Last sync ${connectors.salesforce.lastSynced} · ${syncDay}`;
+      document.getElementById("notif-menu").innerHTML = gongStale
+        ? `<div class="notif-item">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>
+             <div>
+               <div class="notif-title">Gong stopped syncing</div>
+               <div class="notif-detail">Last sync ${connectors.gong.lastSynced} · ${gongAccountCount} accounts use Gong points</div>
+               <button class="notif-link" id="notif-health">View data health</button>
+             </div>
+           </div>`
+        : `<div class="notif-empty">All sources synced.</div>`;
+    }
+
+    // The bell opens and closes its menu; a click elsewhere closes it.
+    function closeNotifications() {
+      document.getElementById("notif-menu").hidden = true;
+      document.getElementById("bell").setAttribute("aria-expanded", "false");
+    }
+
+    document.getElementById("bell").addEventListener("click", function (event) {
+      event.stopPropagation();
+      const menu = document.getElementById("notif-menu");
+      menu.hidden = !menu.hidden;
+      document.getElementById("bell").setAttribute("aria-expanded", String(!menu.hidden));
+    });
+    document.getElementById("notif-menu").addEventListener("click", function (event) {
+      event.stopPropagation();
+      if (event.target.closest("#notif-health")) {
+        closeNotifications();
+        document.querySelector('.nav-item[data-view="health"]').click();
+      }
+    });
+    document.addEventListener("click", closeNotifications);
+
+    // Switch between the Overview, Accounts and Data health tabs.
     document.querySelectorAll(".nav-item[data-view]").forEach(function (item) {
       item.addEventListener("click", function () {
         document.querySelector(".nav-item.active").classList.remove("active");
         item.classList.add("active");
         currentView = item.dataset.view;
-        renderList();
+        const showHealth = currentView === "health";
+        document.getElementById("list-view").hidden = showHealth;
+        document.getElementById("health-view").hidden = !showHealth;
+        if (showHealth) {
+          renderHealth();
+        } else {
+          renderList();
+        }
         window.scrollTo(0, 0);
       });
+    });
+
+    // An affected account opens its detail panel; Retry sync simulates Gong recovering.
+    document.getElementById("connectors").addEventListener("click", function (event) {
+      const row = event.target.closest(".affected-row");
+      if (row) {
+        const account = rankedAccounts.find(function (candidate) {
+          return candidate.account_name === row.dataset.account;
+        });
+        showDetails(account);
+      }
+      if (event.target.closest(".affected-toggle")) {
+        showAffected = !showAffected;
+        renderHealth();
+      }
+      if (event.target.closest(".retry")) {
+        connectors.gong.syncs = connectors.gong.syncs.slice(1).concat([true]);
+        connectors.gong.lastSynced = "just now";
+        renderHealth();
+        renderNotifications();
+      }
     });
 
     // Close it with the × button, a click outside, or the Escape key.
@@ -1534,6 +1989,7 @@
     document.addEventListener("keydown", function (event) {
       // Escape closes the call panel first, then the detail panel.
       if (event.key === "Escape") {
+        closeNotifications();
         if (!document.getElementById("call-backdrop").hidden) {
           closeCall();
         } else {
