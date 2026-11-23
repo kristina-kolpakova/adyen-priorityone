@@ -202,26 +202,64 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      margin-bottom: 48px;
+      margin-bottom: 30px;
     }
 
+    /* Short cards, with their contents centered vertically. */
     .metric {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 24px;
+      padding: 16px 20px;
     }
+
+    .metric[hidden] { display: none; }
 
     .metric-value {
       font-size: 34px;
       font-weight: 650;
       letter-spacing: -1.5px;
-      margin-bottom: 8px;
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
     .metric-label {
       font-size: 12px;
       color: var(--muted);
+    }
+
+    /* The Monday email card: the envelope, then the title and label as one block, centered. */
+    .metric-email {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      border-color: #a9d3bd;
+      font: inherit;
+      text-align: left;
+      color: inherit;
+      cursor: pointer;
+      transition: border-color 120ms ease;
+    }
+
+    .metric-email:hover { border-color: #7fbf9e; }
+    .metric-email:hover .metric-label { color: #3a7f8a; }
+
+    .metric-email svg { flex: none; width: 22px; height: 22px; color: #2f6f4c; }
+
+    .metric-email-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .metric-email-title {
+      color: #2f6f4c;
+      font-size: 18px;
+      font-weight: 650;
     }
 
     .section-heading {
@@ -510,7 +548,7 @@
     }
 
     .chip-renewal { background: #dcefe3; color: #3f7d5c; }
-    .chip-upsell-new { background: #dceef0; color: #3a7f8a; }
+    .chip-upsell-new { background: #d9f0ec; color: #2e8077; }
 
     .detail-explanation {
       color: var(--ink);
@@ -622,7 +660,7 @@
     .next-action-reason { font-size: 13px; color: var(--muted); line-height: 1.5; }
     .next-action-empty { font-size: 13px; color: var(--muted); }
 
-    /* A Salesforce-rose chip with a cloud icon, beside View evidence, so it's clear where the task goes. */
+    /* A muted Salesforce-blue chip with a cloud icon, beside View evidence, so it's clear where the task goes. */
     .log-task {
       display: inline-flex;
       align-items: center;
@@ -631,8 +669,8 @@
       padding: 2px 9px;
       border: 0;
       border-radius: 999px;
-      background: #f6ecec;
-      color: #a8646b;
+      background: #e3eff7;
+      color: #3d7fb0;
       font: inherit;
       font-size: 12px;
       font-weight: 400;
@@ -641,7 +679,7 @@
     }
 
     .log-task svg { width: 13px; height: 13px; }
-    .log-task:hover { background: #f0dfe0; }
+    .log-task:hover { background: #d6e7f2; }
     .log-task.logged { cursor: default; }
 
     .evidence summary {
@@ -704,7 +742,7 @@
     .opportunity-type { font-size: 12px; margin-bottom: 4px; }
     .opportunity-type::before { content: "● "; }
     .opportunity-type.renewal { color: #3f7d5c; }
-    .opportunity-type.upsell-new { color: #3a7f8a; }
+    .opportunity-type.upsell-new { color: #2e8077; }
 
     .flag-tag {
       display: inline-block;
@@ -954,6 +992,46 @@
       .connectors { grid-template-columns: 1fr; }
     }
 
+    /* Monday email preview, in the drawer: numbered entries divided by rules. */
+    .email-date { margin: 4px 0 20px; color: var(--muted); font-size: 14px; }
+
+    .email-entry {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 8px;
+      padding: 16px 0;
+      border-top: 1px solid #d9e8df;
+    }
+
+    .email-entry:last-child { border-bottom: 1px solid #d9e8df; }
+
+    /* Numbered like the list's rank: small, grey, tabular. */
+    .email-number {
+      padding-top: 3px;
+      color: #a6aeb6;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .email-name {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .email-name .flag-tag { margin-left: 0; }
+    .email-deal { margin-top: 4px; color: var(--muted); font-size: 13px; }
+
+    .email-action {
+      margin-top: 6px;
+      color: #3d4852;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
     @media (max-width: 800px) {
       header { padding: 0 24px; }
       .workspace { grid-template-columns: 1fr; }
@@ -1014,6 +1092,14 @@
             <div class="metric-value" id="attention-count">–</div>
             <div class="metric-label">Priority accounts</div>
           </div>
+          <!-- The Monday email lists these priority accounts, so its preview sits beside the count. -->
+          <button class="metric metric-email" id="preview-email-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span class="metric-email-text">
+              <span class="metric-email-title">Weekly digest</span>
+              <span class="metric-label">Preview email →</span>
+            </span>
+          </button>
           <!-- Hidden until revenue risks are calculated. -->
           <div class="metric" hidden>
             <div class="metric-value">02</div>
@@ -1159,6 +1245,21 @@
       }
     }
 
+    // The top deal in one line, as the list and the Monday email show it:
+    // "Renewal · €1.5M · Negotiation · closes in 6 days". The drawer shows the close date instead.
+    function topDealLine(account) {
+      const days = account.top_days_to_close;
+      let timing;
+      if (days < 0) {
+        timing = `<span class="overdue">overdue</span> by ${-days} ${-days === 1 ? "day" : "days"}`;
+      } else if (days === 0) {
+        timing = "closes today";
+      } else {
+        timing = `closes in ${days} ${days === 1 ? "day" : "days"}`;
+      }
+      return `${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>`;
+    }
+
     // Show the top 10 on the Overview tab, or every account on the Accounts tab.
     function renderList() {
       const showAll = currentView === "accounts";
@@ -1179,17 +1280,6 @@
 
       let rows = "";
       for (const [index, account] of accountsToShow.entries()) {
-        // In the list, show how far away the close is; the panel shows the date.
-        const days = account.top_days_to_close;
-        let timing;
-        if (days < 0) {
-          timing = `<span class="overdue">overdue</span> by ${-days} ${-days === 1 ? "day" : "days"}`;
-        } else if (days === 0) {
-          timing = "closes today";
-        } else {
-          timing = `closes in ${days} ${days === 1 ? "day" : "days"}`;
-        }
-
         // Note where the score put an account the AM has dragged.
         const movedNote = amMoved.includes(account.account_name) && account.rank !== index + 1
           ? `<span class="moved-note">was #${account.rank}</span>`
@@ -1206,8 +1296,9 @@
                 )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}
               </div>
               <div class="account-signal">
-                ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
-              </div>            </div>
+                ${topDealLine(account)}
+              </div>
+            </div>
             <span class="score">${Math.round(account.account_score)}</span>
             <span class="arrow">›</span>
           </div>`;
@@ -1254,12 +1345,18 @@
     let amMoved = loadSaved("priorityone-moved", []);  // Accounts the AM dragged themselves.
     let feedbackLog = loadSaved("priorityone-feedback", []);
 
-    // Save the feedback log, and show the download link only once there is something to download.
+    // Show the download link only on the tabs where AMs can drag (Overview and Accounts),
+    // and only once there is something to download.
+    function updateDownloadLink() {
+      const canDrag = currentView === "overview" || currentView === "accounts";
+      document.getElementById("download-feedback-link").hidden = !canDrag || feedbackLog.length === 0;
+    }
+
     function saveFeedback() {
       save("priorityone-feedback", feedbackLog);
-      document.getElementById("download-feedback-link").hidden = feedbackLog.length === 0;
+      updateDownloadLink();
     }
-    document.getElementById("download-feedback-link").hidden = feedbackLog.length === 0;
+    updateDownloadLink();
 
     // Every account in the AM's order, or the score order if they haven't moved anything
     // (or if the accounts have changed since they did).
@@ -1847,6 +1944,46 @@
       document.getElementById("call-backdrop").hidden = true;
     }
 
+    // The Monday email, previewed in the drawer: the date and every priority account (score 90
+    // or more, the same accounts the Overview counts), in Overview order and numbered by their
+    // place in the list, each with its flags, top deal and next action. It ends after the last one.
+    function showMondayEmail() {
+      const syncDay = new Date(referenceDate + "T12:00:00");
+      const emailDate = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(syncDay);
+
+      const entries = accountsInAmOrder().map(function (account, index) {
+        if (account.account_score < 90) {
+          return "";
+        }
+        const next = nextActions[account.top_opportunity_id] || {};
+        const action = next.action || "No next step recorded";
+        const actionText = action.endsWith(".") ? action : `${action}.`;
+        return `
+          <div class="email-entry">
+            <span class="email-number">${String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <div class="email-name">${account.account_name}${flagTags(
+                account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
+                account.top_stale_near_close, account.top_stale_commit, account.top_early_commit
+              )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}</div>
+              <div class="email-deal">${topDealLine(account)}</div>
+              <div class="email-action">${actionText}</div>
+            </div>
+          </div>`;
+      }).join("");
+
+      document.getElementById("detail-content").innerHTML = `
+        <div class="eyebrow">Preview</div>
+        <h2 class="detail-name">Monday email</h2>
+        <p class="email-date">${emailDate}</p>
+        ${entries}`;
+
+      document.getElementById("detail-panel").hidden = false;
+      document.getElementById("detail-backdrop").hidden = false;
+    }
+
+    document.getElementById("preview-email-card").addEventListener("click", showMondayEmail);
+
     function closeDetails() {
       document.getElementById("detail-panel").hidden = true;
       document.getElementById("detail-backdrop").hidden = true;
@@ -2072,6 +2209,7 @@
         const showHealth = currentView === "health";
         document.getElementById("list-view").hidden = showHealth;
         document.getElementById("health-view").hidden = !showHealth;
+        updateDownloadLink();
         if (showHealth) {
           renderHealth();
         } else {
