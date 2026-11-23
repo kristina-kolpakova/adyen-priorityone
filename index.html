@@ -337,7 +337,7 @@
       line-height: 1.5;
     }
 
-    .call-point.cited { border-color: #b9c7ec; background: #f5f7ff; }
+    .call-point.opened { border-color: #b9c7ec; background: #f5f7ff; }
 
     .call-point-head {
       display: flex;
@@ -1142,11 +1142,12 @@
       let items = "";
       let bonusShown = false;
       for (const source of next.sources) {
-        // Gong evidence opens its call in the app; the cited key point (and bonus, if it earned one) is marked.
+        // Gong evidence opens its call in the app, marking the key point it was opened from
+        // and the one that earned the Gong bonus.
         const callId = source.url ? source.id.split("-")[0] : "";
         const bonusData = signal ? `data-bonus-id="${signal.evidenceId}" data-bonus-points="${signal.points}"` : "";
         const link = callId
-          ? ` · <a href="#" class="open-call" data-call="${callId}" data-cited="${source.id}" ${bonusData}>Open call</a>`
+          ? ` · <a href="#" class="open-call" data-call="${callId}" data-opened="${source.id}" ${bonusData}>Open call</a>`
           : "";
         let bonus = "";
         if (signal && source.id === signal.evidenceId) {
@@ -1426,16 +1427,14 @@
         const time = call.started.slice(11, 16);
         const accountName = document.querySelector("#detail-content .detail-name").textContent;
 
+        // The key point opened from is outlined; the one that earned the Gong bonus shows its points.
         let points = "";
         for (const point of call.key_points) {
-          const cited = point.evidence_id === link.dataset.cited;
+          const opened = point.evidence_id === link.dataset.opened;
           const tagClass = point.category === "Context" ? "context-tag" : "gong-tag";
-          let note = cited ? "cited" : "";
-          if (point.evidence_id === link.dataset.bonusId) {
-            note = `${cited ? "cited · " : ""}+${link.dataset.bonusPoints} pts`;
-          }
+          const note = point.evidence_id === link.dataset.bonusId ? `+${link.dataset.bonusPoints} pts` : "";
           points += `
-            <div class="call-point${cited ? " cited" : ""}">
+            <div class="call-point${opened ? " opened" : ""}">
               <div class="call-point-head">
                 <span class="flag-tag ${tagClass}">${point.category}</span>
                 ${note ? `<span class="call-point-note">${note}</span>` : ""}
