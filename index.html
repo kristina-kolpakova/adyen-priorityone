@@ -231,7 +231,7 @@
       color: var(--muted);
     }
 
-    /* The Monday email card: the envelope, then the title and label as one block, centered. */
+    /* The weekly digest card: the envelope, then the title and label as one block, centered. */
     .metric-email {
       flex-direction: row;
       align-items: center;
@@ -300,7 +300,7 @@
       transform: translateY(-1px);
     }
 
-    /* On the Overview, accounts scoring 90 or more get a mint border. */
+    /* On the Overview, priority accounts (PRIORITY_THRESHOLD or more) get a mint border. */
     .account.priority { border-color: #a9d3bd; }
     .account.priority:hover { border-color: #7fbf9e; }
     .rank {
@@ -1148,7 +1148,7 @@
       .connector.salesforce, .connector.slack, .connector.gong { grid-column: auto; grid-row: auto; }
     }
 
-    /* Monday email preview, in the drawer: numbered entries divided by rules. */
+    /* Weekly digest preview, in the drawer: numbered entries divided by rules. */
     .email-date { margin: 4px 0 20px; color: var(--muted); font-size: 14px; }
 
     .email-entry {
@@ -1180,6 +1180,20 @@
 
     .email-name .flag-tag { margin-left: 0; }
     .email-deal { margin-top: 4px; color: var(--muted); font-size: 13px; }
+
+    /* An AM's moved account: "was #1" under the number, and their note under the next action. */
+    .email-number .moved-note { display: block; }
+
+    .email-note {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      color: #8a939b;
+      font-size: 12px;
+    }
+
+    .email-note svg { flex: none; width: 13px; height: 13px; }
 
     .email-action {
       margin-top: 6px;
@@ -1221,10 +1235,8 @@
   <div class="workspace">
     <aside>
       <div class="nav-label">Workspace</div>
-      <div class="nav-item active" data-view="overview">Overview</div>
-      <div class="nav-item" data-view="accounts">Accounts</div>
-      <div class="nav-item">Signals</div>
-      <div class="nav-item">Activity</div>
+      <div class="nav-item active" data-view="overview">Top accounts</div>
+      <div class="nav-item" data-view="accounts">All accounts</div>
       <div class="nav-item" data-view="health">Data health <span class="nav-sync" id="health-dot" title="A source needs a sync"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11A8 8 0 0 0 5.5 6.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg></span></div>
     </aside>
 
@@ -1239,7 +1251,7 @@
       <div id="list-view">
       <!-- Overview: this week's briefing. -->
       <div id="overview-intro">
-        <div class="eyebrow" id="briefing-day">Morning briefing</div>
+        <div class="eyebrow" id="briefing-day">This week</div>
         <h1>Your week, <em>prioritized.</em></h1>
         <p class="subtitle" id="attention-text">&nbsp;</p>
 
@@ -1248,7 +1260,7 @@
             <div class="metric-value" id="attention-count">–</div>
             <div class="metric-label">Priority accounts</div>
           </div>
-          <!-- The Monday email lists these priority accounts, so its preview sits beside the count. -->
+          <!-- The weekly digest lists these priority accounts, so its preview sits beside the count. -->
           <button class="metric metric-email" id="preview-email-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
             <span class="metric-email-text">
@@ -1328,7 +1340,7 @@
     // Every account in ranked order, so a click can find the right one.
     let rankedAccounts = [];
 
-    // Which tab is showing: "overview" (top 10) or "accounts" (all).
+    // Which tab is showing: "overview" (the priority accounts) or "accounts" (all).
     let currentView = "overview";
 
     // Every open opportunity's score breakdown, for the detail panel.
@@ -1362,16 +1374,16 @@
         opportunityScores = await opportunityResponse.json();
 
         // Next actions are optional: without them the page falls back to Salesforce's next step.
-        // Name the sync day's weekday in the briefing heading; the header label is set in renderNotifications.
+        // Head the page with the week of the sync ("Week of Nov 23"); the header label is set in renderNotifications.
         const syncResponse = await fetch("data/sync.json", { cache: "no-cache" });
         if (!syncResponse.ok) {
           throw new Error(syncResponse.statusText);
         }
         referenceDate = (await syncResponse.json()).synced;
         const syncDay = new Date(referenceDate + "T12:00:00");
-        const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(syncDay);
+        const weekOf = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(syncDay);
         syncDayLabel = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" }).format(syncDay);
-        document.getElementById("briefing-day").textContent = `${weekday} morning briefing`;
+        document.getElementById("briefing-day").textContent = `Week of ${weekOf}`;
 
         const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
         if (actionsResponse.ok) {
@@ -1392,13 +1404,11 @@
 
         rankedAccounts = accounts;
 
-        // Accounts scoring 90 or more need attention this week; the list still shows the top 10.
-        const urgentCount = accounts.filter(function (account) {
-          return account.account_score >= 90;
-        }).length;
+        // Priority accounts need attention this week; the Overview lists that many.
+        const urgentCount = priorityAccountCount();
         document.getElementById("attention-count").textContent = urgentCount;
         document.getElementById("attention-text").textContent =
-          `${urgentCount} accounts scoring 90 or more deserve your attention.`;
+          `${urgentCount} accounts scoring ${PRIORITY_THRESHOLD} or more deserve your attention.`;
 
         renderList();
         renderNotifications();
@@ -1410,7 +1420,7 @@
       }
     }
 
-    // The top deal in one line, as the list and the Monday email show it:
+    // The top deal in one line, as the list and the weekly digest show it:
     // "Renewal · €1.5M · Negotiation · closes in 6 days". The drawer shows the close date instead.
     function topDealLine(account) {
       const days = account.top_days_to_close;
@@ -1425,12 +1435,25 @@
       return `${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>`;
     }
 
-    // Show the top 10 on the Overview tab, or every account on the Accounts tab.
+    // Accounts scoring this or more need attention this week. 100 is the most a deal can score from
+    // Salesforce alone, so clearing it takes a perfect Salesforce score, or a strong one plus a recent
+    // red flag in Gong or Slack.
+    const PRIORITY_THRESHOLD = 100;
+
+    // How many priority accounts there are. The Overview and the weekly digest both show this many
+    // accounts from the top of the AM's list.
+    function priorityAccountCount() {
+      return rankedAccounts.filter(function (account) {
+        return account.account_score >= PRIORITY_THRESHOLD;
+      }).length;
+    }
+
+    // Show the priority accounts on the Overview tab, or every account on the Accounts tab.
     function renderList() {
       const showAll = currentView === "accounts";
-      // Both tabs use the AM's order: the Overview shows its first 10, the Accounts tab all of it.
+      // Both tabs use the AM's order: the Overview shows the top of it, the Accounts tab all of it.
       const allInOrder = accountsInAmOrder();
-      const accountsToShow = showAll ? allInOrder : allInOrder.slice(0, 10);
+      const accountsToShow = showAll ? allInOrder : allInOrder.slice(0, priorityAccountCount());
       const amChangedOrder = allInOrder.some(function (account, index) {
         return account.rank !== index + 1;
       });
@@ -1451,7 +1474,7 @@
           : "";
 
         rows += `
-          <div class="account${!showAll && account.account_score >= 90 ? " priority" : ""}" data-account="${account.account_name}">
+          <div class="account${!showAll && account.account_score >= PRIORITY_THRESHOLD ? " priority" : ""}" data-account="${account.account_name}">
             <span class="rank">${String(index + 1).padStart(2, "0")}${movedNote}</span>
             <div class="account-info">
               <div class="account-name">
@@ -1587,7 +1610,7 @@
       }
       const previousOrder = accountsInAmOrder().map(function (account) { return account.account_name; });
 
-      // The dragged list is the start of the full order (the top 10, or all of it);
+      // The dragged list is the start of the full order (the priority accounts, or all of it);
       // anything below it keeps its place.
       const draggedList = Array.from(document.querySelectorAll("#account-list .account")).map(function (row) {
         return row.dataset.account;
@@ -2338,25 +2361,30 @@
       document.getElementById("call-backdrop").hidden = true;
     }
 
-    // The Monday email, previewed in the drawer: the date and the top of the AM's list, as many
-    // accounts as score 90 or more (the Overview's count). If the AM reorders, the email follows:
+    // The weekly digest email, previewed in the drawer: the date and the top of the AM's list, as many
+    // accounts as score PRIORITY_THRESHOLD or more (the Overview's count). If the AM reorders, the email follows:
     // whatever they put first leads it, whatever its score. Each entry has its flags, top deal and
     // next action, and the email ends after the last one.
     function showMondayEmail() {
       const syncDay = new Date(referenceDate + "T12:00:00");
       const emailDate = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(syncDay);
 
-      const priorityCount = rankedAccounts.filter(function (account) {
-        return account.account_score >= 90;
-      }).length;
-
-      const entries = accountsInAmOrder().slice(0, priorityCount).map(function (account, index) {
+      const entries = accountsInAmOrder().slice(0, priorityAccountCount()).map(function (account, index) {
         const next = nextActions[account.top_opportunity_id] || {};
         const action = next.action || "No next step recorded";
         const actionText = action.endsWith(".") ? action : `${action}.`;
+
+        // If the AM moved this account, the email shows it the way the row does: where the score
+        // put it, and, under the next action, the note they saved on the move.
+        const moved = amMoved.includes(account.account_name) && account.rank !== index + 1;
+        const movedNote = moved ? `<span class="moved-note">was #${account.rank}</span>` : "";
+        const move = moved ? latestMove(account.account_name) : null;
+        const note = move && move.note
+          ? `<div class="email-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>${move.note}</div>`
+          : "";
         return `
           <div class="email-entry">
-            <span class="email-number">${String(index + 1).padStart(2, "0")}</span>
+            <span class="email-number">${String(index + 1).padStart(2, "0")}${movedNote}</span>
             <div>
               <div class="email-name">${account.account_name}${flagTags(
                 account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
@@ -2364,14 +2392,15 @@
               )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}${slackTags(account.top_slack_issues)}</div>
               <div class="email-deal">${topDealLine(account)}</div>
               <div class="email-action">${actionText}</div>
+              ${note}
             </div>
           </div>`;
       }).join("");
 
       document.getElementById("detail-content").innerHTML = `
         <div class="eyebrow">Preview</div>
-        <h2 class="detail-name">Monday email</h2>
-        <p class="email-date">${emailDate}</p>
+        <h2 class="detail-name">Weekly digest</h2>
+        <p class="email-date">${emailDate} · Arrives in your inbox every Monday at 8:00am</p>
         ${entries}`;
 
       document.getElementById("detail-panel").hidden = false;
@@ -2549,7 +2578,7 @@
             retry = `
               <div class="sync-confirmed">
                 <span>✓ Gong is up to date</span>
-                <button class="link-button back-to-overview">← Back to Overview</button>
+                <button class="link-button back-to-overview">← Back to Top accounts</button>
               </div>`;
           }
         }

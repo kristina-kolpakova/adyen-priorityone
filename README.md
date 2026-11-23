@@ -24,7 +24,7 @@ python -m pytest
 
 ## How to use it
 
-Start with the top 10 on **Overview**, or open **Accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
+Start with this week's priority accounts on **Top accounts** (every account scoring 100 or more, the most a deal can score from Salesforce alone), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
 
 Drag an account to change your order and optionally add a note on why. Saving the note saves the ranking feedback.
 
