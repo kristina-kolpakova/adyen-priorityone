@@ -400,13 +400,24 @@
       cursor: pointer;
     }
 
+    /* Bubbles on the left, text on the right, so long text wraps under the text. */
     .evidence-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 4px;
+      align-items: start;
       border-top: 1px solid #eef3f0;
       padding: 6px 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
     }
+
+    .evidence-bubbles { white-space: nowrap; }
+
+    /* The Gong bonus sits on its own row under the call it came from. */
+    .evidence-bonus { margin-top: 4px; }
+    .evidence-bonus-age { color: #a0a8b0; }
 
     .evidence-item:first-of-type { margin-top: 6px; }
     /* Small bubbles saying where each fact came from and what it's about. */
@@ -755,23 +766,39 @@
     }
 
     // The next-action block for a deal card, with its evidence below.
-    function nextActionBlock(opportunityId, evidence, scoreText) {
+    function nextActionBlock(opportunityId, evidence, scoreText, signal) {
       const next = nextActionFor(opportunityId, evidence);
 
       // The cited evidence, then the deal's score at the bottom, behind one toggle.
+      // If the call that earned the Gong bonus is already cited, the bonus goes on that line.
       let items = "";
+      let bonusShown = false;
       for (const source of next.sources) {
         const link = source.url ? ` · <a href="${source.url}" target="_blank" rel="noopener">Open call</a>` : "";
+        let bonus = "";
+        if (signal && source.id === signal.evidenceId) {
+          bonus = `
+            <div class="evidence-bonus">
+              <span class="evidence-bubble gong">Gong bonus</span><strong>+${signal.points} pts</strong>
+              <span class="evidence-bonus-age">(${signal.ageText})</span>
+            </div>`;
+          bonusShown = true;
+        }
         items += `
           <div class="evidence-item">
-            <span class="evidence-bubble ${source.source.toLowerCase()}">${source.source}</span><span class="evidence-bubble scope">${source.scope === "deal" ? "Deal" : "Account"}</span>
-            ${source.label}: ${source.value}${link}
+            <div class="evidence-bubbles"><span class="evidence-bubble ${source.source.toLowerCase()}">${source.source}</span><span class="evidence-bubble scope">${source.scope === "deal" ? "Deal" : "Account"}</span></div>
+            <div>${source.label}: ${source.value}${link}${bonus}</div>
           </div>`;
+      }
+
+      // Otherwise the bonus gets its own line.
+      if (signal && !bonusShown) {
+        items += signal.line;
       }
       items += `
         <div class="evidence-item">
-          <span class="evidence-bubble score">Score</span>
-          ${scoreText}
+          <div class="evidence-bubbles"><span class="evidence-bubble score">Score</span></div>
+          <div>${scoreText}</div>
         </div>`;
       const toggleLabel = next.sources.length > 0 ? `View evidence (${next.sources.length})` : "View score";
       const evidenceList = `
@@ -880,9 +907,33 @@
             it's forecast as Commit while still in ${opportunity.stage}; check what supports the forecast.</div>`;
         }
 
+        // The Gong signal that earned this deal's bonus: what it was, when, and how many points.
+        let signal = null;
+        if (opportunity.gong_points > 0) {
+          const callDate = shortDate.format(new Date(opportunity.gong_signal_date + "T12:00:00"));
+          const age = Math.round(opportunity.gong_signal_age);
+          const ageText = `${age} ${age === 1 ? "day" : "days"} ago`;
+          signal = {
+            evidenceId: opportunity.gong_signal_evidence_id,
+            points: opportunity.gong_points,
+            ageText: ageText,
+            line: `
+              <div class="evidence-item">
+                <div class="evidence-bubbles"><span class="evidence-bubble gong">Gong</span><span class="evidence-bubble scope">${opportunity.gong_signal_scope === "deal" ? "Deal" : "Account"}</span></div>
+                <div>
+                  ${opportunity.gong_signal} · call on ${callDate}: ${opportunity.gong_signal_text}
+                  <div class="evidence-bonus">
+                    <span class="evidence-bubble gong">Gong bonus</span><strong>+${opportunity.gong_points} pts</strong>
+                    <span class="evidence-bonus-age">(${ageText})</span>
+                  </div>
+                </div>
+              </div>`,
+          };
+        }
+
         // The top deal's action and evidence sit outside its expandable part, so if it has
         // no tags or flag explanations there is nothing to expand.
-        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText);
+        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText, signal);
         const expandable = !counts || tags !== "" || breakdown !== "";
 
         opportunityCards += `
@@ -940,7 +991,7 @@
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
             <div class="detail-formula-text">Highest opportunity score: Max(${dealScores}) = ${total}</div>
-            <div class="detail-formula-text">Each score includes Gong points: +2 for an issue on that deal, +1 for one from an account call.</div>
+            <div class="detail-formula-text">Each score adds a Gong bonus for its most recent red flag: 20 points up to 2 days after the call, 5 at 30 days, 0 at 90.</div>
             <div class="detail-formula-text">When final scores tie, Salesforce problem flags come first, then deal size.</div>
           </div>
           <div class="detail-formula-value">${total}</div>

@@ -103,37 +103,66 @@ def test_early_stage_commit_flag():
     assert df.loc[df["FlagEarlyCommit"], "IsProblem"].all()
 
 
-def test_final_score_adds_gong_points():
-    # Final score = Salesforce score + Gong points, and Gong adds 0, 1 or 2.
+def test_final_score_adds_gong_bonus():
+    # An account's score is its top deal's Salesforce score plus that deal's Gong bonus (0-20).
     accounts = integration.ui_accounts
 
     assert (accounts["account_score"] == accounts["salesforce_score"] + accounts["gong_bonus"]).all()
-    assert accounts["gong_bonus"].isin([0, 1, 2]).all()
+    assert accounts["gong_bonus"].between(0, 20).all()
 
 
-def test_top_deal_gong_issue_gives_two_points():
-    # An issue on the account's top deal is worth the full 2 points.
-    accounts = integration.ui_accounts
-    has_top_deal_issue = accounts["top_gong_issues"].notna()
+def test_gong_bonus_follows_recency():
+    # Every red flag counts the same: 20 points up to day 2 after the call,
+    # then down to 5 at day 30 and 0 at day 90, rounded half up. No other weights.
+    df = integration.df
 
-    assert (accounts.loc[has_top_deal_issue, "gong_bonus"] == 2).all()
+    for _, deal in df.iterrows():
+        if pd.isna(deal["GongSignal"]):
+            assert deal["GongPoints"] == 0
+            continue
+
+        age = deal["GongSignalAge"]
+        assert 0 <= age <= 90
+        if age <= 2:
+            recency = 20
+        elif age <= 30:
+            recency = 20 - (age - 2) * 15 / 28
+        else:
+            recency = 5 - (age - 30) * 5 / 60
+
+        assert deal["GongPoints"] == int(recency + 0.5)
 
 
 def test_every_deal_final_score_includes_gong():
-    # Each deal's final score is its Salesforce score plus its Gong points, and
+    # Each deal's final score is its Salesforce score plus its Gong bonus, and
     # an account's score is its best deal's final score.
     df = integration.df
 
     assert (df["FinalScore"] == df["PriorityScore"] + df["GongPoints"]).all()
-    assert df["GongPoints"].isin([0, 1, 2]).all()
+    assert df["GongPoints"].between(0, 20).all()
 
     best_final = df.groupby("AccountName")["FinalScore"].max()
     accounts = integration.ui_accounts.set_index("account_name")
     assert (accounts["account_score"] == best_final.reindex(accounts.index)).all()
 
 
-def test_gong_never_outranks_a_higher_salesforce_score():
-    # Gong points only reorder accounts with the same Salesforce score.
+def test_accounts_ranked_by_final_score_then_tie_breaks():
+    # Highest final score first; ties go to a Salesforce problem flag, then the larger deal.
     accounts = integration.ui_accounts
+    expected = accounts.sort_values(
+        ["account_score", "top_is_problem", "top_amount", "account_name"],
+        ascending=[False, False, False, True],
+    )
 
-    assert accounts["salesforce_score"].is_monotonic_decreasing
+    assert list(accounts["account_name"]) == list(expected["account_name"])
+    assert list(accounts["rank"]) == list(range(1, len(accounts) + 1))
+
+
+def test_demo_ranking_on_the_snapshot_date():
+    # The mock data is scored as of 25 Nov 2026, so these stay fixed.
+    accounts = integration.ui_accounts.set_index("account_name")
+
+    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 116)
+    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 113)
+    assert (accounts.loc["Marlowe", "rank"], accounts.loc["Marlowe", "account_score"]) == (5, 94)
+    assert (accounts.loc["Orchard Lane", "rank"], accounts.loc["Orchard Lane", "account_score"]) == (8, 88)

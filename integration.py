@@ -3,7 +3,7 @@ import hashlib
 import pandas as pd
 
 from scoring import score_types
-from gong import call_issues, gong as gong_key_points
+from gong import call_issues, gong as gong_key_points, red_flag_map
 
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
@@ -188,13 +188,78 @@ account_call_issues = (
     .agg(list)
 )
 
-# Gong points on every deal: 2 for an issue on the deal itself, otherwise 1 if a
-# call not linked to any deal raised one for the account, otherwise 0.
-df["GongPoints"] = 0
-df.loc[df["AccountName"].isin(account_call_issues.index), "GongPoints"] = 1
-df.loc[df["GongIssues"].notna(), "GongPoints"] = 2
 
-# Each deal's final score: its Salesforce score plus its Gong points.
+# --- Gong Recency Bonus ---
+
+# Gong red flags, scored by how recent the call was on the snapshot date.
+# (A fresh index: the exploded Gong table repeats each call's row label.)
+gong_signals = gong_key_points.dropna(subset=["red_flag"]).reset_index(drop=True)
+
+gong_signals["CallDate"] = (
+    pd.to_datetime(gong_signals["started"], utc=True)
+    .dt.tz_localize(None)
+    .dt.normalize()
+)
+gong_signals["AgeDays"] = (reference_date - gong_signals["CallDate"]).dt.days
+
+# Ignore calls after the snapshot date, and calls older than 90 days (worth 0).
+gong_signals = gong_signals[gong_signals["AgeDays"].between(0, 90)].copy()
+
+# Recency: 20 points up to day 2, falling linearly to 5 at day 30 and to 0 at day 90.
+age = gong_signals["AgeDays"]
+gong_signals["RecencyPoints"] = 20.0
+gong_signals.loc[age > 2, "RecencyPoints"] = 20 - (age - 2) * 15 / 28
+gong_signals.loc[age > 30, "RecencyPoints"] = 5 - (age - 30) * 5 / 60
+
+# Every red flag counts the same: the bonus depends only on how recent the call was.
+gong_signals["SignalPoints"] = gong_signals["RecencyPoints"]
+
+# If one call raises several flags, they tie on points; show them in red_flag_map's order
+# (Closing risk first) so the drawer always names the same one.
+flag_order = list(dict.fromkeys(red_flag_map.values()))
+gong_signals["FlagOrder"] = gong_signals["red_flag"].map(flag_order.index)
+
+# Note whether the call was about a deal or the account as a whole, for the drawer.
+account_wide = gong_signals["associated_opp"].isna()
+gong_signals["SignalScope"] = "deal"
+gong_signals.loc[account_wide, "SignalScope"] = "account"
+
+# Signals that apply to each open deal: calls linked to that deal, plus calls on
+# its account that aren't linked to any deal.
+deal_signals = gong_signals.merge(df[["Id"]], left_on="associated_opp", right_on="Id")
+account_signals = gong_signals[account_wide].merge(
+    df[["Id", "AccountId"]], left_on="associated_account", right_on="AccountId"
+)
+
+# Each deal keeps its strongest signal (the more recent call if two are equal,
+# then the flag that comes first in red_flag_map).
+best_signals = (
+    pd.concat([deal_signals, account_signals])
+    .sort_values(["SignalPoints", "CallDate", "FlagOrder"], ascending=[False, False, True])
+    .drop_duplicates("Id")
+    .set_index("Id")
+)
+
+# Round half up to whole points (pandas' round() would round 0.5 to the even number).
+best_signals["Bonus"] = (best_signals["SignalPoints"] + 0.5) // 1
+
+# Each deal's Gong bonus and the signal that earned it.
+df["GongPoints"] = df["Id"].map(best_signals["Bonus"]).fillna(0).astype(int)
+df["GongSignal"] = df["Id"].map(best_signals["red_flag"])
+df["GongSignalText"] = df["Id"].map(best_signals["key_points"])
+df["GongSignalDate"] = df["Id"].map(best_signals["CallDate"].dt.strftime("%Y-%m-%d"))
+df["GongSignalAge"] = df["Id"].map(best_signals["AgeDays"])
+df["GongSignalScope"] = df["Id"].map(best_signals["SignalScope"])
+
+# The same ID the deal's evidence uses for this key point, so the drawer can show
+# the bonus on that evidence line instead of repeating it.
+signal_evidence_ids = {}
+for deal_id, signal in best_signals.iterrows():
+    key_point_hash = hashlib.sha1(signal["key_points"].encode()).hexdigest()[:6]
+    signal_evidence_ids[deal_id] = f"{signal['id']}-{key_point_hash}"
+df["GongSignalEvidenceId"] = df["Id"].map(signal_evidence_ids)
+
+# Each deal's final score: its Salesforce score plus its Gong bonus.
 df["FinalScore"] = df["PriorityScore"] + df["GongPoints"]
 
 
@@ -206,6 +271,9 @@ type_scores = score_types(df)
 # Account priority is its highest-scoring open opportunity, i.e. the higher
 # of the two type scores.
 priority_scores = df.groupby("AccountName")["PriorityScore"].max()
+
+# Accounts are ranked by their best deal once the Gong bonus is added.
+final_scores = df.groupby("AccountName")["FinalScore"].max()
 
 
 # --- Account Analysis ---
@@ -222,17 +290,19 @@ quarter_counts = pd.crosstab(
 
 # --- Export for the UI ---
 
-# Get each account's highest-scoring opportunity; among equal scores,
-# a deal with a problem comes first, then the larger deal.
+# Get each account's highest-scoring opportunity (Salesforce + Gong); among equal
+# scores, a deal with a problem comes first, then the larger deal.
 top_opportunities = (
-    df.sort_values(["PriorityScore", "IsProblem", "Amount"], ascending=False)
+    df.sort_values(["FinalScore", "IsProblem", "Amount"], ascending=False)
     .drop_duplicates("AccountName")
     .set_index("AccountName")
 )
 
 # Combine account scores and opportunity details.
 ui_accounts = pd.DataFrame({
-    "account_score": priority_scores,
+    "account_score": final_scores,
+    "salesforce_score": top_opportunities["PriorityScore"],
+    "gong_bonus": top_opportunities["GongPoints"],
     "renewal_score": type_scores["RenewalScore"],
     "upsell_new_score": type_scores["UpsellNewScore"],
     "top_opportunity": top_opportunities["Name"],
@@ -250,7 +320,7 @@ ui_accounts = pd.DataFrame({
     "top_days_since_activity": top_opportunities["DaysSinceActivity"],
     "top_gong_issues": top_opportunities["GongIssues"],
     # Only accounts with open deals are ranked, so ignore calls from other accounts.
-    "account_call_issues": account_call_issues.reindex(priority_scores.index),
+    "account_call_issues": account_call_issues.reindex(final_scores.index),
 })
 
 # --- Evidence for Next Actions ---
@@ -363,23 +433,6 @@ df["Evidence"] = df["Id"].map(evidence_by_opportunity)
 # Each account row carries its top deal's ID; the deal's evidence is in opportunity_scores.json.
 ui_accounts["top_opportunity_id"] = top_opportunities["Id"]
 
-# Rank on the same Gong issues the dashboard shows: any issue from the last 90 days.
-
-# An issue linked to a deal applies only to that deal.
-deal_risk_ids = recent_issues["associated_opp"].dropna()
-
-# Use issues from calls without a linked deal as account-level risks.
-account_risk_ids = unlinked_issues["associated_account"]
-
-# Give one point for account-level risk. Use two if the top deal has risk.
-gong_bonus = top_opportunities["AccountId"].isin(account_risk_ids).astype(int)
-gong_bonus.loc[top_opportunities["Id"].isin(deal_risk_ids)] = 2
-
-# Add the Gong points to the Salesforce score, and export both parts.
-ui_accounts["salesforce_score"] = ui_accounts["account_score"]
-ui_accounts["gong_bonus"] = gong_bonus
-ui_accounts["account_score"] = ui_accounts["salesforce_score"] + ui_accounts["gong_bonus"]
-
 # Move the account name into a column for sorting and JSON export.
 ui_accounts = ui_accounts.reset_index(names="account_name")
 
@@ -424,17 +477,25 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "GongIssues": "gong_issues",
         "GongPoints": "gong_points",
         "FinalScore": "final_score",
+        "GongSignal": "gong_signal",
+        "GongSignalText": "gong_signal_text",
+        "GongSignalDate": "gong_signal_date",
+        "GongSignalAge": "gong_signal_age",
+        "GongSignalScope": "gong_signal_scope",
+        "GongSignalEvidenceId": "gong_signal_evidence_id",
         "Evidence": "evidence",
     })
     [[
         "account_name", "opportunity_id", "opportunity", "type", "amount", "stage",
         "close_date", "days_to_close", "value_score", "timing_score",
-        "stage_score", "priority_score", "gong_points", "final_score", "is_problem", "is_overdue",
-        "stale_near_close", "stale_commit", "long_overdue", "early_commit",
+        "stage_score", "priority_score", "gong_points", "final_score",
+        "gong_signal", "gong_signal_text", "gong_signal_date", "gong_signal_age", "gong_signal_scope",
+        "gong_signal_evidence_id",
+        "is_problem", "is_overdue", "stale_near_close", "stale_commit", "long_overdue", "early_commit",
         "days_since_activity", "gong_issues", "evidence",
     ]]
     .sort_values(
-        ["account_name", "priority_score", "is_problem", "amount"],
+        ["account_name", "final_score", "is_problem", "amount"],
         ascending=[True, False, False, False]
     )
     .to_json("data/opportunity_scores.json", orient="records", indent=2)

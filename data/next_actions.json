@@ -544,7 +544,9 @@
       "gong_call_0034-bbd657",
       "gong_call_0034-1346cf",
       "gong_call_0034-e5d596",
-      "gong_call_0034-92cca7"
+      "gong_call_0034-92cca7",
+      "sf-activity",
+      "sf-flags"
     ],
     "sources": [
       {
@@ -585,6 +587,20 @@
         "label": "Competitor risk · call on 16 Nov",
         "value": "Customer evaluating another payment provider before renewal",
         "url": "https://gong.example.invalid/call?id=gong_call_0034"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "38 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "No recent activity before close, Stale Commit"
       }
     ]
   },
@@ -1007,8 +1023,8 @@
     "account_name": "Mosaic",
     "opportunity": "Mosaic - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Ask legal whether the MSA review or security questionnaire could delay the Dec 7 signature.",
-    "reason": "Pricing was accepted on Nov 20, but the same call said legal review may push signature past the planned close.",
+    "action": "Ask legal whether the MSA review or the security questionnaire could delay the Dec 7 signature.",
+    "reason": "Pricing was accepted on Nov 20, but on the same call the customer said legal review may push the signature past the planned close.",
     "evidence_ids": [
       "sf-close",
       "sf-next-step",
@@ -1687,7 +1703,8 @@
       "sf-next-step",
       "sf-close",
       "sf-forecast",
-      "sf-stage"
+      "sf-stage",
+      "sf-flags"
     ],
     "sources": [
       {
@@ -1717,6 +1734,13 @@
         "scope": "deal",
         "label": "Stage",
         "value": "Discovery"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Early-stage Commit"
       }
     ]
   },
