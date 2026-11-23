@@ -1133,6 +1133,19 @@
       return { text: "", reason: "", sources: [], kind: "" };
     }
 
+    // Open the call preview at the cited or bonus-winning key point.
+    function openCallLink(evidenceId, signal) {
+      const separator = evidenceId ? evidenceId.lastIndexOf("-") : -1;
+      if (separator < 1) {
+        return "";
+      }
+      const callId = evidenceId.slice(0, separator);
+      const bonusData = signal
+        ? ` data-bonus-id="${signal.evidenceId}" data-bonus-points="${signal.points}"`
+        : "";
+      return ` · <a href="#" class="open-call" data-call="${callId}" data-opened="${evidenceId}"${bonusData}>Open call</a>`;
+    }
+
     // The next-action block for a deal card, with its evidence below.
     function nextActionBlock(opportunityId, evidence, scoreText, signal) {
       const next = nextActionFor(opportunityId, evidence);
@@ -1142,13 +1155,7 @@
       let items = "";
       let bonusShown = false;
       for (const source of next.sources) {
-        // Gong evidence opens its call in the app, marking the key point it was opened from
-        // and the one that earned the Gong bonus.
-        const callId = source.url ? source.id.split("-")[0] : "";
-        const bonusData = signal ? `data-bonus-id="${signal.evidenceId}" data-bonus-points="${signal.points}"` : "";
-        const link = callId
-          ? ` · <a href="#" class="open-call" data-call="${callId}" data-opened="${source.id}" ${bonusData}>Open call</a>`
-          : "";
+        const link = source.source === "Gong" ? openCallLink(source.id, signal) : "";
         let bonus = "";
         if (signal && source.id === signal.evidenceId) {
           bonus = `
@@ -1193,10 +1200,14 @@
       // A stage-based suggestion is labelled as one, so it isn't mistaken for a reviewed action.
       const label = next.kind === "stage" ? "Suggested next step" : "Next action";
 
+      // Salesforce next steps are kept word for word in the data; end them with a period
+      // here so every action reads as a sentence.
+      const actionText = next.text.endsWith(".") ? next.text : `${next.text}.`;
+
       return `
         <div class="next-action">
           <div class="next-action-label">${label}</div>
-          <div class="next-action-text">${next.text}</div>
+          <div class="next-action-text">${actionText}</div>
           <div class="next-action-reason">${next.reason}</div>
           ${evidenceList}
         </div>`;
@@ -1291,18 +1302,18 @@
             evidenceId: opportunity.gong_signal_evidence_id,
             points: opportunity.gong_points,
             ageText: ageText,
-            line: `
+          };
+          signal.line = `
               <div class="evidence-item">
                 <div class="evidence-bubbles"><span class="evidence-bubble gong">Gong</span><span class="evidence-bubble scope">${opportunity.gong_signal_scope === "deal" ? "Deal" : "Account"}</span></div>
                 <div>
-                  ${opportunity.gong_signal} · call on ${callDate}: ${opportunity.gong_signal_text}
+                  ${opportunity.gong_signal} · call on ${callDate}: ${opportunity.gong_signal_text}${openCallLink(signal.evidenceId, signal)}
                   <div class="evidence-bonus">
                     <span class="evidence-bubble gong">Gong bonus</span><strong>+${opportunity.gong_points} pts</strong>
                     <span class="evidence-bonus-age">(${ageText})</span>
                   </div>
                 </div>
-              </div>`,
-          };
+              </div>`;
         }
 
         // The top deal's action and evidence sit outside its expandable part, so if it has
