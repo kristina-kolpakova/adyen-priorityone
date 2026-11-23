@@ -518,6 +518,51 @@
 
     .call-point.opened { border-color: #b9c7ec; background: #f5f7ff; }
 
+    /* Slack thread: one row per message, customers in Slack yellow, Adyen in green. */
+    .thread-message {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .thread-message.opened { border-color: #DDC475; background: #fffcf3; }
+
+    .thread-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .thread-avatar.customer { background: #F7F0D9; color: #7A6420; }
+    .thread-avatar.adyen { background: #e2f1e8; color: #2f6f4c; }
+
+    .thread-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; font-size: 13px; }
+    .thread-name { font-weight: 650; }
+    .thread-name.customer { color: #7A6420; }
+    .thread-name.adyen { color: #2f6f4c; }
+    .thread-role { color: var(--muted); }
+    .thread-time { color: #9aa3ab; font-size: 12px; }
+    .thread-text { margin-top: 2px; }
+    .thread-flag { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+    .thread-flag .flag-tag { margin-left: 0; }
+    .thread-points { color: #7A6420; font-size: 12px; }
+
+    .thread-waiting {
+      margin: 6px 0 0 52px;
+      color: #7A6420;
+      font-size: 12px;
+    }
+
     .call-point-head {
       display: flex;
       justify-content: space-between;
@@ -790,6 +835,9 @@
     .slack-person { color: #7A6420; font-weight: 600; }
     .slack-team { color: var(--muted); }
     .slack-quote { color: var(--ink); }
+
+    /* "· Open call" and "· Open thread" end the line as one piece, so the link never splits. */
+    .link-tail { white-space: nowrap; }
     .evidence-bubble.scope { background: #eef0f2; color: #5c6670; }
     .evidence-bubble.score { background: #EAF0F4; color: #41576B; }
     .evidence-item strong { color: var(--ink); font-weight: 600; }
@@ -1292,6 +1340,9 @@
     // Every Gong call's summary and key points, keyed by call ID, for the call panel.
     let gongCalls = {};
 
+    // Every Slack thread's messages, keyed by thread ID, for the thread panel.
+    let slackThreads = {};
+
     // Load the ranked accounts exported by integration.py and show the current tab.
     async function showAccounts() {
       const list = document.getElementById("account-list");
@@ -1331,6 +1382,12 @@
         const callsResponse = await fetch("data/gong_calls.json", { cache: "no-cache" });
         if (callsResponse.ok) {
           gongCalls = await callsResponse.json();
+        }
+
+        // Slack threads are optional too: without them "Open thread" shows a short note instead.
+        const threadsResponse = await fetch("data/slack_threads.json", { cache: "no-cache" });
+        if (threadsResponse.ok) {
+          slackThreads = await threadsResponse.json();
         }
 
         rankedAccounts = accounts;
@@ -1794,7 +1851,7 @@
       const bonusData = signal
         ? ` data-bonus-id="${signal.evidenceId}" data-bonus-points="${signal.points}"`
         : "";
-      return ` · <a href="#" class="open-call" data-call="${callId}" data-opened="${evidenceId}"${bonusData}>Open call</a>`;
+      return `<span class="link-tail"> · <a href="#" class="open-call" data-call="${callId}" data-opened="${evidenceId}"${bonusData}>Open call</a></span>`;
     }
 
     // The next-action block for a deal card, with its evidence below.
@@ -2003,7 +2060,8 @@
                 <div class="evidence-bubbles"><span class="evidence-bubble slack">Slack</span><span class="evidence-bubble scope">Account</span></div>
                 <div>
                   ${opportunity.slack_signal} · <span class="slack-person">${sender[1]}</span>${senderTeam} on ${messageDate}:
-                  <em class="slack-quote">“${opportunity.slack_signal_text}”</em>
+                  <em class="slack-quote">“${opportunity.slack_signal_text}”</em><span class="link-tail"> · <a href="#" class="open-thread" data-thread="${opportunity.slack_signal_thread}"
+                    data-opened="${opportunity.slack_signal_evidence_id}" data-points="${opportunity.slack_points}">Open thread</a></span>
                   <div class="evidence-bonus">
                     <span class="evidence-bubble slack">Slack bonus</span><strong>+${opportunity.slack_points} pts</strong>
                     <span class="evidence-bonus-age">(${slackAge} ${slackAge === 1 ? "day" : "days"} ago)</span>
@@ -2161,6 +2219,75 @@
       document.getElementById("call-backdrop").hidden = false;
     }
 
+    // A Slack thread in the call panel: the channel, then each message with who sent it and when.
+    // The message opened from is outlined with its red flag and Slack bonus, and a thread still
+    // waiting on us ends with how long it has been.
+    function showThread(link) {
+      const thread = slackThreads[link.dataset.thread];
+      const content = document.getElementById("call-content");
+
+      if (!thread) {
+        content.innerHTML = `<p class="call-brief">This thread isn't in data/slack_threads.json.</p>`;
+        document.getElementById("call-backdrop").hidden = false;
+        return;
+      }
+
+      // "15:40" as "3:40pm", like the sync times on Data health.
+      function clockTime(sentAt) {
+        const hour = Number(sentAt.slice(11, 13));
+        const minutes = sentAt.slice(14, 16);
+        return `${hour % 12 || 12}:${minutes}${hour < 12 ? "am" : "pm"}`;
+      }
+
+      const first = thread.messages[0];
+      const firstDay = first.sent_at.slice(0, 10);
+      const started = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" })
+        .format(new Date(firstDay + "T12:00:00"));
+      const daysBefore = Math.round((new Date(referenceDate + "T12:00:00") - new Date(firstDay + "T12:00:00")) / 86400000);
+      const count = thread.messages.length;
+
+      let messages = "";
+      for (const message of thread.messages) {
+        // "Maya (Krakatoa Procurement)": the name, then the role in grey.
+        const sender = message.user_name.match(/^(.*?)(?: \((.*)\))?$/);
+        const day = message.sent_at.slice(0, 10);
+        const when = day === firstDay
+          ? clockTime(message.sent_at)
+          : `${shortDate.format(new Date(day + "T12:00:00"))}, ${clockTime(message.sent_at)}`;
+        const opened = message.message_id === link.dataset.opened;
+        const flag = message.red_flag
+          ? `<div class="thread-flag"><span class="flag-tag slack-tag">${message.red_flag}</span>${opened ? `<span class="thread-points">+${link.dataset.points} pts</span>` : ""}</div>`
+          : "";
+        messages += `
+          <div class="thread-message${opened ? " opened" : ""}">
+            <span class="thread-avatar ${message.from_customer ? "customer" : "adyen"}">${sender[1].charAt(0)}</span>
+            <div>
+              <div class="thread-head">
+                <span class="thread-name ${message.from_customer ? "customer" : "adyen"}">${sender[1]}</span>
+                <span class="thread-role">${sender[2] || ""}</span>
+                <span class="thread-time">${when}</span>
+              </div>
+              <div class="thread-text">${message.text}</div>
+              ${flag}
+            </div>
+          </div>`;
+      }
+
+      const waiting = thread.waiting_business_days
+        ? `<div class="thread-waiting">No reply from Adyen in ${thread.waiting_business_days} business days</div>`
+        : "";
+
+      content.innerHTML = `
+        <span class="evidence-bubble slack">Slack</span>
+        <h3 class="call-title"># ${thread.channel_name}</h3>
+        <div class="call-meta">${started}, ${clockTime(first.sent_at)} · ${daysBefore} ${daysBefore === 1 ? "day" : "days"} ago · ${count} ${count === 1 ? "message" : "messages"}</div>
+        <div class="call-label">Thread</div>
+        ${messages}
+        ${waiting}
+        <p class="call-footnote">Mock thread from slack_messages.csv · in production this opens the thread in Slack</p>`;
+      document.getElementById("call-backdrop").hidden = false;
+    }
+
     function closeCall() {
       document.getElementById("call-backdrop").hidden = true;
     }
@@ -2274,6 +2401,12 @@
           loggedTasks.push(logTask.dataset.opportunity);
           logTask.outerHTML = logTaskLink(logTask.dataset.opportunity);
         }
+        return;
+      }
+      const threadLink = event.target.closest(".open-thread");
+      if (threadLink) {
+        event.preventDefault();
+        showThread(threadLink);
         return;
       }
       const link = event.target.closest(".open-call");

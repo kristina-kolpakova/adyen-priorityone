@@ -9,7 +9,7 @@ slack = pd.read_csv("data/slack_messages.csv", dtype={"ts": str, "thread_ts": st
 
 # Slack doesn't know Salesforce accounts, so each shared channel is mapped to one.
 channels = pd.read_csv("data/slack_channels.csv")
-slack = slack.merge(channels[["channel_id", "account_id"]], on="channel_id", how="inner")
+slack = slack.merge(channels[["channel_id", "channel_name", "account_id"]], on="channel_id", how="inner")
 
 # Slack timestamps are seconds since 1970 (UTC); convert them to dates.
 slack["sent_at"] = pd.to_datetime(slack["ts"].astype(float), unit="s")

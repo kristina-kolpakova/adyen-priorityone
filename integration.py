@@ -324,6 +324,7 @@ df["SlackSignalFrom"] = df["Id"].map(best_slack["user_name"])
 df["SlackSignalDate"] = df["Id"].map(best_slack["MessageDate"].dt.strftime("%Y-%m-%d"))
 df["SlackSignalAge"] = df["Id"].map(best_slack["AgeDays"])
 df["SlackSignalEvidenceId"] = df["Id"].map(best_slack["message_id"])
+df["SlackSignalThread"] = df["Id"].map(best_slack["channel_id"] + "-" + best_slack["thread"])
 
 # Each renewal's distinct Slack issues from the last 90 days, newest first, for its tags.
 slack_issues = (
@@ -630,6 +631,7 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "SlackSignalDate": "slack_signal_date",
         "SlackSignalAge": "slack_signal_age",
         "SlackSignalEvidenceId": "slack_signal_evidence_id",
+        "SlackSignalThread": "slack_signal_thread",
         "Evidence": "evidence",
     })
     [[
@@ -639,7 +641,7 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "gong_signal", "gong_signal_text", "gong_signal_date", "gong_signal_age", "gong_signal_scope",
         "gong_signal_evidence_id",
         "slack_signal", "slack_signal_text", "slack_signal_from", "slack_signal_date",
-        "slack_signal_age", "slack_signal_evidence_id", "slack_issues",
+        "slack_signal_age", "slack_signal_evidence_id", "slack_signal_thread", "slack_issues",
         "is_problem", "is_overdue", "stale_near_close", "stale_commit", "long_overdue", "early_commit",
         "days_since_activity", "gong_issues", "evidence",
     ]]
@@ -674,6 +676,45 @@ for call_id, call in gong_key_points.groupby("id", sort=False):
 
 with open("data/gong_calls.json", "w") as file:
     json.dump(calls_for_ui, file, indent=2)
+
+# --- Slack Threads for the UI ---
+
+# Every Slack thread with its messages, so "Open thread" can show the conversation in the app
+# (the mock Slack links don't resolve). Each message keeps its evidence ID and red flag, and a
+# thread still waiting on our reply says for how many business days.
+waiting_days = dict(zip(
+    unanswered["channel_id"] + "-" + unanswered["thread"],
+    unanswered["BusinessDaysWaiting"],
+))
+unanswered_ids = set(unanswered["message_id"])
+
+threads_for_ui = {}
+for (channel_id, thread), messages in slack_messages.sort_values("sent_at").groupby(
+    ["channel_id", "thread"], sort=False
+):
+    thread_id = f"{channel_id}-{thread}"
+    thread_messages = []
+    for _, message in messages.iterrows():
+        red_flag = message["red_flag"]
+        if pd.isna(red_flag) and message["message_id"] in unanswered_ids:
+            red_flag = "Unanswered request"
+        thread_messages.append({
+            "message_id": message["message_id"],
+            "user_name": message["user_name"],
+            "from_customer": bool(message["from_customer"]),
+            "sent_at": message["sent_at"].strftime("%Y-%m-%dT%H:%M"),
+            "text": message["text"],
+            "red_flag": None if pd.isna(red_flag) else red_flag,
+        })
+    days = waiting_days.get(thread_id)
+    threads_for_ui[thread_id] = {
+        "channel_name": messages.iloc[0]["channel_name"],
+        "messages": thread_messages,
+        "waiting_business_days": None if days is None else int(days),
+    }
+
+with open("data/slack_threads.json", "w") as file:
+    json.dump(threads_for_ui, file, indent=2)
 
 # --- Sync Date for the UI ---
 

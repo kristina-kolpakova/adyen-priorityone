@@ -1,0 +1,452 @@
+{
+  "C07WYF001-1791972000.000000": {
+    "channel_name": "ext-wayfarer-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07WYF001-1791972000000000",
+        "user_name": "Owen (Wayfarer Operations)",
+        "from_customer": true,
+        "sent_at": "2026-10-14T10:00",
+        "text": "FYI procurement now leading our vendor renewals.",
+        "red_flag": "Stakeholder change"
+      },
+      {
+        "message_id": "slack-C07WYF001-1791975600000000",
+        "user_name": "Julian (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-10-14T11:00",
+        "text": "Thanks Owen, could you introduce us to the procurement lead?",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07CPL001-1793693700.000000": {
+    "channel_name": "ext-copperleaf-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07CPL001-1793693700000000",
+        "user_name": "Leah (Copperleaf Payments)",
+        "from_customer": true,
+        "sent_at": "2026-11-03T08:15",
+        "text": "Checkout is failing for card payments in DE, is something down?",
+        "red_flag": "Service incident"
+      },
+      {
+        "message_id": "slack-C07CPL001-1793695200000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-03T08:40",
+        "text": "Incident confirmed and fixed at 08:35, sorry for the disruption.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07MRL001-1793876400.000000": {
+    "channel_name": "ext-marlowe-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07MRL001-1793876400000000",
+        "user_name": "Oliver (Marlowe Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-05T11:00",
+        "text": "We were charged twice for the October platform fee, can you check?",
+        "red_flag": "Billing dispute"
+      },
+      {
+        "message_id": "slack-C07MRL001-1793884500000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-05T13:15",
+        "text": "Refund issued today, apologies for the mix-up.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07LTF001-1794158400.000000": {
+    "channel_name": "ext-lanternfly-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07LTF001-1794158400000000",
+        "user_name": "Sophie (Lanternfly Payments)",
+        "from_customer": true,
+        "sent_at": "2026-11-08T17:20",
+        "text": "Heads up, Friday is my last day. Rafael will take over the renewal from here.",
+        "red_flag": "Champion departure"
+      },
+      {
+        "message_id": "slack-C07LTF001-1794214800000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-09T09:00",
+        "text": "Thanks for everything, Sophie. Rafael, happy to set up an intro call.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07HLC001-1794219600.000000": {
+    "channel_name": "ext-halcyon-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07HLC001-1794219600000000",
+        "user_name": "Noah (Halcyon Payments)",
+        "from_customer": true,
+        "sent_at": "2026-11-09T10:20",
+        "text": "Card payments are failing at checkout for some shoppers, is something down?",
+        "red_flag": "Service incident"
+      },
+      {
+        "message_id": "slack-C07HLC001-1794221100000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-09T10:45",
+        "text": "Looking now, a fix is rolling out within the hour.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07SVB001-1794301200.000000": {
+    "channel_name": "ext-silverbirch-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07SVB001-1794301200000000",
+        "user_name": "Ella (Silverbirch Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-10T09:00",
+        "text": "Can you confirm the new pricing tiers for next year?",
+        "red_flag": "Unanswered request"
+      }
+    ],
+    "waiting_business_days": 9
+  },
+  "C07KRK001-1794301920.000000": {
+    "channel_name": "ext-krakatoa-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07KRK001-1794301920000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-10T09:12",
+        "text": "Sharing the Q4 volume report ahead of renewal talks.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07KRK001-1794305100000000",
+        "user_name": "Theo (Krakatoa Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-10T10:05",
+        "text": "Thanks, looks in line with our forecast.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07QYS001-1794398400.000000": {
+    "channel_name": "ext-quayside-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07QYS001-1794398400000000",
+        "user_name": "Sebastian (Quayside Partnerships)",
+        "from_customer": true,
+        "sent_at": "2026-11-11T12:00",
+        "text": "Our CFO asked us to keep evaluating another payment provider before the renewal.",
+        "red_flag": "Competitor risk"
+      },
+      {
+        "message_id": "slack-C07QYS001-1794401100000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-11T12:45",
+        "text": "Understood, let's walk through the renewal value together this week.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07KST001-1794477600.000000": {
+    "channel_name": "ext-kestrel-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07KST001-1794477600000000",
+        "user_name": "Jonas (Kestrel Operations)",
+        "from_customer": true,
+        "sent_at": "2026-11-12T10:00",
+        "text": "Could you share the revised SLA terms for the renewal?",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07KST001-1794483000000000",
+        "user_name": "Julian (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-12T11:30",
+        "text": "Working on it with legal, will send by Friday.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07KST001-1794908700000000",
+        "user_name": "Jonas (Kestrel Operations)",
+        "from_customer": true,
+        "sent_at": "2026-11-17T09:45",
+        "text": "Any update on the revised SLA terms?",
+        "red_flag": "Unanswered request"
+      }
+    ],
+    "waiting_business_days": 4
+  },
+  "C07WLB001-1794562200.000000": {
+    "channel_name": "ext-willowbank-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07WLB001-1794562200000000",
+        "user_name": "Daniel (Willowbank Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-13T09:30",
+        "text": "Payout delays again this week, finance is asking questions.",
+        "red_flag": "Technical issue"
+      },
+      {
+        "message_id": "slack-C07WLB001-1794564900000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-13T10:15",
+        "text": "Looking into it with ops now, will update you today.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07WLB001-1794588000000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-13T16:40",
+        "text": "Root cause found on our side, payouts are back on schedule.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07WLB001-1794643500000000",
+        "user_name": "Daniel (Willowbank Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-14T08:05",
+        "text": "Confirmed, thanks for the quick turnaround.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07SLT001-1794748200.000000": {
+    "channel_name": "ext-saltmarsh-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07SLT001-1794748200000000",
+        "user_name": "Emma (Saltmarsh Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-15T13:10",
+        "text": "This invoice doesn't match the rates we agreed in the renewal proposal.",
+        "red_flag": "Billing dispute"
+      },
+      {
+        "message_id": "slack-C07SLT001-1794820800000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-16T09:20",
+        "text": "You're right, a credit note is on its way.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07PTR001-1794828600.000000": {
+    "channel_name": "ext-petrel-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07PTR001-1794828600000000",
+        "user_name": "Max (Petrel Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-16T11:30",
+        "text": "Our CFO wants a cost comparison before we renew.",
+        "red_flag": "Pricing pressure"
+      },
+      {
+        "message_id": "slack-C07PTR001-1794830400000000",
+        "user_name": "Julian (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-16T12:00",
+        "text": "Happy to help, I'll put one together this week.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07MOS001-1794924000.000000": {
+    "channel_name": "ext-mosaic-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07MOS001-1794924000000000",
+        "user_name": "Claire (Mosaic Legal)",
+        "from_customer": true,
+        "sent_at": "2026-11-17T14:00",
+        "text": "Can you resend the security questionnaire? Procurement flagged it as missing.",
+        "red_flag": "Procurement / legal"
+      },
+      {
+        "message_id": "slack-C07MOS001-1794928200000000",
+        "user_name": "Julian (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-17T15:10",
+        "text": "Resent just now, it's in your inbox.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07MOS001-1795172400000000",
+        "user_name": "Claire (Mosaic Legal)",
+        "from_customer": true,
+        "sent_at": "2026-11-20T11:00",
+        "text": "Received, our team is reviewing it this week.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07ZPH001-1794996000.000000": {
+    "channel_name": "ext-zephyrine-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07ZPH001-1794996000000000",
+        "user_name": "Lina (Zephyrine Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-18T10:00",
+        "text": "Pix volumes look great this month.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07ZPH001-1794997800000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-18T10:30",
+        "text": "Love to see it, thanks Lina.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07TDW001-1795014000.000000": {
+    "channel_name": "ext-tidewater-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07TDW001-1795014000000000",
+        "user_name": "Grace (Tidewater Operations)",
+        "from_customer": true,
+        "sent_at": "2026-11-18T15:00",
+        "text": "Quick heads up, I'm leaving the company at the end of the month.",
+        "red_flag": "Champion departure"
+      },
+      {
+        "message_id": "slack-C07TDW001-1795015800000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-18T15:30",
+        "text": "Thanks for telling us, Grace. Who should we work with on the renewal?",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07ZPH001-1795090200.000000": {
+    "channel_name": "ext-zephyrine-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07ZPH001-1795090200000000",
+        "user_name": "Lina (Zephyrine Finance)",
+        "from_customer": true,
+        "sent_at": "2026-11-19T12:10",
+        "text": "We were charged twice for the November terminal fees.",
+        "red_flag": "Billing dispute"
+      },
+      {
+        "message_id": "slack-C07ZPH001-1795093200000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-19T13:00",
+        "text": "Sorry about that, the duplicate is refunded.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07CPL001-1795096800.000000": {
+    "channel_name": "ext-copperleaf-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07CPL001-1795096800000000",
+        "user_name": "Leah (Copperleaf Payments)",
+        "from_customer": true,
+        "sent_at": "2026-11-19T14:00",
+        "text": "Monthly volumes are up 12%, nice to see the new markets live.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07CPL001-1795098000000000",
+        "user_name": "Nina (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-19T14:20",
+        "text": "Great news, thanks for sharing!",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07FRN001-1795192200.000000": {
+    "channel_name": "ext-fernhill-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07FRN001-1795192200000000",
+        "user_name": "Florian (Fernhill Operations)",
+        "from_customer": true,
+        "sent_at": "2026-11-20T16:30",
+        "text": "Renewal paperwork is still with our legal team, signature unlikely this month.",
+        "red_flag": "Closing risk"
+      },
+      {
+        "message_id": "slack-C07FRN001-1795194000000000",
+        "user_name": "Julian (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-20T17:00",
+        "text": "Thanks for the heads up, can we get 15 minutes with your legal lead?",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  },
+  "C07KRK001-1795362000.000000": {
+    "channel_name": "ext-krakatoa-adyen",
+    "messages": [
+      {
+        "message_id": "slack-C07KRK001-1795362000000000",
+        "user_name": "Maya (Krakatoa Procurement)",
+        "from_customer": true,
+        "sent_at": "2026-11-22T15:40",
+        "text": "We need the 15% reduction in processing fees confirmed before we sign.",
+        "red_flag": "Pricing pressure"
+      },
+      {
+        "message_id": "slack-C07KRK001-1795363320000000",
+        "user_name": "Hannah (Adyen)",
+        "from_customer": false,
+        "sent_at": "2026-11-22T16:02",
+        "text": "Understood, I'll come back with options on Monday.",
+        "red_flag": null
+      },
+      {
+        "message_id": "slack-C07KRK001-1795422600000000",
+        "user_name": "Maya (Krakatoa Procurement)",
+        "from_customer": true,
+        "sent_at": "2026-11-23T08:30",
+        "text": "Also flagging that leadership wants the renewal closed by the 29th.",
+        "red_flag": null
+      }
+    ],
+    "waiting_business_days": null
+  }
+}

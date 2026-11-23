@@ -194,6 +194,16 @@ def test_unanswered_request_comes_from_the_thread():
     assert df.loc["Kestrel - Renewal - Dec 2026", "SlackSignal"] == "Unanswered request"
 
 
+def test_thread_export_marks_the_unanswered_question():
+    # The thread panel shows the whole conversation; Kestrel's ends with the question still waiting.
+    threads = integration.threads_for_ui
+    kestrel = threads[integration.df.set_index("Name").loc["Kestrel - Renewal - Dec 2026", "SlackSignalThread"]]
+
+    assert kestrel["channel_name"] == "ext-kestrel-adyen"
+    assert kestrel["messages"][-1]["red_flag"] == "Unanswered request"
+    assert kestrel["waiting_business_days"] == 4
+
+
 def test_demo_ranking_on_the_snapshot_date():
     # The mock data is scored as of its last sync, 23 Nov 2026, so these stay fixed.
     # Krakatoa stays on top: 100 Salesforce + 17 Gong + 20 Slack.
