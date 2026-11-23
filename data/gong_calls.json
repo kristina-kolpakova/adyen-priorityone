@@ -1,0 +1,951 @@
+{
+  "gong_call_0001": {
+    "started": "2026-05-22T16:00:00+02:00",
+    "brief": "Quarterly business review with Kestrel.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0001-066332",
+        "text": "Reviewed volumes and authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0001-0926eb",
+        "text": "No commercial asks this quarter",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0001-ab3a4e",
+        "text": "Customer team reorganising, new contacts to follow",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0002": {
+    "started": "2026-06-29T12:30:00+02:00",
+    "brief": "Integration status call with Willowbank. Go-live is slipping, but the team is still committed.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0002-0af318",
+        "text": "Implementation delayed by customer's engineering backlog",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0002-23698e",
+        "text": "Go-live pushed by roughly six weeks",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0002-5c1ad1",
+        "text": "Customer still committed to the project",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0003": {
+    "started": "2026-07-03T17:30:00+02:00",
+    "brief": "Call with Pinecrest about their payment method mix for the additional entity (UK) upsell; they expect wallets to lift mobile conversion.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0003-124604",
+        "text": "Interest in adding wallets and Pay by Bank",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0003-05ca98",
+        "text": "Expects higher conversion on mobile",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0003-3c9709",
+        "text": "Requested pricing for additional methods",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0004": {
+    "started": "2026-07-07T09:30:00+02:00",
+    "brief": "Quarterly business review with Umberleaf.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0004-066332",
+        "text": "Reviewed volumes and authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0004-0926eb",
+        "text": "No commercial asks this quarter",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0004-ab3a4e",
+        "text": "Customer team reorganising, new contacts to follow",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0005": {
+    "started": "2026-07-07T12:30:00+02:00",
+    "brief": "Renewal planning call with Silverbirch. They intend to renew and want to grow the partnership.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0005-64659d",
+        "text": "Customer intends to renew",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0005-5a3ca3",
+        "text": "Interested in a multi-year term",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0005-b8b8ae",
+        "text": "Exploring additional markets as part of the renewal",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0006": {
+    "started": "2026-07-15T12:15:00+02:00",
+    "brief": "Strategy call with Driftwood's COO about launching in a new market next year.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0006-5dedc1",
+        "text": "Planning launch in a new market next year",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0006-368634",
+        "text": "Wants local payment methods at launch",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0006-991cd1",
+        "text": "Asked for a high-level timeline",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0007": {
+    "started": "2026-08-01T14:45:00+02:00",
+    "brief": "Intro call on network tokenization. Interest, but no follow-up agreed.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0007-b0f6b4",
+        "text": "Initial interest in network tokens",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0007-ecc8e7",
+        "text": "No technical owner identified on customer side",
+        "category": "Stakeholder change"
+      },
+      {
+        "evidence_id": "gong_call_0007-1ebd9f",
+        "text": "No follow-up meeting scheduled",
+        "category": "Missing next step"
+      }
+    ]
+  },
+  "gong_call_0008": {
+    "started": "2026-08-26T14:30:00+02:00",
+    "brief": "Larkspur issued an RFP covering the cross-border acquiring project, with a shortlist decision in about four weeks.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0008-e3049b",
+        "text": "Customer issued a request for proposal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0008-2f7fe5",
+        "text": "Evaluation criteria shared",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0008-8e3569",
+        "text": "Shortlist decision in about four weeks",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0009": {
+    "started": "2026-08-28T09:45:00+02:00",
+    "brief": "Quarterly business review with Vellum.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0009-066332",
+        "text": "Reviewed volumes and authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0009-0926eb",
+        "text": "No commercial asks this quarter",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0009-ab3a4e",
+        "text": "Customer team reorganising, new contacts to follow",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0010": {
+    "started": "2026-08-30T17:45:00+02:00",
+    "brief": "Quarterly business review. General satisfaction; early mention of longer-term plans for Latin America.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0010-5ffc6c",
+        "text": "Customer satisfied with current platform",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0010-b95289",
+        "text": "Mentioned possible Mexico launch in 2027",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0010-e757ae",
+        "text": "No commercial asks at this stage",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0011": {
+    "started": "2026-09-02T11:15:00+02:00",
+    "brief": "Integration status call with Vellum. Go-live is slipping, but the team is still committed.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0011-0af318",
+        "text": "Implementation delayed by customer's engineering backlog",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0011-23698e",
+        "text": "Go-live pushed by roughly six weeks",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0011-5c1ad1",
+        "text": "Customer still committed to the project",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0012": {
+    "started": "2026-09-09T16:00:00+02:00",
+    "brief": "Product discussion with Quayside on adding wallets and Pay by Bank alongside the Tap to Pay on mobile upsell.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0012-124604",
+        "text": "Interest in adding wallets and Pay by Bank",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0012-05ca98",
+        "text": "Expects higher conversion on mobile",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0012-3c9709",
+        "text": "Requested pricing for additional methods",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0012-bebe9e",
+        "text": "Customer evaluating another payment provider at renewal",
+        "category": "Competitor risk"
+      }
+    ]
+  },
+  "gong_call_0013": {
+    "started": "2026-09-28T10:00:00+02:00",
+    "brief": "Call with Willowbank about their payment method mix for the cross-border acquiring project; they expect wallets to lift mobile conversion.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0013-124604",
+        "text": "Interest in adding wallets and Pay by Bank",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0013-05ca98",
+        "text": "Expects higher conversion on mobile",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0013-3c9709",
+        "text": "Requested pricing for additional methods",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0013-231159",
+        "text": "Customer benchmarking fees against another provider",
+        "category": "Pricing pressure"
+      }
+    ]
+  },
+  "gong_call_0014": {
+    "started": "2026-10-02T16:15:00+02:00",
+    "brief": "Integration status call with Bramblewood. Go-live is slipping, but the team is still committed.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0014-0af318",
+        "text": "Implementation delayed by customer's engineering backlog",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0014-23698e",
+        "text": "Go-live pushed by roughly six weeks",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0014-5c1ad1",
+        "text": "Customer still committed to the project",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0015": {
+    "started": "2026-10-03T10:30:00+02:00",
+    "brief": "Quayside's VP Ecommerce asked for a formal proposal on the Tap to Pay on mobile upsell after the demo.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0015-5ba694",
+        "text": "Positive buying intent from the economic buyer",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0015-3781f7",
+        "text": "Requested a formal proposal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0015-c0b658",
+        "text": "Wants to align on dates this quarter",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0016": {
+    "started": "2026-10-04T17:00:00+02:00",
+    "brief": "Early renewal conversation. Customer is happy and open to a multi-year agreement.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0016-eb184e",
+        "text": "Customer satisfied with service levels",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0016-044071",
+        "text": "Asked about a discount for a multi-year term",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0016-222b1c",
+        "text": "Champion is the VP of Ecommerce",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0017": {
+    "started": "2026-10-12T13:00:00+02:00",
+    "brief": "Check-in on the unified commerce POS rollout. Rollout is on hold because internal IT resourcing is frozen until Q1.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0017-ce3f16",
+        "text": "Implementation delayed: IT resourcing frozen until Q1",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0017-bbab46",
+        "text": "No new date committed for the store pilot",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0017-c472e9",
+        "text": "Budget owner for POS has changed",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0018": {
+    "started": "2026-10-17T12:15:00+02:00",
+    "brief": "Project check-in with Lanternfly. Their new checkout integration is behind schedule.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0018-0af318",
+        "text": "Implementation delayed by customer's engineering backlog",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0018-23698e",
+        "text": "Go-live pushed by roughly six weeks",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0018-5c1ad1",
+        "text": "Customer still committed to the project",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0019": {
+    "started": "2026-10-25T14:15:00+02:00",
+    "brief": "Cobalt expects volumes to grow next year and asked for a joint business plan.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0019-0cf84b",
+        "text": "Discussing rollout to additional business units",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0019-ed453c",
+        "text": "Volumes expected to grow next year",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0019-30f1fb",
+        "text": "Asked for a joint business plan",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0020": {
+    "started": "2026-10-26T13:15:00+02:00",
+    "brief": "Product discussion with Umberleaf on adding wallets and Pay by Bank alongside the terminal fleet expansion upsell.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0020-124604",
+        "text": "Interest in adding wallets and Pay by Bank",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0020-05ca98",
+        "text": "Expects higher conversion on mobile",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0020-3c9709",
+        "text": "Requested pricing for additional methods",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0021": {
+    "started": "2026-10-31T10:15:00+02:00",
+    "brief": "Renewal planning call. The 3DS2 migration is running late and affecting conversion on European bookings.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0021-ad4f45",
+        "text": "Implementation delay on 3DS2 migration",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0021-dfa3ba",
+        "text": "Customer reports lower conversion on EU bookings",
+        "category": "Technical issue"
+      },
+      {
+        "evidence_id": "gong_call_0021-8b1d63",
+        "text": "Wants migration fixed before discussing renewal terms",
+        "category": "Closing risk"
+      }
+    ]
+  },
+  "gong_call_0022": {
+    "started": "2026-11-02T14:00:00+02:00",
+    "brief": "Marlowe quarterly review. Their team is reorganising and new contacts will follow.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0022-066332",
+        "text": "Reviewed volumes and authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0022-0926eb",
+        "text": "No commercial asks this quarter",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0022-ab3a4e",
+        "text": "Customer team reorganising, new contacts to follow",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0023": {
+    "started": "2026-11-03T12:00:00+02:00",
+    "brief": "Call with Orchard Lane's Head of Payments, who wants our pricing on the online checkout project checked against another provider before deciding.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0023-231159",
+        "text": "Customer benchmarking fees against another provider",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0023-f348b1",
+        "text": "Asked for a pricing review before signing",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0023-b63770",
+        "text": "Champion still supportive internally",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0024": {
+    "started": "2026-11-07T11:15:00+01:00",
+    "brief": "Commercial terms call with Saltmarsh's Finance Director, who asked for a revised offer on the marketplace payouts project.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0024-d9bc63",
+        "text": "Pricing objection on transaction fees",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0024-c23426",
+        "text": "Finance wants a revised offer",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0024-4471d1",
+        "text": "Timeline unchanged for now",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0025": {
+    "started": "2026-11-07T16:45:00+01:00",
+    "brief": "Pinecrest quarterly review. Their team is reorganising and new contacts will follow.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0025-066332",
+        "text": "Reviewed volumes and authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0025-0926eb",
+        "text": "No commercial asks this quarter",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0025-ab3a4e",
+        "text": "Customer team reorganising, new contacts to follow",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0026": {
+    "started": "2026-11-07T17:30:00+01:00",
+    "brief": "Driftwood issued an RFP covering the card issuing upsell, with a shortlist decision in about four weeks.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0026-e3049b",
+        "text": "Customer issued a request for proposal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0026-2f7fe5",
+        "text": "Evaluation criteria shared",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0026-8e3569",
+        "text": "Shortlist decision in about four weeks",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0027": {
+    "started": "2026-11-09T11:00:00+01:00",
+    "brief": "Discovery on Pay by Bank to reduce card fees on high-value orders.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0027-bd4061",
+        "text": "Interested in Pay by Bank for high-value orders",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0027-75d9cc",
+        "text": "Asked for case studies from similar retailers",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0027-308f05",
+        "text": "Finance team wants a cost comparison",
+        "category": "Pricing pressure"
+      }
+    ]
+  },
+  "gong_call_0028": {
+    "started": "2026-11-11T13:30:00+01:00",
+    "brief": "Planning session with Fernhill: a new-market launch is under discussion for next year.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0028-5dedc1",
+        "text": "Planning launch in a new market next year",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0028-368634",
+        "text": "Wants local payment methods at launch",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0028-991cd1",
+        "text": "Asked for a high-level timeline",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0029": {
+    "started": "2026-11-11T16:15:00+01:00",
+    "brief": "Post-demo call with Copperleaf: strong engagement, and they want to agree dates for the online checkout project this quarter.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0029-5ba694",
+        "text": "Positive buying intent from the economic buyer",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0029-3781f7",
+        "text": "Requested a formal proposal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0029-c0b658",
+        "text": "Wants to align on dates this quarter",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0030": {
+    "started": "2026-11-12T14:00:00+01:00",
+    "brief": "Marlowe's Payments Lead said they are benchmarking our fees against another payment provider before signing the platform onboarding project.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0030-231159",
+        "text": "Customer benchmarking fees against another provider",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0030-f348b1",
+        "text": "Asked for a pricing review before signing",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0030-b63770",
+        "text": "Champion still supportive internally",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0031": {
+    "started": "2026-11-13T12:30:00+01:00",
+    "brief": "Bramblewood issued an RFP covering the buy now pay later upsell, with a shortlist decision in about four weeks.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0031-e3049b",
+        "text": "Customer issued a request for proposal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0031-2f7fe5",
+        "text": "Evaluation criteria shared",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0031-8e3569",
+        "text": "Shortlist decision in about four weeks",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0032": {
+    "started": "2026-11-15T09:00:00+01:00",
+    "brief": "Discovery for Monogram's Nordics expansion.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0032-e5f658",
+        "text": "Expanding into Denmark, Norway and Sweden next year",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0032-980122",
+        "text": "Interested in local Nordic wallets",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0032-8c3ff5",
+        "text": "Needs a separate legal entity set up first",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0033": {
+    "started": "2026-11-15T13:00:00+01:00",
+    "brief": "Saltmarsh's CFO said they are benchmarking our fees against another payment provider before signing the marketplace payouts project.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0033-231159",
+        "text": "Customer benchmarking fees against another provider",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0033-f348b1",
+        "text": "Asked for a pricing review before signing",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0033-b63770",
+        "text": "Champion still supportive internally",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0034": {
+    "started": "2026-11-16T15:00:00+01:00",
+    "brief": "Quarterly review with Krakatoa's Head of Payments ahead of renewal. Customer confirmed they are running a parallel evaluation with another payment provider.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0034-92cca7",
+        "text": "Customer evaluating another payment provider before renewal",
+        "category": "Competitor risk"
+      },
+      {
+        "evidence_id": "gong_call_0034-e5d596",
+        "text": "Asked for a 15% reduction in processing fees",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0034-1346cf",
+        "text": "Decision expected within two weeks",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0034-bbd657",
+        "text": "Procurement now leading the renewal, not the payments team",
+        "category": "Stakeholder change"
+      }
+    ]
+  },
+  "gong_call_0035": {
+    "started": "2026-11-19T11:00:00+01:00",
+    "brief": "Procurement call with Orchard Lane. Vendor onboarding hasn't started, which is slowing down the online checkout project.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0035-853d61",
+        "text": "Procurement blocker: vendor onboarding not started",
+        "category": "Procurement / legal"
+      },
+      {
+        "evidence_id": "gong_call_0035-0416a8",
+        "text": "Security questionnaire outstanding",
+        "category": "Procurement / legal"
+      },
+      {
+        "evidence_id": "gong_call_0035-1a92b5",
+        "text": "Signature unlikely before the planned close date",
+        "category": "Closing risk"
+      }
+    ]
+  },
+  "gong_call_0036": {
+    "started": "2026-11-19T13:30:00+01:00",
+    "brief": "Commercial terms call with Cobalt's Finance Director, who asked for a revised offer on the Jul 2027 renewal.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0036-d9bc63",
+        "text": "Pricing objection on transaction fees",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0036-c23426",
+        "text": "Finance wants a revised offer",
+        "category": "Pricing pressure"
+      },
+      {
+        "evidence_id": "gong_call_0036-4471d1",
+        "text": "Timeline unchanged for now",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0037": {
+    "started": "2026-11-20T17:00:00+01:00",
+    "brief": "Renewal working session with Mosaic legal and procurement. Pricing is accepted, but a new procurement policy adds a security review.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0037-d3bcee",
+        "text": "Pricing accepted for the upcoming renewal",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0037-607693",
+        "text": "New procurement policy requires a security questionnaire",
+        "category": "Procurement / legal"
+      },
+      {
+        "evidence_id": "gong_call_0037-1f1299",
+        "text": "Legal review may push signature past the planned close date",
+        "category": "Closing risk"
+      }
+    ]
+  },
+  "gong_call_0038": {
+    "started": "2026-11-21T14:00:00+01:00",
+    "brief": "Escalation call requested by Wayfarer's VP Finance about payout delays and settlement reconciliation issues.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0038-337ea2",
+        "text": "Customer dissatisfied with payout delays over the last month",
+        "category": "Technical issue"
+      },
+      {
+        "evidence_id": "gong_call_0038-a5f30c",
+        "text": "Settlement reports not reconciling with their ledger",
+        "category": "Technical issue"
+      },
+      {
+        "evidence_id": "gong_call_0038-6bcdc7",
+        "text": "Requested an executive sponsor and a remediation plan",
+        "category": "Executive escalation"
+      },
+      {
+        "evidence_id": "gong_call_0038-72c92c",
+        "text": "Renewal discussions on hold until issues are resolved",
+        "category": "Closing risk"
+      }
+    ]
+  },
+  "gong_call_0039": {
+    "started": "2026-11-21T17:30:00+01:00",
+    "brief": "Thistle's Head of Ecommerce said an engineering backlog has pushed their checkout go-live back by about six weeks.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0039-0af318",
+        "text": "Implementation delayed by customer's engineering backlog",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0039-23698e",
+        "text": "Go-live pushed by roughly six weeks",
+        "category": "Implementation delay"
+      },
+      {
+        "evidence_id": "gong_call_0039-5c1ad1",
+        "text": "Customer still committed to the project",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0040": {
+    "started": "2026-11-22T11:00:00+01:00",
+    "brief": "Store rollout planning for Monogram's 40 new stores. Rollout schedule confirmed by their retail ops team.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0040-a6379b",
+        "text": "Positive buying intent: rollout schedule confirmed",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0040-34b77c",
+        "text": "Terminal pricing is the last open item",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0040-73d11b",
+        "text": "Wants first 10 stores live in January",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0041": {
+    "started": "2026-11-22T14:30:00+01:00",
+    "brief": "Operations sync on checkout performance. Ops lead was positive about authorization rates and recent uptime.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0041-c398ce",
+        "text": "Ops team satisfied with authorization rates",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0041-57f30f",
+        "text": "No open technical issues",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0041-05425f",
+        "text": "Ops lead not involved in the renewal decision",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0042": {
+    "started": "2026-11-22T16:00:00+01:00",
+    "brief": "Routine account health check-in with Lanternfly.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0042-d86119",
+        "text": "No major issues raised",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0042-df8a39",
+        "text": "Customer satisfied with current setup",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0042-085727",
+        "text": "Next review scheduled for next quarter",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0043": {
+    "started": "2026-11-23T12:30:00+01:00",
+    "brief": "Regular touchpoint with Silverbirch. The customer is happy with the current setup.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0043-d86119",
+        "text": "No major issues raised",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0043-df8a39",
+        "text": "Customer satisfied with current setup",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0043-085727",
+        "text": "Next review scheduled for next quarter",
+        "category": "Context"
+      }
+    ]
+  },
+  "gong_call_0044": {
+    "started": "2026-11-23T13:30:00+01:00",
+    "brief": "Expansion planning call. Aster is launching in Brazil in Q2 2027 and wants local payment methods live at launch.",
+    "key_points": [
+      {
+        "evidence_id": "gong_call_0044-8a18ab",
+        "text": "Expanding to Brazil in Q2 2027",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0044-77912a",
+        "text": "Requested a proposal for Pix and Boleto",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0044-1d760c",
+        "text": "Strong buying intent: budget approved for the launch",
+        "category": "Context"
+      },
+      {
+        "evidence_id": "gong_call_0044-b873a0",
+        "text": "Wants a timeline that supports an April go-live",
+        "category": "Context"
+      }
+    ]
+  }
+}

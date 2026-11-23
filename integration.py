@@ -1,4 +1,5 @@
 import hashlib
+import json
 
 import pandas as pd
 
@@ -536,3 +537,28 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
     )
     .to_json("data/opportunity_scores.json", orient="records", indent=2)
 )
+
+# --- Gong Calls for the UI ---
+
+# Every call with its summary and key points, so "Open call" can show the call in the app
+# (the mock Gong URLs don't resolve). Each key point keeps its evidence ID and category.
+calls_for_ui = {}
+for call_id, call in gong_key_points.groupby("id", sort=False):
+    first = call.iloc[0]
+    key_points = []
+    for _, point in call.iterrows():
+        key_point_hash = hashlib.sha1(point["key_points"].encode()).hexdigest()[:6]
+        category = point["red_flag"] if pd.notna(point["red_flag"]) else "Context"
+        key_points.append({
+            "evidence_id": f"{call_id}-{key_point_hash}",
+            "text": point["key_points"],
+            "category": category,
+        })
+    calls_for_ui[call_id] = {
+        "started": first["started"],
+        "brief": first["brief"],
+        "key_points": key_points,
+    }
+
+with open("data/gong_calls.json", "w") as file:
+    json.dump(calls_for_ui, file, indent=2)
