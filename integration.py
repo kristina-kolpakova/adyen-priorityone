@@ -433,6 +433,42 @@ df["Evidence"] = df["Id"].map(evidence_by_opportunity)
 # Each account row carries its top deal's ID; the deal's evidence is in opportunity_scores.json.
 ui_accounts["top_opportunity_id"] = top_opportunities["Id"]
 
+# Each account's recent calls not linked to any deal, newest first, for the drawer.
+# Every red flag on such a call earns the same recency bonus on all the account's deals.
+account_wide_signals = gong_signals[gong_signals["SignalScope"] == "account"].sort_values(
+    ["CallDate", "FlagOrder"], ascending=[False, True]
+)
+
+account_wide_calls = {}
+for call_id, call in account_wide_signals.groupby("id", sort=False):
+    first = call.iloc[0]
+    account_wide_calls.setdefault(first["associated_account"], []).append({
+        "call_date": first["CallDate"].strftime("%Y-%m-%d"),
+        "age_days": int(first["AgeDays"]),
+        "bonus": int((first["RecencyPoints"] + 0.5) // 1),
+        "flags": list(dict.fromkeys(call["red_flag"])),
+        "key_points": list(call["key_points"]),
+        "url": first["url"],
+        "call_id": call_id,
+    })
+
+# Show an account-wide call (and its pills on the list row) only when it earned the top
+# deal's bonus, i.e. when it counts toward the account's score.
+top_signal_call_ids = top_opportunities["GongSignalEvidenceId"].str.split("-").str[0]
+counted_call_ids = top_signal_call_ids[top_opportunities["GongSignalScope"] == "account"]
+
+shown_calls = {}
+shown_call_flags = {}
+for account_name, counted_call_id in counted_call_ids.items():
+    account_id = top_opportunities.loc[account_name, "AccountId"]
+    for call in account_wide_calls.get(account_id, []):
+        if call["call_id"] == counted_call_id:
+            shown_calls[account_name] = [call]
+            shown_call_flags[account_name] = call["flags"]
+
+ui_accounts["account_wide_calls"] = pd.Series(shown_calls, dtype=object)
+ui_accounts["account_call_issues"] = pd.Series(shown_call_flags, dtype=object)
+
 # Move the account name into a column for sorting and JSON export.
 ui_accounts = ui_accounts.reset_index(names="account_name")
 

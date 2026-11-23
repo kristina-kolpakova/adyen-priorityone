@@ -26,7 +26,8 @@
       "Competitor risk"
     ],
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000PdV1LIAV"
+    "top_opportunity_id":"006Hp00000PdV1LIAV",
+    "account_wide_calls":null
   },
   {
     "account_name":"Mosaic",
@@ -54,7 +55,8 @@
       "Procurement \/ legal"
     ],
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000I4VDUIA3"
+    "top_opportunity_id":"006Hp00000I4VDUIA3",
+    "account_wide_calls":null
   },
   {
     "account_name":"Willowbank",
@@ -79,7 +81,8 @@
     "top_days_since_activity":15.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000rZW2EIAW"
+    "top_opportunity_id":"006Hp00000rZW2EIAW",
+    "account_wide_calls":null
   },
   {
     "account_name":"Lanternfly",
@@ -106,7 +109,23 @@
     "account_call_issues":[
       "Implementation delay"
     ],
-    "top_opportunity_id":"006Hp00000FwIZTIA3"
+    "top_opportunity_id":"006Hp00000FwIZTIA3",
+    "account_wide_calls":[
+      {
+        "call_date":"2026-10-17",
+        "age_days":39,
+        "bonus":4,
+        "flags":[
+          "Implementation delay"
+        ],
+        "key_points":[
+          "Implementation delayed by customer's engineering backlog",
+          "Go-live pushed by roughly six weeks"
+        ],
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018",
+        "call_id":"gong_call_0018"
+      }
+    ]
   },
   {
     "account_name":"Marlowe",
@@ -132,10 +151,9 @@
     "top_gong_issues":[
       "Pricing pressure"
     ],
-    "account_call_issues":[
-      "Stakeholder change"
-    ],
-    "top_opportunity_id":"006Hp00000tVjIlIAK"
+    "account_call_issues":null,
+    "top_opportunity_id":"006Hp00000tVjIlIAK",
+    "account_wide_calls":null
   },
   {
     "account_name":"Saltmarsh",
@@ -162,7 +180,8 @@
       "Pricing pressure"
     ],
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000AwrQjIAJ"
+    "top_opportunity_id":"006Hp00000AwrQjIAJ",
+    "account_wide_calls":null
   },
   {
     "account_name":"Kestrel",
@@ -187,7 +206,8 @@
     "top_days_since_activity":12.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000vLSNFIA4"
+    "top_opportunity_id":"006Hp00000vLSNFIA4",
+    "account_wide_calls":null
   },
   {
     "account_name":"Orchard Lane",
@@ -216,7 +236,8 @@
       "Pricing pressure"
     ],
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000HcqRRIAZ"
+    "top_opportunity_id":"006Hp00000HcqRRIAZ",
+    "account_wide_calls":null
   },
   {
     "account_name":"Fernhill",
@@ -241,7 +262,8 @@
     "top_days_since_activity":63.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000wLBBSIA4"
+    "top_opportunity_id":"006Hp00000wLBBSIA4",
+    "account_wide_calls":null
   },
   {
     "account_name":"Copperleaf",
@@ -266,7 +288,8 @@
     "top_days_since_activity":25.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000Vh1xxIAB"
+    "top_opportunity_id":"006Hp00000Vh1xxIAB",
+    "account_wide_calls":null
   },
   {
     "account_name":"Quayside",
@@ -291,7 +314,8 @@
     "top_days_since_activity":113.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000baxh6IAA"
+    "top_opportunity_id":"006Hp00000baxh6IAA",
+    "account_wide_calls":null
   },
   {
     "account_name":"Wayfarer",
@@ -321,10 +345,30 @@
     ],
     "account_call_issues":[
       "Closing risk",
-      "Executive escalation",
-      "Technical issue"
+      "Technical issue",
+      "Executive escalation"
     ],
-    "top_opportunity_id":"006Hp00000bejLdIAI"
+    "top_opportunity_id":"006Hp00000bejLdIAI",
+    "account_wide_calls":[
+      {
+        "call_date":"2026-11-21",
+        "age_days":4,
+        "bonus":19,
+        "flags":[
+          "Closing risk",
+          "Technical issue",
+          "Executive escalation"
+        ],
+        "key_points":[
+          "Renewal discussions on hold until issues are resolved",
+          "Customer dissatisfied with payout delays over the last month",
+          "Settlement reports not reconciling with their ledger",
+          "Requested an executive sponsor and a remediation plan"
+        ],
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038",
+        "call_id":"gong_call_0038"
+      }
+    ]
   },
   {
     "account_name":"Monogram",
@@ -349,7 +393,8 @@
     "top_days_since_activity":3.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000SLi4oIAD"
+    "top_opportunity_id":"006Hp00000SLi4oIAD",
+    "account_wide_calls":null
   },
   {
     "account_name":"Petrel",
@@ -374,7 +419,8 @@
     "top_days_since_activity":13.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp000008JHE6IAO"
+    "top_opportunity_id":"006Hp000008JHE6IAO",
+    "account_wide_calls":null
   },
   {
     "account_name":"Zephyrine",
@@ -399,7 +445,8 @@
     "top_days_since_activity":19.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000dY4joIAC"
+    "top_opportunity_id":"006Hp00000dY4joIAC",
+    "account_wide_calls":null
   },
   {
     "account_name":"Pinecrest",
@@ -426,7 +473,22 @@
     "account_call_issues":[
       "Stakeholder change"
     ],
-    "top_opportunity_id":"006Hp00000VeJlDIAV"
+    "top_opportunity_id":"006Hp00000VeJlDIAV",
+    "account_wide_calls":[
+      {
+        "call_date":"2026-11-07",
+        "age_days":18,
+        "bonus":11,
+        "flags":[
+          "Stakeholder change"
+        ],
+        "key_points":[
+          "Customer team reorganising, new contacts to follow"
+        ],
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025",
+        "call_id":"gong_call_0025"
+      }
+    ]
   },
   {
     "account_name":"Tidewater",
@@ -451,7 +513,8 @@
     "top_days_since_activity":106.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000zQbW9IAK"
+    "top_opportunity_id":"006Hp00000zQbW9IAK",
+    "account_wide_calls":null
   },
   {
     "account_name":"Umberleaf",
@@ -476,7 +539,8 @@
     "top_days_since_activity":37.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000umHvpIAE"
+    "top_opportunity_id":"006Hp00000umHvpIAE",
+    "account_wide_calls":null
   },
   {
     "account_name":"Redfern",
@@ -501,7 +565,8 @@
     "top_days_since_activity":13.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000a5GUQIA2"
+    "top_opportunity_id":"006Hp00000a5GUQIA2",
+    "account_wide_calls":null
   },
   {
     "account_name":"Oakmoor",
@@ -526,7 +591,8 @@
     "top_days_since_activity":14.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000x0rLBIAY"
+    "top_opportunity_id":"006Hp00000x0rLBIAY",
+    "account_wide_calls":null
   },
   {
     "account_name":"Aster",
@@ -551,7 +617,8 @@
     "top_days_since_activity":2.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000Gn0VLIAZ"
+    "top_opportunity_id":"006Hp00000Gn0VLIAZ",
+    "account_wide_calls":null
   },
   {
     "account_name":"Halcyon",
@@ -576,7 +643,8 @@
     "top_days_since_activity":28.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000BZ6n3IAD"
+    "top_opportunity_id":"006Hp00000BZ6n3IAD",
+    "account_wide_calls":null
   },
   {
     "account_name":"Cobalt",
@@ -603,7 +671,8 @@
       "Pricing pressure"
     ],
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000mBS9kIAG"
+    "top_opportunity_id":"006Hp00000mBS9kIAG",
+    "account_wide_calls":null
   },
   {
     "account_name":"Bramblewood",
@@ -630,7 +699,23 @@
     "account_call_issues":[
       "Implementation delay"
     ],
-    "top_opportunity_id":"006Hp00000cEscVIAS"
+    "top_opportunity_id":"006Hp00000cEscVIAS",
+    "account_wide_calls":[
+      {
+        "call_date":"2026-10-02",
+        "age_days":54,
+        "bonus":3,
+        "flags":[
+          "Implementation delay"
+        ],
+        "key_points":[
+          "Implementation delayed by customer's engineering backlog",
+          "Go-live pushed by roughly six weeks"
+        ],
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014",
+        "call_id":"gong_call_0014"
+      }
+    ]
   },
   {
     "account_name":"Quillon",
@@ -655,7 +740,8 @@
     "top_days_since_activity":22.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp000008or03IAA"
+    "top_opportunity_id":"006Hp000008or03IAA",
+    "account_wide_calls":null
   },
   {
     "account_name":"Silverbirch",
@@ -680,7 +766,8 @@
     "top_days_since_activity":28.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000yrCM3IAM"
+    "top_opportunity_id":"006Hp00000yrCM3IAM",
+    "account_wide_calls":null
   },
   {
     "account_name":"Larkspur",
@@ -705,7 +792,8 @@
     "top_days_since_activity":42.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000BikatIAB"
+    "top_opportunity_id":"006Hp00000BikatIAB",
+    "account_wide_calls":null
   },
   {
     "account_name":"Driftwood",
@@ -730,7 +818,8 @@
     "top_days_since_activity":108.0,
     "top_gong_issues":null,
     "account_call_issues":null,
-    "top_opportunity_id":"006Hp00000EWAVtIAP"
+    "top_opportunity_id":"006Hp00000EWAVtIAP",
+    "account_wide_calls":null
   },
   {
     "account_name":"Vellum",
@@ -755,9 +844,24 @@
     "top_days_since_activity":29.0,
     "top_gong_issues":null,
     "account_call_issues":[
-      "Implementation delay",
-      "Stakeholder change"
+      "Implementation delay"
     ],
-    "top_opportunity_id":"006Hp00000YHxVnIAL"
+    "top_opportunity_id":"006Hp00000YHxVnIAL",
+    "account_wide_calls":[
+      {
+        "call_date":"2026-09-02",
+        "age_days":84,
+        "bonus":1,
+        "flags":[
+          "Implementation delay"
+        ],
+        "key_points":[
+          "Implementation delayed by customer's engineering backlog",
+          "Go-live pushed by roughly six weeks"
+        ],
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011",
+        "call_id":"gong_call_0011"
+      }
+    ]
   }
 ]

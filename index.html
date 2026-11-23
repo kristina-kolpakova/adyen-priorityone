@@ -333,6 +333,22 @@
     .detail-section-title { font-size: 16px; font-weight: 600; }
     .detail-section-meta { color: #a0a8b0; font-size: 12px; }
 
+    /* Calls not linked to any deal, shown above the deals they affect. */
+    .account-calls { margin-bottom: 24px; }
+
+    .account-call {
+      background: #fff;
+      border: 1px solid #e2ece6;
+      border-radius: 11px;
+      padding: 12px 18px;
+      margin-bottom: 8px;
+    }
+
+    .account-call .flag-tag:first-child { margin-left: 0; }
+    .account-call-points { margin-top: 6px; font-size: 13px; color: var(--ink); }
+    .account-call-meta { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    .account-call-meta a { color: #3a7f8a; }
+
     .opportunity-card {
       background: #fff;
       border: 1px solid #e2ece6;
@@ -965,6 +981,36 @@
           </div>`;
       }
 
+      // Recent calls not linked to any deal: their red flags apply to the whole account.
+      let accountCalls = "";
+      const calls = account.account_wide_calls || [];
+      if (calls.length > 0) {
+        let callRows = "";
+        for (const call of calls) {
+          const callDate = shortDate.format(new Date(call.call_date + "T12:00:00"));
+          let pills = "";
+          for (const flag of call.flags) {
+            pills += `<span class="flag-tag gong-account-tag">${flag}</span>`;
+          }
+          callRows += `
+            <div class="account-call">
+              <div>${pills}</div>
+              <div class="account-call-points">${call.key_points.join(" · ")}</div>
+              <div class="account-call-meta">
+                Call on ${callDate}, ${call.age_days} ${call.age_days === 1 ? "day" : "days"} ago ·
+                <strong>+${call.bonus} pts</strong> toward this account's score ·
+                <a href="${call.url}" target="_blank" rel="noopener">Open call</a>
+              </div>
+            </div>`;
+        }
+        accountCalls = `
+          <div class="detail-section-heading">
+            <span class="detail-section-title">Account-wide calls</span>
+            <span class="detail-section-meta">Not linked to a deal</span>
+          </div>
+          <div class="account-calls">${callRows}</div>`;
+      }
+
       // Every opportunity's final score, e.g. "102, 77".
       const dealScores = opportunities
         .map(function (opportunity) { return opportunity.final_score; })
@@ -982,6 +1028,7 @@
         <span class="chip chip-renewal">Renewal <strong>${renewal}</strong></span>
         <span class="chip chip-upsell-new">Upsell/New <strong>${upsellNew}</strong></span>
         <p class="detail-explanation">${explanation}</p>
+        ${accountCalls}
         <div class="detail-section-heading">
           <span class="detail-section-title">Open opportunities</span>
           <span class="detail-section-meta">${opportunities.length} open</span>
