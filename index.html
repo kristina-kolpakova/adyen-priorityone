@@ -1444,7 +1444,7 @@
         return `<button class="reason-chip" data-reason="${reason}">${reason}</button>`;
       }).join("");
       prompt.innerHTML = `
-        <span class="feedback-text">Moved <strong>${accountName}</strong> to #${newRank}. Why? <em>(optional)</em></span>
+        <span class="feedback-text">Moved <strong>${accountName}</strong> to #${newRank}. Help us improve future rankings <em>(optional)</em></span>
         <span class="reason-chips">${chips}</span>
         <button class="link-button" id="undo-move">Undo</button>`;
       prompt.hidden = false;
@@ -1679,7 +1679,7 @@
 
     function logTaskLink(opportunityId) {
       if (loggedTasks.includes(opportunityId)) {
-        return `<span class="log-task logged">✓ Logged to Salesforce (demo)</span>`;
+        return `<span class="log-task logged">✓ Task and note saved (demo)</span>`;
       }
       return `<button class="log-task" data-opportunity="${opportunityId}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9z"/></svg>Log to Salesforce</button>`;
     }
