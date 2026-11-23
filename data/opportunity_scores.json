@@ -1,6 +1,7 @@
 [
   {
     "account_name":"Aster",
+    "opportunity_id":"006Hp00000Gn0VLIAZ",
     "opportunity":"Aster - Upsell - Brazil local payment methods",
     "type":"Upsell",
     "amount":410000.0,
@@ -11,16 +12,127 @@
     "timing_score":10,
     "stage_score":20,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":2.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Aster - Upsell - Brazil local payment methods"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac410,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Dec 2026 (in 34 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"2 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Send proposal covering Pix and Boleto"
+      },
+      {
+        "id":"gong_call_0044-b873a0",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Wants a timeline that supports an April go-live",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0044"
+      },
+      {
+        "id":"gong_call_0044-1d760c",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Strong buying intent: budget approved for the launch",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0044"
+      },
+      {
+        "id":"gong_call_0044-77912a",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Requested a proposal for Pix and Boleto",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0044"
+      },
+      {
+        "id":"gong_call_0044-8a18ab",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Expanding to Brazil in Q2 2027",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0044"
+      },
+      {
+        "id":"gong_call_0010-b95289",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Mentioned possible Mexico launch in 2027",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-5ffc6c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Customer satisfied with current platform",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-e757ae",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"No commercial asks at this stage",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      }
+    ]
   },
   {
     "account_name":"Aster",
+    "opportunity_id":"006Hp00000hh5HiIAI",
     "opportunity":"Aster - Renewal - Jun 2027",
     "type":"Renewal",
     "amount":640000.0,
@@ -31,16 +143,88 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":18.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Aster - Renewal - Jun 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac640,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Jun 2027 (in 197 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"18 days ago"
+      },
+      {
+        "id":"gong_call_0010-b95289",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Mentioned possible Mexico launch in 2027",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-5ffc6c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Customer satisfied with current platform",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-e757ae",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"No commercial asks at this stage",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      }
+    ]
   },
   {
     "account_name":"Aster",
+    "opportunity_id":"006Hp00000GhC3FIAV",
     "opportunity":"Aster - Upsell - Pay by Bank",
     "type":"Upsell",
     "amount":95000.0,
@@ -51,18 +235,121 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":20,
+    "gong_points":2,
+    "final_score":22,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":11.0,
     "gong_issues":[
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Aster - Upsell - Pay by Bank"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac95,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"08 Mar 2027 (in 103 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"11 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Share Pay by Bank case studies"
+      },
+      {
+        "id":"gong_call_0027-75d9cc",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 09 Nov",
+        "value":"Asked for case studies from similar retailers",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0027"
+      },
+      {
+        "id":"gong_call_0027-308f05",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 09 Nov",
+        "value":"Finance team wants a cost comparison",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0027"
+      },
+      {
+        "id":"gong_call_0027-bd4061",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 09 Nov",
+        "value":"Interested in Pay by Bank for high-value orders",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0027"
+      },
+      {
+        "id":"gong_call_0010-b95289",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Mentioned possible Mexico launch in 2027",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-5ffc6c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"Customer satisfied with current platform",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      },
+      {
+        "id":"gong_call_0010-e757ae",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 30 Aug",
+        "value":"No commercial asks at this stage",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0010"
+      }
     ]
   },
   {
     "account_name":"Bramblewood",
+    "opportunity_id":"006Hp00000cEscVIAS",
     "opportunity":"Bramblewood - New - Platform onboarding",
     "type":"New",
     "amount":130000.0,
@@ -73,16 +360,95 @@
     "timing_score":20,
     "stage_score":20,
     "priority_score":50,
+    "gong_points":1,
+    "final_score":51,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":2.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Bramblewood - New - Platform onboarding"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac130,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"21 Dec 2026 (in 26 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"2 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Follow up on proposal feedback"
+      },
+      {
+        "id":"gong_call_0014-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Oct",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      },
+      {
+        "id":"gong_call_0014-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Oct",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      },
+      {
+        "id":"gong_call_0014-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Oct",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      }
+    ]
   },
   {
     "account_name":"Bramblewood",
+    "opportunity_id":"006Hp00000d0lnHIAQ",
     "opportunity":"Bramblewood - Upsell - Buy now pay later",
     "type":"Upsell",
     "amount":45000.0,
@@ -93,16 +459,112 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":5,
+    "gong_points":1,
+    "final_score":6,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":11.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Bramblewood - Upsell - Buy now pay later"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac45,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"14 Jul 2027 (in 231 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"11 days ago"
+      },
+      {
+        "id":"gong_call_0031-2f7fe5",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 13 Nov",
+        "value":"Evaluation criteria shared",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0031"
+      },
+      {
+        "id":"gong_call_0031-e3049b",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 13 Nov",
+        "value":"Customer issued a request for proposal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0031"
+      },
+      {
+        "id":"gong_call_0031-8e3569",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 13 Nov",
+        "value":"Shortlist decision in about four weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0031"
+      },
+      {
+        "id":"gong_call_0014-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Oct",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      },
+      {
+        "id":"gong_call_0014-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Oct",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      },
+      {
+        "id":"gong_call_0014-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Oct",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0014"
+      }
+    ]
   },
   {
     "account_name":"Cobalt",
+    "opportunity_id":"006Hp00000mBS9kIAG",
     "opportunity":"Cobalt - Renewal - Jul 2027",
     "type":"Renewal",
     "amount":170000.0,
@@ -113,18 +575,114 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":35,
+    "gong_points":2,
+    "final_score":37,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":44.0,
     "gong_issues":[
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Cobalt - Renewal - Jul 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac170,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"07 Jul 2027 (in 224 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"44 days ago"
+      },
+      {
+        "id":"gong_call_0036-c23426",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 19 Nov",
+        "value":"Finance wants a revised offer",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0036"
+      },
+      {
+        "id":"gong_call_0036-d9bc63",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 19 Nov",
+        "value":"Pricing objection on transaction fees",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0036"
+      },
+      {
+        "id":"gong_call_0036-4471d1",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 19 Nov",
+        "value":"Timeline unchanged for now",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0036"
+      },
+      {
+        "id":"gong_call_0019-30f1fb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 25 Oct",
+        "value":"Asked for a joint business plan",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0019"
+      },
+      {
+        "id":"gong_call_0019-ed453c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 25 Oct",
+        "value":"Volumes expected to grow next year",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0019"
+      },
+      {
+        "id":"gong_call_0019-0cf84b",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 25 Oct",
+        "value":"Discussing rollout to additional business units",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0019"
+      }
     ]
   },
   {
     "account_name":"Copperleaf",
+    "opportunity_id":"006Hp00000Vh1xxIAB",
     "opportunity":"Copperleaf - Upsell - Additional entity (US)",
     "type":"Upsell",
     "amount":245000.0,
@@ -135,16 +693,71 @@
     "timing_score":30,
     "stage_score":30,
     "priority_score":80,
+    "gong_points":0,
+    "final_score":80,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":25.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Copperleaf - Upsell - Additional entity (US)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac245,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Nov 2026 (in 4 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"25 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      }
+    ]
   },
   {
     "account_name":"Copperleaf",
+    "opportunity_id":"006Hp00000cPt25IAC",
     "opportunity":"Copperleaf - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":525000.0,
@@ -155,16 +768,78 @@
     "timing_score":20,
     "stage_score":20,
     "priority_score":70,
+    "gong_points":0,
+    "final_score":70,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":true,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":113.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Copperleaf - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac525,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"13 Dec 2026 (in 18 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"113 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"No recent activity before close"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Review pricing with deal desk"
+      }
+    ]
   },
   {
     "account_name":"Copperleaf",
+    "opportunity_id":"006Hp00000nogrwIAA",
     "opportunity":"Copperleaf - New - Online checkout",
     "type":"New",
     "amount":190000.0,
@@ -175,16 +850,88 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":70.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Copperleaf - New - Online checkout"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac190,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"20 May 2027 (in 176 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"70 days ago"
+      },
+      {
+        "id":"gong_call_0029-c0b658",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Wants to align on dates this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0029"
+      },
+      {
+        "id":"gong_call_0029-3781f7",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Requested a formal proposal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0029"
+      },
+      {
+        "id":"gong_call_0029-5ba694",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Positive buying intent from the economic buyer",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0029"
+      }
+    ]
   },
   {
     "account_name":"Driftwood",
+    "opportunity_id":"006Hp00000EWAVtIAP",
     "opportunity":"Driftwood - Upsell - Revenue optimization",
     "type":"Upsell",
     "amount":130000.0,
@@ -195,16 +942,71 @@
     "timing_score":10,
     "stage_score":10,
     "priority_score":30,
+    "gong_points":0,
+    "final_score":30,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":108.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Driftwood - Upsell - Revenue optimization"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac130,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"22 Jan 2027 (in 58 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"108 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Driftwood",
+    "opportunity_id":"006Hp00000vgWsMIAU",
     "opportunity":"Driftwood - Upsell - Card issuing",
     "type":"Upsell",
     "amount":210000.0,
@@ -215,16 +1017,95 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":15,
+    "gong_points":0,
+    "final_score":15,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":27.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Driftwood - Upsell - Card issuing"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac210,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"26 Feb 2027 (in 93 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"27 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Confirm decision makers"
+      },
+      {
+        "id":"gong_call_0026-8e3569",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Shortlist decision in about four weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0026"
+      },
+      {
+        "id":"gong_call_0026-2f7fe5",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Evaluation criteria shared",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0026"
+      },
+      {
+        "id":"gong_call_0026-e3049b",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Customer issued a request for proposal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0026"
+      }
+    ]
   },
   {
     "account_name":"Fernhill",
+    "opportunity_id":"006Hp00000wLBBSIA4",
     "opportunity":"Fernhill - Renewal - Nov 2026",
     "type":"Renewal",
     "amount":570000.0,
@@ -235,16 +1116,102 @@
     "timing_score":30,
     "stage_score":20,
     "priority_score":85,
+    "gong_points":0,
+    "final_score":85,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":63.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Fernhill - Renewal - Nov 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac570,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Nov 2026 (overdue by 15 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"63 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Overdue"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Send commercial proposal"
+      },
+      {
+        "id":"gong_call_0028-991cd1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Asked for a high-level timeline",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0028"
+      },
+      {
+        "id":"gong_call_0028-368634",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Wants local payment methods at launch",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0028"
+      },
+      {
+        "id":"gong_call_0028-5dedc1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 11 Nov",
+        "value":"Planning launch in a new market next year",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0028"
+      }
+    ]
   },
   {
     "account_name":"Halcyon",
+    "opportunity_id":"006Hp00000BZ6n3IAD",
     "opportunity":"Halcyon - Upsell - Revenue optimization",
     "type":"Upsell",
     "amount":280000.0,
@@ -255,16 +1222,71 @@
     "timing_score":5,
     "stage_score":30,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":28.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Halcyon - Upsell - Revenue optimization"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac280,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Jan 2027 (in 65 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"28 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      }
+    ]
   },
   {
     "account_name":"Halcyon",
+    "opportunity_id":"006Hp00000cigC5IAI",
     "opportunity":"Halcyon - Renewal - Feb 2027",
     "type":"Renewal",
     "amount":580000.0,
@@ -275,16 +1297,71 @@
     "timing_score":5,
     "stage_score":10,
     "priority_score":50,
+    "gong_points":0,
+    "final_score":50,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":6.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Halcyon - Renewal - Feb 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac580,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"14 Feb 2027 (in 81 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"6 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Map current payment stack"
+      }
+    ]
   },
   {
     "account_name":"Kestrel",
+    "opportunity_id":"006Hp00000vLSNFIA4",
     "opportunity":"Kestrel - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":595000.0,
@@ -295,16 +1372,71 @@
     "timing_score":25,
     "stage_score":30,
     "priority_score":90,
+    "gong_points":0,
+    "final_score":90,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":12.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Kestrel - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac595,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"04 Dec 2026 (in 9 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"12 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree pricing and signature date"
+      }
+    ]
   },
   {
     "account_name":"Kestrel",
+    "opportunity_id":"006Hp00000wLfRAIA0",
     "opportunity":"Kestrel - New - Cross-border acquiring",
     "type":"New",
     "amount":430000.0,
@@ -315,16 +1447,71 @@
     "timing_score":25,
     "stage_score":20,
     "priority_score":75,
+    "gong_points":0,
+    "final_score":75,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":3.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Kestrel - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac430,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"08 Dec 2026 (in 13 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"3 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Send commercial proposal"
+      }
+    ]
   },
   {
     "account_name":"Kestrel",
+    "opportunity_id":"006Hp000005vUb4IAE",
     "opportunity":"Kestrel - New - Marketplace payouts",
     "type":"New",
     "amount":1230000.0,
@@ -335,16 +1522,71 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":60,
+    "gong_points":0,
+    "final_score":60,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":2.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Kestrel - New - Marketplace payouts"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,230,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 Jul 2027 (in 234 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"2 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Follow up on proposal feedback"
+      }
+    ]
   },
   {
     "account_name":"Krakatoa",
+    "opportunity_id":"006Hp00000PdV1LIAV",
     "opportunity":"Krakatoa - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":1450000.0,
@@ -355,20 +1597,138 @@
     "timing_score":30,
     "stage_score":30,
     "priority_score":100,
+    "gong_points":2,
+    "final_score":102,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":true,
     "stale_commit":true,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":38.0,
     "gong_issues":[
       "Stakeholder change",
       "Pricing pressure",
       "Competitor risk"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Krakatoa - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,450,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"01 Dec 2026 (in 6 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"38 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"No recent activity before close, Stale Commit"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Confirm renewal pricing with procurement"
+      },
+      {
+        "id":"gong_call_0034-bbd657",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Stakeholder change \u00b7 call on 16 Nov",
+        "value":"Procurement now leading the renewal, not the payments team",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0034"
+      },
+      {
+        "id":"gong_call_0034-1346cf",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 16 Nov",
+        "value":"Decision expected within two weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0034"
+      },
+      {
+        "id":"gong_call_0034-e5d596",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 16 Nov",
+        "value":"Asked for a 15% reduction in processing fees",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0034"
+      },
+      {
+        "id":"gong_call_0034-92cca7",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Competitor risk \u00b7 call on 16 Nov",
+        "value":"Customer evaluating another payment provider before renewal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0034"
+      },
+      {
+        "id":"gong_call_0041-57f30f",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"No open technical issues",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      },
+      {
+        "id":"gong_call_0041-c398ce",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Ops team satisfied with authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      },
+      {
+        "id":"gong_call_0041-05425f",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Ops lead not involved in the renewal decision",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      }
     ]
   },
   {
     "account_name":"Krakatoa",
+    "opportunity_id":"006Hp00000ks1X7IAI",
     "opportunity":"Krakatoa - Upsell - Unified commerce POS rollout",
     "type":"Upsell",
     "amount":320000.0,
@@ -379,19 +1739,122 @@
     "timing_score":30,
     "stage_score":20,
     "priority_score":75,
+    "gong_points":2,
+    "final_score":77,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":64.0,
     "gong_issues":[
       "Stakeholder change",
       "Implementation delay"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Krakatoa - Upsell - Unified commerce POS rollout"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac320,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Nov 2026 (overdue by 15 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"64 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Overdue"
+      },
+      {
+        "id":"gong_call_0017-bbab46",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Implementation delay \u00b7 call on 12 Oct",
+        "value":"No new date committed for the store pilot",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0017"
+      },
+      {
+        "id":"gong_call_0017-ce3f16",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Implementation delay \u00b7 call on 12 Oct",
+        "value":"Implementation delayed: IT resourcing frozen until Q1",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0017"
+      },
+      {
+        "id":"gong_call_0017-c472e9",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Stakeholder change \u00b7 call on 12 Oct",
+        "value":"Budget owner for POS has changed",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0017"
+      },
+      {
+        "id":"gong_call_0041-57f30f",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"No open technical issues",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      },
+      {
+        "id":"gong_call_0041-c398ce",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Ops team satisfied with authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      },
+      {
+        "id":"gong_call_0041-05425f",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Ops lead not involved in the renewal decision",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0041"
+      }
     ]
   },
   {
     "account_name":"Lanternfly",
+    "opportunity_id":"006Hp00000FwIZTIA3",
     "opportunity":"Lanternfly - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":1850000.0,
@@ -402,16 +1865,119 @@
     "timing_score":25,
     "stage_score":30,
     "priority_score":95,
+    "gong_points":1,
+    "final_score":96,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":3.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Lanternfly - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,850,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"03 Dec 2026 (in 8 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"3 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree pricing and signature date"
+      },
+      {
+        "id":"gong_call_0042-d86119",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"No major issues raised",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0042-df8a39",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Customer satisfied with current setup",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0042-085727",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Next review scheduled for next quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0018-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 17 Oct",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      },
+      {
+        "id":"gong_call_0018-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 17 Oct",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      },
+      {
+        "id":"gong_call_0018-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 17 Oct",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      }
+    ]
   },
   {
     "account_name":"Lanternfly",
+    "opportunity_id":"006Hp00000DJSQwIAP",
     "opportunity":"Lanternfly - Upsell - Tap to Pay on mobile",
     "type":"Upsell",
     "amount":505000.0,
@@ -422,16 +1988,119 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":30,
+    "gong_points":1,
+    "final_score":31,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":117.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Lanternfly - Upsell - Tap to Pay on mobile"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac505,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 May 2027 (in 173 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"117 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Intro call with finance"
+      },
+      {
+        "id":"gong_call_0042-d86119",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"No major issues raised",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0042-df8a39",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Customer satisfied with current setup",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0042-085727",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Next review scheduled for next quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0042"
+      },
+      {
+        "id":"gong_call_0018-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 17 Oct",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      },
+      {
+        "id":"gong_call_0018-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 17 Oct",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      },
+      {
+        "id":"gong_call_0018-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 17 Oct",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0018"
+      }
+    ]
   },
   {
     "account_name":"Larkspur",
+    "opportunity_id":"006Hp00000BikatIAB",
     "opportunity":"Larkspur - New - Cross-border acquiring",
     "type":"New",
     "amount":470000.0,
@@ -442,16 +2111,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":40,
+    "gong_points":0,
+    "final_score":40,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":42.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Larkspur - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac470,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"24 Jun 2027 (in 211 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"42 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Larkspur",
+    "opportunity_id":"006Hp00000JTbGOIA1",
     "opportunity":"Larkspur - Renewal - Jul 2027",
     "type":"Renewal",
     "amount":440000.0,
@@ -462,16 +2186,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":40,
+    "gong_points":0,
+    "final_score":40,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":5.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Larkspur - Renewal - Jul 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac440,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"08 Jul 2027 (in 225 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"5 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Share solution overview"
+      }
+    ]
   },
   {
     "account_name":"Marlowe",
+    "opportunity_id":"006Hp00000tVjIlIAK",
     "opportunity":"Marlowe - New - Platform onboarding",
     "type":"New",
     "amount":245000.0,
@@ -482,18 +2261,121 @@
     "timing_score":30,
     "stage_score":30,
     "priority_score":80,
+    "gong_points":2,
+    "final_score":82,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":7.0,
     "gong_issues":[
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Marlowe - New - Platform onboarding"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac245,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"02 Dec 2026 (in 7 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"7 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree pricing and signature date"
+      },
+      {
+        "id":"gong_call_0030-b63770",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 12 Nov",
+        "value":"Champion still supportive internally",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0030"
+      },
+      {
+        "id":"gong_call_0030-f348b1",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 12 Nov",
+        "value":"Asked for a pricing review before signing",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0030"
+      },
+      {
+        "id":"gong_call_0030-231159",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 12 Nov",
+        "value":"Customer benchmarking fees against another provider",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0030"
+      },
+      {
+        "id":"gong_call_0022-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 02 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      }
     ]
   },
   {
     "account_name":"Marlowe",
+    "opportunity_id":"006Hp00000pAfP7IAK",
     "opportunity":"Marlowe - New - Cross-border acquiring",
     "type":"New",
     "amount":45000.0,
@@ -504,16 +2386,102 @@
     "timing_score":30,
     "stage_score":30,
     "priority_score":65,
+    "gong_points":1,
+    "final_score":66,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":true,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":null,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Marlowe - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac45,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"27 Nov 2026 (in 2 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"None logged"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"No recent activity before close"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree pricing and signature date"
+      },
+      {
+        "id":"gong_call_0022-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 02 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      }
+    ]
   },
   {
     "account_name":"Marlowe",
+    "opportunity_id":"006Hp00000NE8kSIAT",
     "opportunity":"Marlowe - Renewal - Sep 2026",
     "type":"Renewal",
     "amount":255000.0,
@@ -524,16 +2492,102 @@
     "timing_score":10,
     "stage_score":30,
     "priority_score":60,
+    "gong_points":1,
+    "final_score":61,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":true,
+    "early_commit":false,
     "days_since_activity":15.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Marlowe - Renewal - Sep 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac255,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"18 Sep 2026 (overdue by 68 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"15 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Long overdue"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Legal review of MSA"
+      },
+      {
+        "id":"gong_call_0022-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 02 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      }
+    ]
   },
   {
     "account_name":"Marlowe",
+    "opportunity_id":"006Hp00000GGR1OIAX",
     "opportunity":"Marlowe - Upsell - Network tokenization",
     "type":"Upsell",
     "amount":80000.0,
@@ -544,16 +2598,88 @@
     "timing_score":25,
     "stage_score":20,
     "priority_score":50,
+    "gong_points":1,
+    "final_score":51,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":10.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Marlowe - Upsell - Network tokenization"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac80,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"09 Dec 2026 (in 14 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"10 days ago"
+      },
+      {
+        "id":"gong_call_0022-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      },
+      {
+        "id":"gong_call_0022-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 02 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0022"
+      }
+    ]
   },
   {
     "account_name":"Monogram",
+    "opportunity_id":"006Hp00000SLi4oIAD",
     "opportunity":"Monogram - Upsell - In-store payments for 40 new stores",
     "type":"Upsell",
     "amount":275000.0,
@@ -564,16 +2690,95 @@
     "timing_score":20,
     "stage_score":30,
     "priority_score":70,
+    "gong_points":0,
+    "final_score":70,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":3.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Monogram - Upsell - In-store payments for 40 new stores"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac275,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"14 Dec 2026 (in 19 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"3 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree final terminal pricing"
+      },
+      {
+        "id":"gong_call_0040-a6379b",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Positive buying intent: rollout schedule confirmed",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0040"
+      },
+      {
+        "id":"gong_call_0040-34b77c",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Terminal pricing is the last open item",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0040"
+      },
+      {
+        "id":"gong_call_0040-73d11b",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 22 Nov",
+        "value":"Wants first 10 stores live in January",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0040"
+      }
+    ]
   },
   {
     "account_name":"Monogram",
+    "opportunity_id":"006Hp00000FWAx5IAH",
     "opportunity":"Monogram - New - Nordics entity",
     "type":"New",
     "amount":390000.0,
@@ -584,16 +2789,95 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":10.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Monogram - New - Nordics entity"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac390,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 May 2027 (in 166 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"10 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Scope Nordic payment methods"
+      },
+      {
+        "id":"gong_call_0032-8c3ff5",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 15 Nov",
+        "value":"Needs a separate legal entity set up first",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0032"
+      },
+      {
+        "id":"gong_call_0032-980122",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 15 Nov",
+        "value":"Interested in local Nordic wallets",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0032"
+      },
+      {
+        "id":"gong_call_0032-e5f658",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 15 Nov",
+        "value":"Expanding into Denmark, Norway and Sweden next year",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0032"
+      }
+    ]
   },
   {
     "account_name":"Monogram",
+    "opportunity_id":"006Hp0000025FAMIA2",
     "opportunity":"Monogram - Renewal - Jul 2027",
     "type":"Renewal",
     "amount":300000.0,
@@ -604,16 +2888,64 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":20,
+    "gong_points":0,
+    "final_score":20,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":null,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Monogram - Renewal - Jul 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac300,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Jul 2027 (in 227 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"None logged"
+      }
+    ]
   },
   {
     "account_name":"Mosaic",
+    "opportunity_id":"006Hp00000I4VDUIA3",
     "opportunity":"Mosaic - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":880000.0,
@@ -624,19 +2956,122 @@
     "timing_score":25,
     "stage_score":30,
     "priority_score":95,
+    "gong_points":2,
+    "final_score":97,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":5.0,
     "gong_issues":[
       "Closing risk",
       "Procurement \/ legal"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Mosaic - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac880,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"07 Dec 2026 (in 12 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"5 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Legal redlines on MSA"
+      },
+      {
+        "id":"gong_call_0037-1f1299",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Closing risk \u00b7 call on 20 Nov",
+        "value":"Legal review may push signature past the planned close date",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0037"
+      },
+      {
+        "id":"gong_call_0037-607693",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Procurement \/ legal \u00b7 call on 20 Nov",
+        "value":"New procurement policy requires a security questionnaire",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0037"
+      },
+      {
+        "id":"gong_call_0037-d3bcee",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 20 Nov",
+        "value":"Pricing accepted for the upcoming renewal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0037"
+      },
+      {
+        "id":"gong_call_0016-222b1c",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 04 Oct",
+        "value":"Champion is the VP of Ecommerce",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0016"
+      },
+      {
+        "id":"gong_call_0016-044071",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 04 Oct",
+        "value":"Asked about a discount for a multi-year term",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0016"
+      },
+      {
+        "id":"gong_call_0016-eb184e",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 04 Oct",
+        "value":"Customer satisfied with service levels",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0016"
+      }
     ]
   },
   {
     "account_name":"Mosaic",
+    "opportunity_id":"006Hp00000QxUlbIAF",
     "opportunity":"Mosaic - Upsell - Risk & fraud add-on",
     "type":"Upsell",
     "amount":60000.0,
@@ -647,16 +3082,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":15,
+    "gong_points":0,
+    "final_score":15,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":31.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Mosaic - Upsell - Risk & fraud add-on"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac60,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"25 Mar 2027 (in 120 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"31 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Book fraud review workshop"
+      }
+    ]
   },
   {
     "account_name":"Oakmoor",
+    "opportunity_id":"006Hp00000x0rLBIAY",
     "opportunity":"Oakmoor - New - Pay by Link",
     "type":"New",
     "amount":710000.0,
@@ -667,16 +3157,71 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":14.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Oakmoor - New - Pay by Link"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac710,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"20 May 2027 (in 176 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"14 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Follow up on proposal feedback"
+      }
+    ]
   },
   {
     "account_name":"Oakmoor",
+    "opportunity_id":"006Hp000006mHB6IAM",
     "opportunity":"Oakmoor - Upsell - Buy now pay later",
     "type":"Upsell",
     "amount":330000.0,
@@ -687,16 +3232,71 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":45,
+    "gong_points":0,
+    "final_score":45,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":5.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Oakmoor - Upsell - Buy now pay later"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac330,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Jul 2027 (in 227 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"5 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Review pricing with deal desk"
+      }
+    ]
   },
   {
     "account_name":"Oakmoor",
+    "opportunity_id":"006Hp00000lWgULIA0",
     "opportunity":"Oakmoor - Renewal - Jun 2027",
     "type":"Renewal",
     "amount":700000.0,
@@ -707,16 +3307,71 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":28.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Oakmoor - Renewal - Jun 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac700,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"23 Jun 2027 (in 210 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"28 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Qualify volumes and markets"
+      }
+    ]
   },
   {
     "account_name":"Oakmoor",
+    "opportunity_id":"006Hp00000B2RPTIA3",
     "opportunity":"Oakmoor - New - Online checkout",
     "type":"New",
     "amount":690000.0,
@@ -727,16 +3382,71 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":36.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Oakmoor - New - Online checkout"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac690,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"02 Jul 2027 (in 219 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"36 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Confirm decision makers"
+      }
+    ]
   },
   {
     "account_name":"Orchard Lane",
+    "opportunity_id":"006Hp00000HcqRRIAZ",
     "opportunity":"Orchard Lane - New - Online checkout",
     "type":"New",
     "amount":265000.0,
@@ -747,20 +3457,123 @@
     "timing_score":30,
     "stage_score":20,
     "priority_score":70,
+    "gong_points":2,
+    "final_score":72,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":7.0,
     "gong_issues":[
       "Closing risk",
       "Procurement \/ legal",
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Orchard Lane - New - Online checkout"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac265,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Nov 2026 (in 4 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"7 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Review pricing with deal desk"
+      },
+      {
+        "id":"gong_call_0035-1a92b5",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Closing risk \u00b7 call on 19 Nov",
+        "value":"Signature unlikely before the planned close date",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0035"
+      },
+      {
+        "id":"gong_call_0035-853d61",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Procurement \/ legal \u00b7 call on 19 Nov",
+        "value":"Procurement blocker: vendor onboarding not started",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0035"
+      },
+      {
+        "id":"gong_call_0035-0416a8",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Procurement \/ legal \u00b7 call on 19 Nov",
+        "value":"Security questionnaire outstanding",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0035"
+      },
+      {
+        "id":"gong_call_0023-b63770",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 03 Nov",
+        "value":"Champion still supportive internally",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0023"
+      },
+      {
+        "id":"gong_call_0023-f348b1",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 03 Nov",
+        "value":"Asked for a pricing review before signing",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0023"
+      },
+      {
+        "id":"gong_call_0023-231159",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 03 Nov",
+        "value":"Customer benchmarking fees against another provider",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0023"
+      }
     ]
   },
   {
     "account_name":"Petrel",
+    "opportunity_id":"006Hp000008JHE6IAO",
     "opportunity":"Petrel - New - Mobile app payments",
     "type":"New",
     "amount":230000.0,
@@ -771,16 +3584,71 @@
     "timing_score":25,
     "stage_score":30,
     "priority_score":70,
+    "gong_points":0,
+    "final_score":70,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":13.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Petrel - New - Mobile app payments"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac230,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"05 Dec 2026 (in 10 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"13 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Legal review of MSA"
+      }
+    ]
   },
   {
     "account_name":"Petrel",
+    "opportunity_id":"006Hp00000Ge6mkIAB",
     "opportunity":"Petrel - Renewal - Jul 2027",
     "type":"Renewal",
     "amount":1850000.0,
@@ -791,16 +3659,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":50,
+    "gong_points":0,
+    "final_score":50,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":40.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Petrel - Renewal - Jul 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,850,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"20 Jul 2027 (in 237 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"40 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Petrel",
+    "opportunity_id":"006Hp00000g8hf4IAA",
     "opportunity":"Petrel - Upsell - Local payment methods (DE)",
     "type":"Upsell",
     "amount":55000.0,
@@ -811,16 +3734,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":15,
+    "gong_points":0,
+    "final_score":15,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":96.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Petrel - Upsell - Local payment methods (DE)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac55,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"27 Feb 2027 (in 94 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"96 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Map current payment stack"
+      }
+    ]
   },
   {
     "account_name":"Pinecrest",
+    "opportunity_id":"006Hp00000VeJlDIAV",
     "opportunity":"Pinecrest - Upsell - Local payment methods (BR)",
     "type":"Upsell",
     "amount":340000.0,
@@ -831,16 +3809,95 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":45,
+    "gong_points":1,
+    "final_score":46,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":13.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Pinecrest - Upsell - Local payment methods (BR)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac340,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"15 Jun 2027 (in 202 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"13 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Follow up on proposal feedback"
+      },
+      {
+        "id":"gong_call_0025-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 07 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      },
+      {
+        "id":"gong_call_0025-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      },
+      {
+        "id":"gong_call_0025-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      }
+    ]
   },
   {
     "account_name":"Pinecrest",
+    "opportunity_id":"006Hp00000hfZlNIAU",
     "opportunity":"Pinecrest - Upsell - Additional entity (UK)",
     "type":"Upsell",
     "amount":135000.0,
@@ -851,16 +3908,95 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":20,
+    "gong_points":1,
+    "final_score":21,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":12.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Pinecrest - Upsell - Additional entity (UK)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac135,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"25 Apr 2027 (in 151 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"12 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      },
+      {
+        "id":"gong_call_0025-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 07 Nov",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      },
+      {
+        "id":"gong_call_0025-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      },
+      {
+        "id":"gong_call_0025-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0025"
+      }
+    ]
   },
   {
     "account_name":"Quayside",
+    "opportunity_id":"006Hp00000baxh6IAA",
     "opportunity":"Quayside - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":375000.0,
@@ -871,16 +4007,78 @@
     "timing_score":20,
     "stage_score":30,
     "priority_score":75,
+    "gong_points":0,
+    "final_score":75,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":true,
     "stale_commit":true,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":113.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Quayside - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac375,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"20 Dec 2026 (in 25 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"113 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"No recent activity before close, Stale Commit"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Legal review of MSA"
+      }
+    ]
   },
   {
     "account_name":"Quayside",
+    "opportunity_id":"006Hp00000BSaNaIAL",
     "opportunity":"Quayside - New - Subscription billing",
     "type":"New",
     "amount":330000.0,
@@ -891,16 +4089,71 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":25,
+    "gong_points":0,
+    "final_score":25,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":41.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Quayside - New - Subscription billing"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac330,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Apr 2027 (in 155 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"41 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Qualify volumes and markets"
+      }
+    ]
   },
   {
     "account_name":"Quayside",
+    "opportunity_id":"006Hp00000KVLj8IAH",
     "opportunity":"Quayside - Upsell - Tap to Pay on mobile",
     "type":"Upsell",
     "amount":140000.0,
@@ -911,18 +4164,129 @@
     "timing_score":5,
     "stage_score":10,
     "priority_score":25,
+    "gong_points":2,
+    "final_score":27,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":65.0,
     "gong_issues":[
       "Competitor risk"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Quayside - Upsell - Tap to Pay on mobile"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac140,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Jan 2027 (in 65 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"65 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Share solution overview"
+      },
+      {
+        "id":"gong_call_0015-c0b658",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 03 Oct",
+        "value":"Wants to align on dates this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0015"
+      },
+      {
+        "id":"gong_call_0015-3781f7",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 03 Oct",
+        "value":"Requested a formal proposal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0015"
+      },
+      {
+        "id":"gong_call_0015-5ba694",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 03 Oct",
+        "value":"Positive buying intent from the economic buyer",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0015"
+      },
+      {
+        "id":"gong_call_0012-bebe9e",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Competitor risk \u00b7 call on 09 Sep",
+        "value":"Customer evaluating another payment provider at renewal",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0012"
+      },
+      {
+        "id":"gong_call_0012-3c9709",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 09 Sep",
+        "value":"Requested pricing for additional methods",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0012"
+      },
+      {
+        "id":"gong_call_0012-05ca98",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 09 Sep",
+        "value":"Expects higher conversion on mobile",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0012"
+      },
+      {
+        "id":"gong_call_0012-124604",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 09 Sep",
+        "value":"Interest in adding wallets and Pay by Bank",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0012"
+      }
     ]
   },
   {
     "account_name":"Quillon",
+    "opportunity_id":"006Hp000008or03IAA",
     "opportunity":"Quillon - New - Pay by Link",
     "type":"New",
     "amount":135000.0,
@@ -933,16 +4297,71 @@
     "timing_score":30,
     "stage_score":10,
     "priority_score":50,
+    "gong_points":0,
+    "final_score":50,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":22.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Quillon - New - Pay by Link"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac135,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"20 Nov 2026 (overdue by 5 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"22 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Overdue"
+      }
+    ]
   },
   {
     "account_name":"Quillon",
+    "opportunity_id":"006Hp00000T7gLNIAZ",
     "opportunity":"Quillon - New - Cross-border acquiring",
     "type":"New",
     "amount":170000.0,
@@ -953,16 +4372,71 @@
     "timing_score":5,
     "stage_score":10,
     "priority_score":30,
+    "gong_points":0,
+    "final_score":30,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":20.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Quillon - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac170,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"30 Jan 2027 (in 66 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"20 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Redfern",
+    "opportunity_id":"006Hp00000a5GUQIA2",
     "opportunity":"Redfern - Upsell - Buy now pay later",
     "type":"Upsell",
     "amount":25000.0,
@@ -973,16 +4447,78 @@
     "timing_score":30,
     "stage_score":20,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":13.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Redfern - Upsell - Buy now pay later"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac25,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"07 Nov 2026 (overdue by 18 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"13 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Overdue"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Follow up on proposal feedback"
+      }
+    ]
   },
   {
     "account_name":"Redfern",
+    "opportunity_id":"006Hp00000LbgXMIAZ",
     "opportunity":"Redfern - New - Cross-border acquiring",
     "type":"New",
     "amount":510000.0,
@@ -993,16 +4529,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":40,
+    "gong_points":0,
+    "final_score":40,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":1.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Redfern - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac510,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"24 Mar 2027 (in 119 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"1 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Redfern",
+    "opportunity_id":"006Hp00000ihQPFIA2",
     "opportunity":"Redfern - New - Platform onboarding",
     "type":"New",
     "amount":555000.0,
@@ -1013,16 +4604,71 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":35,
+    "gong_points":0,
+    "final_score":35,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":55.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Redfern - New - Platform onboarding"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac555,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 Mar 2027 (in 112 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"55 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Intro call with finance"
+      }
+    ]
   },
   {
     "account_name":"Saltmarsh",
+    "opportunity_id":"006Hp00000Bp4xFIAR",
     "opportunity":"Saltmarsh - Renewal - Dec 2026",
     "type":"Renewal",
     "amount":1300000.0,
@@ -1033,16 +4679,64 @@
     "timing_score":20,
     "stage_score":30,
     "priority_score":90,
+    "gong_points":0,
+    "final_score":90,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":21.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Saltmarsh - Renewal - Dec 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,300,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"21 Dec 2026 (in 26 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"21 days ago"
+      }
+    ]
   },
   {
     "account_name":"Saltmarsh",
+    "opportunity_id":"006Hp00000AwrQjIAJ",
     "opportunity":"Saltmarsh - New - Marketplace payouts",
     "type":"New",
     "amount":815000.0,
@@ -1053,18 +4747,121 @@
     "timing_score":5,
     "stage_score":30,
     "priority_score":75,
+    "gong_points":2,
+    "final_score":77,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":null,
     "gong_issues":[
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Saltmarsh - New - Marketplace payouts"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac815,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 Feb 2027 (in 84 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"None logged"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      },
+      {
+        "id":"gong_call_0033-b63770",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 15 Nov",
+        "value":"Champion still supportive internally",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0033"
+      },
+      {
+        "id":"gong_call_0033-f348b1",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 15 Nov",
+        "value":"Asked for a pricing review before signing",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0033"
+      },
+      {
+        "id":"gong_call_0033-231159",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 15 Nov",
+        "value":"Customer benchmarking fees against another provider",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0033"
+      },
+      {
+        "id":"gong_call_0024-4471d1",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 07 Nov",
+        "value":"Timeline unchanged for now",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0024"
+      },
+      {
+        "id":"gong_call_0024-c23426",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 07 Nov",
+        "value":"Finance wants a revised offer",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0024"
+      },
+      {
+        "id":"gong_call_0024-d9bc63",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 07 Nov",
+        "value":"Pricing objection on transaction fees",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0024"
+      }
     ]
   },
   {
     "account_name":"Saltmarsh",
+    "opportunity_id":"006Hp00000x5BvsIAE",
     "opportunity":"Saltmarsh - Upsell - Additional entity (US)",
     "type":"Upsell",
     "amount":65000.0,
@@ -1075,16 +4872,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":15,
+    "gong_points":0,
+    "final_score":15,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":13.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Saltmarsh - Upsell - Additional entity (US)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac65,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"24 Jun 2027 (in 211 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"13 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Silverbirch",
+    "opportunity_id":"006Hp00000yrCM3IAM",
     "opportunity":"Silverbirch - Renewal - Jan 2027",
     "type":"Renewal",
     "amount":305000.0,
@@ -1095,16 +4947,102 @@
     "timing_score":10,
     "stage_score":10,
     "priority_score":45,
-    "is_problem":false,
+    "gong_points":0,
+    "final_score":45,
+    "is_problem":true,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":true,
     "days_since_activity":28.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Silverbirch - Renewal - Jan 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac305,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"04 Jan 2027 (in 40 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"28 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Early-stage Commit"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      },
+      {
+        "id":"gong_call_0043-085727",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Next review scheduled for next quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      },
+      {
+        "id":"gong_call_0043-df8a39",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Customer satisfied with current setup",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      },
+      {
+        "id":"gong_call_0043-d86119",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"No major issues raised",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      }
+    ]
   },
   {
     "account_name":"Silverbirch",
+    "opportunity_id":"006Hp00000XeFKfIAN",
     "opportunity":"Silverbirch - New - Online checkout",
     "type":"New",
     "amount":90000.0,
@@ -1115,16 +5053,95 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":10,
+    "gong_points":0,
+    "final_score":10,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":5.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Silverbirch - New - Online checkout"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac90,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"25 Jun 2027 (in 212 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"5 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Confirm decision makers"
+      },
+      {
+        "id":"gong_call_0043-085727",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Next review scheduled for next quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      },
+      {
+        "id":"gong_call_0043-df8a39",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"Customer satisfied with current setup",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      },
+      {
+        "id":"gong_call_0043-d86119",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 23 Nov",
+        "value":"No major issues raised",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0043"
+      }
+    ]
   },
   {
     "account_name":"Tidewater",
+    "opportunity_id":"006Hp00000zQbW9IAK",
     "opportunity":"Tidewater - New - Mobile app payments",
     "type":"New",
     "amount":225000.0,
@@ -1135,16 +5152,78 @@
     "timing_score":10,
     "stage_score":30,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":true,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":106.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Tidewater - New - Mobile app payments"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac225,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 Jan 2027 (in 53 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"106 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Stale Commit"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Agree pricing and signature date"
+      }
+    ]
   },
   {
     "account_name":"Tidewater",
+    "opportunity_id":"006Hp000007vOesIAE",
     "opportunity":"Tidewater - Renewal - Mar 2027",
     "type":"Renewal",
     "amount":1200000.0,
@@ -1155,16 +5234,71 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":50,
+    "gong_points":0,
+    "final_score":50,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":36.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Tidewater - Renewal - Mar 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac1,200,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"09 Mar 2027 (in 104 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"36 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Technical discovery session"
+      }
+    ]
   },
   {
     "account_name":"Tidewater",
+    "opportunity_id":"006Hp000009fqJBIAY",
     "opportunity":"Tidewater - Upsell - Data & insights",
     "type":"Upsell",
     "amount":115000.0,
@@ -1175,16 +5309,64 @@
     "timing_score":10,
     "stage_score":20,
     "priority_score":40,
+    "gong_points":0,
+    "final_score":40,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":67.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Tidewater - Upsell - Data & insights"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac115,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"29 Dec 2026 (in 34 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"67 days ago"
+      }
+    ]
   },
   {
     "account_name":"Umberleaf",
+    "opportunity_id":"006Hp00000umHvpIAE",
     "opportunity":"Umberleaf - Upsell - Card issuing",
     "type":"Upsell",
     "amount":160000.0,
@@ -1195,16 +5377,78 @@
     "timing_score":10,
     "stage_score":30,
     "priority_score":55,
+    "gong_points":0,
+    "final_score":55,
     "is_problem":true,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":true,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":37.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Umberleaf - Upsell - Card issuing"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac160,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"17 Jan 2027 (in 53 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"37 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Stale Commit"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      }
+    ]
   },
   {
     "account_name":"Umberleaf",
+    "opportunity_id":"006Hp00000SFcrJIAT",
     "opportunity":"Umberleaf - New - Pay by Link",
     "type":"New",
     "amount":450000.0,
@@ -1215,16 +5459,64 @@
     "timing_score":5,
     "stage_score":10,
     "priority_score":45,
+    "gong_points":0,
+    "final_score":45,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":10.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Umberleaf - New - Pay by Link"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac450,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"16 Feb 2027 (in 83 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"10 days ago"
+      }
+    ]
   },
   {
     "account_name":"Umberleaf",
+    "opportunity_id":"006Hp000003OrNYIA0",
     "opportunity":"Umberleaf - Upsell - Terminal fleet expansion",
     "type":"Upsell",
     "amount":250000.0,
@@ -1235,16 +5527,95 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":30,
+    "gong_points":0,
+    "final_score":30,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":8.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Umberleaf - Upsell - Terminal fleet expansion"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac250,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"23 Mar 2027 (in 118 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"8 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Share solution overview"
+      },
+      {
+        "id":"gong_call_0020-3c9709",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 26 Oct",
+        "value":"Requested pricing for additional methods",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0020"
+      },
+      {
+        "id":"gong_call_0020-05ca98",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 26 Oct",
+        "value":"Expects higher conversion on mobile",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0020"
+      },
+      {
+        "id":"gong_call_0020-124604",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 26 Oct",
+        "value":"Interest in adding wallets and Pay by Bank",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0020"
+      }
+    ]
   },
   {
     "account_name":"Vellum",
+    "opportunity_id":"006Hp00000YHxVnIAL",
     "opportunity":"Vellum - New - Pay by Link",
     "type":"New",
     "amount":175000.0,
@@ -1255,16 +5626,119 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":25,
+    "gong_points":1,
+    "final_score":26,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":29.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Vellum - New - Pay by Link"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac175,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"13 Jun 2027 (in 200 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"29 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Map current payment stack"
+      },
+      {
+        "id":"gong_call_0011-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Sep",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0011-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Sep",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0011-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Sep",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0009-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 28 Aug",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      },
+      {
+        "id":"gong_call_0009-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 28 Aug",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      },
+      {
+        "id":"gong_call_0009-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 28 Aug",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      }
+    ]
   },
   {
     "account_name":"Vellum",
+    "opportunity_id":"006Hp00000PhI7DIAV",
     "opportunity":"Vellum - New - Subscription billing",
     "type":"New",
     "amount":75000.0,
@@ -1275,16 +5749,119 @@
     "timing_score":0,
     "stage_score":0,
     "priority_score":5,
+    "gong_points":1,
+    "final_score":6,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":4.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Vellum - New - Subscription billing"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac75,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"27 Jun 2027 (in 214 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"4 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Confirm decision makers"
+      },
+      {
+        "id":"gong_call_0011-5c1ad1",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 02 Sep",
+        "value":"Customer still committed to the project",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0011-23698e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Sep",
+        "value":"Go-live pushed by roughly six weeks",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0011-0af318",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Implementation delay \u00b7 call on 02 Sep",
+        "value":"Implementation delayed by customer's engineering backlog",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0011"
+      },
+      {
+        "id":"gong_call_0009-ab3a4e",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Stakeholder change \u00b7 call on 28 Aug",
+        "value":"Customer team reorganising, new contacts to follow",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      },
+      {
+        "id":"gong_call_0009-0926eb",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 28 Aug",
+        "value":"No commercial asks this quarter",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      },
+      {
+        "id":"gong_call_0009-066332",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Context \u00b7 call on 28 Aug",
+        "value":"Reviewed volumes and authorization rates",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0009"
+      }
+    ]
   },
   {
     "account_name":"Wayfarer",
+    "opportunity_id":"006Hp00000bejLdIAI",
     "opportunity":"Wayfarer - Renewal - Mar 2027",
     "type":"Renewal",
     "amount":560000.0,
@@ -1295,20 +5872,131 @@
     "timing_score":0,
     "stage_score":20,
     "priority_score":55,
+    "gong_points":2,
+    "final_score":57,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":4.0,
     "gong_issues":[
       "Closing risk",
       "Technical issue",
       "Implementation delay"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Wayfarer - Renewal - Mar 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Proposal"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac560,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"09 Mar 2027 (in 104 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"4 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Prepare renewal proposal"
+      },
+      {
+        "id":"gong_call_0021-8b1d63",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Closing risk \u00b7 call on 31 Oct",
+        "value":"Wants migration fixed before discussing renewal terms",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0021"
+      },
+      {
+        "id":"gong_call_0021-dfa3ba",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Technical issue \u00b7 call on 31 Oct",
+        "value":"Customer reports lower conversion on EU bookings",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0021"
+      },
+      {
+        "id":"gong_call_0021-ad4f45",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Implementation delay \u00b7 call on 31 Oct",
+        "value":"Implementation delay on 3DS2 migration",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0021"
+      },
+      {
+        "id":"gong_call_0038-337ea2",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Technical issue \u00b7 call on 21 Nov",
+        "value":"Customer dissatisfied with payout delays over the last month",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-a5f30c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Technical issue \u00b7 call on 21 Nov",
+        "value":"Settlement reports not reconciling with their ledger",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-6bcdc7",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Executive escalation \u00b7 call on 21 Nov",
+        "value":"Requested an executive sponsor and a remediation plan",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-72c92c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Closing risk \u00b7 call on 21 Nov",
+        "value":"Renewal discussions on hold until issues are resolved",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      }
     ]
   },
   {
     "account_name":"Wayfarer",
+    "opportunity_id":"006Hp00000NrTJJIA3",
     "opportunity":"Wayfarer - Upsell - Network tokenization",
     "type":"Upsell",
     "amount":140000.0,
@@ -1319,16 +6007,103 @@
     "timing_score":10,
     "stage_score":0,
     "priority_score":20,
+    "gong_points":1,
+    "final_score":21,
     "is_problem":true,
     "is_overdue":true,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":true,
+    "early_commit":false,
     "days_since_activity":116.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Wayfarer - Upsell - Network tokenization"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Qualification"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac140,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"10 Oct 2026 (overdue by 46 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"116 days ago"
+      },
+      {
+        "id":"sf-flags",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Problem flags",
+        "value":"Long overdue"
+      },
+      {
+        "id":"gong_call_0038-337ea2",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Technical issue \u00b7 call on 21 Nov",
+        "value":"Customer dissatisfied with payout delays over the last month",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-a5f30c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Technical issue \u00b7 call on 21 Nov",
+        "value":"Settlement reports not reconciling with their ledger",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-6bcdc7",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Executive escalation \u00b7 call on 21 Nov",
+        "value":"Requested an executive sponsor and a remediation plan",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      },
+      {
+        "id":"gong_call_0038-72c92c",
+        "source":"Gong",
+        "scope":"account",
+        "label":"Closing risk \u00b7 call on 21 Nov",
+        "value":"Renewal discussions on hold until issues are resolved",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0038"
+      }
+    ]
   },
   {
     "account_name":"Willowbank",
+    "opportunity_id":"006Hp00000rZW2EIAW",
     "opportunity":"Willowbank - Renewal - Nov 2026",
     "type":"Renewal",
     "amount":2055000.0,
@@ -1339,16 +6114,71 @@
     "timing_score":30,
     "stage_score":30,
     "priority_score":100,
+    "gong_points":0,
+    "final_score":100,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":15.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Willowbank - Renewal - Nov 2026"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac2,055,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"28 Nov 2026 (in 3 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Best Case"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"15 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      }
+    ]
   },
   {
     "account_name":"Willowbank",
+    "opportunity_id":"006Hp00000VMMEcIAP",
     "opportunity":"Willowbank - New - Cross-border acquiring",
     "type":"New",
     "amount":500000.0,
@@ -1359,18 +6189,105 @@
     "timing_score":5,
     "stage_score":30,
     "priority_score":65,
+    "gong_points":2,
+    "final_score":67,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":17.0,
     "gong_issues":[
       "Pricing pressure"
+    ],
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Willowbank - New - Cross-border acquiring"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac500,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"28 Jan 2027 (in 64 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"17 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Finalize contract terms"
+      },
+      {
+        "id":"gong_call_0013-05ca98",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 28 Sep",
+        "value":"Expects higher conversion on mobile",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0013"
+      },
+      {
+        "id":"gong_call_0013-124604",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 28 Sep",
+        "value":"Interest in adding wallets and Pay by Bank",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0013"
+      },
+      {
+        "id":"gong_call_0013-231159",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Pricing pressure \u00b7 call on 28 Sep",
+        "value":"Customer benchmarking fees against another provider",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0013"
+      },
+      {
+        "id":"gong_call_0013-3c9709",
+        "source":"Gong",
+        "scope":"deal",
+        "label":"Context \u00b7 call on 28 Sep",
+        "value":"Requested pricing for additional methods",
+        "url":"https:\/\/gong.example.invalid\/call?id=gong_call_0013"
+      }
     ]
   },
   {
     "account_name":"Zephyrine",
+    "opportunity_id":"006Hp00000dY4joIAC",
     "opportunity":"Zephyrine - Renewal - Feb 2027",
     "type":"Renewal",
     "amount":340000.0,
@@ -1381,16 +6298,71 @@
     "timing_score":5,
     "stage_score":30,
     "priority_score":60,
+    "gong_points":0,
+    "final_score":60,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":19.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Zephyrine - Renewal - Feb 2027"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac340,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"11 Feb 2027 (in 78 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"19 days ago"
+      },
+      {
+        "id":"sf-next-step",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Next step",
+        "value":"Legal review of MSA"
+      }
+    ]
   },
   {
     "account_name":"Zephyrine",
+    "opportunity_id":"006Hp00000cO77qIAC",
     "opportunity":"Zephyrine - Upsell - Local payment methods (BR)",
     "type":"Upsell",
     "amount":40000.0,
@@ -1401,16 +6373,64 @@
     "timing_score":5,
     "stage_score":30,
     "priority_score":40,
+    "gong_points":0,
+    "final_score":40,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":0.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Zephyrine - Upsell - Local payment methods (BR)"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Negotiation"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac40,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"03 Feb 2027 (in 70 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Commit"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"0 days ago"
+      }
+    ]
   },
   {
     "account_name":"Zephyrine",
+    "opportunity_id":"006Hp00000yax9TIAQ",
     "opportunity":"Zephyrine - Upsell - Tap to Pay on mobile",
     "type":"Upsell",
     "amount":260000.0,
@@ -1421,12 +6441,59 @@
     "timing_score":0,
     "stage_score":10,
     "priority_score":30,
+    "gong_points":0,
+    "final_score":30,
     "is_problem":false,
     "is_overdue":false,
     "stale_near_close":false,
     "stale_commit":false,
     "long_overdue":false,
+    "early_commit":false,
     "days_since_activity":21.0,
-    "gong_issues":null
+    "gong_issues":null,
+    "evidence":[
+      {
+        "id":"sf-opportunity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Opportunity",
+        "value":"Zephyrine - Upsell - Tap to Pay on mobile"
+      },
+      {
+        "id":"sf-stage",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Stage",
+        "value":"Discovery"
+      },
+      {
+        "id":"sf-amount",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Amount",
+        "value":"\u20ac260,000"
+      },
+      {
+        "id":"sf-close",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Close date",
+        "value":"08 Jul 2027 (in 225 days)"
+      },
+      {
+        "id":"sf-forecast",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Forecast category",
+        "value":"Pipeline"
+      },
+      {
+        "id":"sf-activity",
+        "source":"Salesforce",
+        "scope":"deal",
+        "label":"Last activity logged in Salesforce",
+        "value":"21 days ago"
+      }
+    ]
   }
 ]

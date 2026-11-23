@@ -208,10 +208,6 @@
       font-size: 13px;
     }
 
-    .renewal-score { color: #3f7d5c; margin-right: 8px; }
-    .upsell-new-score { color: #3a7f8a; margin-right: 8px; }
-    .gong-bonus { color: #5264B0; }
-    .type-scores { margin-top: 3px; }
     .overdue { color: #B87579; }
     .problem { color: #B87579; }
 
@@ -364,7 +360,73 @@
       line-height: 1;
     }
 
-    .opportunity-card[open] .opportunity-summary::after { transform: rotate(180deg); }
+    .opportunity-card details[open] .opportunity-summary::after { transform: rotate(180deg); }
+
+    /* Next action on the top deal card: always visible, evidence expands below it. */
+    .next-action {
+      border-top: 1px solid #e2ece6;
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+
+    .next-action-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: #3f7d5c;
+      margin-bottom: 4px;
+    }
+
+    /* Inside an expanded deal, the next action comes first, above the score breakdown. */
+    .opportunity-breakdown > .next-action {
+      border-top: none;
+      margin: 0 0 12px;
+      padding-top: 0;
+    }
+
+    /* On the top deal, its problem tags move into the expanded view. */
+    .breakdown-flags { margin-bottom: 6px; }
+    .breakdown-flags .flag-tag:first-child { margin-left: 0; }
+
+    .next-action-text { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .next-action-reason { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .next-action-empty { font-size: 13px; color: var(--muted); }
+
+    .evidence summary {
+      margin-top: 8px;
+      color: #3a7f8a;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .evidence-item {
+      border-top: 1px solid #eef3f0;
+      padding: 6px 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .evidence-item:first-of-type { margin-top: 6px; }
+    /* Small bubbles saying where each fact came from and what it's about. */
+    .evidence-bubble {
+      display: inline-block;
+      margin-right: 4px;
+      padding: 0 6px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+    .evidence-bubble.salesforce { background: #eef1f4; color: #4f5a66; }
+    .evidence-bubble.gong { background: #EDF1FF; color: #6476A8; }
+    .evidence-bubble.scope { background: #edf5f0; color: #3f7d5c; }
+    .evidence-bubble.score { background: #EAF0F4; color: #41576B; }
+    .evidence-item strong { color: var(--ink); font-weight: 600; }
+
+    /* A top deal with no flags has nothing to expand. */
+    .opportunity-summary.no-details { cursor: default; }
+    .opportunity-summary.no-details::after { content: ""; }
+    .evidence-item a { color: #3a7f8a; }
 
     .opportunity-breakdown {
       border-top: 1px solid #e2ece6;
@@ -427,9 +489,8 @@
       font-weight: 700;
     }
 
-    .points-note { color: #a0a8b0; font-size: 11px; font-weight: 400; margin-top: 3px; }
-    .points.not-counted { background: #f1f3f4; color: #a0a8b0; font-weight: 600; }
-
+    .points-note { color: #7d8790; font-size: 11px; font-weight: 400; margin-top: 3px; }
+    .points.not-counted { background: #eef0f2; color: #5c6670; font-weight: 600; }
     .detail-opportunities { margin-bottom: 24px; }
 
     @media (max-width: 800px) {
@@ -534,6 +595,9 @@
     // Every open opportunity's score breakdown, for the detail panel.
     let opportunityScores = [];
 
+    // One next action per open deal, keyed by opportunity ID, with the evidence it cites.
+    let nextActions = {};
+
     // Load the ranked accounts exported by integration.py and show the current tab.
     async function showAccounts() {
       const list = document.getElementById("account-list");
@@ -551,6 +615,12 @@
           throw new Error(opportunityResponse.statusText);
         }
         opportunityScores = await opportunityResponse.json();
+
+        // Next actions are optional: without them the page falls back to Salesforce's next step.
+        const actionsResponse = await fetch("data/next_actions.json", { cache: "no-cache" });
+        if (actionsResponse.ok) {
+          nextActions = await actionsResponse.json();
+        }
 
         rankedAccounts = accounts;
 
@@ -603,18 +673,12 @@
               <div class="account-name">
                 ${account.account_name}${flagTags(
                   account.top_long_overdue, account.top_is_overdue, account.top_days_to_close,
-                  account.top_stale_near_close, account.top_stale_commit
+                  account.top_stale_near_close, account.top_stale_commit, account.top_early_commit
                 )}${gongTags(account.top_gong_issues)}${accountCallTags(account.account_call_issues, account.top_gong_issues)}
               </div>
               <div class="account-signal">
                 ${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>
-              </div>
-              <div class="account-signal type-scores">
-                <span class="renewal-score">Renewal ${Math.round(account.renewal_score)}</span>
-                <span class="upsell-new-score">Upsell/New ${Math.round(account.upsell_new_score)}</span>
-                ${account.gong_bonus > 0 ? `<span class="gong-bonus">+${account.gong_bonus} Gong</span>` : ""}
-              </div>
-            </div>
+              </div>            </div>
             <span class="score">${Math.round(account.account_score)}</span>
             <span class="arrow">›</span>
           </div>`;
@@ -635,7 +699,7 @@
     }
 
     // Short tags for an opportunity's problems, used in the list and the panel.
-    function flagTags(longOverdue, isOverdue, daysToClose, staleNearClose, staleCommit) {
+    function flagTags(longOverdue, isOverdue, daysToClose, staleNearClose, staleCommit, earlyCommit) {
       let tags = "";
       if (longOverdue) {
         tags += `<span class="flag-tag">Long overdue · ${-daysToClose} days</span>`;
@@ -647,6 +711,9 @@
       }
       if (staleCommit) {
         tags += `<span class="flag-tag">Stale Commit</span>`;
+      }
+      if (earlyCommit) {
+        tags += `<span class="flag-tag">Early-stage Commit</span>`;
       }
       return tags;
     }
@@ -672,6 +739,68 @@
       return tags;
     }
 
+    // A deal's next action from next_actions.json; if it's missing, Salesforce's next step, else none.
+    function nextActionFor(opportunityId, evidence) {
+      const saved = nextActions[opportunityId];
+      if (saved) {
+        return { text: saved.action, reason: saved.reason, sources: saved.sources, kind: saved.kind };
+      }
+      const salesforceNextStep = (evidence || []).find(function (item) {
+        return item.id === "sf-next-step";
+      });
+      if (salesforceNextStep) {
+        return { text: salesforceNextStep.value, reason: "Next step recorded in Salesforce.", sources: [], kind: "salesforce" };
+      }
+      return { text: "", reason: "", sources: [], kind: "" };
+    }
+
+    // The next-action block for a deal card, with its evidence below.
+    function nextActionBlock(opportunityId, evidence, scoreText) {
+      const next = nextActionFor(opportunityId, evidence);
+
+      // The cited evidence, then the deal's score at the bottom, behind one toggle.
+      let items = "";
+      for (const source of next.sources) {
+        const link = source.url ? ` · <a href="${source.url}" target="_blank" rel="noopener">Open call</a>` : "";
+        items += `
+          <div class="evidence-item">
+            <span class="evidence-bubble ${source.source.toLowerCase()}">${source.source}</span><span class="evidence-bubble scope">${source.scope === "deal" ? "Deal" : "Account"}</span>
+            ${source.label}: ${source.value}${link}
+          </div>`;
+      }
+      items += `
+        <div class="evidence-item">
+          <span class="evidence-bubble score">Score</span>
+          ${scoreText}
+        </div>`;
+      const toggleLabel = next.sources.length > 0 ? `View evidence (${next.sources.length})` : "View score";
+      const evidenceList = `
+        <details class="evidence">
+          <summary>${toggleLabel}</summary>
+          ${items}
+        </details>`;
+
+      if (!next.text) {
+        return `
+          <div class="next-action">
+            <div class="next-action-label">Next action</div>
+            <div class="next-action-empty">No next step recorded.</div>
+            ${evidenceList}
+          </div>`;
+      }
+
+      // A stage-based suggestion is labelled as one, so it isn't mistaken for a reviewed action.
+      const label = next.kind === "stage" ? "Suggested next step" : "Next action";
+
+      return `
+        <div class="next-action">
+          <div class="next-action-label">${label}</div>
+          <div class="next-action-text">${next.text}</div>
+          <div class="next-action-reason">${next.reason}</div>
+          ${evidenceList}
+        </div>`;
+    }
+
     // Renewals form one group; Upsell and New deals form the other.
     function typeGroup(type) {
       return type === "Renewal" ? "Renewal" : "Upsell/New";
@@ -679,23 +808,32 @@
 
     // Show why an account received its priority score.
     function showDetails(account) {
-      const renewal = Math.round(account.renewal_score);
-      const upsellNew = Math.round(account.upsell_new_score);
       const total = Math.round(account.account_score);
       const topName = account.top_opportunity.replace(account.account_name + " - ", "").replace(" - ", ": ");
       const explanation =
-        `This account's Salesforce score comes from its highest-scoring open opportunity, ${topName}.`;
+        `This account's score comes from its highest-scoring open opportunity, ${topName}.`;
 
-      // This account's opportunities, highest score first; among equal scores,
+      // This account's opportunities, highest final score first; among equal scores,
       // problems first, then the larger deal.
       const opportunities = opportunityScores.filter(function (opportunity) {
         return opportunity.account_name === account.account_name;
       });
       opportunities.sort(function (a, b) {
-        return b.priority_score - a.priority_score
+        return b.final_score - a.final_score
           || b.is_problem - a.is_problem
           || b.amount - a.amount;
       });
+
+      // The best final score of each type, so the chips match the deal badges.
+      let renewal = 0;
+      let upsellNew = 0;
+      for (const opportunity of opportunities) {
+        if (typeGroup(opportunity.type) === "Renewal") {
+          renewal = Math.max(renewal, opportunity.final_score);
+        } else {
+          upsellNew = Math.max(upsellNew, opportunity.final_score);
+        }
+      }
 
       let opportunityCards = "";
       for (const opportunity of opportunities) {
@@ -706,32 +844,29 @@
           ? `<span class="overdue">overdue</span> since ${closeDate}`
           : `closes ${closeDate}`;
         // Only the top opportunity sets the account's score.
+        // Each deal shows its final score, Gong points included.
         const points = counts
-          ? `${opportunity.priority_score} pts`
-          : `${opportunity.priority_score} pts
+          ? `${opportunity.final_score} pts`
+          : `${opportunity.final_score} pts
              <div class="points-note">not counted</div>`;
 
         // Problem tags, shown on the card without expanding it.
         const tags = flagTags(
           opportunity.long_overdue, opportunity.is_overdue, opportunity.days_to_close,
-          opportunity.stale_near_close, opportunity.stale_commit
+          opportunity.stale_near_close, opportunity.stale_commit, opportunity.early_commit
         ) + gongTags(opportunity.gong_issues);
 
-        // Score components, then why the deal is flagged (if it is).
+        // The deal's score components, shown at the bottom of its evidence.
+        const gongPart = opportunity.gong_points > 0 ? ` + ${opportunity.gong_points} Gong` : "";
+        const scoreText = `${opportunity.value_score} value + ${opportunity.timing_score} timing
+          + ${opportunity.stage_score} stage${gongPart} = <strong>${opportunity.final_score} pts</strong>`;
+
+        // Why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null
           ? "no activity has been logged"
           : `the last activity was ${opportunity.days_since_activity} days ago`;
-        let breakdown = `
-          <div><strong>Score:</strong>
-            ${opportunity.value_score} value + ${opportunity.timing_score} timing
-            + ${opportunity.stage_score} stage = ${opportunity.priority_score} pts</div>`;
-        if (opportunity.long_overdue) {
-          breakdown += `<div><strong class="problem">Long overdue:</strong>
-            the close date passed ${-opportunity.days_to_close} days ago; check whether this deal is still real.</div>`;
-        } else if (opportunity.is_overdue) {
-          breakdown += `<div><strong class="problem">Overdue:</strong>
-            the close date passed ${-opportunity.days_to_close} days ago, but the deal is still open.</div>`;
-        }
+        let breakdown = "";
+        // Overdue and long overdue need no line here: the tag and the close date already say it.
         if (opportunity.stale_near_close) {
           breakdown += `<div><strong class="problem">No recent activity before close:</strong>
             it closes in ${opportunity.days_to_close} days, and ${activity}.</div>`;
@@ -740,30 +875,48 @@
           breakdown += `<div><strong class="problem">Stale Commit:</strong>
             it's forecast as Commit, but ${activity}.</div>`;
         }
+        if (opportunity.early_commit) {
+          breakdown += `<div><strong class="problem">Early-stage Commit:</strong>
+            it's forecast as Commit while still in ${opportunity.stage}; check what supports the forecast.</div>`;
+        }
+
+        // The top deal's action and evidence sit outside its expandable part, so if it has
+        // no flags there is nothing to expand.
+        const actionBlock = nextActionBlock(opportunity.opportunity_id, opportunity.evidence, scoreText);
+        const expandable = !counts || tags !== "" || breakdown !== "";
 
         opportunityCards += `
-          <details class="opportunity-card">
-            <summary class="opportunity-summary">
+          <div class="opportunity-card">
+          <details>
+            <summary class="opportunity-summary${expandable ? "" : " no-details"}"
+              ${expandable ? "" : `onclick="event.preventDefault()"`}>
             <div>
               <div class="opportunity-type ${group === "Renewal" ? "renewal" : "upsell-new"}">
-                ${opportunity.type}${tags}
+                ${opportunity.type}${counts ? "" : tags}
               </div>
               <div class="opportunity-name">
                 ${opportunity.opportunity.replace(account.account_name + " - ", "").replace(" - ", ": ")}
               </div>
               <div class="opportunity-meta">
-                ${euros.format(opportunity.amount)} · ${opportunity.stage} · <em>${timing}</em>${activityNote(opportunity.stale_near_close, opportunity.stale_commit, opportunity.days_since_activity)}
+                ${euros.format(opportunity.amount)} · ${opportunity.stage} · <em>${timing}</em>${counts ? "" : activityNote(opportunity.stale_near_close, opportunity.stale_commit, opportunity.days_since_activity)}
               </div>
             </div>
             <div class="points ${counts ? "" : "not-counted"}">${points}</div>
             </summary>
-            <div class="opportunity-breakdown">${breakdown}</div>
-          </details>`;
+            ${expandable ? `
+            <div class="opportunity-breakdown">
+              ${counts ? "" : actionBlock}
+              ${counts && tags ? `<div class="breakdown-flags">${tags}</div>` : ""}
+              ${breakdown}
+            </div>` : ""}
+          </details>
+          ${counts ? actionBlock : ""}
+          </div>`;
       }
 
-      // Every opportunity's score, e.g. "70, 60, 50, 50".
+      // Every opportunity's final score, e.g. "102, 77".
       const dealScores = opportunities
-        .map(function (opportunity) { return opportunity.priority_score; })
+        .map(function (opportunity) { return opportunity.final_score; })
         .join(", ");
 
       document.getElementById("detail-content").innerHTML = `
@@ -786,10 +939,8 @@
         <div class="detail-formula">
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
-            <div class="detail-formula-text">Salesforce score · Max(${dealScores}) = ${account.salesforce_score ?? total}</div>
-            ${account.gong_bonus > 0 ? `
-              <div class="detail-formula-text">${account.salesforce_score} Salesforce + ${account.gong_bonus} Gong = ${total}</div>
-            ` : ""}
+            <div class="detail-formula-text">Highest opportunity score: Max(${dealScores}) = ${total}</div>
+            <div class="detail-formula-text">Each score includes Gong points: +2 for an issue on that deal, +1 for one from an account call.</div>
             <div class="detail-formula-text">When final scores tie, Salesforce problem flags come first, then deal size.</div>
           </div>
           <div class="detail-formula-value">${total}</div>

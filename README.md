@@ -7,8 +7,8 @@
    - **Timing (max 30):** closes in 0–7 days 30 · 8–14 days 25 · 15–30 days 20 · 31–60 days 10 · 61–90 days 5 · later 0. Overdue by up to 30 days: 30 (it needs action now). Overdue by more than 30 days: 10 (more likely a stale record).
    - **Stage (max 30):** Negotiation 30 · Proposal 20 · Discovery 10 · Qualification 0.
 2. **Salesforce score:** an account's Salesforce score is its highest-scoring open opportunity. The **Renewal** and **Upsell/New** scores shown next to it are the best opportunity of each type, so the Salesforce score is the higher of the two.
-3. **Gong points:** +2 if the account's top opportunity had a Gong issue in the last 90 days, otherwise +1 if a recent call not linked to any deal had one (see [Gong issues](#gong-issues)).
-4. **Final score and ranking:** final score = Salesforce score + Gong points, so it can reach 102. Accounts are sorted by final score. Among equal final scores, an account whose top opportunity has a Salesforce problem flag comes first, then the larger deal.
+3. **Gong points:** every open opportunity gets +2 if it had a Gong issue in the last 90 days, otherwise +1 if a recent call not linked to any deal raised one for the account (see [Gong issues](#gong-issues)). Its final score is `PriorityScore` + Gong points, so it can reach 102.
+4. **Final score and ranking:** an account's score is its best opportunity's final score. Accounts are sorted by that score. Among equal scores, an account whose top opportunity has a Salesforce problem flag comes first, then the larger deal.
 
 ### Problem flags
 
@@ -18,6 +18,7 @@ An opportunity is flagged as a problem if any of these apply:
 - **No recent activity before close:** it closes within 30 days, and Salesforce shows no activity in the last 30 days (or none logged at all).
 - **Stale Commit:** it's forecast as Commit, and Salesforce shows no activity in the last 30 days (or none logged at all).
 - **Long overdue:** the close date passed more than 30 days ago. The record may be stale and should be checked.
+- **Early-stage Commit:** it's forecast as Commit while still in Discovery or Qualification. The AM should check what supports the forecast, or update Salesforce. (Proposal and Negotiation are left alone; none of the mock deals trigger this today.)
 
 Salesforce flags only break ties between accounts with equal scores; they never add points.
 

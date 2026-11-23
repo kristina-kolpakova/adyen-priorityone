@@ -1,0 +1,2229 @@
+{
+  "006Hp00000Gn0VLIAZ": {
+    "account_name": "Aster",
+    "opportunity": "Aster - Upsell - Brazil local payment methods",
+    "kind": "reviewed",
+    "action": "Send the Pix and Boleto proposal with a timeline that supports an April go-live.",
+    "reason": "On Nov 23 the customer requested it and confirmed budget is approved for the launch.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0044-77912a",
+      "gong_call_0044-1d760c",
+      "gong_call_0044-b873a0"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Send proposal covering Pix and Boleto"
+      },
+      {
+        "id": "gong_call_0044-77912a",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 23 Nov",
+        "value": "Requested a proposal for Pix and Boleto",
+        "url": "https://gong.example.invalid/call?id=gong_call_0044"
+      },
+      {
+        "id": "gong_call_0044-1d760c",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 23 Nov",
+        "value": "Strong buying intent: budget approved for the launch",
+        "url": "https://gong.example.invalid/call?id=gong_call_0044"
+      },
+      {
+        "id": "gong_call_0044-b873a0",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 23 Nov",
+        "value": "Wants a timeline that supports an April go-live",
+        "url": "https://gong.example.invalid/call?id=gong_call_0044"
+      }
+    ]
+  },
+  "006Hp00000hh5HiIAI": {
+    "account_name": "Aster",
+    "opportunity": "Aster - Renewal - Jun 2027",
+    "kind": "stage",
+    "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Qualification"
+      }
+    ]
+  },
+  "006Hp00000GhC3FIAV": {
+    "account_name": "Aster",
+    "opportunity": "Aster - Upsell - Pay by Bank",
+    "kind": "reviewed",
+    "action": "Send the Pay by Bank case studies and a cost comparison for finance.",
+    "reason": "The customer asked for both on Nov 9 and is interested in Pay by Bank for high-value orders.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0027-75d9cc",
+      "gong_call_0027-308f05",
+      "gong_call_0027-bd4061"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Share Pay by Bank case studies"
+      },
+      {
+        "id": "gong_call_0027-75d9cc",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 09 Nov",
+        "value": "Asked for case studies from similar retailers",
+        "url": "https://gong.example.invalid/call?id=gong_call_0027"
+      },
+      {
+        "id": "gong_call_0027-308f05",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 09 Nov",
+        "value": "Finance team wants a cost comparison",
+        "url": "https://gong.example.invalid/call?id=gong_call_0027"
+      },
+      {
+        "id": "gong_call_0027-bd4061",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 09 Nov",
+        "value": "Interested in Pay by Bank for high-value orders",
+        "url": "https://gong.example.invalid/call?id=gong_call_0027"
+      }
+    ]
+  },
+  "006Hp00000cEscVIAS": {
+    "account_name": "Bramblewood",
+    "opportunity": "Bramblewood - New - Platform onboarding",
+    "kind": "reviewed",
+    "action": "Follow up on the proposal feedback and confirm whether the go-live delay raised in October affects the Dec 21 close.",
+    "reason": "An October account call reported go-live pushed by roughly six weeks.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-next-step",
+      "gong_call_0014-23698e",
+      "gong_call_0014-0af318"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "21 Dec 2026 (in 26 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Follow up on proposal feedback"
+      },
+      {
+        "id": "gong_call_0014-23698e",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 02 Oct",
+        "value": "Go-live pushed by roughly six weeks",
+        "url": "https://gong.example.invalid/call?id=gong_call_0014"
+      },
+      {
+        "id": "gong_call_0014-0af318",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 02 Oct",
+        "value": "Implementation delayed by customer's engineering backlog",
+        "url": "https://gong.example.invalid/call?id=gong_call_0014"
+      }
+    ]
+  },
+  "006Hp00000d0lnHIAQ": {
+    "account_name": "Bramblewood",
+    "opportunity": "Bramblewood - Upsell - Buy now pay later",
+    "kind": "stage",
+    "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Qualification"
+      }
+    ]
+  },
+  "006Hp00000mBS9kIAG": {
+    "account_name": "Cobalt",
+    "opportunity": "Cobalt - Renewal - Jul 2027",
+    "kind": "reviewed",
+    "action": "Respond to finance's request for a revised offer on transaction fees, and record the next step in Salesforce.",
+    "reason": "Finance raised it on Nov 19, and the customer said the timeline is unchanged for now.",
+    "evidence_ids": [
+      "gong_call_0036-c23426",
+      "gong_call_0036-d9bc63",
+      "gong_call_0036-4471d1"
+    ],
+    "sources": [
+      {
+        "id": "gong_call_0036-c23426",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 19 Nov",
+        "value": "Finance wants a revised offer",
+        "url": "https://gong.example.invalid/call?id=gong_call_0036"
+      },
+      {
+        "id": "gong_call_0036-d9bc63",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 19 Nov",
+        "value": "Pricing objection on transaction fees",
+        "url": "https://gong.example.invalid/call?id=gong_call_0036"
+      },
+      {
+        "id": "gong_call_0036-4471d1",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 19 Nov",
+        "value": "Timeline unchanged for now",
+        "url": "https://gong.example.invalid/call?id=gong_call_0036"
+      }
+    ]
+  },
+  "006Hp00000Vh1xxIAB": {
+    "account_name": "Copperleaf",
+    "opportunity": "Copperleaf - Upsell - Additional entity (US)",
+    "kind": "reviewed",
+    "action": "Finalize contract terms and confirm the signature date before the Nov 29 close.",
+    "reason": "The Commit upsell closes in 4 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "29 Nov 2026 (in 4 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      }
+    ]
+  },
+  "006Hp00000cPt25IAC": {
+    "account_name": "Copperleaf",
+    "opportunity": "Copperleaf - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Confirm the renewal is still on track for Dec 13 and where the deal desk pricing review stands.",
+    "reason": "It closes in 18 days, but nothing has been logged in Salesforce for 113 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "13 Dec 2026 (in 18 days)"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "113 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "No recent activity before close"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Review pricing with deal desk"
+      }
+    ]
+  },
+  "006Hp00000nogrwIAA": {
+    "account_name": "Copperleaf",
+    "opportunity": "Copperleaf - New - Online checkout",
+    "kind": "stage",
+    "action": "Check whether the proposal has been sent and agree on the next step.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Proposal"
+      }
+    ]
+  },
+  "006Hp00000EWAVtIAP": {
+    "account_name": "Driftwood",
+    "opportunity": "Driftwood - Upsell - Revenue optimization",
+    "kind": "reviewed",
+    "action": "Confirm the deal is still active, and schedule the technical discovery session if it is.",
+    "reason": "Nothing has been logged in Salesforce for 108 days, yet the close date is Jan 22.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-activity",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "22 Jan 2027 (in 58 days)"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "108 days ago"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000vgWsMIAU": {
+    "account_name": "Driftwood",
+    "opportunity": "Driftwood - Upsell - Card issuing",
+    "kind": "salesforce",
+    "action": "Confirm decision makers",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Confirm decision makers"
+      }
+    ]
+  },
+  "006Hp00000wLBBSIA4": {
+    "account_name": "Fernhill",
+    "opportunity": "Fernhill - Renewal - Nov 2026",
+    "kind": "reviewed",
+    "action": "Confirm whether the commercial proposal went out and agree a revised close date.",
+    "reason": "The Nov 10 close date has passed, and nothing has been logged in Salesforce for 63 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "10 Nov 2026 (overdue by 15 days)"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "63 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Overdue"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Send commercial proposal"
+      }
+    ]
+  },
+  "006Hp00000BZ6n3IAD": {
+    "account_name": "Halcyon",
+    "opportunity": "Halcyon - Upsell - Revenue optimization",
+    "kind": "reviewed",
+    "action": "Confirm contract terms are on track for the Jan 29 close.",
+    "reason": "Nothing has been logged in Salesforce for 28 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-activity",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "29 Jan 2027 (in 65 days)"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "28 days ago"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      }
+    ]
+  },
+  "006Hp00000cigC5IAI": {
+    "account_name": "Halcyon",
+    "opportunity": "Halcyon - Renewal - Feb 2027",
+    "kind": "salesforce",
+    "action": "Map current payment stack",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Map current payment stack"
+      }
+    ]
+  },
+  "006Hp00000vLSNFIA4": {
+    "account_name": "Kestrel",
+    "opportunity": "Kestrel - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Agree pricing and a signature date ahead of the Dec 4 close.",
+    "reason": "The Commit renewal closes in 9 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "04 Dec 2026 (in 9 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree pricing and signature date"
+      }
+    ]
+  },
+  "006Hp00000wLfRAIA0": {
+    "account_name": "Kestrel",
+    "opportunity": "Kestrel - New - Cross-border acquiring",
+    "kind": "salesforce",
+    "action": "Send commercial proposal",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Send commercial proposal"
+      }
+    ]
+  },
+  "006Hp000005vUb4IAE": {
+    "account_name": "Kestrel",
+    "opportunity": "Kestrel - New - Marketplace payouts",
+    "kind": "salesforce",
+    "action": "Follow up on proposal feedback",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Follow up on proposal feedback"
+      }
+    ]
+  },
+  "006Hp00000PdV1LIAV": {
+    "account_name": "Krakatoa",
+    "opportunity": "Krakatoa - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Ask procurement what's driving the 15% fee reduction request and whether the renewal is still on track for Dec 1.",
+    "reason": "Procurement now leads the renewal, and the customer is evaluating another provider.",
+    "evidence_ids": [
+      "sf-close",
+      "gong_call_0034-bbd657",
+      "gong_call_0034-1346cf",
+      "gong_call_0034-e5d596",
+      "gong_call_0034-92cca7"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "01 Dec 2026 (in 6 days)"
+      },
+      {
+        "id": "gong_call_0034-bbd657",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Stakeholder change · call on 16 Nov",
+        "value": "Procurement now leading the renewal, not the payments team",
+        "url": "https://gong.example.invalid/call?id=gong_call_0034"
+      },
+      {
+        "id": "gong_call_0034-1346cf",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 16 Nov",
+        "value": "Decision expected within two weeks",
+        "url": "https://gong.example.invalid/call?id=gong_call_0034"
+      },
+      {
+        "id": "gong_call_0034-e5d596",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 16 Nov",
+        "value": "Asked for a 15% reduction in processing fees",
+        "url": "https://gong.example.invalid/call?id=gong_call_0034"
+      },
+      {
+        "id": "gong_call_0034-92cca7",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Competitor risk · call on 16 Nov",
+        "value": "Customer evaluating another payment provider before renewal",
+        "url": "https://gong.example.invalid/call?id=gong_call_0034"
+      }
+    ]
+  },
+  "006Hp00000ks1X7IAI": {
+    "account_name": "Krakatoa",
+    "opportunity": "Krakatoa - Upsell - Unified commerce POS rollout",
+    "kind": "reviewed",
+    "action": "Confirm who owns the POS budget and when IT work can resume before revising the close date.",
+    "reason": "The Nov 10 close date has passed; on Oct 12 the customer said the budget owner changed and no new pilot date is committed.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-flags",
+      "gong_call_0017-c472e9",
+      "gong_call_0017-ce3f16",
+      "gong_call_0017-bbab46"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "10 Nov 2026 (overdue by 15 days)"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Overdue"
+      },
+      {
+        "id": "gong_call_0017-c472e9",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Stakeholder change · call on 12 Oct",
+        "value": "Budget owner for POS has changed",
+        "url": "https://gong.example.invalid/call?id=gong_call_0017"
+      },
+      {
+        "id": "gong_call_0017-ce3f16",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Implementation delay · call on 12 Oct",
+        "value": "Implementation delayed: IT resourcing frozen until Q1",
+        "url": "https://gong.example.invalid/call?id=gong_call_0017"
+      },
+      {
+        "id": "gong_call_0017-bbab46",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Implementation delay · call on 12 Oct",
+        "value": "No new date committed for the store pilot",
+        "url": "https://gong.example.invalid/call?id=gong_call_0017"
+      }
+    ]
+  },
+  "006Hp00000FwIZTIA3": {
+    "account_name": "Lanternfly",
+    "opportunity": "Lanternfly - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Confirm whether the rollout delay affects the Dec 3 renewal before agreeing pricing and a signature date.",
+    "reason": "An October account call reported go-live pushed by roughly six weeks; a Nov 22 account call raised no major issues.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-next-step",
+      "gong_call_0018-23698e",
+      "gong_call_0018-0af318",
+      "gong_call_0042-d86119"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "03 Dec 2026 (in 8 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree pricing and signature date"
+      },
+      {
+        "id": "gong_call_0018-23698e",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 17 Oct",
+        "value": "Go-live pushed by roughly six weeks",
+        "url": "https://gong.example.invalid/call?id=gong_call_0018"
+      },
+      {
+        "id": "gong_call_0018-0af318",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Implementation delay · call on 17 Oct",
+        "value": "Implementation delayed by customer's engineering backlog",
+        "url": "https://gong.example.invalid/call?id=gong_call_0018"
+      },
+      {
+        "id": "gong_call_0042-d86119",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Context · call on 22 Nov",
+        "value": "No major issues raised",
+        "url": "https://gong.example.invalid/call?id=gong_call_0042"
+      }
+    ]
+  },
+  "006Hp00000DJSQwIAP": {
+    "account_name": "Lanternfly",
+    "opportunity": "Lanternfly - Upsell - Tap to Pay on mobile",
+    "kind": "salesforce",
+    "action": "Intro call with finance",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Intro call with finance"
+      }
+    ]
+  },
+  "006Hp00000BikatIAB": {
+    "account_name": "Larkspur",
+    "opportunity": "Larkspur - New - Cross-border acquiring",
+    "kind": "reviewed",
+    "action": "Schedule the technical discovery session and log it in Salesforce.",
+    "reason": "Nothing has been logged in Salesforce for 42 days.",
+    "evidence_ids": [
+      "sf-activity",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "42 days ago"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000JTbGOIA1": {
+    "account_name": "Larkspur",
+    "opportunity": "Larkspur - Renewal - Jul 2027",
+    "kind": "salesforce",
+    "action": "Share solution overview",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Share solution overview"
+      }
+    ]
+  },
+  "006Hp00000tVjIlIAK": {
+    "account_name": "Marlowe",
+    "opportunity": "Marlowe - New - Platform onboarding",
+    "kind": "reviewed",
+    "action": "Complete the pricing review the customer asked for and agree a signature date before the Dec 2 close.",
+    "reason": "On Nov 12 the customer said they were benchmarking fees against another provider.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-next-step",
+      "gong_call_0030-f348b1",
+      "gong_call_0030-231159"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "02 Dec 2026 (in 7 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree pricing and signature date"
+      },
+      {
+        "id": "gong_call_0030-f348b1",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 12 Nov",
+        "value": "Asked for a pricing review before signing",
+        "url": "https://gong.example.invalid/call?id=gong_call_0030"
+      },
+      {
+        "id": "gong_call_0030-231159",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 12 Nov",
+        "value": "Customer benchmarking fees against another provider",
+        "url": "https://gong.example.invalid/call?id=gong_call_0030"
+      }
+    ]
+  },
+  "006Hp00000pAfP7IAK": {
+    "account_name": "Marlowe",
+    "opportunity": "Marlowe - New - Cross-border acquiring",
+    "kind": "reviewed",
+    "action": "Confirm whether this deal can still close by Nov 27, and agree pricing and a signature date if it can.",
+    "reason": "It closes in 2 days. No activity is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "27 Nov 2026 (in 2 days)"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "None logged"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "No recent activity before close"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree pricing and signature date"
+      }
+    ]
+  },
+  "006Hp00000NE8kSIAT": {
+    "account_name": "Marlowe",
+    "opportunity": "Marlowe - Renewal - Sep 2026",
+    "kind": "reviewed",
+    "action": "Confirm whether this renewal is still open and where the MSA legal review stands, then update the close date if it is.",
+    "reason": "The close date passed 68 days ago, yet it's still forecast as Commit.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "18 Sep 2026 (overdue by 68 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Long overdue"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Legal review of MSA"
+      }
+    ]
+  },
+  "006Hp00000GGR1OIAX": {
+    "account_name": "Marlowe",
+    "opportunity": "Marlowe - Upsell - Network tokenization",
+    "kind": "stage",
+    "action": "Check whether the proposal has been sent and agree on the next step.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Proposal"
+      }
+    ]
+  },
+  "006Hp00000SLi4oIAD": {
+    "account_name": "Monogram",
+    "opportunity": "Monogram - Upsell - In-store payments for 40 new stores",
+    "kind": "reviewed",
+    "action": "Agree final terminal pricing, the last open item, ahead of the Dec 14 close.",
+    "reason": "On Nov 22 the customer confirmed the rollout schedule and wants the first 10 stores live in January.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-next-step",
+      "gong_call_0040-34b77c",
+      "gong_call_0040-a6379b",
+      "gong_call_0040-73d11b"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "14 Dec 2026 (in 19 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree final terminal pricing"
+      },
+      {
+        "id": "gong_call_0040-34b77c",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 22 Nov",
+        "value": "Terminal pricing is the last open item",
+        "url": "https://gong.example.invalid/call?id=gong_call_0040"
+      },
+      {
+        "id": "gong_call_0040-a6379b",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 22 Nov",
+        "value": "Positive buying intent: rollout schedule confirmed",
+        "url": "https://gong.example.invalid/call?id=gong_call_0040"
+      },
+      {
+        "id": "gong_call_0040-73d11b",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 22 Nov",
+        "value": "Wants first 10 stores live in January",
+        "url": "https://gong.example.invalid/call?id=gong_call_0040"
+      }
+    ]
+  },
+  "006Hp00000FWAx5IAH": {
+    "account_name": "Monogram",
+    "opportunity": "Monogram - New - Nordics entity",
+    "kind": "salesforce",
+    "action": "Scope Nordic payment methods",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Scope Nordic payment methods"
+      }
+    ]
+  },
+  "006Hp0000025FAMIA2": {
+    "account_name": "Monogram",
+    "opportunity": "Monogram - Renewal - Jul 2027",
+    "kind": "stage",
+    "action": "Confirm the customer's need and timeline, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Qualification"
+      }
+    ]
+  },
+  "006Hp00000I4VDUIA3": {
+    "account_name": "Mosaic",
+    "opportunity": "Mosaic - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Ask legal whether the MSA review or security questionnaire could delay the Dec 7 signature.",
+    "reason": "Pricing was accepted on Nov 20, but the same call said legal review may push signature past the planned close.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-next-step",
+      "gong_call_0037-1f1299",
+      "gong_call_0037-607693",
+      "gong_call_0037-d3bcee"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "07 Dec 2026 (in 12 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Legal redlines on MSA"
+      },
+      {
+        "id": "gong_call_0037-1f1299",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Closing risk · call on 20 Nov",
+        "value": "Legal review may push signature past the planned close date",
+        "url": "https://gong.example.invalid/call?id=gong_call_0037"
+      },
+      {
+        "id": "gong_call_0037-607693",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Procurement / legal · call on 20 Nov",
+        "value": "New procurement policy requires a security questionnaire",
+        "url": "https://gong.example.invalid/call?id=gong_call_0037"
+      },
+      {
+        "id": "gong_call_0037-d3bcee",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 20 Nov",
+        "value": "Pricing accepted for the upcoming renewal",
+        "url": "https://gong.example.invalid/call?id=gong_call_0037"
+      }
+    ]
+  },
+  "006Hp00000QxUlbIAF": {
+    "account_name": "Mosaic",
+    "opportunity": "Mosaic - Upsell - Risk & fraud add-on",
+    "kind": "salesforce",
+    "action": "Book fraud review workshop",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Book fraud review workshop"
+      }
+    ]
+  },
+  "006Hp00000x0rLBIAY": {
+    "account_name": "Oakmoor",
+    "opportunity": "Oakmoor - New - Pay by Link",
+    "kind": "reviewed",
+    "action": "Follow up on the proposal feedback and confirm the customer's decision timeline.",
+    "reason": "The deal is still in Proposal and forecast as Pipeline, with the close set for May 20.",
+    "evidence_ids": [
+      "sf-stage",
+      "sf-forecast",
+      "sf-close",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Proposal"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Pipeline"
+      },
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "20 May 2027 (in 176 days)"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Follow up on proposal feedback"
+      }
+    ]
+  },
+  "006Hp000006mHB6IAM": {
+    "account_name": "Oakmoor",
+    "opportunity": "Oakmoor - Upsell - Buy now pay later",
+    "kind": "salesforce",
+    "action": "Review pricing with deal desk",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Review pricing with deal desk"
+      }
+    ]
+  },
+  "006Hp00000lWgULIA0": {
+    "account_name": "Oakmoor",
+    "opportunity": "Oakmoor - Renewal - Jun 2027",
+    "kind": "salesforce",
+    "action": "Qualify volumes and markets",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Qualify volumes and markets"
+      }
+    ]
+  },
+  "006Hp00000B2RPTIA3": {
+    "account_name": "Oakmoor",
+    "opportunity": "Oakmoor - New - Online checkout",
+    "kind": "salesforce",
+    "action": "Confirm decision makers",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Confirm decision makers"
+      }
+    ]
+  },
+  "006Hp00000HcqRRIAZ": {
+    "account_name": "Orchard Lane",
+    "opportunity": "Orchard Lane - New - Online checkout",
+    "kind": "reviewed",
+    "action": "Confirm onboarding and security review timelines with procurement, then update the Nov 29 close date if needed.",
+    "reason": "On Nov 19 the customer said signature is unlikely before the planned close, with onboarding not started and the questionnaire outstanding.",
+    "evidence_ids": [
+      "sf-close",
+      "gong_call_0035-1a92b5",
+      "gong_call_0035-853d61",
+      "gong_call_0035-0416a8"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "29 Nov 2026 (in 4 days)"
+      },
+      {
+        "id": "gong_call_0035-1a92b5",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Closing risk · call on 19 Nov",
+        "value": "Signature unlikely before the planned close date",
+        "url": "https://gong.example.invalid/call?id=gong_call_0035"
+      },
+      {
+        "id": "gong_call_0035-853d61",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Procurement / legal · call on 19 Nov",
+        "value": "Procurement blocker: vendor onboarding not started",
+        "url": "https://gong.example.invalid/call?id=gong_call_0035"
+      },
+      {
+        "id": "gong_call_0035-0416a8",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Procurement / legal · call on 19 Nov",
+        "value": "Security questionnaire outstanding",
+        "url": "https://gong.example.invalid/call?id=gong_call_0035"
+      }
+    ]
+  },
+  "006Hp000008JHE6IAO": {
+    "account_name": "Petrel",
+    "opportunity": "Petrel - New - Mobile app payments",
+    "kind": "reviewed",
+    "action": "Confirm whether the MSA legal review can finish before the Dec 5 close.",
+    "reason": "The Commit deal closes in 10 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "05 Dec 2026 (in 10 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Legal review of MSA"
+      }
+    ]
+  },
+  "006Hp00000Ge6mkIAB": {
+    "account_name": "Petrel",
+    "opportunity": "Petrel - Renewal - Jul 2027",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000g8hf4IAA": {
+    "account_name": "Petrel",
+    "opportunity": "Petrel - Upsell - Local payment methods (DE)",
+    "kind": "salesforce",
+    "action": "Map current payment stack",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Map current payment stack"
+      }
+    ]
+  },
+  "006Hp00000VeJlDIAV": {
+    "account_name": "Pinecrest",
+    "opportunity": "Pinecrest - Upsell - Local payment methods (BR)",
+    "kind": "reviewed",
+    "action": "Follow up on the proposal feedback and confirm who the new contacts are after the customer's reorganisation.",
+    "reason": "A Nov 7 account call said the customer team is reorganising, with new contacts to follow.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0025-ab3a4e"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Follow up on proposal feedback"
+      },
+      {
+        "id": "gong_call_0025-ab3a4e",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Stakeholder change · call on 07 Nov",
+        "value": "Customer team reorganising, new contacts to follow",
+        "url": "https://gong.example.invalid/call?id=gong_call_0025"
+      }
+    ]
+  },
+  "006Hp00000hfZlNIAU": {
+    "account_name": "Pinecrest",
+    "opportunity": "Pinecrest - Upsell - Additional entity (UK)",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000baxh6IAA": {
+    "account_name": "Quayside",
+    "opportunity": "Quayside - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Contact the customer this week to confirm the renewal is on track and where the MSA legal review stands.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 113 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "20 Dec 2026 (in 25 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "113 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "No recent activity before close, Stale Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Legal review of MSA"
+      }
+    ]
+  },
+  "006Hp00000BSaNaIAL": {
+    "account_name": "Quayside",
+    "opportunity": "Quayside - New - Subscription billing",
+    "kind": "salesforce",
+    "action": "Qualify volumes and markets",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Qualify volumes and markets"
+      }
+    ]
+  },
+  "006Hp00000KVLj8IAH": {
+    "account_name": "Quayside",
+    "opportunity": "Quayside - Upsell - Tap to Pay on mobile",
+    "kind": "reviewed",
+    "action": "Confirm whether the proposal requested on Oct 3 was sent and agree on the next step with the buyer.",
+    "reason": "The economic buyer showed positive buying intent on that call.",
+    "evidence_ids": [
+      "gong_call_0015-3781f7",
+      "gong_call_0015-5ba694"
+    ],
+    "sources": [
+      {
+        "id": "gong_call_0015-3781f7",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 03 Oct",
+        "value": "Requested a formal proposal",
+        "url": "https://gong.example.invalid/call?id=gong_call_0015"
+      },
+      {
+        "id": "gong_call_0015-5ba694",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Context · call on 03 Oct",
+        "value": "Positive buying intent from the economic buyer",
+        "url": "https://gong.example.invalid/call?id=gong_call_0015"
+      }
+    ]
+  },
+  "006Hp000008or03IAA": {
+    "account_name": "Quillon",
+    "opportunity": "Quillon - New - Pay by Link",
+    "kind": "reviewed",
+    "action": "Confirm whether the deal is still active; if it is, set a revised close date and record a next step in Salesforce.",
+    "reason": "The Nov 20 close date has passed while the deal is still in Discovery.",
+    "evidence_ids": [
+      "sf-stage",
+      "sf-close",
+      "sf-flags"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Discovery"
+      },
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "20 Nov 2026 (overdue by 5 days)"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Overdue"
+      }
+    ]
+  },
+  "006Hp00000T7gLNIAZ": {
+    "account_name": "Quillon",
+    "opportunity": "Quillon - New - Cross-border acquiring",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000a5GUQIA2": {
+    "account_name": "Redfern",
+    "opportunity": "Redfern - Upsell - Buy now pay later",
+    "kind": "reviewed",
+    "action": "Follow up on the proposal feedback and agree a revised close date.",
+    "reason": "The Nov 7 close date has passed and the deal is still in Proposal.",
+    "evidence_ids": [
+      "sf-stage",
+      "sf-close",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Proposal"
+      },
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "07 Nov 2026 (overdue by 18 days)"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Overdue"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Follow up on proposal feedback"
+      }
+    ]
+  },
+  "006Hp00000LbgXMIAZ": {
+    "account_name": "Redfern",
+    "opportunity": "Redfern - New - Cross-border acquiring",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000ihQPFIA2": {
+    "account_name": "Redfern",
+    "opportunity": "Redfern - New - Platform onboarding",
+    "kind": "salesforce",
+    "action": "Intro call with finance",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Intro call with finance"
+      }
+    ]
+  },
+  "006Hp00000Bp4xFIAR": {
+    "account_name": "Saltmarsh",
+    "opportunity": "Saltmarsh - Renewal - Dec 2026",
+    "kind": "reviewed",
+    "action": "Agree a next step with the customer for the Dec 21 renewal and record it in Salesforce.",
+    "reason": "It's forecast as Commit for Dec 21, but Salesforce has no next step.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "21 Dec 2026 (in 26 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      }
+    ]
+  },
+  "006Hp00000AwrQjIAJ": {
+    "account_name": "Saltmarsh",
+    "opportunity": "Saltmarsh - New - Marketplace payouts",
+    "kind": "reviewed",
+    "action": "Complete the pricing review the customer asked for before finalizing contract terms.",
+    "reason": "On Nov 7 finance asked for a revised offer, and on Nov 15 the customer said they were benchmarking fees against another provider.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0024-c23426",
+      "gong_call_0024-d9bc63",
+      "gong_call_0033-f348b1",
+      "gong_call_0033-231159"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      },
+      {
+        "id": "gong_call_0024-c23426",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 07 Nov",
+        "value": "Finance wants a revised offer",
+        "url": "https://gong.example.invalid/call?id=gong_call_0024"
+      },
+      {
+        "id": "gong_call_0024-d9bc63",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 07 Nov",
+        "value": "Pricing objection on transaction fees",
+        "url": "https://gong.example.invalid/call?id=gong_call_0024"
+      },
+      {
+        "id": "gong_call_0033-f348b1",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 15 Nov",
+        "value": "Asked for a pricing review before signing",
+        "url": "https://gong.example.invalid/call?id=gong_call_0033"
+      },
+      {
+        "id": "gong_call_0033-231159",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 15 Nov",
+        "value": "Customer benchmarking fees against another provider",
+        "url": "https://gong.example.invalid/call?id=gong_call_0033"
+      }
+    ]
+  },
+  "006Hp00000x5BvsIAE": {
+    "account_name": "Saltmarsh",
+    "opportunity": "Saltmarsh - Upsell - Additional entity (US)",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp00000yrCM3IAM": {
+    "account_name": "Silverbirch",
+    "opportunity": "Silverbirch - Renewal - Jan 2027",
+    "kind": "reviewed",
+    "action": "Schedule technical discovery to check whether the Jan 4 renewal is still on track.",
+    "reason": "Salesforce forecasts the renewal as Commit while the deal is still in Discovery.",
+    "evidence_ids": [
+      "sf-next-step",
+      "sf-close",
+      "sf-forecast",
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      },
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "04 Jan 2027 (in 40 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Discovery"
+      }
+    ]
+  },
+  "006Hp00000XeFKfIAN": {
+    "account_name": "Silverbirch",
+    "opportunity": "Silverbirch - New - Online checkout",
+    "kind": "salesforce",
+    "action": "Confirm decision makers",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Confirm decision makers"
+      }
+    ]
+  },
+  "006Hp00000zQbW9IAK": {
+    "account_name": "Tidewater",
+    "opportunity": "Tidewater - New - Mobile app payments",
+    "kind": "reviewed",
+    "action": "Confirm the deal is still active, then agree pricing and a signature date for the Jan 17 close.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 106 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "17 Jan 2027 (in 53 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "106 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Stale Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Agree pricing and signature date"
+      }
+    ]
+  },
+  "006Hp000007vOesIAE": {
+    "account_name": "Tidewater",
+    "opportunity": "Tidewater - Renewal - Mar 2027",
+    "kind": "salesforce",
+    "action": "Technical discovery session",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Technical discovery session"
+      }
+    ]
+  },
+  "006Hp000009fqJBIAY": {
+    "account_name": "Tidewater",
+    "opportunity": "Tidewater - Upsell - Data & insights",
+    "kind": "stage",
+    "action": "Check whether the proposal has been sent and agree on the next step.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Proposal"
+      }
+    ]
+  },
+  "006Hp00000umHvpIAE": {
+    "account_name": "Umberleaf",
+    "opportunity": "Umberleaf - Upsell - Card issuing",
+    "kind": "reviewed",
+    "action": "Confirm with the customer that contract terms are on track for the Jan 17 close.",
+    "reason": "It's forecast as Commit, but nothing has been logged in Salesforce for 37 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-activity",
+      "sf-flags",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "17 Jan 2027 (in 53 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "37 days ago"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Stale Commit"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      }
+    ]
+  },
+  "006Hp00000SFcrJIAT": {
+    "account_name": "Umberleaf",
+    "opportunity": "Umberleaf - New - Pay by Link",
+    "kind": "stage",
+    "action": "Book a discovery session to map requirements, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Discovery"
+      }
+    ]
+  },
+  "006Hp000003OrNYIA0": {
+    "account_name": "Umberleaf",
+    "opportunity": "Umberleaf - Upsell - Terminal fleet expansion",
+    "kind": "salesforce",
+    "action": "Share solution overview",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Share solution overview"
+      }
+    ]
+  },
+  "006Hp00000YHxVnIAL": {
+    "account_name": "Vellum",
+    "opportunity": "Vellum - New - Pay by Link",
+    "kind": "reviewed",
+    "action": "Map the customer's current payment stack and confirm who the current contacts are.",
+    "reason": "An August account call said the team was reorganising, with new contacts to follow.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0009-ab3a4e"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Map current payment stack"
+      },
+      {
+        "id": "gong_call_0009-ab3a4e",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Stakeholder change · call on 28 Aug",
+        "value": "Customer team reorganising, new contacts to follow",
+        "url": "https://gong.example.invalid/call?id=gong_call_0009"
+      }
+    ]
+  },
+  "006Hp00000PhI7DIAV": {
+    "account_name": "Vellum",
+    "opportunity": "Vellum - New - Subscription billing",
+    "kind": "salesforce",
+    "action": "Confirm decision makers",
+    "reason": "Next step recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Confirm decision makers"
+      }
+    ]
+  },
+  "006Hp00000bejLdIAI": {
+    "account_name": "Wayfarer",
+    "opportunity": "Wayfarer - Renewal - Mar 2027",
+    "kind": "reviewed",
+    "action": "Agree on an executive sponsor and a remediation plan with the customer before resuming renewal talks.",
+    "reason": "On Oct 31 the customer wanted the migration fixed first; a Nov 21 account call put renewal discussions on hold.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0021-8b1d63",
+      "gong_call_0021-ad4f45",
+      "gong_call_0038-337ea2",
+      "gong_call_0038-a5f30c",
+      "gong_call_0038-6bcdc7",
+      "gong_call_0038-72c92c"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Prepare renewal proposal"
+      },
+      {
+        "id": "gong_call_0021-8b1d63",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Closing risk · call on 31 Oct",
+        "value": "Wants migration fixed before discussing renewal terms",
+        "url": "https://gong.example.invalid/call?id=gong_call_0021"
+      },
+      {
+        "id": "gong_call_0021-ad4f45",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Implementation delay · call on 31 Oct",
+        "value": "Implementation delay on 3DS2 migration",
+        "url": "https://gong.example.invalid/call?id=gong_call_0021"
+      },
+      {
+        "id": "gong_call_0038-337ea2",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Technical issue · call on 21 Nov",
+        "value": "Customer dissatisfied with payout delays over the last month",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      },
+      {
+        "id": "gong_call_0038-a5f30c",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Technical issue · call on 21 Nov",
+        "value": "Settlement reports not reconciling with their ledger",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      },
+      {
+        "id": "gong_call_0038-6bcdc7",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Executive escalation · call on 21 Nov",
+        "value": "Requested an executive sponsor and a remediation plan",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      },
+      {
+        "id": "gong_call_0038-72c92c",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Closing risk · call on 21 Nov",
+        "value": "Renewal discussions on hold until issues are resolved",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      }
+    ]
+  },
+  "006Hp00000NrTJJIA3": {
+    "account_name": "Wayfarer",
+    "opportunity": "Wayfarer - Upsell - Network tokenization",
+    "kind": "reviewed",
+    "action": "Confirm whether the tokenization upsell is still active and whether the account's remediation work affects its timing.",
+    "reason": "The close date passed 46 days ago, and a Nov 21 account call put renewal discussions on hold until issues are resolved.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-flags",
+      "gong_call_0038-6bcdc7",
+      "gong_call_0038-72c92c"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "10 Oct 2026 (overdue by 46 days)"
+      },
+      {
+        "id": "sf-flags",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Problem flags",
+        "value": "Long overdue"
+      },
+      {
+        "id": "gong_call_0038-6bcdc7",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Executive escalation · call on 21 Nov",
+        "value": "Requested an executive sponsor and a remediation plan",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      },
+      {
+        "id": "gong_call_0038-72c92c",
+        "source": "Gong",
+        "scope": "account",
+        "label": "Closing risk · call on 21 Nov",
+        "value": "Renewal discussions on hold until issues are resolved",
+        "url": "https://gong.example.invalid/call?id=gong_call_0038"
+      }
+    ]
+  },
+  "006Hp00000rZW2EIAW": {
+    "account_name": "Willowbank",
+    "opportunity": "Willowbank - Renewal - Nov 2026",
+    "kind": "reviewed",
+    "action": "Finalize contract terms and confirm the signature date before the Nov 28 close.",
+    "reason": "The renewal closes in 3 days and is still forecast as Best Case, not Commit.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "28 Nov 2026 (in 3 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Best Case"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      }
+    ]
+  },
+  "006Hp00000VMMEcIAP": {
+    "account_name": "Willowbank",
+    "opportunity": "Willowbank - New - Cross-border acquiring",
+    "kind": "reviewed",
+    "action": "Confirm the fee benchmarking raised in September is resolved before finalizing contract terms.",
+    "reason": "On Sep 28 the customer was benchmarking fees against another provider.",
+    "evidence_ids": [
+      "sf-next-step",
+      "gong_call_0013-231159"
+    ],
+    "sources": [
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Finalize contract terms"
+      },
+      {
+        "id": "gong_call_0013-231159",
+        "source": "Gong",
+        "scope": "deal",
+        "label": "Pricing pressure · call on 28 Sep",
+        "value": "Customer benchmarking fees against another provider",
+        "url": "https://gong.example.invalid/call?id=gong_call_0013"
+      }
+    ]
+  },
+  "006Hp00000dY4joIAC": {
+    "account_name": "Zephyrine",
+    "opportunity": "Zephyrine - Renewal - Feb 2027",
+    "kind": "reviewed",
+    "action": "Confirm the timeline for the MSA legal review ahead of the Feb 11 renewal.",
+    "reason": "Salesforce lists MSA legal review as the next step, with no activity logged for 19 days.",
+    "evidence_ids": [
+      "sf-close",
+      "sf-forecast",
+      "sf-activity",
+      "sf-next-step"
+    ],
+    "sources": [
+      {
+        "id": "sf-close",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Close date",
+        "value": "11 Feb 2027 (in 78 days)"
+      },
+      {
+        "id": "sf-forecast",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Forecast category",
+        "value": "Commit"
+      },
+      {
+        "id": "sf-activity",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Last activity logged in Salesforce",
+        "value": "19 days ago"
+      },
+      {
+        "id": "sf-next-step",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Next step",
+        "value": "Legal review of MSA"
+      }
+    ]
+  },
+  "006Hp00000cO77qIAC": {
+    "account_name": "Zephyrine",
+    "opportunity": "Zephyrine - Upsell - Local payment methods (BR)",
+    "kind": "stage",
+    "action": "Agree the remaining terms and a signature date, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Negotiation"
+      }
+    ]
+  },
+  "006Hp00000yax9TIAQ": {
+    "account_name": "Zephyrine",
+    "opportunity": "Zephyrine - Upsell - Tap to Pay on mobile",
+    "kind": "stage",
+    "action": "Book a discovery session to map requirements, then record the next step in Salesforce.",
+    "reason": "Suggested from the deal's stage; no next step is recorded in Salesforce.",
+    "evidence_ids": [
+      "sf-stage"
+    ],
+    "sources": [
+      {
+        "id": "sf-stage",
+        "source": "Salesforce",
+        "scope": "deal",
+        "label": "Stage",
+        "value": "Discovery"
+      }
+    ]
+  }
+}

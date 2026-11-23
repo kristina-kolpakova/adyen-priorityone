@@ -1,7 +1,9 @@
+import hashlib
+
 import pandas as pd
 
 from scoring import score_types
-from gong import call_issues
+from gong import call_issues, gong as gong_key_points
 
 # Load Salesforce data.
 df_opp = pd.read_csv("data/opportunities.csv")
@@ -130,9 +132,16 @@ df["FlagStaleCommit"] = (df["ForecastCategory"] == "Commit") & no_recent_activit
 # Flag 4: overdue by more than 30 days; the record may be stale and needs review.
 df["FlagLongOverdue"] = df["DaysToClose"] < -30
 
+# Flag 5: forecast as Commit while still in Discovery or Qualification; the AM
+# should check what supports the forecast or whether Salesforce needs updating.
+df["FlagEarlyCommit"] = (
+    (df["ForecastCategory"] == "Commit")
+    & df["StageName"].isin(["Discovery", "Qualification"])
+)
+
 # An opportunity is problematic if any flag is raised.
 df["IsProblem"] = df[
-    ["FlagOverdue", "FlagStaleNearClose", "FlagStaleCommit", "FlagLongOverdue"]
+    ["FlagOverdue", "FlagStaleNearClose", "FlagStaleCommit", "FlagLongOverdue", "FlagEarlyCommit"]
 ].any(axis=1)
 
 
@@ -178,6 +187,15 @@ account_call_issues = (
     .groupby("AccountName")["red_flag"]
     .agg(list)
 )
+
+# Gong points on every deal: 2 for an issue on the deal itself, otherwise 1 if a
+# call not linked to any deal raised one for the account, otherwise 0.
+df["GongPoints"] = 0
+df.loc[df["AccountName"].isin(account_call_issues.index), "GongPoints"] = 1
+df.loc[df["GongIssues"].notna(), "GongPoints"] = 2
+
+# Each deal's final score: its Salesforce score plus its Gong points.
+df["FinalScore"] = df["PriorityScore"] + df["GongPoints"]
 
 
 # --- Account Scores ---
@@ -228,11 +246,123 @@ ui_accounts = pd.DataFrame({
     "top_days_to_close": top_opportunities["DaysToClose"],
     "top_stale_near_close": top_opportunities["FlagStaleNearClose"],
     "top_stale_commit": top_opportunities["FlagStaleCommit"],
+    "top_early_commit": top_opportunities["FlagEarlyCommit"],
     "top_days_since_activity": top_opportunities["DaysSinceActivity"],
     "top_gong_issues": top_opportunities["GongIssues"],
     # Only accounts with open deals are ranked, so ignore calls from other accounts.
     "account_call_issues": account_call_issues.reindex(priority_scores.index),
 })
+
+# --- Evidence for Next Actions ---
+
+# The facts behind every open deal, each with an ID so a drafted next action
+# can cite exactly what it is based on. Evidence only: no scoring.
+
+# Every key point from Gong calls in the last 90 days, newest first. Key points
+# without a red flag are kept as context, so the evidence isn't only bad news.
+recent_key_points = gong_key_points.drop_duplicates(subset=["id", "key_points"]).copy()
+
+recent_key_points["CallDate"] = (
+    pd.to_datetime(recent_key_points["started"], utc=True)
+    .dt.tz_localize(None)
+    .dt.normalize()
+)
+
+recent_key_points = (
+    recent_key_points[recent_key_points["CallDate"] >= reference_date - pd.Timedelta(days=90)]
+    .sort_values("CallDate", ascending=False)
+)
+
+evidence_by_opportunity = {}
+
+for _, deal in df.iterrows():
+    evidence = []
+
+    # Close date, with how far away it is.
+    close_date = deal["CloseDate"].strftime("%d %b %Y")
+    if deal["DaysToClose"] < 0:
+        close_text = f"{close_date} (overdue by {-int(deal['DaysToClose'])} days)"
+    else:
+        close_text = f"{close_date} (in {int(deal['DaysToClose'])} days)"
+
+    # Last Salesforce activity, or none logged.
+    if pd.isna(deal["DaysSinceActivity"]):
+        activity_text = "None logged"
+    else:
+        activity_text = f"{int(deal['DaysSinceActivity'])} days ago"
+
+    # Salesforce problem flags raised on the deal.
+    flag_names = []
+    if deal["FlagLongOverdue"]:
+        flag_names.append("Long overdue")
+    elif deal["FlagOverdue"]:
+        flag_names.append("Overdue")
+    if deal["FlagStaleNearClose"]:
+        flag_names.append("No recent activity before close")
+    if deal["FlagStaleCommit"]:
+        flag_names.append("Stale Commit")
+    if deal["FlagEarlyCommit"]:
+        flag_names.append("Early-stage Commit")
+
+    # Salesforce fields of the top deal.
+    salesforce_fields = [
+        ("sf-opportunity", "Opportunity", deal["Name"]),
+        ("sf-stage", "Stage", str(deal["StageName"])),
+        ("sf-amount", "Amount", f"€{deal['Amount']:,.0f}"),
+        ("sf-close", "Close date", close_text),
+        ("sf-forecast", "Forecast category", deal["ForecastCategory"]),
+        ("sf-activity", "Last activity logged in Salesforce", activity_text),
+    ]
+    if flag_names:
+        salesforce_fields.append(("sf-flags", "Problem flags", ", ".join(flag_names)))
+    if pd.notna(deal["NextStep"]):
+        salesforce_fields.append(("sf-next-step", "Next step", deal["NextStep"]))
+
+    for evidence_id, label, value in salesforce_fields:
+        evidence.append({
+            "id": evidence_id,
+            "source": "Salesforce",
+            "scope": "deal",
+            "label": label,
+            "value": value,
+        })
+
+    # Gong key points from calls about the top deal, then from calls not
+    # linked to any deal, which keep their account-wide label.
+    deal_points = recent_key_points[recent_key_points["associated_opp"] == deal["Id"]]
+    account_points = recent_key_points[
+        recent_key_points["associated_opp"].isna()
+        & (recent_key_points["associated_account"] == deal["AccountId"])
+    ]
+
+    for scope, points in [("deal", deal_points), ("account", account_points)]:
+        for _, point in points.iterrows():
+            # Red-flag key points are named by their issue; the rest are context.
+            if pd.notna(point["red_flag"]):
+                point_type = point["red_flag"]
+            else:
+                point_type = "Context"
+
+            # A stable ID: the call ID plus a short hash of the key point, so a
+            # saved draft still points to the same key point after new calls arrive.
+            key_point_hash = hashlib.sha1(point["key_points"].encode()).hexdigest()[:6]
+
+            evidence.append({
+                "id": f"{point['id']}-{key_point_hash}",
+                "source": "Gong",
+                "scope": scope,
+                "label": f"{point_type} · call on {point['CallDate'].strftime('%d %b')}",
+                "value": point["key_points"],
+                "url": point["url"],
+            })
+
+    evidence_by_opportunity[deal["Id"]] = evidence
+
+df["Evidence"] = df["Id"].map(evidence_by_opportunity)
+
+# Each account row carries its top deal's ID and evidence.
+ui_accounts["top_opportunity_id"] = top_opportunities["Id"]
+ui_accounts["evidence"] = top_opportunities["Id"].map(evidence_by_opportunity)
 
 # Rank on the same Gong issues the dashboard shows: any issue from the last 90 days.
 
@@ -274,6 +404,7 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
     )
     .rename(columns={
         "AccountName": "account_name",
+        "Id": "opportunity_id",
         "Name": "opportunity",
         "Type": "type",
         "Amount": "amount",
@@ -289,15 +420,19 @@ ui_accounts.to_json("data/scores.json", orient="records", indent=2)
         "FlagStaleNearClose": "stale_near_close",
         "FlagStaleCommit": "stale_commit",
         "FlagLongOverdue": "long_overdue",
+        "FlagEarlyCommit": "early_commit",
         "DaysSinceActivity": "days_since_activity",
         "GongIssues": "gong_issues",
+        "GongPoints": "gong_points",
+        "FinalScore": "final_score",
+        "Evidence": "evidence",
     })
     [[
-        "account_name", "opportunity", "type", "amount", "stage",
+        "account_name", "opportunity_id", "opportunity", "type", "amount", "stage",
         "close_date", "days_to_close", "value_score", "timing_score",
-        "stage_score", "priority_score", "is_problem", "is_overdue",
-        "stale_near_close", "stale_commit", "long_overdue", "days_since_activity",
-        "gong_issues",
+        "stage_score", "priority_score", "gong_points", "final_score", "is_problem", "is_overdue",
+        "stale_near_close", "stale_commit", "long_overdue", "early_commit",
+        "days_since_activity", "gong_issues", "evidence",
     ]]
     .sort_values(
         ["account_name", "priority_score", "is_problem", "amount"],

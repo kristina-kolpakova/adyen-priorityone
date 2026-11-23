@@ -94,6 +94,15 @@ def test_priority_score_is_out_of_100():
     assert df["PriorityScore"].between(0, 100).all()
 
 
+def test_early_stage_commit_flag():
+    # Commit in Discovery or Qualification is flagged, and counts as a problem.
+    df = integration.df
+    early_commit = (df["ForecastCategory"] == "Commit") & df["StageName"].isin(["Discovery", "Qualification"])
+
+    assert (df["FlagEarlyCommit"] == early_commit).all()
+    assert df.loc[df["FlagEarlyCommit"], "IsProblem"].all()
+
+
 def test_final_score_adds_gong_points():
     # Final score = Salesforce score + Gong points, and Gong adds 0, 1 or 2.
     accounts = integration.ui_accounts
@@ -108,6 +117,19 @@ def test_top_deal_gong_issue_gives_two_points():
     has_top_deal_issue = accounts["top_gong_issues"].notna()
 
     assert (accounts.loc[has_top_deal_issue, "gong_bonus"] == 2).all()
+
+
+def test_every_deal_final_score_includes_gong():
+    # Each deal's final score is its Salesforce score plus its Gong points, and
+    # an account's score is its best deal's final score.
+    df = integration.df
+
+    assert (df["FinalScore"] == df["PriorityScore"] + df["GongPoints"]).all()
+    assert df["GongPoints"].isin([0, 1, 2]).all()
+
+    best_final = df.groupby("AccountName")["FinalScore"].max()
+    accounts = integration.ui_accounts.set_index("account_name")
+    assert (accounts["account_score"] == best_final.reindex(accounts.index)).all()
 
 
 def test_gong_never_outranks_a_higher_salesforce_score():

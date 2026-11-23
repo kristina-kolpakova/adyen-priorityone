@@ -80,7 +80,7 @@ Id,AccountId,OwnerId,Name,Amount,CreatedDate,StageName,CloseDate,Type,IsClosed,F
 006Hp00000LbgXMIAZ,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - New - Cross-border acquiring,510000.00,2026-10-30T14:40:00.000+0000,Discovery,2027-03-24,New,false,Pipeline,2026-11-24,Technical discovery session
 006Hp00000ihQPFIA2,001Hp00000TNcsIIAT,005Hp00000jgrcAIAQ,Redfern - New - Platform onboarding,555000.00,2026-04-15T10:40:00.000+0000,Qualification,2027-03-17,New,false,Pipeline,2026-10-01,Intro call with finance
 006Hp00000vUADsIAO,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - New - Cross-border acquiring,130000.00,2026-03-20T10:50:00.000+0000,Closed Won,2026-07-14,New,true,Closed,2026-07-08,
-006Hp00000yrCM3IAM,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - Renewal - Jan 2027,305000.00,2026-05-27T16:00:00.000+0000,Discovery,2027-01-04,Renewal,false,Pipeline,2026-10-28,Technical discovery session
+006Hp00000yrCM3IAM,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - Renewal - Jan 2027,305000.00,2026-05-27T16:00:00.000+0000,Discovery,2027-01-04,Renewal,false,Commit,2026-10-28,Technical discovery session
 006Hp00000XeFKfIAN,001Hp00000Ya7guIAB,005Hp00000MBiinIAD,Silverbirch - New - Online checkout,90000.00,2026-10-24T10:00:00.000+0000,Qualification,2027-06-25,New,false,Pipeline,2026-11-20,Confirm decision makers
 006Hp00000O7UluIAF,001Hp00000xzowjIAA,005Hp00000jgrcAIAQ,Thistle - New - In-store payments,520000.00,2026-02-22T07:05:00.000+0000,Closed Lost,2026-04-08,New,true,Omitted,2026-04-05,
 006Hp00000hqb35IAA,001Hp00000xzowjIAA,005Hp00000jgrcAIAQ,Thistle - Upsell - Terminal fleet expansion,145000.00,2026-02-21T10:00:00.000+0000,Closed Won,2026-08-18,Upsell,true,Closed,2026-08-13,

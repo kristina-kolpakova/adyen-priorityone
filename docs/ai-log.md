@@ -41,6 +41,8 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 27 | 2026-11-21 | Claude Code | Account scoring | Dropped renewal weighting; problem flags break ties instead |
 | 28 | 2026-11-21 | Claude Code | Data | Shifted mock dates forward; fixed the reference date at 25 Nov; reversed entry 14 |
 | 29 | 2026-11-22 | Claude Code | Account scoring | Added Gong issues: display, then tie-break, then +2/+1 points kept below a Salesforce step |
+| 30 | 2026-11-22 | Claude Code | Next actions | One next action per open deal from cited evidence; drafts reviewed and edited before saving |
+| 31 | 2026-11-22 | Claude Code | Account scoring | Gong points moved onto every deal so the deal and account scores match |
 
 ---
 
@@ -306,7 +308,7 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **What I noticed:** Six days after the mock data was generated, too many close dates had passed, with few deals coming up. I had Claude move every date in the mock data forward 10 days (close, created, activity and Gong calls together, so activity gaps stayed consistent), with renewal names following their new close month.
 - **What went wrong:** Krakatoa dropped to #2. Claude explained why: the shift put Krakatoa and Lanternfly in different timing bands, so Krakatoa's earlier lead had only come from winning a tie. I moved Lanternfly's renewal one day later (3 Dec) so the two tie again. Localhost still looked the same, because the scores were calculated from today's date and the change only took effect on 25 Nov, the day of my interview.
 - **How it was steered:** I decided scores shouldn't change on the day of the demo. Claude laid out the options, and I chose a fixed reference date of 25 Nov 2026, the date the shifted data now represents. This reverses entry 14 for the mock data. With live Salesforce data the reference date would be today again, as noted in the README.
-- **Then nothing scored 100:** no large Negotiation deal closed within 7 days of 25 Nov. I chose new close dates for four renewals: Krakatoa 1 Dec (6 days out, as in the original data), Willowbank 28 Nov, Mosaic 7 Dec and Lanternfly 3 Dec. These are the only rows changed by hand for the demo.
+- **Then nothing scored 100:** no large Negotiation deal closed within 7 days of 25 Nov. I chose new close dates for four renewals: Krakatoa 1 Dec (6 days out, as in the original data), Willowbank 28 Nov, Mosaic 7 Dec and Lanternfly 3 Dec. Later, to demo the Early-stage Commit flag (entry 30), I changed Silverbirch's renewal forecast from Pipeline to Commit. These are the only rows changed by hand for the demo.
 - **How it was checked:** Reran the scoring, the 10 tests pass, and the ranking is the same whichever day the script runs: Krakatoa 100 (flagged) and Willowbank 100, then Lanternfly and Mosaic on 95.
 - **Lesson:** "Use today's date" is right for live data and wrong for a static snapshot. A demo should give the same answer every time it runs.
 
@@ -318,6 +320,25 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 - **What Claude found:** Every Salesforce score is a multiple of 5, so a Gong bonus under 5 can only reorder accounts with the same Salesforce score. +2/+1 keeps Gong from overriding Salesforce while showing its effect in the score. Claude also flagged that the list row then showed "Renewal 95" next to a score of 97, so rows now show "+2 Gong".
 - **How it was checked:** Three new tests: the final score equals the Salesforce score plus 0–2 Gong points, a top-deal issue gives +2, and Salesforce scores still run from highest to lowest after sorting. All 13 tests pass. The README explains the rule and its limits: keyword matching isn't tested against outcomes, and Salesforce flags still add no points while Gong does.
 - **Lesson:** A new signal should earn influence step by step: shown first, then a tie-break, then points kept small enough that it can't override the main score.
+
+## 30. A next action for every deal, drafted from cited evidence
+
+- **Tool:** Claude Code, Python/pandas, JavaScript/CSS
+- **What I designed:** Python picks the top deal and gathers the evidence; AI drafts one action and one reason from it; the drawer shows the action with a "View evidence" toggle. I dropped mock Clay data from the first version because it didn't change what an AM would do, and skipped a rules-engine fallback because drafts are generated offline and can be reviewed before publishing.
+- **What Claude built:** An evidence list per deal with stable IDs (Gong call ID plus a hash of the key point, so a saved draft can't point at a different fact after new calls arrive), with deal-linked and account-wide evidence labelled separately. Non-red-flag key points are kept as "Context", so drafts see good news too. "Last activity" was relabelled "Last activity logged in Salesforce" after Krakatoa's 38-day gap sat next to a call from 9 days earlier.
+- **How it was steered:** Instead of running an API script, I had Claude draft the actions in chat in batches, and I edited them before anything was saved. My edits kept the evidence's certainty ("may push the signature" stays a question to confirm, not a slip), sent Krakatoa's action to procurement rather than the champion, and kept date changes conditional. Then I extended it to all 70 open deals: 38 reviewed drafts (top deals plus deals with signals), 23 Salesforce next steps word for word, and 9 stage-based suggestions where the field is blank, keyed by opportunity ID. A final pass trimmed reasons that repeated their action, keeping logging gaps only where they're the reason to check a deal is still active.
+- **Also added:** an Early-stage Commit flag (Commit while in Discovery or Qualification). No mock deal triggered it, so I set Silverbirch's renewal to Commit to show it.
+- **How it was checked:** Before saving, every cited ID was checked against that deal's evidence, and every open deal was checked to have exactly one action. Claude also checked the drawer for all 29 accounts: 70 action blocks, one per deal card.
+- **Lesson:** A valid citation isn't the same as a faithful draft. The ID check catches made-up sources; only reading the drafts catches "may" turning into "will".
+
+## 31. When the deal said 100 and the account said 102
+
+- **Tool:** Claude Code
+- **What I noticed:** Krakatoa's top deal showed 100 pts while the account showed 102. I asked for an audit.
+- **What Claude found:** Every number was correct. Gong points were added once at account level, so the deal's own score never included them. Claude first suggested a "+2 Gong = 102" note on the badge, which I rejected: the deal score itself should include Gong.
+- **How it was steered:** Gong points now apply to every deal (+2 for its own issue, +1 for an account call), and badges, type chips, the evidence score row and the score box all show the final score. Claude simulated the change first: no account score or top deal changed.
+- **How it was checked:** A new test checks that each deal's final score is its Salesforce score plus its Gong points, and that each account's score is its best deal's final score. A browser audit of all 29 drawers confirmed that every badge, chip and score row adds up. 15 tests pass.
+- **Lesson:** Numbers that are correct but don't visibly add up still read as wrong. A score should be the same number everywhere it appears.
 
 ---
 
