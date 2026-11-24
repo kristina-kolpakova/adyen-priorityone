@@ -1435,10 +1435,10 @@
       return `${account.top_type} · ${euros.format(account.top_amount)} · ${account.top_stage} · <em>${timing}</em>`;
     }
 
-    // Accounts scoring this or more need attention this week. 100 is the most a deal can score from
-    // Salesforce alone, so clearing it takes a perfect Salesforce score, or a strong one plus a recent
-    // red flag in Gong or Slack.
-    const PRIORITY_THRESHOLD = 100;
+    // Accounts scoring this or more need attention this week. Value and timing max out at 70, so
+    // clearing 80 takes a strong deal plus a reason to act: a Commit forecast that needs checking,
+    // or a recent red flag in Gong or Slack.
+    const PRIORITY_THRESHOLD = 80;
 
     // How many priority accounts there are. The Overview and the weekly digest both show this many
     // accounts from the top of the AM's list.
@@ -1760,7 +1760,7 @@
         return flagNames[flag];
       });
 
-      let breakdown = `${entry.final_score} = value ${entry.value_score} + timing ${entry.timing_score} + stage ${entry.stage_score}`;
+      let breakdown = `${entry.final_score} = value ${entry.value_score} + timing ${entry.timing_score} + Commit check ${entry.stage_score}`;
       if (entry.gong_bonus > 0) {
         breakdown += ` + Gong ${entry.gong_bonus} (${entry.gong_signal}, call ${entry.gong_signal_age} days before sync)`;
       }
@@ -2073,7 +2073,7 @@
         const gongPart = opportunity.gong_points > 0 ? ` + ${opportunity.gong_points} Gong` : "";
         const slackPart = opportunity.slack_points > 0 ? ` + ${opportunity.slack_points} Slack` : "";
         const scoreText = `${opportunity.value_score} value + ${opportunity.timing_score} timing
-          + ${opportunity.stage_score} stage${gongPart}${slackPart} = <strong>${opportunity.final_score} pts</strong>`;
+          + ${opportunity.stage_score} Commit check${gongPart}${slackPart} = <strong>${opportunity.final_score} pts</strong>`;
 
         // Why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null

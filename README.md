@@ -24,7 +24,7 @@ python -m pytest
 
 ## How to use it
 
-Start with this week's priority accounts on **Top accounts** (every account scoring 100 or more, the most a deal can score from Salesforce alone), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
+Start with this week's priority accounts on **Top accounts** (every account scoring 80 or more: a strong deal plus a Commit forecast to check or a recent red flag in Gong or Slack), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
 
 Drag an account to change your order and optionally add a note on why. Saving the note saves the ranking feedback.
 
@@ -36,7 +36,7 @@ When an AM disagrees with the ranking, they drag the account and can add a short
 Ranking feedback · Krakatoa
 AM moved this account from #1 to #5.
 Note: Procurement confirmed the renewal is on track.
-Why it ranked #1: score 117 = value 40 + timing 30 + stage 30 + Gong 17 (Competitor risk, call 7 days before sync).
+Why it ranked #1: score 107 = value 40 + timing 30 + Commit check 0 + Gong 17 (Competitor risk, call 7 days before sync) + Slack 20 (Pricing pressure, message 1 days before sync).
 Salesforce flags: No recent activity, Stale Commit
 ```
 
@@ -50,7 +50,7 @@ Each open opportunity gets a Salesforce base score out of 100.
 | --- | --- |
 | Value, up to 40 | Eight amount-based tiers across open deals, worth 5 to 40 points. |
 | Timing, up to 30 | 0–7 days until close earns 30, 8–14 earns 25, 15–30 earns 20, 31–60 earns 10, 61–90 earns 5, and later earns 0. Deals overdue by 1–30 days earn 30. Deals overdue longer earn 10. |
-| Stage, up to 30 | Negotiation earns 30, Proposal 20, Discovery 10, and Qualification 0. |
+| Commit check, up to 30 | Only deals forecast as Commit earn points. Negotiation earns 0, Proposal 15, and Discovery or Qualification 30: the earlier the stage, the more reason to check whether the forecast is realistic. Other forecasts earn 0. |
 
 The most recent applicable Gong red flag adds up to 20 points. It earns 20 through day 2, then falls linearly to 5 at day 30 and 0 at day 90. The bonus rounds to a whole point. A deal can use a call linked to it or to its account. Every red-flag category uses the same curve.
 

@@ -86,6 +86,20 @@ def test_timing_score_follows_days_to_close():
         assert row["TimingScore"] == expected
 
 
+def test_stage_points_are_a_commit_check():
+    # Only Commit deals get stage points; the earlier the stage, the more points.
+    for _, row in integration.df.iterrows():
+        if row["ForecastCategory"] != "Commit":
+            expected = 0
+        elif row["StageName"] == "Negotiation":
+            expected = 0
+        elif row["StageName"] == "Proposal":
+            expected = 15
+        else:
+            expected = 30
+        assert row["StageScore"] == expected
+
+
 def test_priority_score_is_out_of_100():
     df = integration.df
     total = df["ValueScore"] + df["TimingScore"] + df["StageScore"]
@@ -206,11 +220,11 @@ def test_thread_export_marks_the_unanswered_question():
 
 def test_demo_ranking_on_the_snapshot_date():
     # The mock data is scored as of its last sync, 23 Nov 2026, so these stay fixed.
-    # Krakatoa stays on top: 100 Salesforce + 17 Gong + 20 Slack.
+    # Krakatoa stays on top: 70 Salesforce + 17 Gong + 20 Slack.
     accounts = integration.ui_accounts.set_index("account_name")
 
     assert integration.reference_date == integration.pd.Timestamp("2026-11-23")
-    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 137)
-    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 132)
-    assert (accounts.loc["Willowbank", "rank"], accounts.loc["Willowbank", "account_score"]) == (3, 116)
-    assert (accounts.loc["Quayside", "rank"], accounts.loc["Quayside", "account_score"]) == (8, 90)
+    assert (accounts.loc["Krakatoa", "rank"], accounts.loc["Krakatoa", "account_score"]) == (1, 107)
+    assert (accounts.loc["Mosaic", "rank"], accounts.loc["Mosaic", "account_score"]) == (2, 102)
+    assert (accounts.loc["Fernhill", "rank"], accounts.loc["Fernhill", "account_score"]) == (3, 99)
+    assert (accounts.loc["Kestrel", "rank"], accounts.loc["Kestrel", "account_score"]) == (4, 93)

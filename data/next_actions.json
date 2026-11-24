@@ -279,7 +279,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Problem flags",
-        "value": "No recent activity before close"
+        "value": "No recent activity before close, Stale Commit"
       },
       {
         "id": "sf-next-step",
@@ -396,14 +396,14 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Problem flags",
-        "value": "Overdue"
+        "value": "Overdue, Stale Commit"
       },
       {
         "id": "sf-next-step",
         "source": "Salesforce",
         "scope": "deal",
         "label": "Next step",
-        "value": "Send commercial proposal"
+        "value": "Confirm legal review timeline and expected signature date"
       },
       {
         "id": "slack-C07FRN001-1795192200000000",
@@ -465,8 +465,8 @@
     "account_name": "Kestrel",
     "opportunity": "Kestrel - Renewal - Dec 2026",
     "kind": "reviewed",
-    "action": "Follow up with Jonas on the revised SLA terms, then confirm pricing and signature timing for the Dec 4 close.",
-    "reason": "Jonas asked for the revised SLA terms on Nov 12 and followed up on Nov 17 without a reply. The Commit renewal closes in 11 days.",
+    "action": "Send Jonas the revised SLA terms, then confirm pricing and signature timing for the Dec 4 close.",
+    "reason": "Jonas asked for the revised SLA terms on Nov 12 and followed up on Nov 17 without a reply. The renewal is still in Proposal but forecast as Commit, and closes in 11 days.",
     "evidence_ids": [
       "sf-close",
       "sf-forecast",
@@ -494,7 +494,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Next step",
-        "value": "Agree pricing and signature date"
+        "value": "Send revised SLA terms"
       },
       {
         "id": "slack-C07KST001-1794477600000000",
@@ -621,8 +621,7 @@
         "label": "Problem flags",
         "value": "No recent activity before close, Stale Commit"
       }
-    ],
-    "short_action": "Ask procurement about the fee reduction"
+    ]
   },
   "006Hp00000ks1X7IAI": {
     "account_name": "Krakatoa",
@@ -1100,8 +1099,7 @@
         "value": "Pricing accepted for the upcoming renewal",
         "url": "https://gong.example.invalid/call?id=gong_call_0037"
       }
-    ],
-    "short_action": "Check legal won't delay the Dec 7 signature"
+    ]
   },
   "006Hp00000QxUlbIAF": {
     "account_name": "Mosaic",
@@ -1536,7 +1534,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Problem flags",
-        "value": "Overdue"
+        "value": "Overdue, Early-stage Commit"
       }
     ]
   },
@@ -2170,7 +2168,7 @@
         "source": "Salesforce",
         "scope": "deal",
         "label": "Problem flags",
-        "value": "Long overdue"
+        "value": "Long overdue, Stale Commit, Early-stage Commit"
       },
       {
         "id": "gong_call_0038-6bcdc7",
@@ -2223,8 +2221,7 @@
         "label": "Next step",
         "value": "Finalize contract terms"
       }
-    ],
-    "short_action": "Confirm the signature date before Nov 28"
+    ]
   },
   "006Hp00000VMMEcIAP": {
     "account_name": "Willowbank",

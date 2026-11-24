@@ -94,19 +94,23 @@ df["StageName"] = pd.Categorical(
     ordered=True
 )
 
-# Assign scores based on how advanced each opportunity is.
+# Commit check: a deal forecast as Commit should be close to signing. The earlier
+# its stage, the less likely it closes on time, so it gets more points to prompt the
+# AM to check the forecast. Deals not forecast as Commit get 0.
 stage_score_map = {
-    "Negotiation": 30,
-    "Proposal": 20,
-    "Discovery": 10,
-    "Qualification": 0
+    "Negotiation": 0,
+    "Proposal": 15,
+    "Discovery": 30,
+    "Qualification": 30
 }
 
-df["StageScore"] = df["StageName"].map(stage_score_map).astype(int)
+df["StageScore"] = 0
+is_commit = df["ForecastCategory"] == "Commit"
+df.loc[is_commit, "StageScore"] = df.loc[is_commit, "StageName"].map(stage_score_map).astype(int)
 
 # --- Total Priority Score ---
 
-# Opportunity priority out of 100: value (max 40) + timing (max 30) + stage (max 30).
+# Opportunity priority out of 100: value (max 40) + timing (max 30) + Commit check (max 30).
 df["PriorityScore"] = (
     df["ValueScore"]
     + df["TimingScore"]
