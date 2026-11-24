@@ -22,7 +22,7 @@ I used Claude Code to build the pipeline and UI, and ChatGPT to review parts of 
 
 ## Testing AI-drafted next actions
 
-Claude drafted 39 of the 70 next actions. I reviewed each one before saving.
+Claude drafted the 70 next actions. I reviewed each one before saving.
 
 - **How I'd test it.** Each pilot week, I'd check whether AMs followed the suggested next action or did something else, and talk to them about why. I'd also track how much they reorder their list, using the notes from ranking feedback.
 - **When it's wrong.** If AMs ignore or rewrite the drafted actions, I'd change how Claude drafts them. If they reorder more than half of the top 7, I'd rework the scoring. If weekly use drops after week 2, I'd shadow the AMs who stopped to find out why.
