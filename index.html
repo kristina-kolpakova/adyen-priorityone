@@ -660,6 +660,8 @@
     .chip-renewal { background: #dcefe3; color: #3f7d5c; }
     .chip-upsell-new { background: #d9f0ec; color: #2e8077; }
 
+    .detail-snapshot { color: var(--muted); font-size: 12px; margin: -8px 0 12px; }
+
     .detail-explanation {
       color: var(--ink);
       font-size: 14px;
@@ -2250,6 +2252,7 @@
             <div class="detail-score-label">Priority score</div>
           </div>
         </div>
+        <p class="detail-snapshot">Scores and day counts as of ${syncDayLabel} ${referenceDate.slice(0, 4)}</p>
         <p class="detail-explanation">${explanation}</p>
         ${accountCalls}
         <div class="detail-section-heading">

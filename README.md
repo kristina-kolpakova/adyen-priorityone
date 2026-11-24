@@ -63,7 +63,7 @@ After an AM moves an account, PriorityOne offers them an optional note to explai
 
 ## Data and assumptions
 
-- **Snapshot.** `integration.py` reads the Salesforce, Gong, and Slack CSVs and writes the JSON the app uses. It scores deals as of the latest activity across open Salesforce opportunities, Gong calls, and Slack messages. The published snapshot is **23 November 2026**.
+- **Snapshot.** `integration.py` reads the Salesforce, Gong, and Slack CSVs and writes the JSON the app uses. It scores deals as of the latest activity across open Salesforce opportunities, Gong calls, and Slack messages. The published snapshot is **Monday 23 November 2026**, so every date and day count in the app, like “2 days ago” or “closes in 6 days”, is as of that morning.
 - **Account matching.** `data/slack_channels.csv` maps each shared customer channel to a Salesforce account. In production, I’d maintain that mapping or match channels by customer domain. The app loads mock Gong calls from `data/gong_calls.json` and mock Slack threads from `data/slack_threads.json`.
 - **Red flags.** `gong.py` and `slack.py` use phrase matching. Only customer messages can raise a Slack flag. Salesforce activity flags reflect what’s recorded in the CRM, so they can appear alongside recent Slack activity. I’d test the score bands and weights against actual deal outcomes.
 - **Clay enrichment.** I left Clay out of the prototype to keep the data simple. My assumption was that recent red flags in Gong and Slack would tell an AM more about which accounts need attention this week. I’d test whether adding Clay enrichment changes the ranking in ways AMs find useful.
