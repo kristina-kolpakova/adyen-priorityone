@@ -69,3 +69,8 @@ After an AM moves an account, PriorityOne offers them an optional note to explai
 - **Clay enrichment.** I left Clay out of the prototype to keep the data simple. My assumption was that recent red flags in Gong and Slack would tell an AM more about which accounts need attention this week. I’d test whether adding Clay enrichment changes the ranking in ways AMs find useful.
 - **Data health.** The sync history, Gong outage, and connector times are simulated in `index.html`. The snapshot date comes from `data/sync.json`. In production, each connector would record its own sync times.
 - **Next actions.** Each of the 70 open deals has one next action, saved in `data/next_actions.json`. Claude drafted 39 offline from the deal’s evidence, and I reviewed them before saving. The rest use the deal’s Salesforce Next step or, where that’s blank, a suggestion based on its stage. In production, the pipeline would call an LLM to redraft a deal’s next action when its evidence changes.
+
+
+## AI tool log
+
+[docs/ai-log.md](docs/ai-log.md) covers where I corrected the AI tools and how I would test the AI-drafted next actions.
