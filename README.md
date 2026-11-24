@@ -13,7 +13,7 @@ PriorityOne is a Monday briefing for account managers. It shows which accounts n
 
 ## Run locally
 
-From the repository root, serve the checked-in snapshot with Python 3.
+Open a terminal in the project folder and run:
 
 ```bash
 python3 -m http.server 8000
@@ -68,7 +68,7 @@ After an AM moves an account, PriorityOne offers them an optional note to explai
 - **Red flags.** `gong.py` and `slack.py` use phrase matching. Only customer messages can raise a Slack flag. Salesforce activity flags reflect what’s recorded in the CRM, so they can appear alongside recent Slack activity. I’d test the score bands and weights against actual deal outcomes.
 - **Clay enrichment.** I left Clay out of the prototype to keep the data simple. My assumption was that recent red flags in Gong and Slack would tell an AM more about which accounts need attention this week. I’d test whether adding Clay enrichment changes the ranking in ways AMs find useful.
 - **Data health.** The sync history, Gong outage, and connector times are simulated in `index.html`. The snapshot date comes from `data/sync.json`. In production, each connector would record its own sync times.
-- **Next actions.** Each of the 70 open deals has one next action, saved in `data/next_actions.json`. Claude drafted 39 offline from the deal’s evidence, and I reviewed them before saving. The rest use the deal’s Salesforce Next step or, where that’s blank, a suggestion based on its stage. In production, the pipeline would call an LLM to redraft a deal’s next action when its evidence changes.
+- **Next actions.** Each of the 70 open deals has one next action, saved in `data/next_actions.json`. Claude drafted all 70 offline from each deal’s evidence, reusing the Salesforce Next step where it already fit, and I reviewed each one before saving. In production, the pipeline would call an LLM to redraft a deal’s next action when its evidence changes.
 
 
 ## AI tool log
