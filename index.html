@@ -1787,10 +1787,10 @@
 
       let breakdown = `${entry.final_score} = value ${entry.value_score} + timing ${entry.timing_score} + commit check ${entry.stage_score}`;
       if (entry.gong_bonus > 0) {
-        breakdown += ` + Gong ${entry.gong_bonus} (${entry.gong_signal}, call ${entry.gong_signal_age} days before sync)`;
+        breakdown += ` + Gong ${entry.gong_bonus} (${entry.gong_signal}, call ${entry.gong_signal_age} ${entry.gong_signal_age === 1 ? "day" : "days"} before sync)`;
       }
       if (entry.slack_bonus > 0) {
-        breakdown += ` + Slack ${entry.slack_bonus} (${entry.slack_signal}, message ${entry.slack_signal_age} days before sync)`;
+        breakdown += ` + Slack ${entry.slack_bonus} (${entry.slack_signal}, message ${entry.slack_signal_age} ${entry.slack_signal_age === 1 ? "day" : "days"} before sync)`;
       }
 
       return [

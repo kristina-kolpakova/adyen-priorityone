@@ -1,6 +1,6 @@
 # Adyen PriorityOne
 
-PriorityOne is a Monday briefing for account managers. It ranks the accounts that need attention, shows the opportunity and evidence behind each score, and suggests a next action. The demo uses synthetic Salesforce and Gong data covering 29 accounts and 70 open opportunities. [Open the live demo](https://kristina-kolpakova.github.io/adyen-priorityone/)
+PriorityOne is a Monday briefing for account managers. It ranks the accounts that need attention, shows the opportunity and evidence behind each score, and suggests a next action. The demo uses synthetic Salesforce, Gong and Slack data covering 29 accounts and 70 open opportunities. [Open the live demo](https://kristina-kolpakova.github.io/adyen-priorityone/)
 
 ## Run locally
 
@@ -24,9 +24,9 @@ python -m pytest
 
 ## How to use it
 
-Start with this week's priority accounts on **Top accounts** (every account scoring 80 or more: a strong deal plus a Commit forecast to check or a recent red flag in Gong or Slack), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, and score breakdown. **Open call** opens an in-app preview of the mock Gong call.
+Start with this week's priority accounts on **Top accounts** (every account scoring 80 or more: a strong deal plus a Commit forecast to check or a recent red flag in Gong or Slack), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, Slack messages, and score breakdown. **Open call** and **Open thread** open in-app previews of the mock Gong call or Slack thread.
 
-Drag an account to change your order and optionally add a note on why. Saving the note saves the ranking feedback.
+Drag an account to change your order and optionally add a note on why. Every move is logged; adding a note turns it into a review item.
 
 ## Ranking feedback
 
@@ -36,7 +36,7 @@ When an AM disagrees with the ranking, they drag the account and can add a short
 Ranking feedback · Krakatoa
 AM moved this account from #1 to #5.
 Note: Procurement confirmed the renewal is on track.
-Why it ranked #1: score 107 = value 40 + timing 30 + Commit check 0 + Gong 17 (Competitor risk, call 7 days before sync) + Slack 20 (Pricing pressure, message 1 days before sync).
+Why it ranked #1: score 107 = value 40 + timing 30 + commit check 0 + Gong 17 (Competitor risk, call 7 days before sync) + Slack 20 (Pricing pressure, message 1 day before sync).
 Salesforce flags: No recent activity, Stale Commit
 ```
 
@@ -64,4 +64,4 @@ The account ranks by the highest **final opportunity score**, including Gong and
 - Slack data is in Slack's own export shape (`channel_id`, `ts`, `thread_ts`, `user`, `team`, `text`) in `data/slack_messages.csv`. Slack doesn't know Salesforce accounts, so `data/slack_channels.csv` maps each shared channel to an account; in production that mapping would be maintained or matched by customer domain. Only customer messages raise flags, from phrase matching in `slack.py`. **Open thread** on a Slack bonus shows the whole thread in the app, from `data/slack_threads.json`, since the mock Slack links don't resolve. Slack activity doesn't clear Salesforce's activity flags; both stay visible.
 - Gong flags come from phrase matching in `gong.py`. The bands and weights are prototype assumptions to test against deal outcomes. A Salesforce activity gap means activity is missing from the CRM log.
 - **Data health** is simulated. The sync history, the Gong outage, and the sync times on its cards are written in `index.html`. Only the sync date comes from `data/sync.json`. The app is a fixed snapshot, so every sync date stays **Mon 23 Nov** until `integration.py` runs on new data. In production, each connector would record its own sync times.
-- Each open deal has a next action in `data/next_actions.json`. The demo uses 38 reviewed AI drafts, 23 Salesforce next steps, and 9 stage-based suggestions. I used Claude to draft recommendations offline and reviewed them before saving them with the demo data. The app reads the saved advice from JSON. The Python pipeline calculates scores using the rules above. A production version could call the Claude API when the underlying evidence changes. Offline drafting kept this fixed-data prototype simple and avoided recurring API costs.
+- Each open deal has a next action in `data/next_actions.json`. The demo uses 39 reviewed AI drafts, 22 Salesforce next steps, and 9 stage-based suggestions. I used Claude to draft recommendations offline and reviewed them before saving them with the demo data. The app reads the saved advice from JSON. The Python pipeline calculates scores using the rules above. A production version could call the Claude API when the underlying evidence changes. Offline drafting kept this fixed-data prototype simple and avoided recurring API costs.
