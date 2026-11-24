@@ -1,6 +1,15 @@
 # Adyen PriorityOne
 
-PriorityOne is a Monday briefing for account managers. It ranks the accounts that need attention, shows the opportunity and evidence behind each score, and suggests a next action. The demo uses synthetic Salesforce, Gong and Slack data covering 29 accounts and 70 open opportunities. [Open the live demo](https://kristina-kolpakova.github.io/adyen-priorityone/)
+PriorityOne is a Monday briefing for account managers. It shows which accounts need attention this week, why they surfaced, and what to do next. The demo uses mock Salesforce, Gong, and Slack data for 29 accounts and 70 open opportunities.
+
+[Open the live demo](https://kristina-kolpakova.github.io/adyen-priorityone/)
+
+## Try the demo
+
+1. Start with **Top accounts** to see accounts scoring 80 or higher. **All accounts** shows the full list.
+2. Open an account to see its opportunities and the suggested next step for its highest-scoring deal.
+3. Select **View evidence** to see the score breakdown and the Salesforce fields, Gong call notes, and Slack messages behind it. **Open call** and **Open thread** show the mock conversations in the app.
+4. If an account belongs somewhere else, drag it to a new spot. You can add a note explaining why.
 
 ## Run locally
 
@@ -10,9 +19,9 @@ From the repository root, serve the checked-in snapshot with Python 3.
 python3 -m http.server 8000
 ```
 
-Open [localhost:8000](http://localhost:8000).
+Then open [localhost:8000](http://localhost:8000/).
 
-To regenerate the score and evidence exports or run the tests, use a virtual environment.
+To regenerate the score and evidence exports and run the tests, use a virtual environment.
 
 ```bash
 python3 -m venv .venv
@@ -22,46 +31,41 @@ python integration.py
 python -m pytest
 ```
 
-## How to use it
+## How scores work
 
-Start with this week's priority accounts on **Top accounts** (every account scoring 80 or more: a strong deal plus a Commit forecast to check or a recent red flag in Gong or Slack), or open **All accounts** to see all 29. Select an account to see its opportunities and the highest-scoring deal's next action. **View evidence** shows the Salesforce fields, Gong key points, Slack messages, and score breakdown. **Open call** and **Open thread** open in-app previews of the mock Gong call or Slack thread.
+I score deals first. An account ranks by its highest-scoring open opportunity, including Gong and Slack points. The **Renewal** and **Upsell/New** chips show the best score for each type.
 
-Drag an account to change your order and optionally add a note on why. Every move is logged; adding a note turns it into a review item.
+Each open opportunity starts with up to 100 points from Salesforce.
+
+| Component | Scoring rule |
+| --- | --- |
+| **Value** · up to 40 | Eight tiers based on deal amount, worth 5–40 points. |
+| **Timing** · up to 30 | Closing in 0–7 days earns 30 points, 8–14 earns 25, 15–30 earns 20, 31–60 earns 10, 61–90 earns 5, and anything later earns 0. Deals overdue by 1–30 days earn 30. Deals overdue longer earn 10. |
+| **Commit check** · up to 30 | A deal forecast as Commit earns 30 points in Discovery or Qualification, 15 in Proposal, and 0 in Negotiation. The earlier the stage, the more reason to check whether the forecast is realistic. Other forecasts earn 0. |
+
+**Gong** adds up to 20 points for the most recent red flag on a call linked to the deal or account. A flag is worth 20 points through day 2. It then drops linearly to 5 on day 30 and to 0 on day 90. The bonus rounds to a whole point.
+
+**Slack** can add another 20 points on the same curve. Shared customer channels reflect the existing relationship, so I use Slack to score renewals. Each renewal keeps its strongest Slack red flag. Slack uses the Gong categories plus **Service incident**, **Champion departure**, **Billing dispute**, and **Unanswered request**. An unanswered request is a customer question that’s still the last message in the thread after at least two business days.
+
+If two deals tie, the deal with a Salesforce problem flag wins. If they’re still tied, the larger deal wins. These flags cover overdue deals, missing or stale activity near close, stale Commit forecasts, and Commit forecasts in Discovery or Qualification.
 
 ## Ranking feedback
 
-When an AM disagrees with the ranking, they drag the account and can add a short note on why. They see **Ranking feedback saved**, and they never need to understand the scoring. The note then shows on the row, where they can edit it. Each move with a note becomes a review item for the model's owner, with the account, the original and new rank, the note, and the score breakdown behind the original rank:
+After an AM moves an account, PriorityOne offers them an optional note to explain why. The demo saves every move in the browser. If the AM adds a note, it appears on the account row and can be edited there. The note also creates a review item with the old rank, the new rank, and the original score breakdown. A review item looks like this (simplified):
 
-```
-Ranking feedback · Krakatoa
-AM moved this account from #1 to #5.
-Note: Procurement confirmed the renewal is on track.
-Why it ranked #1: score 107 = value 40 + timing 30 + commit check 0 + Gong 17 (Competitor risk, call 7 days before sync) + Slack 20 (Pricing pressure, message 1 day before sync).
-Salesforce flags: No recent activity, Stale Commit
-```
+> **Krakatoa moved from #1 to #5**  
+> AM note: Procurement confirmed the renewal is on track.  
+> Original score: 107 = value 40 + timing 30 + Commit check 0 + Gong 17 + Slack 20.  
+> Evidence: Competitor risk on a Gong call 7 days before sync and pricing pressure in Slack 1 day before sync.  
+> Salesforce flags: No recent activity, Stale Commit.
 
-In the demo, review items are saved in the browser with the move. **Download ranking feedback** in the footer exports every move and its review item as JSON. In production, each item would go to a review queue the model's owner works through, tagged with the AM and the model version. Patterns across notes, such as many "concern resolved" moves on accounts driven by Gong points, would be checked against won and lost deals before any weight changes.
-
-## How scores work
-
-Each open opportunity gets a Salesforce base score out of 100.
-
-| Component | Rule |
-| --- | --- |
-| Value, up to 40 | Eight amount-based tiers across open deals, worth 5 to 40 points. |
-| Timing, up to 30 | 0–7 days until close earns 30, 8–14 earns 25, 15–30 earns 20, 31–60 earns 10, 61–90 earns 5, and later earns 0. Deals overdue by 1–30 days earn 30. Deals overdue longer earn 10. |
-| Commit check, up to 30 | Only deals forecast as Commit earn points. Negotiation earns 0, Proposal 15, and Discovery or Qualification 30: the earlier the stage, the more reason to check whether the forecast is realistic. Other forecasts earn 0. |
-
-The most recent applicable Gong red flag adds up to 20 points. It earns 20 through day 2, then falls linearly to 5 at day 30 and 0 at day 90. The bonus rounds to a whole point. A deal can use a call linked to it or to its account. Every red-flag category uses the same curve.
-
-Renewals can add a separate **Slack bonus** of up to 20 points, on the same curve. Slack conversations happen in shared customer channels, between people rather than about one deal, and a shared channel only exists once someone is a customer, so Slack scores renewal deals only. Each renewal keeps its strongest Slack red flag. Slack uses Gong's categories plus four that only show up in written chat: **Service incident**, **Champion departure**, **Billing dispute**, and **Unanswered request**. Unanswered request comes from the thread rather than the words: the customer's question is the last message, with no reply for 2 or more business days.
-
-The account ranks by the highest **final opportunity score**, including Gong and Slack. The **Renewal** and **Upsell/New** chips show the best final score of each type. Ties go to a deal with a Salesforce problem flag, then to the larger deal. Problem flags cover overdue deals, missing or stale activity near close, stale Commit forecasts, and Commit forecasts in Discovery or Qualification.
+**Download ranking feedback** in the footer exports all moves and their review items as JSON. In production, I’d send the review items to a queue tagged with the AM and the scoring version. If AMs keep moving accounts down because a concern from a Gong call was already resolved, I’d check those cases against won and lost deals before changing the weights.
 
 ## Data and assumptions
 
-- `integration.py` reads the Salesforce, Gong and Slack CSVs and exports JSON for the static app. It scores as of the latest activity among open Salesforce opportunities, Gong calls, and Slack messages. The published snapshot is **23 November 2026**.
-- Slack data is in Slack's own export shape (`channel_id`, `ts`, `thread_ts`, `user`, `team`, `text`) in `data/slack_messages.csv`. Slack doesn't know Salesforce accounts, so `data/slack_channels.csv` maps each shared channel to an account; in production that mapping would be maintained or matched by customer domain. Only customer messages raise flags, from phrase matching in `slack.py`. **Open thread** on a Slack bonus shows the whole thread in the app, from `data/slack_threads.json`, since the mock Slack links don't resolve. Slack activity doesn't clear Salesforce's activity flags; both stay visible.
-- Gong flags come from phrase matching in `gong.py`. The bands and weights are prototype assumptions to test against deal outcomes. A Salesforce activity gap means activity is missing from the CRM log.
-- **Data health** is simulated. The sync history, the Gong outage, and the sync times on its cards are written in `index.html`. Only the sync date comes from `data/sync.json`. The app is a fixed snapshot, so every sync date stays **Mon 23 Nov** until `integration.py` runs on new data. In production, each connector would record its own sync times.
-- Each open deal has a next action in `data/next_actions.json`. The demo uses 39 reviewed AI drafts, 22 Salesforce next steps, and 9 stage-based suggestions. I used Claude to draft recommendations offline and reviewed them before saving them with the demo data. The app reads the saved advice from JSON. The Python pipeline calculates scores using the rules above. A production version could call the Claude API when the underlying evidence changes. Offline drafting kept this fixed-data prototype simple and avoided recurring API costs.
+- **Snapshot.** `integration.py` reads the Salesforce, Gong, and Slack CSVs and writes the JSON the app uses. It scores deals as of the latest activity across open Salesforce opportunities, Gong calls, and Slack messages. The published snapshot is **23 November 2026**.
+- **Account matching.** `data/slack_channels.csv` maps each shared customer channel to a Salesforce account. In production, I’d maintain that mapping or match channels by customer domain. The app loads mock Gong calls from `data/gong_calls.json` and mock Slack threads from `data/slack_threads.json`.
+- **Red flags.** `gong.py` and `slack.py` use phrase matching. Only customer messages can raise a Slack flag. Salesforce activity flags reflect what’s recorded in the CRM, so they can appear alongside recent Slack activity. I’d test the score bands and weights against actual deal outcomes.
+- **Clay enrichment.** I left Clay out of the prototype to keep the data simple. My assumption was that recent red flags in Gong and Slack would tell an AM more about which accounts need attention this week. I’d test whether adding Clay enrichment changes the ranking in ways AMs find useful.
+- **Data health.** The sync history, Gong outage, and connector times are simulated in `index.html`. The snapshot date comes from `data/sync.json`. In production, each connector would record its own sync times.
+- **Next actions.** I used Claude to draft 39 recommendations offline and reviewed them before saving. Another 22 came from Salesforce next steps, and 9 came from the deal stage. The app reads those recommendations from `data/next_actions.json`, and Python calculates the scores. In production, I’d consider calling Claude when the evidence changes.
