@@ -625,9 +625,9 @@
     .detail-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       gap: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .detail-name {
@@ -635,7 +635,7 @@
       font-weight: 700;
       letter-spacing: -0.6px;
       line-height: 1.1;
-      margin: 6px 0 0;
+      margin: 0 0 14px;
     }
 
     .detail-score {
@@ -664,20 +664,45 @@
       color: var(--ink);
       font-size: 14px;
       line-height: 1.5;
-      margin: 18px 0 24px;
+      margin: 0 0 28px;
     }
 
     .detail-formula {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 24px;
       background: #e2f1e8;
       border-radius: 12px;
-      padding: 18px 22px;
+      padding: 14px 22px;
     }
 
     .detail-formula-title { font-size: 14px; font-weight: 600; }
     .detail-formula-text { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    /* A map-key layout: small labels on the left, one rule per row, hairlines between. */
+    .detail-formula-rows {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      column-gap: 16px;
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .detail-formula-rows > span {
+      padding: 5px 0;
+      border-top: 1px solid rgba(47, 111, 76, 0.14);
+    }
+    .detail-formula-rows > span:nth-last-child(-n+2) { padding-bottom: 0; }
+    .detail-formula-rows > span:nth-child(-n+2) { border-top: none; padding-top: 0; }
+    .detail-formula-label {
+      color: #688c7c;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 19.5px;
+    }
+    .detail-formula-note { color: var(--muted); font-size: 12px; }
     .detail-formula-value { color: #2f6f4c; font-size: 28px; font-weight: 700; }
 
     .detail-section-heading {
@@ -1760,7 +1785,7 @@
         return flagNames[flag];
       });
 
-      let breakdown = `${entry.final_score} = value ${entry.value_score} + timing ${entry.timing_score} + Commit check ${entry.stage_score}`;
+      let breakdown = `${entry.final_score} = value ${entry.value_score} + timing ${entry.timing_score} + commit check ${entry.stage_score}`;
       if (entry.gong_bonus > 0) {
         breakdown += ` + Gong ${entry.gong_bonus} (${entry.gong_signal}, call ${entry.gong_signal_age} days before sync)`;
       }
@@ -2073,7 +2098,7 @@
         const gongPart = opportunity.gong_points > 0 ? ` + ${opportunity.gong_points} Gong` : "";
         const slackPart = opportunity.slack_points > 0 ? ` + ${opportunity.slack_points} Slack` : "";
         const scoreText = `${opportunity.value_score} value + ${opportunity.timing_score} timing
-          + ${opportunity.stage_score} Commit check${gongPart}${slackPart} = <strong>${opportunity.final_score} pts</strong>`;
+          + ${opportunity.stage_score} commit check${gongPart}${slackPart} = <strong>${opportunity.final_score} pts</strong>`;
 
         // Why the deal is flagged (if it is).
         const activity = opportunity.days_since_activity === null
@@ -2215,14 +2240,16 @@
       document.getElementById("detail-content").innerHTML = `
         <div class="eyebrow">Account details · ${rankText}</div>
         <div class="detail-header">
-          <h2 class="detail-name">${account.account_name}</h2>
+          <div>
+            <h2 class="detail-name">${account.account_name}</h2>
+            <span class="chip chip-renewal">Renewal <strong>${renewal}</strong></span>
+            <span class="chip chip-upsell-new">Upsell/New <strong>${upsellNew}</strong></span>
+          </div>
           <div class="detail-score">
             <div class="detail-score-value">${total}</div>
             <div class="detail-score-label">Priority score</div>
           </div>
         </div>
-        <span class="chip chip-renewal">Renewal <strong>${renewal}</strong></span>
-        <span class="chip chip-upsell-new">Upsell/New <strong>${upsellNew}</strong></span>
         <p class="detail-explanation">${explanation}</p>
         ${accountCalls}
         <div class="detail-section-heading">
@@ -2233,9 +2260,12 @@
         <div class="detail-formula">
           <div>
             <div class="detail-formula-title">How the final score is calculated</div>
-            <div class="detail-formula-text">Highest opportunity score: Max(${dealScores}) = ${total}</div>
-            <div class="detail-formula-text">Each score adds a Gong bonus for its most recent red flag, and renewals add a Slack bonus the same way: 20 points up to 2 days after the call or message, 5 at 30 days, 0 at 90.</div>
-            <div class="detail-formula-text">When final scores tie, Salesforce problem flags come first, then deal size.</div>
+            <div class="detail-formula-rows">
+              <span class="detail-formula-label">Account</span><span>max(${dealScores}) = <strong>${total}</strong></span>
+              <span class="detail-formula-label">Opportunity</span><span>value + timing + commit check + Gong bonus + Slack bonus</span>
+              <span class="detail-formula-label">Bonus</span><span>20 pts if the latest flagged call or message is ≤&nbsp;2 days old → 5 pts at 30 days → 0 pts at 90 days<br><span class="detail-formula-note">Slack bonus applies on renewals only</span></span>
+              <span class="detail-formula-label">Ties</span><span>Salesforce problem flags come first, then deal size</span>
+            </div>
           </div>
           <div class="detail-formula-value">${total}</div>
         </div>`;
