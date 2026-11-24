@@ -45,6 +45,13 @@ A running record of how AI coding tools were used on PriorityOne: what they were
 | 31 | 2026-11-22 | Claude Code | Account scoring | Gong points moved onto every deal so the deal and account scores match |
 | 32 | 2026-11-22 | Claude Code | Account scoring | Gong bonus by recency only (20 → 5 at 30 days → 0 at 90); every red flag counts equally |
 | 33 | 2026-11-22 | Claude Code | UI | Traceable red pills, top-deal border, source colours, header and drawer tweaks; undid what didn't work |
+| 34 | 2026-11-22 | Claude Code | Data | Sync date now comes from the data (23 Nov); reverses entry 28's fixed 25 Nov |
+| 35 | 2026-11-22 | Claude Code | Feedback loop | Drag to reorder, then a review item for the model owner instead of a JSON download |
+| 36 | 2026-11-23 | Claude Code | Data health | Simulated Gong outage; rejected a demo clock and "hours ago" as too complex |
+| 37 | 2026-11-23 | Claude Code | AM workload | Log to Salesforce and a weekly digest that always matches the priority list |
+| 38 | 2026-11-23 | Claude Code | Slack | Added Slack as a renewal-only signal; Unanswered request comes from thread timing |
+| 39 | 2026-11-23 | Claude Code | Next actions | Updated six actions from Slack after matching opportunity IDs; active voice throughout |
+| 40 | 2026-11-23 | Claude Code | Ranking | Priority cutoff moved from 90 to 100; Top accounts shows only priority accounts |
 
 ---
 
@@ -365,6 +372,59 @@ A running record of how AI coding tools were used on PriorityOne: what they were
   - **Room for Clay:** I tried moving the type-score chips up beside the score tile, then undid it to keep the space under the account name for enrichment data.
   - **Small clean-ups:** I asked why a commit added 9,894 lines, which led to dropping duplicate evidence from `scores.json` (about 2,000 lines); I fixed Mosaic's grammar but chose not to rewrite every action.
 - **Lesson:** Check each visual change on the real page and be willing to undo it. Several of these ideas looked right until I saw them, and the undos were as useful as the changes.
+
+## 34. Letting the data set the date, reversing entry 28
+
+- **Tool:** Claude Code, Python/pandas
+- **What I noticed:** Calls in the drawer said "9 days before 25 Nov", which only made sense if you knew 25 Nov was my interview date. I didn't want the data to shift, and I didn't want a hidden date either.
+- **How it was steered:** Of the options Claude laid out, I chose to label the date as a sync: the pipeline now takes the latest Salesforce activity or Gong call as the snapshot date, and the page says when the data was synced. I then moved the sync to Monday 23 Nov, kept Krakatoa's renewal 6 days out (now 29 Nov), and moved the two activities that would have been in the future.
+- **How it was checked:** A test pins the sync date and the demo ranking. Claude also checked every day count in the drafted actions against its cited evidence.
+- **Lesson:** A demo date shouldn't be a secret. If the data decides it and the page names it, nobody has to explain it.
+
+## 35. A feedback loop the AM would actually use
+
+- **Tool:** Claude Code, JavaScript/CSS
+- **What Claude proposed:** A long form for flagging a wrong priority.
+- **How it was steered:** I wanted drag to reorder, with optional reasons. Then I questioned the "Download feedback" link: an AM wouldn't know what to do with a JSON file. Each move with a note now becomes a review item for whoever owns the model, with the original rank, the new rank, the note, and the score breakdown behind it. I replaced the reason chips with an optional note in the same popup, rejected copy that promised "your reasons tune next week's ranking", and had the note follow the account into the weekly digest.
+- **How it was checked:** Browser tests for drag, note, Undo, and Reset (which keeps the logged moves), and the review item text was checked against the scores.
+- **Lesson:** Feedback has to cost the AM nothing and reach someone who can act on it.
+
+## 36. Data health without a fake clock
+
+- **Tool:** Claude Code, JavaScript/CSS
+- **What I built:** A Data health tab with Salesforce, Gong, and later Slack, a simulated Gong outage, the accounts using Gong points, Retry sync, a bell, and a refresh icon in the nav.
+- **What went wrong:** To show "19 hours ago", Claude added a live clock, then a fixed demo time, then a fixture file. Each step added more code and created new mismatches, including the header and the bell showing different sync times.
+- **How it was steered:** I sent it back to simple: every date comes from the sync date, only the cards show (simulated) sync times, and every time is labelled with its source. The README states the limitation: the view is simulated, and its dates stay put until the pipeline runs on new data.
+- **Lesson:** I'm making it simpler, not more complex. A timestamp that can't be true is worse than no timestamp.
+
+## 37. Less work for the AM
+
+- **Tool:** Claude Code, JavaScript/CSS
+- **What I decided:** One click on **Log to Salesforce** turns the action into the task and the reason into the note, and confirms "Task and note saved (demo)". The weekly digest went from a separate page to a tab to a card on Top accounts that opens a drawer. I made it follow the AM's own order, show the AM's note, and list exactly the priority accounts, not a fixed top 3. I decided against a Send button, because the digest arrives on its own.
+- **How it was checked:** Browser tests confirmed that the digest, the Priority accounts card, and the list always match, including after reordering.
+- **Lesson:** Reducing work means adding nothing the AM has to do. Every extra step needs a reason the AM can see.
+
+## 38. Adding Slack as a second conversation signal
+
+- **Tool:** Claude Code, Python/pandas, JavaScript/CSS
+- **How it was steered:** I set the shape: Slack's own export columns, no opportunity ID (you talk to people, not deals), renewals only (a shared channel exists once someone is a customer), the same red-flag analysis as Gong, and a separate 20-point bonus. I picked four Slack-only categories, including Unanswered request, which comes from thread timing rather than keywords. I also set the colours.
+- **What I caught:** The mock data had Gong and Slack each covering exactly 10 accounts, which looked staged, so I had Slack reach more. I had the sender names made plainer and given consistent roles. Krakatoa stays #1 by design (137), and a test pins it.
+- **Also added:** **Open thread** shows the whole conversation in the app, with the flagged message outlined and "No reply from Adyen in 4 business days" on unanswered threads.
+- **Lesson:** A new source should match how that tool actually works, not be forced into the old one's shape.
+
+## 39. Updating the actions Slack changed
+
+- **Tool:** Claude Code
+- **What I noticed:** The drafted actions predated Slack, so some now ignored what customers had said.
+- **How it was steered:** Before editing, I had each Slack message matched to its opportunity ID. Tidewater's message was on a renewal that Slack had just made its top deal, so its old action no longer applied. Six actions were revised, each citing the message that prompted it. Krakatoa's and Mosaic's wording stayed, because Slack backed them up. I then asked for active voice across every action and reason (48 edits) and standardized activity gaps as "Salesforce shows no logged activity in the past N days".
+- **Lesson:** New evidence can make saved advice wrong. Check what it touches before rewriting anything.
+
+## 40. Raising the priority cutoff to 100
+
+- **Tool:** Claude Code
+- **What I noticed:** With Gong and Slack bonuses, scores run up to 140, so 90 had become a low bar.
+- **How it was steered:** I moved the cutoff to 100, the most a deal can score from Salesforce alone, and set it in one place. Top accounts now lists only the priority accounts (7), and the digest and the card share the same count. I also removed the unused Signals and Activity tabs and renamed the rest to Top accounts, All accounts, and Data health.
+- **Lesson:** A threshold should mean something I can say in one sentence.
 
 ---
 
